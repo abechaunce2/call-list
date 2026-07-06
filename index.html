@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Call Sheets — LPi</title>
+<style>
+  :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.06)}
+  @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:28px 18px 80px}
+  h1{margin:18px 0 4px;font-size:34px;font-weight:800;letter-spacing:-.03em}
+  .sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 26px}
+  .lab{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:26px 4px 9px}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:.5px solid var(--sep);border-radius:18px;box-shadow:var(--shadow);padding:18px 18px 16px;margin-bottom:12px;transition:transform .12s ease}
+  a.card:active{transform:scale(.985)}
+  a.card:hover{background:var(--hover)}
+  .cur{border:1.5px solid var(--blue)}
+  .top{display:flex;align-items:center;gap:12px}
+  .nm{font-size:19px;font-weight:700;letter-spacing:-.02em;flex:1}
+  .chev{color:var(--muted);font-size:18px}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:99px;color:#fff}
+  .badge.now{background:var(--blue)} .badge.arch{background:var(--muted)}
+  .addr{color:var(--muted);font-size:13.5px;margin-top:3px}
+  .stats{display:flex;gap:18px;margin-top:13px;padding-top:12px;border-top:.5px solid var(--sep)}
+  .pip b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .pip span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+  .pip .won{color:var(--green)}
+  .foot{color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:34px;padding-top:14px;border-top:.5px solid var(--sep)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Call Sheets</h1>
+  <p class="sub">One verified lead list per sell-week church. The current week is pinned on top; every past church stays saved below with its full call history, so any account can be picked back up exactly where it was left.</p>
+  <div id="app"></div>
+  <p class="foot">Call data (statuses &amp; notes) saves automatically in this browser, separately for each church — opening an archived church shows everything that happened that week. Tap a card to open its sheet. New church every week: the old one moves to Archive, nothing is lost.</p>
+</div>
+<script>
+const CHURCHES=[
+ {slug:"middletown-stfrancis",id:"stfrancis-10elm-middletown-ct",name:"St. Francis of Assisi",place:"Middletown, CT",addr:"10 Elm St, Middletown, CT 06457",dates:"Week of Jul 6, 2026",current:true},
+ {slug:"springfield-stpatrick",id:"stpatrick-1900allen-springfield",name:"St. Patrick Church",place:"Springfield, MA",addr:"1900 Allen St, Springfield, MA 01118",dates:"Jun 30 – Jul 4, 2026",current:false}
+];
+function stats(id){
+  try{
+    const s=JSON.parse(localStorage.getItem("callstate_v2_"+id))||{};
+    let called=0,won=0;Object.values(s).forEach(r=>{if(r&&r.status)called++;if(r&&r.status==="won")won++;});
+    return {called,won};
+  }catch(e){return {called:0,won:0};}
+}
+const app=document.getElementById("app");
+function section(title,list){
+  if(!list.length)return;
+  const h=document.createElement("div");h.className="lab";h.textContent=title;app.appendChild(h);
+  list.forEach(ch=>{
+    const st=stats(ch.id);
+    const a=document.createElement("a");a.className="card"+(ch.current?" cur":"");a.href=ch.slug+"/";
+    a.innerHTML='<div class="top"><div class="nm"></div><span class="badge '+(ch.current?'now">This week':'arch">Archived')+'</span><span class="chev">›</span></div>'+
+      '<div class="addr"></div>'+
+      '<div class="stats"><div class="pip"><b>'+st.called+'</b><span>calls logged</span></div>'+
+      '<div class="pip"><b class="won">'+st.won+'</b><span>won</span></div>'+
+      '<div class="pip"><b>'+ch.dates+'</b><span>'+(ch.current?'current week':'week worked')+'</span></div></div>';
+    a.querySelector(".nm").textContent=ch.name+" — "+ch.place;
+    a.querySelector(".addr").textContent=ch.addr;
+    app.appendChild(a);
+  });
+}
+section("This week",CHURCHES.filter(c=>c.current));
+section("Archive",CHURCHES.filter(c=>!c.current));
+</script>
+</body>
+</html>

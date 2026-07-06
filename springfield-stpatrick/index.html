@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>St. Patrick — ARCHIVED (Springfield MA)</title>
+<style>
+  :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--yellow:#e8a800;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 2px rgba(0,0,0,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#1c1c1e;--hover:#2c2c2e;--shadow:none}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);padding:14px 18px 11px;border-bottom:.5px solid var(--sep)}
+  h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:2px;line-height:1.4}
+  .score{display:flex;gap:14px;flex-wrap:wrap;margin-top:9px;font-size:12.5px}
+  .score b{font-size:16px;font-weight:700;letter-spacing:-.01em;display:block}
+  .score .lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+  .score .pip{min-width:54px}
+  .progress{height:7px;background:var(--fill);border-radius:99px;overflow:hidden;margin:10px 0 4px}
+  .progress > i{display:block;height:100%;width:0;background:var(--green);border-radius:99px;transition:width .25s}
+  .controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:9px}
+  #q{flex:1;min-width:150px;background:var(--fill);border:none;color:var(--text);padding:9px 12px;border-radius:10px;font-size:16px;outline:none}
+  select,.btn{background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:13px;cursor:pointer;font-weight:500}
+  .btn.on{background:var(--blue);color:#fff}
+  .count{color:var(--muted);font-size:12px;margin-left:auto;white-space:nowrap}
+  main{padding:6px 14px 100px}
+  .sec{margin:16px 0 0}
+  .lab{font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:0 6px 7px;display:flex;justify-content:space-between}
+  .card{background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;border:.5px solid var(--sep)}
+  .row{display:flex;align-items:center;gap:12px;padding:11px 14px;cursor:pointer;position:relative}
+  .row::after{content:"";position:absolute;left:48px;right:0;bottom:0;height:.5px;background:var(--sep)}
+  .row:last-child::after{display:none}
+  .row:hover{background:var(--hover)}
+  .row.done{opacity:.5}
+  .row.done .nm{text-decoration:line-through}
+  .cb{flex:0 0 auto;width:24px;height:24px;border-radius:7px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;background:transparent}
+  .cb b{opacity:0}
+  .row.done .cb{background:var(--green);border-color:var(--green)}
+  .row.done .cb b{opacity:1}
+  .mid{flex:1 1 auto;min-width:0}
+  .nm{font-size:15.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta{font-size:12.5px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;margin-left:6px;color:#fff;vertical-align:middle}
+  .tier{display:inline-block;font-size:11px;font-weight:600;padding:0 6px;border-radius:99px;margin-left:6px;background:var(--fill);color:var(--muted)}
+  .notepv{font-size:12.5px;color:var(--text);opacity:.72;margin-top:3px;line-height:1.35;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cp{flex:0 0 auto;background:var(--blue);color:#fff;border:none;padding:8px 13px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer}
+  .cp.ok{background:var(--green)}
+  .chev{flex:0 0 auto;color:var(--muted);font-size:13px;width:14px;text-align:center}
+  /* detail */
+  .detail{display:none;padding:4px 14px 15px 48px;background:var(--card);border-top:.5px solid var(--sep)}
+  .row.open + .detail{display:block}
+  .stat{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px}
+  .sbtn{border:none;border-radius:9px;padding:9px 12px;font-size:13px;font-weight:600;cursor:pointer;background:var(--fill);color:var(--text);flex:1 0 auto;min-width:88px;text-align:center}
+  .sbtn.sel{color:#fff}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .dgrid .full{grid-column:1/-1}
+  .fld label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em;display:block;margin:0 0 3px 2px}
+  .fld input,.fld textarea{width:100%;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:9px;font-size:15px;outline:none;font-family:inherit}
+  .fld textarea{resize:vertical;min-height:46px}
+  .cbk{border:1px solid var(--orange);border-radius:11px;padding:9px 11px;margin-top:9px;background:color-mix(in srgb,var(--orange) 9%,transparent)}
+  .cbk .hd{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.03em;margin-bottom:7px}
+  .links{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .links a{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;background:var(--fill);padding:7px 12px;border-radius:9px}
+  .lastc{font-size:11.5px;color:var(--muted);margin-top:9px}
+  /* due banner */
+  .due{margin:14px 0 0;border-radius:14px;overflow:hidden;border:1px solid var(--orange);background:color-mix(in srgb,var(--orange) 8%,transparent)}
+  .due .dh{font-size:12.5px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;padding:10px 14px 6px}
+  .due .drow{display:flex;align-items:center;gap:10px;padding:9px 14px;border-top:.5px solid var(--sep);font-size:14px;cursor:pointer}
+  .due .drow .when{margin-left:auto;font-size:12px;font-weight:700;white-space:nowrap}
+  .due .drow .when.now{color:var(--red)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(10px);background:rgba(30,30,32,.95);color:#fff;font-weight:600;font-size:14px;padding:11px 17px;border-radius:12px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+  .saved{position:fixed;right:16px;bottom:24px;background:var(--green);color:#fff;font-weight:700;font-size:12.5px;padding:7px 12px;border-radius:99px;opacity:0;transition:.18s;pointer-events:none;z-index:50}
+  .saved.show{opacity:1}
+  .saved.err{background:var(--red)}
+  @media print{header{position:static;background:#fff;backdrop-filter:none}.controls,.progress,.cp,.toast,.saved,.chev,.links{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}.row{break-inside:avoid}.meta{color:#444}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../" style="font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:inline-block;margin-bottom:2px">‹ All churches</a>
+  <h1>St. Patrick Call List <span style="font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:99px;color:#fff;background:var(--muted);vertical-align:middle">Archived</span></h1>
+  <div class="sub" style="color:var(--orange);font-weight:600">⚠ Archived week (Jun 30 – Jul 4). Current church = St. Francis, Middletown CT — don’t dial from here unless you’re re-working St. Patrick. All your calls, notes &amp; statuses from that week are saved below.</div>
+  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of St. Patrick Church, 1900 Allen St, Springfield · copy a number, call in Salesforce, then mark it here</div>
+  <div class="score" id="score"></div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="controls">
+    <input id="q" placeholder="Search" autocomplete="off">
+    <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
+    <button class="btn" id="cbview">Callbacks</button>
+    <button class="btn" id="near">Closest</button>
+    <button class="btn" id="hide">Hide done</button>
+    <button class="btn" id="exp">Export</button>
+    <button class="btn" id="imp">Import</button>
+    <input type="file" id="impf" accept="application/json" style="display:none">
+    <button class="btn" id="print">Print</button>
+    <span class="count" id="count"></span>
+  </div>
+</header>
+<main id="app"></main>
+</div>
+<div class="toast" id="toast">Copied</div>
+<div class="saved" id="savedflag">Saved ✓</div>
+<script>
+const CATS=["Church List (St. Patrick's)","Retirement Facility/Senior Apts","Home Health Care","Nursing Home/Hospice","Medical Clinic","Gen Contractor/Architect/Engineer","Remodeling","Roofing/Siding/Gutters","Cleaning-All/Environmental","Heating/AC Cont","Plumbing/Sewer","Electrician/Lighting","Landscape/SnowPlow/Agriculture","Auto-Mechanic/Parts/Towing","Schools - Education","Financial Planner","Bank/Mortgage Company","Insurance","RealtorAppraiser/Inspector","Attorney","Dentist","Hearing / Audiology","Funeral Home","Restaurant/Banquet Facility"];
+const TOWNMI={"Springfield":[3,1],"East Longmeadow":[3,1],"Longmeadow":[5,1],"Wilbraham":[5,1],"Ludlow":[6,1],"West Springfield":[6,1],"Hampden":[7,1],"Chicopee":[7,1],"Agawam":[8,1],"Feeding Hills":[9,1],"Holyoke":[11,2],"Westfield":[15,2]};
+const LEADS=[
+{c:"Church List (St. Patrick's)",n:"Byron-Keenan Funeral Home",p:"(413) 736-5413",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Sampson's Chapel of the Acres",p:"(413) 782-5226",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Nathan Bill's Bar & Restaurant (banquet hall)",p:"(413) 737-6135",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"La Fiorentina Pastry Shop",p:"(413) 732-3151",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Leone's Restaurant",p:"(413) 783-3398",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Frigo Foods (catering)",p:"(413) 732-5428",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Pan Pizza",p:"(413) 455-1292",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Springfield Liquor Mart",p:"(413) 783-4556",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Papale Eye Center",p:"(413) 782-0030",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Hazel The Salon",p:"(413) 271-1018",t:"East Longmeadow"},
+{c:"Church List (St. Patrick's)",n:"Grenier Financial Advisors (Pat Grenier - parishioner)",p:"(413) 736-6712",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Fletcher Sewer & Drain",p:"(413) 788-7200",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Clean Septics",p:"(413) 583-2138",t:"Ludlow"},
+{c:"Church List (St. Patrick's)",n:"Ed's Tree Service",p:"(413) 566-2100",t:"Hampden"},
+{c:"Church List (St. Patrick's)",n:"Abide (asbestos / abatement)",p:"(413) 525-0644",t:"East Longmeadow"},
+{c:"Church List (St. Patrick's)",n:"Rocky's Ace Hardware",p:"(413) 781-0350",t:"Springfield"},
+{c:"Church List (St. Patrick's)",n:"Spirit Among Us (religious gifts)",p:"(413) 583-4014",t:"Ludlow"},
+{c:"Church List (St. Patrick's)",n:"ATC Audio (mic / sound repair)",p:"(413) 781-2327",t:"West Springfield"},
+{c:"Church List (St. Patrick's)",n:"PIP Marketing, Signs, Print",p:"(413) 525-4044",t:"East Longmeadow"},
+{c:"Church List (St. Patrick's)",n:"Cintas (fire extinguishers / alarms)",p:"(800) 703-4260",t:"West Springfield"},
+{c:"Retirement Facility/Senior Apts",n:"Mason Wright Senior Living",p:"(413) 733-1517",t:"Springfield"},
+{c:"Retirement Facility/Senior Apts",n:"East Village Place (Watermark)",p:"(413) 525-8150",t:"East Longmeadow"},
+{c:"Retirement Facility/Senior Apts",n:"The Landmark at Monastery Heights",p:"(413) 781-1282",t:"West Springfield"},
+{c:"Retirement Facility/Senior Apts",n:"Armbrook Village",p:"(413) 568-0000",t:"Westfield"},
+{c:"Nursing Home/Hospice",n:"Heritage Hall (Agawam)",p:"(413) 786-8000",t:"Agawam"},
+{c:"Nursing Home/Hospice",n:"Willimansett Center West",p:"(413) 536-2540",t:"Chicopee"},
+{c:"Nursing Home/Hospice",n:"Willimansett Center East",p:"(413) 315-4205",t:"Chicopee"},
+{c:"Home Health Care",n:"Golden Years Home Care Services",p:"(413) 209-8208",t:"Springfield"},
+{c:"Home Health Care",n:"Amada Senior Care",p:"(413) 930-4400",t:"West Springfield"},
+{c:"Gen Contractor/Architect/Engineer",n:"Fontaine Brothers Inc",p:"(413) 781-2020",t:"Springfield"},
+{c:"Gen Contractor/Architect/Engineer",n:"Associated Building Wreckers",p:"(413) 732-3179",t:"Springfield"},
+{c:"Gen Contractor/Architect/Engineer",n:"Raymond R. Houle Construction",p:"(413) 547-2500",t:"Ludlow"},
+{c:"Financial Planner",n:"MassMutual (HQ)",p:"(413) 788-8411",t:"Springfield"},
+{c:"Financial Planner",n:"Baystate Financial",p:"(413) 552-0000",t:"Holyoke"},
+{c:"Financial Planner",n:"Northwestern Mutual",p:"(413) 748-8700",t:"Springfield"},
+{c:"Financial Planner",n:"Meyers Brothers Kalicka CPA",p:"(413) 536-8510",t:"Holyoke"},
+{c:"Financial Planner",n:"Raymond James (Springfield branch)",p:"(413) 372-6600",t:"Springfield"},
+{c:"Bank/Mortgage Company",n:"Monson Savings Bank",p:"(413) 596-2848",t:"Wilbraham"},
+{c:"Bank/Mortgage Company",n:"Country Bank",p:"(413) 733-2171",t:"Springfield"},
+{c:"Bank/Mortgage Company",n:"Arrha Credit Union",p:"(413) 732-9812",t:"Springfield"},
+{c:"Attorney",n:"Bacon Wilson, P.C.",p:"(413) 781-0560",t:"Springfield"},
+{c:"Attorney",n:"Doherty, Wallace, Pillsbury & Murphy",p:"(413) 733-3111",t:"Springfield"},
+{c:"RealtorAppraiser/Inspector",n:"Sears Real Estate (Lamacchia)",p:"(413) 785-1697",t:"Springfield"},
+{c:"RealtorAppraiser/Inspector",n:"Gallagher Real Estate",p:"(877) 533-3539",t:"Holyoke"},
+{c:"Roofing/Siding/Gutters",n:"Rocco Roofing",p:"(413) 366-3179",t:"Wilbraham"},
+{c:"Roofing/Siding/Gutters",n:"Sexton Roofing & Siding",p:"(413) 534-1234",t:"Holyoke"},
+{c:"Cleaning-All/Environmental",n:"Anderson Cleaning",p:"(413) 306-5053",t:"West Springfield"},
+{c:"Cleaning-All/Environmental",n:"LL Budget Cleaning Services",p:"(413) 266-3110",t:"Agawam"},
+{c:"Plumbing/Sewer",n:"Gingras Plumbing & Heating",p:"(413) 295-2942",t:"Feeding Hills"},
+{c:"Plumbing/Sewer",n:"A.R. Zukowski Plumbing & Heating",p:"(413) 733-6716",t:"West Springfield"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Lawn Tech Lawn Care",p:"(413) 610-0167",t:"Ludlow"},
+{c:"Landscape/SnowPlow/Agriculture",n:"All Season Property Maintenance",p:"(413) 272-9288",t:"Hampden"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Parrotta's Auto Service",p:"(413) 786-0959",t:"Agawam"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Quality Auto LLC",p:"(413) 789-3500",t:"Agawam"},
+{c:"Auto-Mechanic/Parts/Towing",n:"V&F Auto Service",p:"(413) 789-2181",t:"Agawam"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Agawam Tire & Auto Service Center",p:"(413) 786-4494",t:"Feeding Hills"},
+{c:"Dentist",n:"Holyoke Mall Dental",p:"(413) 538-7400",t:"Holyoke"},
+{c:"Dentist",n:"Baystate Dental of Holyoke",p:"(413) 241-3615",t:"Holyoke"},
+{c:"Insurance",n:"Sumner & Toner Insurance Agency",p:"(413) 567-1051",t:"Longmeadow"},
+{c:"Schools - Education",n:"Greenwood Children's Center",p:"(413) 565-4163",t:"Longmeadow"},
+{c:"RealtorAppraiser/Inspector",n:"Ayre Real Estate",p:"(413) 789-0812",t:"Agawam"},
+{c:"RealtorAppraiser/Inspector",n:"Perella Real Estate",p:"(413) 525-9800",t:"East Longmeadow"},
+{c:"Attorney",n:"Stephen R. Manning (elder law / estate)",p:"(413) 525-1119",t:"East Longmeadow"},
+{c:"Attorney",n:"Sarah A. Miller (estate / elder law)",p:"(413) 351-2100",t:"East Longmeadow"},
+{c:"Hearing / Audiology",n:"Baystate Hearing",p:"(413) 734-2886",t:"West Springfield"},
+{c:"Hearing / Audiology",n:"Mass Hearing Specialists",p:"(413) 338-2777",t:"Springfield"},
+{c:"Hearing / Audiology",n:"AVADA Hearing Care Centers",p:"(413) 306-3947",t:"West Springfield"},
+{c:"Funeral Home",n:"Grise Funeral Home",p:"(413) 594-4189",t:"Chicopee"},
+{c:"Funeral Home",n:"Starzyk Funeral Home",p:"(413) 592-2144",t:"Chicopee"},
+{c:"Funeral Home",n:"Barry J. Farrell Funeral Home",p:"(413) 536-3843",t:"Holyoke"},
+{c:"Funeral Home",n:"Wilbraham Funeral Home",p:"(413) 596-6100",t:"Wilbraham"},
+{c:"Funeral Home",n:"Toomey-O'Brien Funeral Home",p:"(413) 732-2278",t:"West Springfield"},
+{c:"Retirement Facility/Senior Apts",n:"The Arbors at Chicopee Assisted Living & Memory Care",p:"(413) 206-9763",t:"Chicopee"},
+{c:"Retirement Facility/Senior Apts",n:"River Mills Assisted Living at Chicopee Falls",p:"(413) 531-0995",t:"Chicopee"},
+{c:"Retirement Facility/Senior Apts",n:"The Atrium at Cardinal Drive",p:"(413) 284-2686",t:"Agawam"},
+{c:"Retirement Facility/Senior Apts",n:"Ruth's House Assisted Living Residence",p:"(866) 892-7533",t:"Longmeadow"},
+{c:"Retirement Facility/Senior Apts",n:"Glenmeadow (Life Plan Community)",p:"(413) 567-7800",t:"Longmeadow"},
+{c:"Retirement Facility/Senior Apts",n:"JGS Lifecare",p:"(413) 567-6211",t:"Longmeadow"},
+{c:"Retirement Facility/Senior Apts",n:"Loomis Lakeside at Reeds Landing",p:"(413) 782-1800",t:"Springfield"},
+{c:"Home Health Care",n:"Visiting Angels of West Springfield",p:"(413) 733-6900",t:"Holyoke"},
+{c:"Home Health Care",n:"Homewatch CareGivers of Springfield",p:"(413) 344-2204",t:"Springfield"},
+{c:"Home Health Care",n:"Chanda Care",p:"(413) 217-9861",t:"Springfield"},
+{c:"Home Health Care",n:"Integra Home Health",p:"(413) 224-1912",t:"East Longmeadow"},
+{c:"Home Health Care",n:"Associated Home Care (O'Connell Care)",p:"(413) 798-4343",t:"Springfield"},
+{c:"Nursing Home/Hospice",n:"Chicopee Rehabilitation and Nursing Center",p:"(413) 592-7738",t:"Chicopee"},
+{c:"Nursing Home/Hospice",n:"Baystate Rehabilitation Care",p:"(413) 794-1600",t:"Springfield"},
+{c:"Nursing Home/Hospice",n:"Holyoke Rehabilitation Center",p:"(413) 538-9733",t:"Holyoke"},
+{c:"Nursing Home/Hospice",n:"Renaissance Manor on Cabot",p:"(413) 536-3435",t:"Holyoke"},
+{c:"Nursing Home/Hospice",n:"Amedisys Hospice Care",p:"(413) 543-3133",t:"Springfield"},
+{c:"Medical Clinic",n:"Family Care Medical Center",p:"(413) 783-9114",t:"Springfield"},
+{c:"Medical Clinic",n:"Springfield Medical Associates (SMA)",p:"(413) 739-5676",t:"Springfield"},
+{c:"Medical Clinic",n:"Valley Medical Associates / Baystate Primary Care",p:"(413) 739-0669",t:"Springfield"},
+{c:"Medical Clinic",n:"Personal Primary Care",p:"(413) 798-0301",t:"Springfield"},
+{c:"Medical Clinic",n:"Priority Urgent Care",p:"(413) 366-9977",t:"Chicopee"},
+{c:"Medical Clinic",n:"HMC Walk-In Care",p:"(413) 535-4995",t:"Chicopee"},
+{c:"Medical Clinic",n:"Baystate Cardiology",p:"(413) 794-2273",t:"Springfield"},
+{c:"Medical Clinic",n:"Pain Management & Rehabilitation (PMR)",p:"(413) 788-4224",t:"Springfield"},
+{c:"Medical Clinic",n:"Agawam Chiropractic",p:"(413) 789-1073",t:"Agawam"},
+{c:"Medical Clinic",n:"Chicopee Center Chiropractic",p:"(413) 598-8550",t:"Chicopee"},
+{c:"Medical Clinic",n:"Holyoke Pediatric Associates",p:"(413) 536-2393",t:"Holyoke"},
+{c:"Medical Clinic",n:"Holyoke Medical Group Pediatric Care",p:"(413) 534-2800",t:"Holyoke"},
+{c:"Gen Contractor/Architect/Engineer",n:"MG Construction",p:"(413) 386-5105",t:"Chicopee"},
+{c:"Gen Contractor/Architect/Engineer",n:"MOST Builders & General Contracting",p:"(413) 736-3352",t:"Agawam"},
+{c:"Gen Contractor/Architect/Engineer",n:"Caracas Construction Corp",p:"(413) 547-6200",t:"Ludlow"},
+{c:"Gen Contractor/Architect/Engineer",n:"Celebrity Builders",p:"(413) 583-3070",t:"Ludlow"},
+{c:"Gen Contractor/Architect/Engineer",n:"Dan's Construction Services",p:"(413) 351-5125",t:"Ludlow"},
+{c:"Gen Contractor/Architect/Engineer",n:"Keith G. Roy Construction",p:"(413) 485-7533",t:"Westfield"},
+{c:"Gen Contractor/Architect/Engineer",n:"Scarfo Construction",p:"(413) 568-0264",t:"Westfield"},
+{c:"Gen Contractor/Architect/Engineer",n:"Belco Construction",p:"(413) 564-5228",t:"Westfield"},
+{c:"Remodeling",n:"Pro Builders Home Improvement",p:"(413) 519-0902",t:"Springfield"},
+{c:"Remodeling",n:"Rapid Quality Construction",p:"(413) 695-1108",t:"Springfield"},
+{c:"Remodeling",n:"Inaugural Home Improvement",p:"(413) 628-5177",t:"Springfield"},
+{c:"Remodeling",n:"EZ Restore",p:"(413) 564-4854",t:"West Springfield"},
+{c:"Remodeling",n:"Ideal Kitchens",p:"(413) 532-2253",t:"Agawam"},
+{c:"Roofing/Siding/Gutters",n:"Patrick Kelly Roofing & Siding",p:"(413) 568-9513",t:"Westfield"},
+{c:"Roofing/Siding/Gutters",n:"Home City Roofing",p:"(413) 363-6958",t:"Springfield"},
+{c:"Roofing/Siding/Gutters",n:"CDA Roofing & Siding Contractors",p:"(413) 786-4081",t:"Agawam"},
+{c:"Roofing/Siding/Gutters",n:"Nova Home Improvements",p:"(413) 455-8218",t:"Agawam"},
+{c:"Roofing/Siding/Gutters",n:"Chicopee Roofing Company",p:"(413) 307-8804",t:"Chicopee"},
+{c:"Cleaning-All/Environmental",n:"SERVPRO of Westfield/Southwick",p:"(413) 305-1160",t:"West Springfield"},
+{c:"Cleaning-All/Environmental",n:"ServiceMaster of Greater Springfield",p:"(413) 676-9907",t:"Springfield"},
+{c:"Cleaning-All/Environmental",n:"Force 1 Restoration",p:"(413) 296-2941",t:"Springfield"},
+{c:"Cleaning-All/Environmental",n:"Four Seasons Cleaning",p:"(413) 427-3068",t:"Springfield"},
+{c:"Cleaning-All/Environmental",n:"City Building Maintenance Inc",p:"(413) 532-4160",t:"Chicopee"},
+{c:"Cleaning-All/Environmental",n:"Happy Home Maid Service",p:"(413) 426-4089",t:"Agawam"},
+{c:"Cleaning-All/Environmental",n:"Maid to Clean",p:"(413) 302-8256",t:"Springfield"},
+{c:"Heating/AC Cont",n:"Modern Heating & A/C",p:"(413) 272-8075",t:"Agawam"},
+{c:"Heating/AC Cont",n:"ENIGMA-HVAC",p:"(413) 575-2651",t:"Chicopee"},
+{c:"Heating/AC Cont",n:"Nyzio HVAC",p:"(413) 534-3320",t:"Chicopee"},
+{c:"Heating/AC Cont",n:"Hurley & David HVAC",p:"(413) 241-7068",t:"Springfield"},
+{c:"Heating/AC Cont",n:"Air Experts Inc",p:"(413) 552-0808",t:"East Longmeadow"},
+{c:"Heating/AC Cont",n:"Reidy Heating & Cooling",p:"(413) 534-3749",t:"Holyoke"},
+{c:"Plumbing/Sewer",n:"Hurley Plumbing LLC",p:"(413) 737-5844",t:"East Longmeadow"},
+{c:"Plumbing/Sewer",n:"Biermann Plumbing & Heating",p:"(413) 547-2970",t:"West Springfield"},
+{c:"Plumbing/Sewer",n:"Dreyer Plumbing & Heating",p:"(413) 789-2260",t:"Agawam"},
+{c:"Plumbing/Sewer",n:"Hogan Mechanical Inc",p:"(413) 404-8189",t:"Agawam"},
+{c:"Plumbing/Sewer",n:"Springfield Plumbing Supply",p:"(413) 736-5484",t:"Chicopee"},
+{c:"Plumbing/Sewer",n:"RPN Plumbing LLC",p:"(413) 203-9692",t:"Holyoke"},
+{c:"Plumbing/Sewer",n:"Mario the Plumber",p:"(413) 612-7224",t:"Holyoke"},
+{c:"Electrician/Lighting",n:"CB Electric Inc",p:"(413) 737-1300",t:"Springfield"},
+{c:"Electrician/Lighting",n:"PJ's Electrical",p:"(413) 366-1703",t:"Wilbraham"},
+{c:"Electrician/Lighting",n:"Goodless Electric Company",p:"(413) 739-3835",t:"West Springfield"},
+{c:"Electrician/Lighting",n:"Barkett Electric LLC",p:"(413) 726-8293",t:"Longmeadow"},
+{c:"Electrician/Lighting",n:"GDR Electrical Inc",p:"(413) 530-3571",t:"West Springfield"},
+{c:"Electrician/Lighting",n:"E.O. Ross Electrical Contractors",p:"(413) 739-3509",t:"Longmeadow"},
+{c:"Electrician/Lighting",n:"RFL Electrical",p:"(413) 567-5000",t:"Longmeadow"},
+{c:"Electrician/Lighting",n:"Electrical Experts",p:"(413) 276-4787",t:"Agawam"},
+{c:"Electrician/Lighting",n:"Romeo L. Beaulieu & Sons",p:"(413) 319-3059",t:"Holyoke"},
+{c:"Electrician/Lighting",n:"B Town Electric",p:"(413) 213-0770",t:"Ludlow"},
+{c:"Landscape/SnowPlow/Agriculture",n:"A & M Landscaping",p:"(413) 262-6423",t:"Wilbraham"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Mountain View Landscapes & Lawncare",p:"(413) 536-7555",t:"Chicopee"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Witman Properties (landscaping & snow)",p:"(413) 536-2714",t:"Holyoke"},
+{c:"Landscape/SnowPlow/Agriculture",n:"MEC's Landscaping",p:"(413) 525-3564",t:"East Longmeadow"},
+{c:"Landscape/SnowPlow/Agriculture",n:"DB Landscape & Design",p:"(413) 566-8105",t:"Hampden"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Avalanche Landscape Design",p:"(413) 219-4667",t:"East Longmeadow"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Stellato Bros Landscaping",p:"(413) 789-6382",t:"Feeding Hills"},
+{c:"Landscape/SnowPlow/Agriculture",n:"Grounds Keeper Landscaping",p:"(413) 789-9273",t:"Feeding Hills"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Mike's Auto Service & Repair",p:"(413) 737-7806",t:"West Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Sol's Tire Service",p:"(413) 781-6120",t:"West Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Tech Auto Service Inc",p:"(413) 781-6233",t:"Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Broadway Auto Shop Inc",p:"(413) 592-3547",t:"Chicopee"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Geneva Auto Sales",p:"(413) 455-2275",t:"West Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Balise Kia",p:"(413) 316-1500",t:"West Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"The Car Company",p:"(413) 737-7124",t:"Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Matts Auto Mall",p:"(413) 495-2606",t:"Chicopee"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Auto Globe LLC",p:"(413) 733-0612",t:"Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Union Street Auto Sales",p:"(413) 285-7619",t:"West Springfield"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Wilbraham Tire & Auto Service",p:"(413) 596-8101",t:"Wilbraham"},
+{c:"Auto-Mechanic/Parts/Towing",n:"Tire Warehouse",p:"(413) 583-6872",t:"Ludlow"},
+{c:"Schools - Education",n:"Academy Hill School",p:"(413) 788-0300",t:"Springfield"},
+{c:"Schools - Education",n:"Wilbraham & Monson Academy",p:"(413) 596-6811",t:"Wilbraham"},
+{c:"Schools - Education",n:"Pope Francis Preparatory School",p:"(833) 999-7673",t:"Springfield"},
+{c:"Schools - Education",n:"Springfield SDA Junior Academy",p:"(413) 731-2220",t:"Springfield"},
+{c:"Schools - Education",n:"Cooley Street KinderCare",p:"(413) 783-2323",t:"Springfield"},
+{c:"Schools - Education",n:"Longmeadow KinderCare",p:"(413) 567-9264",t:"Longmeadow"},
+{c:"Schools - Education",n:"Chicopee Child Development Center",p:"(413) 593-3942",t:"Chicopee"},
+{c:"Schools - Education",n:"Children's House Inc",p:"(413) 782-4448",t:"Springfield"},
+{c:"Schools - Education",n:"Playful Minds Learning Center",p:"(413) 593-6300",t:"Chicopee"},
+{c:"Schools - Education",n:"Holyoke YMCA Y-Kids Learning Center",p:"(413) 534-5631",t:"Holyoke"},
+{c:"Financial Planner",n:"St. Germain Investment Management",p:"(800) 443-7624",t:"Springfield"},
+{c:"Financial Planner",n:"Correct Capital Wealth Management",p:"(877) 930-4015",t:"Springfield"},
+{c:"Financial Planner",n:"Pioneer Valley Financial Group",p:"(413) 589-1500",t:"Ludlow"},
+{c:"Bank/Mortgage Company",n:"Freedom Credit Union",p:"(413) 739-6961",t:"Springfield"},
+{c:"Bank/Mortgage Company",n:"Holyoke Credit Union",p:"(413) 561-9600",t:"Holyoke"},
+{c:"Bank/Mortgage Company",n:"Westfield Bank",p:"(413) 568-1911",t:"Chicopee"},
+{c:"Bank/Mortgage Company",n:"Polish National Credit Union",p:"(413) 592-9495",t:"Chicopee"},
+{c:"Bank/Mortgage Company",n:"PeoplesBank (Memorial Dr)",p:"(413) 612-0001",t:"Chicopee"},
+{c:"Bank/Mortgage Company",n:"PeoplesBank (St James Ave)",p:"(413) 730-6660",t:"Springfield"},
+{c:"Insurance",n:"Phillips Insurance Agency Inc",p:"(413) 594-5984",t:"Chicopee"},
+{c:"Insurance",n:"First American Insurance Agency",p:"(413) 592-8118",t:"Chicopee"},
+{c:"Insurance",n:"The AXiA Group",p:"(413) 788-9000",t:"West Springfield"},
+{c:"Insurance",n:"A-Affordable Insurance Agency",p:"(413) 781-3800",t:"Springfield"},
+{c:"Insurance",n:"Rush Insurance Group",p:"(413) 786-3535",t:"Agawam"},
+{c:"Insurance",n:"Grimaldi Insurance Agency",p:"(413) 525-8755",t:"East Longmeadow"},
+{c:"Insurance",n:"HUB International New England",p:"(413) 224-7334",t:"East Longmeadow"},
+{c:"Insurance",n:"Ormsby Insurance Agency",p:"(413) 525-7015",t:"East Longmeadow"},
+{c:"Insurance",n:"The Dowd Agencies",p:"(413) 538-7444",t:"Holyoke"},
+{c:"Insurance",n:"Foley Insurance Group",p:"(413) 214-7474",t:"West Springfield"},
+{c:"Insurance",n:"Webber & Grinnell Insurance",p:"(413) 536-8380",t:"Holyoke"},
+{c:"RealtorAppraiser/Inspector",n:"LAER Realty Partners",p:"(413) 525-2677",t:"East Longmeadow"},
+{c:"RealtorAppraiser/Inspector",n:"Tom Morrissette (LAER Realty)",p:"(413) 530-9466",t:"East Longmeadow"},
+{c:"RealtorAppraiser/Inspector",n:"Berkshire Hathaway HS Realty Pros",p:"(413) 596-6711",t:"Wilbraham"},
+{c:"RealtorAppraiser/Inspector",n:"First Place Realty",p:"(413) 343-4611",t:"Longmeadow"},
+{c:"RealtorAppraiser/Inspector",n:"Park Square Realty",p:"(413) 789-9830",t:"West Springfield"},
+{c:"RealtorAppraiser/Inspector",n:"Region Company Realtors",p:"(413) 415-1200",t:"West Springfield"},
+{c:"RealtorAppraiser/Inspector",n:"Skye Mountain Realty",p:"(413) 532-1452",t:"Chicopee"},
+{c:"RealtorAppraiser/Inspector",n:"Accurate Real Estate Appraisal Services",p:"(413) 599-4639",t:"Springfield"},
+{c:"RealtorAppraiser/Inspector",n:"Coldwell Banker Realty (Longmeadow)",p:"(413) 433-7258",t:"Longmeadow"},
+{c:"Attorney",n:"Joanna Cobleigh, Esq. (Family Law)",p:"(413) 224-2090",t:"East Longmeadow"},
+{c:"Attorney",n:"Chernick & Chernick",p:"(413) 733-1312",t:"Springfield"},
+{c:"Attorney",n:"William J. O'Neil, Attorney",p:"(413) 733-6821",t:"East Longmeadow"},
+{c:"Attorney",n:"Douglas R. Peterson, Attorney",p:"(413) 525-3222",t:"East Longmeadow"},
+{c:"Attorney",n:"Coleman & MacDonald",p:"(413) 224-2286",t:"East Longmeadow"},
+{c:"Attorney",n:"Gelinas & Lefebvre, P.C.",p:"(413) 532-0010",t:"Chicopee"},
+{c:"Attorney",n:"Murphy McCoubrey",p:"(413) 592-6106",t:"Chicopee"},
+{c:"Attorney",n:"Roumeliotis Law Group, P.C.",p:"(413) 734-1100",t:"Holyoke"},
+{c:"Attorney",n:"Naatz Law Office",p:"(413) 336-8300",t:"West Springfield"},
+{c:"Dentist",n:"Baystate Dental of West Springfield",p:"(413) 507-0119",t:"West Springfield"},
+{c:"Dentist",n:"Baystate Dental of Chicopee",p:"(413) 241-6913",t:"Chicopee"},
+{c:"Dentist",n:"Chicopee Street Dental",p:"(413) 533-0528",t:"Chicopee"},
+{c:"Dentist",n:"Agawam Dental Arts",p:"(413) 362-7815",t:"Feeding Hills"},
+{c:"Dentist",n:"Gorgeous Smiles Dental",p:"(413) 747-0400",t:"Springfield"},
+{c:"Dentist",n:"Aspen Dental",p:"(413) 737-1800",t:"West Springfield"},
+{c:"Dentist",n:"Longmeadow Dental Care",p:"(413) 567-1223",t:"Longmeadow"},
+{c:"Dentist",n:"Dores Dental",p:"(413) 241-3995",t:"East Longmeadow"},
+{c:"Dentist",n:"Atrium Dental Group",p:"(413) 525-3000",t:"East Longmeadow"},
+{c:"Dentist",n:"Meadow Place Dental",p:"(413) 525-6123",t:"East Longmeadow"},
+{c:"Dentist",n:"Vanguard Dental",p:"(413) 543-2555",t:"Springfield"},
+{c:"Funeral Home",n:"St. Pierre-Phaneuf Funeral Chapels",p:"(413) 737-1177",t:"Springfield"},
+{c:"Funeral Home",n:"Curran-Jones Funeral Home",p:"(413) 781-7766",t:"West Springfield"},
+{c:"Funeral Home",n:"Nowak Funeral & Cremation Services",p:"(413) 543-1892",t:"Springfield"},
+{c:"Funeral Home",n:"Dillon Funeral Home",p:"(413) 532-0691",t:"Holyoke"},
+{c:"Funeral Home",n:"Forastiere Smith Funeral & Cremation",p:"(413) 525-2800",t:"East Longmeadow"},
+{c:"Funeral Home",n:"Colonial Forastiere Funeral & Cremation",p:"(413) 786-2600",t:"Agawam"},
+{c:"Funeral Home",n:"Ludlow Funeral Home",p:"(413) 583-3575",t:"Ludlow"},
+{c:"Restaurant/Banquet Facility",n:"Center Square Grill",p:"(413) 525-0055",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Wood-N-Tap",p:"(413) 286-0827",t:"West Springfield"},
+{c:"Restaurant/Banquet Facility",n:"Munich Haus",p:"(413) 594-8788",t:"Chicopee"},
+{c:"Restaurant/Banquet Facility",n:"99 Restaurant & Bar",p:"(413) 593-9909",t:"Chicopee"},
+{c:"Restaurant/Banquet Facility",n:"John's Pizzeria & Restaurant",p:"(413) 592-1715",t:"Chicopee"},
+{c:"Restaurant/Banquet Facility",n:"Chicopee Pizza",p:"(413) 593-8999",t:"Chicopee"},
+{c:"Restaurant/Banquet Facility",n:"Villa Napoletana",p:"(413) 732-9300",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Fazio's Ristorante & Pizzeria",p:"(413) 525-2735",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Redstone Pasta Company",p:"(413) 798-8678",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"East Village Tavern",p:"(413) 525-7777",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Tao's Asian Cuisine",p:"(413) 525-1820",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Typical Sicilian",p:"(413) 739-7100",t:"East Longmeadow"},
+{c:"Restaurant/Banquet Facility",n:"Partners Restaurant",p:"(413) 786-0975",t:"Feeding Hills"},
+{c:"Restaurant/Banquet Facility",n:"Take 5 Restaurant",p:"(413) 786-0962",t:"Feeding Hills"},
+{c:"Restaurant/Banquet Facility",n:"Macho Taco",p:"(413) 285-7060",t:"Feeding Hills"},
+{c:"Restaurant/Banquet Facility",n:"D Patron Mexican Restaurant",p:"(413) 285-8545",t:"Agawam"},
+{c:"Restaurant/Banquet Facility",n:"Frontera Grill",p:"(413) 612-2800",t:"Chicopee"},
+{c:"Restaurant/Banquet Facility",n:"Amedeo's",p:"(413) 536-4056",t:"Holyoke"}
+];
+LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+(function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
+
+// ---- status defs ----
+const STATUS={
+  noanswer:{lbl:"No answer",c:"var(--muted)"},
+  leftmsg:{lbl:"Left msg",c:"var(--blue)"},
+  answered:{lbl:"Answered",c:"var(--purple)"},
+  callback:{lbl:"Callback",c:"var(--orange)"},
+  inprogress:{lbl:"In Progress",c:"var(--teal)"},
+  notnow:{lbl:"Not now",c:"var(--red)"},
+  won:{lbl:"WON",c:"var(--green)"},
+  called:{lbl:"Called",c:"var(--muted)"}
+};
+const ORDER=["noanswer","leftmsg","callback","inprogress","notnow","won"];
+
+// ---- storage (single keyed blob per church/week + visible save) ----
+const LIST_ID="stpatrick-1900allen-springfield";
+const SKEY="callstate_v2_"+LIST_ID;
+let STATE={};
+try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
+// one-time migration of old spfd_ done flags so the 35 check-offs carry over
+(function migrate(){let ch=false;LEADS.forEach(l=>{if(localStorage.getItem('spfd_'+l.dig)==='1'&&!STATE[l.dig]){STATE[l.dig]={status:'called',ts:Date.now(),notes:'',dm:'',time:'',email:''};ch=true;}});if(ch)save();})();
+// ---- seed: calls already made on the old sheet (applied once per version; never overwrites anything you've already set here) ----
+const SEED=[
+{dig:"4132069763",status:"callback",notes:"Left number for the decision maker."},
+{dig:"4135310995",status:"leftmsg"},
+{dig:"4132842686",status:"callback",email:"sschellenger1@benchmarkquilty.com",notes:"They gave an email but it bounced. She gave sschellenger1@benchmarkquilty.com but I spelled it wrong — need the correct email."},
+{dig:"8668927533",status:"noanswer"},
+{dig:"4135677800",status:"leftmsg"},
+{dig:"4135676211",status:"leftmsg"},
+{dig:"4137821800",status:"noanswer"},
+{dig:"4137336900",status:"leftmsg"},
+{dig:"4133442204",status:"leftmsg"},
+{dig:"4132179861",status:"leftmsg",notes:"Sent email to owner."},
+{dig:"4132241912",status:"leftmsg"},
+{dig:"4137984343",status:"leftmsg"},
+{dig:"4135927738",status:"leftmsg"},
+{dig:"4137941600",status:"notnow"},
+{dig:"4135389733",status:"leftmsg"},
+{dig:"4135363435",status:"leftmsg"},
+{dig:"4135433133",status:"leftmsg"},
+{dig:"4133865105",status:"leftmsg"},
+{dig:"4137363352",status:"noanswer"},
+{dig:"4135476200",status:"leftmsg"},
+{dig:"4135833070",status:"leftmsg"},
+{dig:"4133515125",status:"noanswer"},
+{dig:"4134857533",status:"leftmsg"},
+{dig:"4135680264",status:"notnow"},
+{dig:"4135645228",status:"notnow"},
+{dig:"4135190902",status:"noanswer"},
+{dig:"4136951108",status:"leftmsg"},
+{dig:"4136285177",status:"leftmsg"},
+{dig:"4135644854",status:"noanswer"},
+{dig:"4135322253",status:"leftmsg"},
+{dig:"4135689513",status:"noanswer"},
+{dig:"4133636958",status:"notnow",notes:"Out of money for the year."},
+{dig:"4137864081",status:"notnow"},
+{dig:"4134558218",status:"leftmsg"},
+{dig:"4133078804",status:"callback"},
+{dig:"4133051160",status:"leftmsg"},
+{dig:"4136769907",status:"leftmsg"},
+{dig:"4132962941",status:"notnow"},
+{dig:"4134273068",status:"leftmsg"},
+{dig:"4135324160",status:"leftmsg"}
+];
+const SEEDVER=2;
+const SEEDTS=(function(){const d=new Date();d.setHours(0,0,0,0);return d.getTime()-1;})();
+(function applySeed(){let cur=parseInt(localStorage.getItem('seedver_'+LIST_ID)||'0',10);if(cur>=SEEDVER)return;let ch=false;SEED.forEach(s=>{const ex=STATE[s.dig];if(!ex||!ex.status){STATE[s.dig]={status:s.status,ts:(ex&&ex.ts)||SEEDTS,notes:s.notes||((ex&&ex.notes)||''),dm:(ex&&ex.dm)||'',time:(ex&&ex.time)||'',email:s.email||((ex&&ex.email)||'')};ch=true;}});try{localStorage.setItem('seedver_'+LIST_ID,String(SEEDVER));if(ch)localStorage.setItem(SKEY,JSON.stringify(STATE));}catch(e){}})();
+(function fixSeedToday(){if(localStorage.getItem('seedtsfix_'+LIST_ID)==='1')return;let ch=false;const seedset={};SEED.forEach(s=>seedset[s.dig]=1);LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.status&&seedset[l.dig]&&isToday(r.ts)){r.ts=SEEDTS;ch=true;}});try{localStorage.setItem('seedtsfix_'+LIST_ID,'1');if(ch)localStorage.setItem(SKEY,JSON.stringify(STATE));}catch(e){}})();
+function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
+const EMPTY={status:'',ts:0,notes:'',dm:'',time:'',email:''};
+function get(dig){return STATE[dig]||EMPTY;}
+let saveT;
+function save(){
+  try{localStorage.setItem(SKEY,JSON.stringify(STATE));flagSaved(false);}
+  catch(e){flagSaved(true);}
+}
+function flagSaved(err){const f=document.getElementById('savedflag');f.textContent=err?'⚠ NOT saved — Export now':'Saved ✓';f.classList.toggle('err',err);f.classList.add('show');clearTimeout(saveT);saveT=setTimeout(()=>f.classList.remove('show'),err?4000:850);}
+
+// ---- helpers ----
+function isDone(l){return !!(STATE[l.dig]&&STATE[l.dig].status);}
+function isToday(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
+function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.status)r.ts=Date.now();save();}
+const GOAL=80;
+
+const app=document.getElementById('app'),q=document.getElementById('q'),count=document.getElementById('count'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score');
+let hideDone=false,nearOnly=false,sortMode='cat',cbView=false;
+
+function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
+let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
+function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' MA');}
+function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MA');}
+
+function detailEl(l){
+  const r=get(l.dig);
+  const d=document.createElement('div');d.className='detail';
+  // status buttons
+  const stat=document.createElement('div');stat.className='stat';
+  ORDER.forEach(st=>{
+    const b=document.createElement('button');b.className='sbtn'+(r.status===st?' sel':'');b.textContent=STATUS[st].lbl;
+    if(r.status===st)b.style.background=STATUS[st].c;
+    b.addEventListener('click',e=>{e.stopPropagation();setStatus(l,st);build();});
+    stat.appendChild(b);
+  });
+  d.appendChild(stat);
+  // notes
+  const fn=document.createElement('div');fn.className='fld';fn.innerHTML='<label>Notes</label>';
+  const ta=document.createElement('textarea');ta.value=r.notes||'';ta.placeholder='What happened on the call…';
+  ta.addEventListener('click',e=>e.stopPropagation());
+  ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+  ta.addEventListener('blur',save);
+  fn.appendChild(ta);d.appendChild(fn);
+  // callback / decision-maker block
+  const cbk=document.createElement('div');cbk.className='cbk';
+  cbk.innerHTML='<div class="hd">↩ Callback / right person</div>';
+  const g=document.createElement('div');g.className='dgrid';
+  function field(lbl,val,key,type,full){
+    const w=document.createElement('div');w.className='fld'+(full?' full':'');w.innerHTML='<label>'+lbl+'</label>';
+    const i=document.createElement('input');i.type=type||'text';i.value=val||'';
+    i.addEventListener('click',e=>e.stopPropagation());
+    i.addEventListener('input',()=>{rec(l.dig)[key]=i.value;clearTimeout(i._t);i._t=setTimeout(save,300);});
+    i.addEventListener('change',save);i.addEventListener('blur',save);
+    w.appendChild(i);return w;
+  }
+  g.appendChild(field('Ask for (name / title)',r.dm,'dm','text',true));
+  g.appendChild(field('Call back at',r.time,'time','datetime-local'));
+  g.appendChild(field('Email',r.email,'email','text'));
+  cbk.appendChild(g);d.appendChild(cbk);
+  // links
+  const lk=document.createElement('div');lk.className='links';
+  lk.innerHTML='<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
+  lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+  d.appendChild(lk);
+  // last called
+  if(r.ts){const lc=document.createElement('div');lc.className='lastc';lc.textContent='Last marked: '+new Date(r.ts).toLocaleString();d.appendChild(lc);}
+  return d;
+}
+
+function rowEl(l,withCat){
+  const r=get(l.dig),done=!!r.status;
+  const row=document.createElement('div');row.className='row'+(done?' done':'');
+  row.innerHTML='<span class="cb"><b>✓</b></span><div class="mid"><div class="nm"></div><div class="meta"></div></div><button class="cp">Copy</button><span class="chev">›</span>';
+  row.querySelector('.nm').textContent=l.n+(withCat?'  ·  '+l.c:'');
+  const meta=row.querySelector('.meta');
+  meta.textContent=l.t+' · ~'+l.mi+' mi';
+  const tier=document.createElement('span');tier.className='tier';tier.textContent=l.tier===1?'closest':'edge';meta.appendChild(tier);
+  if(r.notes){const np=document.createElement('div');np.className='notepv';np.textContent=r.notes;row.querySelector('.mid').appendChild(np);}
+  if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
+  if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
+  // quick check circle
+  row.querySelector('.cb').addEventListener('click',e=>{e.stopPropagation();const rr=rec(l.dig);rr.status=rr.status?'':'called';if(rr.status)rr.ts=Date.now();save();build();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);if(!rr.ts)rr.ts=Date.now();save();});
+  row.addEventListener('click',()=>{row.classList.toggle('open');});
+  return row;
+}
+
+function shortWhen(t){if(!t)return'';const d=new Date(t);if(isNaN(d))return t;return d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});}
+
+function dueBanner(){
+  const items=LEADS.filter(l=>get(l.dig).time).map(l=>({l,t:new Date(get(l.dig).time)})).filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t);
+  if(!items.length)return null;
+  const now=Date.now();
+  const wrap=document.createElement('div');wrap.className='due';
+  wrap.innerHTML='<div class="dh">↩ Callbacks ('+items.length+')</div>';
+  items.forEach(({l,t})=>{
+    const r=get(l.dig);const over=t.getTime()<=now;
+    const dr=document.createElement('div');dr.className='drow';
+    dr.innerHTML='<b>'+esc(l.n)+'</b>'+(r.dm?' <span style="color:var(--muted);font-weight:500">— '+esc(r.dm)+'</span>':'')+'<span class="when'+(over?' now':'')+'">'+(over?'DUE · ':'')+shortWhen(r.time)+'</span>';
+    dr.addEventListener('click',()=>{copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});showToast('Copied  '+l.p);});
+    wrap.appendChild(dr);
+  });
+  return wrap;
+}
+function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+function updateScore(){
+  let done=0,today=0,inprog=0,won=0,cbs=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.time)cbs++;});
+  scoreEl.innerHTML=
+    '<div class="pip"><b>'+today+'</b><span class="lbl">calls today</span></div>'+
+    '<div class="pip"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
+    '<div class="pip"><b>'+cbs+'</b><span class="lbl">callbacks</span></div>'+
+    '<div class="pip"><b style="color:var(--green)">'+won+'</b><span class="lbl">won</span></div>';
+  const pct=Math.round(done/LEADS.length*100);bar.style.width=pct+'%';count.textContent=done+' / '+LEADS.length+' done';
+}
+
+function build(){
+  app.innerHTML='';const term=q.value.trim().toLowerCase();
+  updateScore();
+  if(cbView){
+    const b=dueBanner();
+    app.appendChild(b||Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No callbacks set yet. Set a "Call back at" time on a lead.'}));
+    return;
+  }
+  const due=dueBanner();if(due)app.appendChild(due);
+  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(nearOnly&&l.tier!==1)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  if(sortMode==='dist'){
+    const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
+    if(!rows.length){app.appendChild(noMatch());return;}
+    const card=document.createElement('div');card.className='card';
+    rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+    const sec=document.createElement('div');sec.className='sec';sec.appendChild(card);app.appendChild(sec);
+  } else {
+    let any=false;
+    CATS.forEach(cat=>{
+      const rows=LEADS.filter(l=>l.c===cat).filter(match);
+      if(!rows.length)return;any=true;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+cat+'</span><span>'+rows.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      rows.forEach(l=>{card.appendChild(rowEl(l,false));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    });
+    if(!any)app.appendChild(noMatch());
+  }
+}
+function noMatch(){return Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No matches'});}
+
+// ---- export / import backup ----
+function exportData(){
+  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='callstate-stpatrick-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('Backup downloaded');
+}
+function importData(file){
+  const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
+    let n=0;Object.keys(st).forEach(k=>{STATE[k]=Object.assign(rec(k),st[k]);n++;});
+    save();build();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
+  fr.readAsText(file);
+}
+
+// ---- wire ----
+q.addEventListener('input',build);
+document.getElementById('sort').addEventListener('change',function(){sortMode=this.value;build();});
+document.getElementById('near').addEventListener('click',function(){nearOnly=!nearOnly;this.classList.toggle('on',nearOnly);build();});
+document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
+document.getElementById('cbview').addEventListener('click',function(){cbView=!cbView;this.classList.toggle('on',cbView);build();});
+document.getElementById('exp').addEventListener('click',exportData);
+document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
+document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
+document.getElementById('print').addEventListener('click',()=>window.print());
+build();
+</script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>St. Francis Call List — Middletown CT</title>
+<style>
+  :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px;margin:0 auto}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);padding:10px 18px 0;border-bottom:.5px solid var(--sep)}
+  .back{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:inline-block;margin-bottom:2px}
+  h1{margin:0;font-size:25px;font-weight:800;letter-spacing:-.03em}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:3px;line-height:1.45}
+  .score{display:flex;gap:8px;margin-top:11px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .score::-webkit-scrollbar{display:none}
+  .pip{flex:0 0 auto;background:var(--fill);border-radius:12px;padding:7px 13px;min-width:74px}
+  .pip b{font-size:17px;font-weight:800;letter-spacing:-.01em;display:block;line-height:1.2}
+  .pip .lbl{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600;white-space:nowrap}
+  .pip.goal{background:color-mix(in srgb,var(--blue) 12%,var(--fill))}
+  .pip.goal.hit{background:color-mix(in srgb,var(--green) 18%,var(--fill))}
+  .pip.goal.hit b{color:var(--green)}
+  .progress{height:6px;background:var(--fill);border-radius:99px;overflow:hidden;margin:10px 0 0}
+  .progress > i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .3s}
+  .progress > i.hit{background:var(--green)}
+  .ptxt{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:600;margin:4px 0 0}
+  .controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:9px}
+  #q{flex:1;min-width:140px;background:var(--fill);border:none;color:var(--text);padding:9px 12px;border-radius:11px;font-size:16px;outline:none}
+  select,.btn{background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:11px;font-size:13px;cursor:pointer;font-weight:600}
+  .btn.on{background:var(--blue);color:#fff}
+  .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:9px -18px 0;padding:0 18px 11px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;background:var(--fill);border:none;color:var(--text);padding:7px 13px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+  .chip small{color:var(--muted);font-weight:700;margin-left:4px}
+  .chip.on{background:var(--text);color:var(--bg)}
+  .chip.on small{color:var(--bg);opacity:.65}
+  main{padding:6px 14px 110px}
+  .sec{margin:18px 0 0}
+  .lab{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:0 6px 8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+  .lab .arr{font-size:11px;margin-right:6px}
+  .lab .n{font-weight:700}
+  .card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:.5px solid var(--sep)}
+  .row{display:flex;align-items:center;gap:12px;padding:12px 15px;cursor:pointer;position:relative;min-height:52px}
+  .row::after{content:"";position:absolute;left:52px;right:0;bottom:0;height:.5px;background:var(--sep)}
+  .row:last-of-type::after{display:none}
+  .row:hover{background:var(--hover)}
+  .row.done{opacity:.5}
+  .row.done .nm{text-decoration:line-through}
+  .cb{flex:0 0 auto;width:25px;height:25px;border-radius:8px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;background:transparent}
+  .cb b{opacity:0}
+  .row.done .cb{background:var(--green);border-color:var(--green)}
+  .row.done .cb b{opacity:1}
+  .mid{flex:1 1 auto;min-width:0}
+  .nm{font-size:15.5px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta{font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:1.5px 8px;border-radius:99px;margin-left:6px;color:#fff;vertical-align:middle}
+  .tier{display:inline-block;font-size:11px;font-weight:600;padding:0 7px;border-radius:99px;margin-left:6px;background:var(--fill);color:var(--muted)}
+  .notepv{font-size:12.5px;color:var(--text);opacity:.7;margin-top:3px;line-height:1.35;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cp{flex:0 0 auto;background:var(--blue);color:#fff;border:none;padding:8px 14px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer}
+  .cp.ok{background:var(--green)}
+  .chev{flex:0 0 auto;color:var(--muted);font-size:14px;width:12px;text-align:center;transition:transform .15s}
+  .row.open .chev{transform:rotate(90deg)}
+  .detail{display:none;padding:4px 15px 16px 52px;background:var(--card);border-top:.5px solid var(--sep)}
+  .row.open + .detail{display:block}
+  .stat{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px}
+  .sbtn{border:none;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:650;cursor:pointer;background:var(--fill);color:var(--text);flex:1 0 auto;min-width:88px;text-align:center}
+  .sbtn.sel{color:#fff}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .dgrid .full{grid-column:1/-1}
+  .fld label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;display:block;margin:0 0 3px 2px}
+  .fld input,.fld textarea{width:100%;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:15px;outline:none;font-family:inherit}
+  .fld textarea{resize:vertical;min-height:46px}
+  .cbk{border:1px solid var(--orange);border-radius:12px;padding:9px 11px;margin-top:10px;background:color-mix(in srgb,var(--orange) 9%,transparent)}
+  .cbk .hd{font-size:11px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+  .links{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+  .links a{font-size:13px;font-weight:650;color:var(--blue);text-decoration:none;background:var(--fill);padding:8px 13px;border-radius:10px}
+  .lastc{font-size:11.5px;color:var(--muted);margin-top:9px}
+  .due{margin:14px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--orange);background:color-mix(in srgb,var(--orange) 8%,transparent)}
+  .due .dh{font-size:12.5px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;padding:11px 15px 6px}
+  .due .drow{display:flex;align-items:center;gap:10px;padding:10px 15px;border-top:.5px solid var(--sep);font-size:14px;cursor:pointer}
+  .due .drow .when{margin-left:auto;font-size:12px;font-weight:800;white-space:nowrap}
+  .due .drow .when.now{color:var(--red)}
+  .help{color:var(--muted);font-size:12.5px;line-height:1.65;margin:30px 6px 0;padding-top:14px;border-top:.5px solid var(--sep)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);background:rgba(30,30,32,.95);color:#fff;font-weight:650;font-size:14px;padding:12px 18px;border-radius:13px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+  .saved{position:fixed;right:16px;bottom:26px;background:var(--green);color:#fff;font-weight:750;font-size:12.5px;padding:8px 13px;border-radius:99px;opacity:0;transition:.18s;pointer-events:none;z-index:50}
+  .saved.show{opacity:1}
+  .saved.err{background:var(--red)}
+  @media print{header{position:static;background:#fff;backdrop-filter:none}.controls,.chips,.progress,.ptxt,.cp,.toast,.saved,.chev,.links,.back,.help{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}.row{break-inside:avoid}.meta{color:#444}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../">‹ All churches</a>
+  <h1>St. Francis Call List</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of St. Francis of Assisi, 10 Elm St, Middletown CT · copy a number, call in Salesforce, then mark it here</div>
+  <div class="score" id="score"></div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
+  <div class="controls">
+    <input id="q" placeholder="Search name, category, town" autocomplete="off">
+    <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
+    <button class="btn" id="cbview">Callbacks</button>
+    <button class="btn" id="near">Closest</button>
+    <button class="btn" id="hide">Hide done</button>
+    <button class="btn" id="exp">Export</button>
+    <button class="btn" id="imp">Import</button>
+    <input type="file" id="impf" accept="application/json" style="display:none">
+    <button class="btn" id="print">Print</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main id="app"></main>
+</div>
+<div class="toast" id="toast">Copied</div>
+<div class="saved" id="savedflag">Saved ✓</div>
+<script>
+// ================= DATA =================
+const CATS=["Church List (St. Francis)","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
+// town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
+const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
+const LEADS=[
+];
+LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+(function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
+
+// ================= STATUSES =================
+const STATUS={
+  noanswer:{lbl:"No answer",c:"var(--muted)"},
+  leftmsg:{lbl:"Left msg",c:"var(--blue)"},
+  answered:{lbl:"Answered",c:"var(--purple)"},
+  callback:{lbl:"Callback",c:"var(--orange)"},
+  inprogress:{lbl:"In Progress",c:"var(--teal)"},
+  notnow:{lbl:"Not now",c:"var(--red)"},
+  won:{lbl:"WON",c:"var(--green)"},
+  called:{lbl:"Called",c:"var(--muted)"}
+};
+const ORDER=["noanswer","leftmsg","callback","inprogress","notnow","won"];
+
+// ================= STORAGE (per-church key — never collides with other weeks) =================
+const LIST_ID="stfrancis-10elm-middletown-ct";
+const SKEY="callstate_v2_"+LIST_ID;
+let STATE={};
+try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
+function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
+const EMPTY={status:'',ts:0,notes:'',dm:'',time:'',email:''};
+function get(dig){return STATE[dig]||EMPTY;}
+let saveT;
+function save(){
+  try{localStorage.setItem(SKEY,JSON.stringify(STATE));flagSaved(false);}
+  catch(e){flagSaved(true);}
+}
+function flagSaved(err){const f=document.getElementById('savedflag');f.textContent=err?'⚠ NOT saved — Export now':'Saved ✓';f.classList.toggle('err',err);f.classList.add('show');clearTimeout(saveT);saveT=setTimeout(()=>f.classList.remove('show'),err?4000:850);}
+
+// ================= HELPERS =================
+function isToday(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
+function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.status)r.ts=Date.now();save();}
+const GOAL=80; // daily dial goal — 80–90 dials/day, always leave a VM
+
+const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
+let hideDone=false,nearOnly=false,sortMode='cat',cbView=false,chipCat='';
+const FOLD={};
+
+function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
+let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
+function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' CT');}
+function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' CT');}
+function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+// ================= CATEGORY CHIPS =================
+function buildChips(){
+  chipsEl.innerHTML='';
+  const mk=(label,val,n)=>{
+    const b=document.createElement('button');b.className='chip'+(chipCat===val?' on':'');
+    b.innerHTML=esc(label)+(n!=null?'<small>'+n+'</small>':'');
+    b.addEventListener('click',()=>{chipCat=(chipCat===val)?'':val;buildChips();build();});
+    chipsEl.appendChild(b);
+  };
+  mk('All','',LEADS.length);
+  CATS.forEach(c=>{const n=LEADS.filter(l=>l.c===c).length;if(n)mk(c.replace(/ \/ /g,'/'),c,n);});
+}
+
+// ================= DETAIL =================
+function detailEl(l){
+  const r=get(l.dig);
+  const d=document.createElement('div');d.className='detail';
+  const stat=document.createElement('div');stat.className='stat';
+  ORDER.forEach(st=>{
+    const b=document.createElement('button');b.className='sbtn'+(r.status===st?' sel':'');b.textContent=STATUS[st].lbl;
+    if(r.status===st)b.style.background=STATUS[st].c;
+    b.addEventListener('click',e=>{e.stopPropagation();setStatus(l,st);build();});
+    stat.appendChild(b);
+  });
+  d.appendChild(stat);
+  const fn=document.createElement('div');fn.className='fld';fn.innerHTML='<label>Notes</label>';
+  const ta=document.createElement('textarea');ta.value=r.notes||'';ta.placeholder='What happened on the call…';
+  ta.addEventListener('click',e=>e.stopPropagation());
+  ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+  ta.addEventListener('blur',save);
+  fn.appendChild(ta);d.appendChild(fn);
+  const cbk=document.createElement('div');cbk.className='cbk';
+  cbk.innerHTML='<div class="hd">↩ Callback / right person</div>';
+  const g=document.createElement('div');g.className='dgrid';
+  function field(lbl,val,key,type,full){
+    const w=document.createElement('div');w.className='fld'+(full?' full':'');w.innerHTML='<label>'+lbl+'</label>';
+    const i=document.createElement('input');i.type=type||'text';i.value=val||'';
+    i.addEventListener('click',e=>e.stopPropagation());
+    i.addEventListener('input',()=>{rec(l.dig)[key]=i.value;clearTimeout(i._t);i._t=setTimeout(save,300);});
+    i.addEventListener('change',save);i.addEventListener('blur',save);
+    w.appendChild(i);return w;
+  }
+  g.appendChild(field('Ask for (name / title)',r.dm,'dm','text',true));
+  g.appendChild(field('Call back at',r.time,'time','datetime-local'));
+  g.appendChild(field('Email',r.email,'email','text'));
+  cbk.appendChild(g);d.appendChild(cbk);
+  const lk=document.createElement('div');lk.className='links';
+  lk.innerHTML='<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
+  lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+  d.appendChild(lk);
+  if(r.ts){const lc=document.createElement('div');lc.className='lastc';lc.textContent='Last marked: '+new Date(r.ts).toLocaleString();d.appendChild(lc);}
+  return d;
+}
+
+// ================= ROW =================
+function rowEl(l,withCat){
+  const r=get(l.dig),done=!!r.status;
+  const row=document.createElement('div');row.className='row'+(done?' done':'');
+  row.innerHTML='<span class="cb"><b>✓</b></span><div class="mid"><div class="nm"></div><div class="meta"></div></div><button class="cp">Copy</button><span class="chev">›</span>';
+  row.querySelector('.nm').textContent=l.n+(withCat?'  ·  '+l.c:'');
+  const meta=row.querySelector('.meta');
+  meta.textContent=l.t+' · ~'+l.mi+' mi';
+  const tier=document.createElement('span');tier.className='tier';tier.textContent=l.tier===1?'closest':'edge';meta.appendChild(tier);
+  if(r.notes){const np=document.createElement('div');np.className='notepv';np.textContent=r.notes;row.querySelector('.mid').appendChild(np);}
+  if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
+  if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
+  row.querySelector('.cb').addEventListener('click',e=>{e.stopPropagation();const rr=rec(l.dig);rr.status=rr.status?'':'called';if(rr.status)rr.ts=Date.now();save();build();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);if(!rr.ts)rr.ts=Date.now();save();updateScore();});
+  row.addEventListener('click',()=>{row.classList.toggle('open');});
+  return row;
+}
+
+function shortWhen(t){if(!t)return'';const d=new Date(t);if(isNaN(d))return t;return d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});}
+
+// ================= CALLBACKS DUE =================
+function dueBanner(){
+  const items=LEADS.filter(l=>get(l.dig).time).map(l=>({l,t:new Date(get(l.dig).time)})).filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t);
+  if(!items.length)return null;
+  const now=Date.now();
+  const wrap=document.createElement('div');wrap.className='due';
+  wrap.innerHTML='<div class="dh">↩ Callbacks ('+items.length+')</div>';
+  items.forEach(({l,t})=>{
+    const r=get(l.dig);const over=t.getTime()<=now;
+    const dr=document.createElement('div');dr.className='drow';
+    dr.innerHTML='<b>'+esc(l.n)+'</b>'+(r.dm?' <span style="color:var(--muted);font-weight:500">— '+esc(r.dm)+'</span>':'')+'<span class="when'+(over?' now':'')+'">'+(over?'DUE · ':'')+shortWhen(r.time)+'</span>';
+    dr.addEventListener('click',()=>{copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});showToast('Copied  '+l.p);});
+    wrap.appendChild(dr);
+  });
+  return wrap;
+}
+
+// ================= SCOREBOARD =================
+function updateScore(){
+  let done=0,today=0,inprog=0,won=0,cbs=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.time)cbs++;});
+  const hit=today>=GOAL;
+  scoreEl.innerHTML=
+    '<div class="pip goal'+(hit?' hit':'')+'"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
+    '<div class="pip"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
+    '<div class="pip"><b style="color:var(--orange)">'+cbs+'</b><span class="lbl">callbacks</span></div>'+
+    '<div class="pip"><b style="color:var(--green)">'+won+'</b><span class="lbl">won</span></div>'+
+    '<div class="pip"><b>'+done+'</b><span class="lbl">crossed off</span></div>';
+  const pct=Math.min(100,Math.round(today/GOAL*100));
+  bar.style.width=pct+'%';bar.classList.toggle('hit',hit);
+  document.getElementById('goaltxt').textContent=hit?'🎯 Daily goal hit — keep rolling':'Today’s dial goal: '+today+' of '+GOAL;
+  document.getElementById('donetxt').textContent=done+' / '+LEADS.length+' crossed off';
+}
+
+// ================= RENDER =================
+function build(){
+  app.innerHTML='';const term=q.value.trim().toLowerCase();
+  updateScore();
+  if(cbView){
+    const b=dueBanner();
+    app.appendChild(b||Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No callbacks set yet. Set a "Call back at" time on a lead.'}));
+    return;
+  }
+  const due=dueBanner();if(due)app.appendChild(due);
+  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  if(sortMode==='dist'){
+    const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
+    if(!rows.length){app.appendChild(noMatch());return;}
+    const card=document.createElement('div');card.className='card';
+    rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+    const sec=document.createElement('div');sec.className='sec';sec.appendChild(card);app.appendChild(sec);
+  } else {
+    let any=false;
+    CATS.forEach(cat=>{
+      const rows=LEADS.filter(l=>l.c===cat).filter(match);
+      if(!rows.length)return;any=true;
+      const folded=!!FOLD[cat];
+      const sec=document.createElement('div');sec.className='sec';
+      const lab=document.createElement('div');lab.className='lab';
+      lab.innerHTML='<span><span class="arr">'+(folded?'▸':'▾')+'</span>'+esc(cat)+'</span><span class="n">'+rows.length+'</span>';
+      lab.addEventListener('click',()=>{FOLD[cat]=!FOLD[cat];build();});
+      sec.appendChild(lab);
+      if(!folded){
+        const card=document.createElement('div');card.className='card';
+        rows.forEach(l=>{card.appendChild(rowEl(l,false));card.appendChild(detailEl(l));});
+        sec.appendChild(card);
+      }
+      app.appendChild(sec);
+    });
+    if(!any)app.appendChild(noMatch());
+  }
+  const help=document.createElement('div');help.className='help';
+  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer (and counts the dial). Everything saves automatically in this browser, only for this church. <b>Export</b> downloads a backup file — do it at the end of each day. Category pills up top filter the list; tap a section title to fold it.';
+  app.appendChild(help);
+}
+function noMatch(){return Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No matches'});}
+
+// ================= EXPORT / IMPORT =================
+function exportData(){
+  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='callstate-stfrancis-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('Backup downloaded');
+}
+function importData(file){
+  const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
+    let n=0;Object.keys(st).forEach(k=>{STATE[k]=Object.assign(rec(k),st[k]);n++;});
+    save();build();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
+  fr.readAsText(file);
+}
+
+// ================= WIRE =================
+q.addEventListener('input',build);
+document.getElementById('sort').addEventListener('change',function(){sortMode=this.value;build();});
+document.getElementById('near').addEventListener('click',function(){nearOnly=!nearOnly;this.classList.toggle('on',nearOnly);build();});
+document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
+document.getElementById('cbview').addEventListener('click',function(){cbView=!cbView;this.classList.toggle('on',cbView);build();});
+document.getElementById('exp').addEventListener('click',exportData);
+document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
+document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
+document.getElementById('print').addEventListener('click',()=>window.print());
+buildChips();
+build();
+</script>
+</body>
+</html>
