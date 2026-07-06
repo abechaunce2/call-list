@@ -266,7 +266,26 @@ const LEADS=[
 {c:"Bank / Credit Union",n:"Nutmeg State Financial CU",p:"(860) 513-5000",t:"Rocky Hill"},
 {c:"Bank / Credit Union",n:"American Eagle Financial CU (Newington)",p:"(860) 568-2020",t:"Newington"},
 {c:"Elder Law / Attorney",n:"Steinberg & Cathcart",p:"(860) 947-6543",t:"Newington"},
-{c:"Hearing / Audiology",n:"Bassett Hearing Aid Centers",p:"(203) 635-5189",t:"Meriden"}
+{c:"Hearing / Audiology",n:"Bassett Hearing Aid Centers",p:"(203) 635-5189",t:"Meriden"},
+{c:"Restaurant / Banquet / Bakery",n:"Lyman Orchards (Apple Barrel / 1741 Pub)",p:"(860) 349-1793",t:"Middlefield"},
+{c:"Restaurant / Banquet / Bakery",n:"Zandri's Catering Service",p:"(203) 269-6695",t:"Wallingford"},
+{c:"Restaurant / Banquet / Bakery",n:"First & Last Tavern",p:"(860) 430-5999",t:"Glastonbury"},
+{c:"Insurance",n:"Marcus Insurance",p:"(860) 563-9353",t:"Wethersfield"},
+{c:"Home Health Care",n:"Panda Home Care",p:"(860) 633-5907",t:"Glastonbury"},
+{c:"Financial Planner",n:"Pioneer Financial Group",p:"(203) 235-7776",t:"Meriden"},
+{c:"Financial Planner",n:"Edward Jones (Wallingford)",p:"(203) 269-4669",t:"Wallingford"},
+{c:"Dentist",n:"Family Dental Practice of Newington",p:"(860) 665-0444",t:"Newington"},
+{c:"Dentist",n:"Family Dental Center of Connecticut",p:"(860) 430-4388",t:"Wethersfield"},
+{c:"Dentist",n:"Dolan Dental",p:"(860) 529-2000",t:"Wethersfield"},
+{c:"Dentist",n:"Wethersfield Family Dental Center",p:"(860) 563-1688",t:"Wethersfield"},
+{c:"Dentist",n:"Newington Children's Dentistry",p:"(860) 372-4600",t:"Newington"},
+{c:"Eye / Optometry",n:"Solinsky EyeCare (Glastonbury)",p:"(860) 633-6634",t:"Glastonbury"},
+{c:"Eye / Optometry",n:"Glastonbury Eye Care",p:"(860) 791-4600",t:"Glastonbury"},
+{c:"Eye / Optometry",n:"OculusDocs",p:"(860) 838-3838",t:"Glastonbury"},
+{c:"Eye / Optometry",n:"Kibo Eyecare",p:"(860) 659-5900",t:"Glastonbury"},
+{c:"Auto Service / Tire",n:"Mirabelli Automotive",p:"(860) 953-5029",t:"Newington"},
+{c:"Auto Service / Tire",n:"Hicks Repair Garage",p:"(860) 563-6070",t:"Rocky Hill"},
+{c:"Medical Clinic",n:"Central Connecticut Foot Care (podiatry)",p:"(203) 238-3668",t:"Meriden"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
