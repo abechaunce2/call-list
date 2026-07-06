@@ -88,7 +88,40 @@
   .saved{position:fixed;right:16px;bottom:26px;background:var(--green);color:#fff;font-weight:750;font-size:12.5px;padding:8px 13px;border-radius:99px;opacity:0;transition:.18s;pointer-events:none;z-index:50}
   .saved.show{opacity:1}
   .saved.err{background:var(--red)}
-  @media print{header{position:static;background:#fff;backdrop-filter:none}.controls,.chips,.progress,.ptxt,.cp,.toast,.saved,.chev,.links,.back,.help{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}.row{break-inside:avoid}.meta{color:#444}}
+  /* note quick-chips */
+  .nchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .nchip{background:var(--fill);border:none;color:var(--muted);padding:6px 11px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer}
+  .nchip:active{background:var(--sep)}
+  /* dial mode */
+  .dial{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;overflow:auto;padding:14px 16px calc(24px + env(safe-area-inset-bottom))}
+  .dial.show{display:block}
+  .dtop{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);font-weight:600;max-width:560px;margin:0 auto;flex-wrap:wrap}
+  .dleft{white-space:nowrap}
+  .dx,.dskip{background:var(--fill);border:none;color:var(--text);padding:9px 13px;border-radius:11px;font-size:13px;font-weight:650;cursor:pointer}
+  .dcard{max-width:560px;margin:7vh auto 0;text-align:center}
+  .dcat{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .dnm{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1.15}
+  .dmeta{color:var(--muted);font-size:14px;margin-top:4px}
+  .dnum{display:block;margin:22px auto 0;background:var(--blue);color:#fff;border:none;font-size:24px;font-weight:800;padding:16px 26px;border-radius:18px;cursor:pointer;font-variant-numeric:tabular-nums}
+  .dnum:active{transform:scale(.97)}
+  .dhint{font-size:11.5px;color:var(--muted);margin-top:7px}
+  .dstat{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:20px}
+  .dchips{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .dnotes{width:100%;max-width:560px;margin:14px auto 0;background:var(--fill);border:none;color:var(--text);padding:11px 12px;border-radius:12px;font-size:15px;min-height:56px;font-family:inherit;outline:none;display:block}
+  .dempty{margin-top:28vh;text-align:center;color:var(--muted);font-size:16px;line-height:1.6}
+  /* pitch sheet */
+  .scrim{position:fixed;inset:0;z-index:74;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:75;background:var(--card);border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.25);max-height:82vh;overflow:auto;padding:8px 20px calc(26px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .28s cubic-bezier(.32,.72,0,1)}
+  .sheet.show{transform:none}
+  .grab{width:36px;height:5px;border-radius:99px;background:var(--sep);margin:6px auto 12px}
+  .sheet h3{margin:15px 0 5px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .sheet p{margin:0;font-size:14.5px;line-height:1.55}
+  .sheet .warn{color:var(--red);font-weight:600}
+  /* confetti */
+  .cfx{position:fixed;top:18%;width:9px;height:14px;z-index:80;border-radius:2px;pointer-events:none;animation:cfall 1.4s ease-in forwards}
+  @keyframes cfall{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),70vh) rotate(540deg)}}
+  @media print{header{position:static;background:#fff;backdrop-filter:none}.controls,.chips,.progress,.ptxt,.cp,.toast,.saved,.chev,.links,.back,.help,.dial,.sheet,.scrim{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}.row{break-inside:avoid}.meta{color:#444}}
 </style>
 </head>
 <body>
@@ -102,6 +135,8 @@
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
   <div class="controls">
     <input id="q" placeholder="Search name, category, town" autocomplete="off">
+    <button class="btn on" id="dialgo">▶ Dial</button>
+    <button class="btn" id="pitchbtn">Pitch</button>
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
     <button class="btn" id="cbview">Callbacks</button>
     <button class="btn" id="near">Closest</button>
@@ -292,14 +327,14 @@ LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.re
 
 // ================= STATUSES =================
 const STATUS={
-  noanswer:{lbl:"No answer",c:"var(--muted)"},
-  leftmsg:{lbl:"Left msg",c:"var(--blue)"},
-  answered:{lbl:"Answered",c:"var(--purple)"},
-  callback:{lbl:"Callback",c:"var(--orange)"},
-  inprogress:{lbl:"In Progress",c:"var(--teal)"},
-  notnow:{lbl:"Not now",c:"var(--red)"},
-  won:{lbl:"WON",c:"var(--green)"},
-  called:{lbl:"Called",c:"var(--muted)"}
+  noanswer:{lbl:"No answer",c:"var(--muted)",g:"○"},
+  leftmsg:{lbl:"Left msg",c:"var(--blue)",g:"✉"},
+  answered:{lbl:"Answered",c:"var(--purple)",g:"☎"},
+  callback:{lbl:"Callback",c:"var(--orange)",g:"↩"},
+  inprogress:{lbl:"In Progress",c:"var(--teal)",g:"⏳"},
+  notnow:{lbl:"Not now",c:"var(--red)",g:"✕"},
+  won:{lbl:"WON",c:"var(--green)",g:"★"},
+  called:{lbl:"Called",c:"var(--muted)",g:"✓"}
 };
 const ORDER=["noanswer","leftmsg","callback","inprogress","notnow","won"];
 
@@ -320,7 +355,7 @@ function flagSaved(err){const f=document.getElementById('savedflag');f.textConte
 
 // ================= HELPERS =================
 function isToday(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
-function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.status)r.ts=Date.now();save();}
+function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.status)r.ts=Date.now();save();if(r.status==='won')confetti();}
 const GOAL=80; // daily dial goal — 80–90 dials/day, always leave a VM
 
 const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
@@ -353,7 +388,7 @@ function detailEl(l){
   const d=document.createElement('div');d.className='detail';
   const stat=document.createElement('div');stat.className='stat';
   ORDER.forEach(st=>{
-    const b=document.createElement('button');b.className='sbtn'+(r.status===st?' sel':'');b.textContent=STATUS[st].lbl;
+    const b=document.createElement('button');b.className='sbtn'+(r.status===st?' sel':'');b.textContent=STATUS[st].g+' '+STATUS[st].lbl;
     if(r.status===st)b.style.background=STATUS[st].c;
     b.addEventListener('click',e=>{e.stopPropagation();setStatus(l,st);build();});
     stat.appendChild(b);
@@ -365,6 +400,7 @@ function detailEl(l){
   ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
   ta.addEventListener('blur',save);
   fn.appendChild(ta);d.appendChild(fn);
+  d.appendChild(chipRow(l,ta));
   const cbk=document.createElement('div');cbk.className='cbk';
   cbk.innerHTML='<div class="hd">↩ Callback / right person</div>';
   const g=document.createElement('div');g.className='dgrid';
@@ -509,6 +545,94 @@ document.getElementById('exp').addEventListener('click',exportData);
 document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
 document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
 document.getElementById('print').addEventListener('click',()=>window.print());
+
+// ---- one-tap note chips ----
+const CHIPS=['Gatekeeper','Owner out','Send info','Call back AM','Wants pricing','Not the buyer'];
+function chipRow(l,ta){
+  const w=document.createElement('div');w.className='nchips';
+  CHIPS.forEach(c=>{
+    const b=document.createElement('button');b.className='nchip';b.textContent='+ '+c;
+    b.addEventListener('click',e=>{e.stopPropagation();const r=rec(l.dig);r.notes=(r.notes?r.notes+' · ':'')+c;if(ta)ta.value=r.notes;save();});
+    w.appendChild(b);
+  });
+  return w;
+}
+
+// ---- WON confetti ----
+function confetti(){
+  const cols=['#34c759','#007aff','#ff9500','#af52de','#ff3b30','#30b0c7'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('i');s.className='cfx';
+    s.style.left=(20+Math.random()*60)+'%';s.style.background=cols[i%cols.length];
+    s.style.animationDelay=(Math.random()*.25)+'s';s.style.setProperty('--dx',((Math.random()*2-1)*160)+'px');
+    document.body.appendChild(s);setTimeout(()=>s.remove(),1800);
+  }
+}
+
+// ---- Dial Mode: one un-called lead at a time; status tap auto-advances ----
+let dialOn=false;const SKIPPED=new Set();
+const dialEl=document.createElement('div');dialEl.className='dial';document.body.appendChild(dialEl);
+function dialQueue(){
+  const term=q.value.trim().toLowerCase();
+  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const rows=[];CATS.forEach(cat=>{LEADS.filter(l=>l.c===cat).filter(m).slice().sort((a,b)=>a.mi-b.mi).forEach(l=>rows.push(l));});
+  return rows;
+}
+function renderDial(){
+  if(!dialOn){dialEl.classList.remove('show');return;}
+  dialEl.classList.add('show');
+  let today=0;LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&isToday(r.ts))today++;});
+  const qu=dialQueue();
+  if(!qu.length){
+    dialEl.innerHTML='<div class="dtop"><button class="dx">✕ Close</button><span>'+today+' / '+GOAL+' today</span><span></span></div><div class="dempty">🎉 Every lead in this view is handled.<br>Close, then clear a filter or pick another category.</div>';
+    dialEl.querySelector('.dx').addEventListener('click',()=>{dialOn=false;renderDial();build();});
+    return;
+  }
+  const l=qu[0],r=get(l.dig);
+  dialEl.innerHTML='<div class="dtop"><button class="dx">✕ Close</button><span class="dleft"></span><button class="dskip">Skip ›</button></div>'+
+    '<div class="dcard"><div class="dcat"></div><div class="dnm"></div><div class="dmeta"></div>'+
+    '<button class="dnum"></button><div class="dhint">tap the number to copy → paste into the Salesforce dialer · always leave a VM</div>'+
+    '<div class="dstat"></div><div class="dchips"></div><textarea class="dnotes" placeholder="What happened…"></textarea></div>';
+  dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+today+' / '+GOAL+' today';
+  dialEl.querySelector('.dcat').textContent=l.c;
+  dialEl.querySelector('.dnm').textContent=l.n;
+  dialEl.querySelector('.dmeta').textContent=l.t+' · ~'+l.mi+' mi';
+  const nb=dialEl.querySelector('.dnum');nb.textContent=l.p;
+  nb.addEventListener('click',()=>{
+    copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});
+    const rr=rec(l.dig);if(!rr.ts){rr.ts=Date.now();save();}
+    let t2=0;LEADS.forEach(x=>{const rx=STATE[x.dig];if(rx&&isToday(rx.ts))t2++;});
+    dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+t2+' / '+GOAL+' today';
+  });
+  const stat=dialEl.querySelector('.dstat');
+  ORDER.forEach(st=>{
+    const b=document.createElement('button');b.className='sbtn';b.textContent=STATUS[st].g+' '+STATUS[st].lbl;
+    b.addEventListener('click',()=>{setStatus(l,st);renderDial();});
+    stat.appendChild(b);
+  });
+  const ta=dialEl.querySelector('.dnotes');ta.value=r.notes||'';
+  ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+  dialEl.querySelector('.dchips').appendChild(chipRow(l,ta));
+  dialEl.querySelector('.dskip').addEventListener('click',()=>{SKIPPED.add(l.dig);renderDial();});
+  dialEl.querySelector('.dx').addEventListener('click',()=>{dialOn=false;renderDial();build();});
+}
+document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;renderDial();});
+
+// ---- Pitch sheet ----
+const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
+const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
+sheet.innerHTML='<div class="grab"></div>'+
+ '<h3>Opener (Ryan’s frame)</h3><p>“Hi, this is Abe — I work with LPi, we publish the weekly bulletin for <b>St. Francis of Assisi here in Middletown</b>. I’m lining up this year’s local sponsors and a <b>[category]</b> spot is open. It puts your business in front of the parish families every single week — it’s cost-friendly, won’t blow your ad budget, and it <b>supplements</b> what you already do.”</p>'+
+ '<h3>The beats</h3><p>Hyper-local, older, loyal, homeowner audience · cost-friendly / supplements, never replaces · <b>1-year term</b> — “I’ll check back in a few months” · low budget-risk · <b>⚠ [X] parishioner households — pull the REAL count from this account’s Salesforce contract before quoting</b>.</p>'+
+ '<h3>Voicemail (~15 sec — leave one on EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Francis of Assisi weekly bulletin</b> in Middletown — I’ve got a <b>[category]</b> spot open for this year’s sponsors and your name came up. Local families, every week, small budget line. I’ll try you again — or reach me at <b>[callback #]</b>.”</p>'+
+ '<h3>Make it concrete</h3><p>“Card-size ad” = 4-space · “a banner across the top” — pictures, not jargon.</p>'+
+ '<h3>At the close — multiples</h3><p>“Do it for a year, I’ll check back in a few months — and if this works, I’ve got <b>other parishes near you</b>.”</p>'+
+ '<h3 class="warn">Don’t sell / don’t say</h3><p class="warn">Abortion/PP · alcohol needs OK · CBD/THC mostly no · elections · anti-Catholic-values. Never promise category exclusivity (unconfirmed). Never claim to be church staff. Max 10% discount — only with Mark’s OK.</p>'+
+ '<h3>Discipline</h3><p>Document EVERY call in Salesforce — undocumented = you can lose the credit · convert at any interest signal (“send pricing” counts) · 80–90 dials/day.</p>';
+function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
+document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
+scrim.addEventListener('click',()=>togglePitch(false));
+
 buildChips();
 build();
 </script>
