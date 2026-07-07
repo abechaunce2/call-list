@@ -413,6 +413,8 @@ const LIST_ID="stfrancis-10elm-middletown-ct";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
+// ask the browser to protect this site's storage from eviction
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
 function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
 const EMPTY={status:'',ts:0,notes:'',dm:'',time:'',email:''};
 function get(dig){return STATE[dig]||EMPTY;}
@@ -515,7 +517,7 @@ function rowEl(l,withCat){
   if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
   if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
   row.querySelector('.cb').addEventListener('click',e=>{e.stopPropagation();const rr=rec(l.dig);rr.status=rr.status?'':'called';if(rr.status)rr.ts=Date.now();save();build();});
-  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);if(!rr.ts)rr.ts=Date.now();save();updateScore();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status)rr.status='called';save();updateScore();});
   row.addEventListener('click',()=>{row.classList.toggle('open');});
   return row;
 }
@@ -595,7 +597,13 @@ function build(){
     if(!any)app.appendChild(noMatch());
   }
   const help=document.createElement('div');help.className='help';
-  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer (and counts the dial). Everything saves automatically in this browser, only for this church. <b>Export</b> downloads a backup file — do it at the end of each day. Category pills up top filter the list; tap a section title to fold it.';
+  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer, counts the dial, and marks the lead “Called” until you set the real result. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it.';
+  const recCount=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.status||r.notes||r.time||r.dm||r.email||r.ts);}).length;
+  let lastex='never';try{const v=localStorage.getItem('lastexport_'+LIST_ID);if(v)lastex=new Date(parseInt(v,10)).toLocaleString();}catch(e){}
+  const dhh=document.createElement('div');dhh.style.marginTop='8px';
+  dhh.innerHTML='💾 <b>'+recCount+' leads with saved data on this computer</b> · last backup: <b>'+esc(lastex)+'</b>. Saves are instant, but hit <b>Export</b> at day’s end — a browser wipe can’t touch a downloaded backup.';
+  if(lastex==='never'&&recCount>10){dhh.style.color='var(--red)';dhh.style.fontWeight='600';}
+  help.appendChild(dhh);
   app.appendChild(help);
 }
 function noMatch(){return Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No matches'});}
@@ -607,7 +615,9 @@ function exportData(){
   const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='callstate-stfrancis-'+new Date().toISOString().slice(0,10)+'.json';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('Backup downloaded');
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  try{localStorage.setItem('lastexport_'+LIST_ID,String(Date.now()));}catch(e){}
+  build();showToast('Backup downloaded');
 }
 function importData(file){
   const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
@@ -721,7 +731,7 @@ function renderDial(){
   const nb=dialEl.querySelector('.dnum');nb.textContent=l.p;
   nb.addEventListener('click',()=>{
     copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});
-    const rr=rec(l.dig);if(!rr.ts){rr.ts=Date.now();save();}
+    const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status)rr.status='called';save();
     let t2=0;LEADS.forEach(x=>{const rx=STATE[x.dig];if(rx&&isToday(rx.ts))t2++;});
     dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+t2+' / '+GOAL+' today';
   });
@@ -793,10 +803,10 @@ function renderPad(){
     return;
   }
   if(padTab==='notes'){
-    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Every call note, newest first — business + number above each note. Edit here; it saves straight to that lead.';
+    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Everyone you’ve touched — status, notes, callbacks — newest first, business + number above each note. Edit a note here and it saves straight to that lead.';
     body.appendChild(sub);
-    const rows=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.notes||r.dm||r.email);}).sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
-    if(!rows.length){body.appendChild(emptyMsg('No call notes yet. Notes you write on a lead (or in Dial Mode) all collect here.'));return;}
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.notes||r.dm||r.email||r.status||r.time||r.ts);}).sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
+    if(!rows.length){body.appendChild(emptyMsg('No calls logged yet. Every lead you mark or write a note on collects here.'));return;}
     rows.forEach(l=>{
       const r=get(l.dig);
       const c=document.createElement('div');c.className='pcard';
@@ -834,6 +844,7 @@ function renderPad(){
   const now=Date.now();
   const items=[];
   LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.time){const d=new Date(r.time);items.push({kind:'cb',l,r,due:r.time,over:!isNaN(d)&&d.getTime()<=now,dt:isNaN(d)?Infinity:d.getTime()});}});
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.status==='callback'&&!r.time){items.push({kind:'cbnt',l,r,due:'',over:false,dt:Infinity});}});
   TASKS.filter(t=>!t.done).forEach(t=>{const d=t.due?new Date(t.due):null;items.push({kind:'task',t,due:t.due,over:!!(d&&!isNaN(d)&&d.getTime()<=now),dt:(d&&!isNaN(d))?d.getTime():Infinity});});
   items.sort((a,b)=>(b.over-a.over)||(a.dt-b.dt));
   if(!items.length)body.appendChild(emptyMsg('Nothing pending. Set a "Call back at" time on a lead, or add a task above.'));
@@ -852,6 +863,17 @@ function renderPad(){
       const dn=document.createElement('button');dn.className='btn';dn.textContent='✓ Done';
       dn.addEventListener('click',()=>{rec(it.l.dig).time='';save();build();renderPad();updatePadBadge();});
       act.appendChild(dn);c.appendChild(act);
+    } else if(it.kind==='cbnt'){
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent='📞 '+it.l.n;
+      hd.querySelector('.pcmeta').textContent=it.l.t+' · '+it.l.p+(it.r.dm?' · ask for '+it.r.dm:'');
+      c.appendChild(hd);
+      const tm=document.createElement('div');tm.className='pctime';tm.textContent='↩ Callback — no time set. Tap when:';c.appendChild(tm);
+      if(it.r.notes){const n=document.createElement('div');n.className='pcprev';n.textContent=it.r.notes;c.appendChild(n);}
+      c.appendChild(chipTimePicker({onSet:(s,lab)=>{rec(it.l.dig).time=s;save();showToast('↩ '+lab);renderPad();updatePadBadge();}}));
+      const act=document.createElement('div');act.className='pcact';
+      act.appendChild(copyBtnEl(it.l.p));c.appendChild(act);
     } else {
       const hd=document.createElement('div');hd.className='pchd';
       hd.innerHTML='<div class="pcnm"></div>';hd.querySelector('.pcnm').textContent='☐ '+it.t.txt;c.appendChild(hd);
