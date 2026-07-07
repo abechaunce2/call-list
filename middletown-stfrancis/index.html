@@ -92,6 +92,10 @@
   .nchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
   .nchip{background:var(--fill);border:none;color:var(--muted);padding:6px 11px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer}
   .nchip:active{background:var(--sep)}
+  .nchip.on{background:var(--text);color:var(--bg)}
+  .tpick .nchips{margin-top:6px}
+  .tpick .nchip.tch{background:var(--card);border:.5px solid var(--sep);color:var(--text);font-weight:650;min-width:46px}
+  .dial .tpick .nchip.tch{background:var(--fill);border:none}
   /* dial mode */
   .dial{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;overflow:auto;padding:14px 16px calc(24px + env(safe-area-inset-bottom))}
   .dial.show{display:block}
@@ -141,7 +145,6 @@
   .pcact{display:flex;gap:7px;margin-top:9px}
   .taskform{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
   .taskform input[type=text]{flex:1;min-width:120px;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:14px;outline:none}
-  .taskform input[type=datetime-local]{background:var(--fill);border:none;color:var(--text);padding:8px 10px;border-radius:10px;font-size:13px;outline:none}
   #padbadge{display:none;background:var(--red);color:#fff;font-size:11px;font-weight:800;min-width:17px;height:17px;border-radius:99px;align-items:center;justify-content:center;padding:0 4px;margin-left:5px;vertical-align:middle}
   /* confetti */
   .cfx{position:fixed;top:18%;width:9px;height:14px;z-index:80;border-radius:2px;pointer-events:none;animation:cfall 1.4s ease-in forwards}
@@ -480,9 +483,17 @@ function detailEl(l){
     w.appendChild(i);return w;
   }
   g.appendChild(field('Ask for (name / title)',r.dm,'dm','text',true));
-  g.appendChild(field('Call back at',r.time,'time','datetime-local'));
-  g.appendChild(field('Email',r.email,'email','text'));
-  cbk.appendChild(g);d.appendChild(cbk);
+  g.appendChild(field('Email',r.email,'email','text',true));
+  cbk.appendChild(g);
+  const cur=document.createElement('div');cur.className='pctime'+(r.time&&new Date(r.time)<=new Date()?' over':'');
+  cur.style.marginTop='9px';
+  cur.textContent=r.time?('↩ Call back '+shortWhen(r.time)):'Call back at — tap a day, then a time:';
+  cbk.appendChild(cur);
+  cbk.appendChild(chipTimePicker({
+    onSet:(s,lab)=>{rec(l.dig).time=s;save();showToast('↩ Callback '+lab);build();},
+    onClear:r.time?()=>{rec(l.dig).time='';save();showToast('Callback cleared');build();}:null
+  }));
+  d.appendChild(cbk);
   const lk=document.createElement('div');lk.className='links';
   lk.innerHTML='<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
   lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
@@ -630,6 +641,44 @@ function chipRow(l,ta){
   return w;
 }
 
+// ---- 30-min tap chips: [Today|Tomorrow|day] then [9a … 5:30p] — two taps, no pickers ----
+function stampFor(baseDate,h,m){const d=new Date(baseDate);d.setHours(h,m,0,0);const p=n=>(n<10?'0':'')+n;return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());}
+function tlabel(h,m){const ap=h<12?'a':'p';let hh=h%12;if(hh===0)hh=12;return hh+(m?':30':'')+ap;}
+function dayChoices(){
+  const out=[];const now=new Date();const names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  for(let i=0;i<4;i++){const d=new Date(now);d.setDate(now.getDate()+i);out.push({lbl:i===0?'Today':(i===1?'Tomorrow':names[d.getDay()]),date:d,idx:i});}
+  return out;
+}
+function chipTimePicker(opts){ // {onSet(stamp,label), onClear?, noTimeLbl?}
+  const wrap=document.createElement('div');wrap.className='tpick';
+  let dayIdx=0;const days=dayChoices();
+  const dayRow=document.createElement('div');dayRow.className='nchips';
+  const timeRow=document.createElement('div');timeRow.className='nchips';
+  function renderDays(){
+    dayRow.innerHTML='';
+    days.forEach((d,i)=>{const b=document.createElement('button');b.className='nchip'+(i===dayIdx?' on':'');b.textContent=d.lbl;
+      b.addEventListener('click',e=>{e.stopPropagation();dayIdx=i;renderDays();renderTimes();});dayRow.appendChild(b);});
+    if(opts.noTimeLbl){const b=document.createElement('button');b.className='nchip';b.textContent=opts.noTimeLbl;
+      b.addEventListener('click',e=>{e.stopPropagation();opts.onSet('','');});dayRow.appendChild(b);}
+    if(opts.onClear){const b=document.createElement('button');b.className='nchip';b.textContent='✕ clear';
+      b.addEventListener('click',e=>{e.stopPropagation();opts.onClear();});dayRow.appendChild(b);}
+  }
+  function renderTimes(){
+    timeRow.innerHTML='';
+    const now=new Date();
+    for(let h=8;h<=17;h++)for(const m of [0,30]){
+      if(dayIdx===0){const t=new Date();t.setHours(h,m,0,0);if(t<=now)continue;}
+      const b=document.createElement('button');b.className='nchip tch';b.textContent=tlabel(h,m);
+      b.addEventListener('click',e=>{e.stopPropagation();opts.onSet(stampFor(days[dayIdx].date,h,m),days[dayIdx].lbl+' '+tlabel(h,m));});
+      timeRow.appendChild(b);
+    }
+    if(!timeRow.children.length){const s=document.createElement('span');s.className='sub2';s.textContent='Today’s hours are done — tap Tomorrow.';timeRow.appendChild(s);}
+  }
+  renderDays();renderTimes();
+  wrap.appendChild(dayRow);wrap.appendChild(timeRow);
+  return wrap;
+}
+
 // ---- WON confetti ----
 function confetti(){
   const cols=['#34c759','#007aff','#ff9500','#af52de','#ff3b30','#30b0c7'];
@@ -679,7 +728,14 @@ function renderDial(){
   const stat=dialEl.querySelector('.dstat');
   ORDER.forEach(st=>{
     const b=document.createElement('button');b.className='sbtn';b.textContent=STATUS[st].g+' '+STATUS[st].lbl;
-    b.addEventListener('click',()=>{setStatus(l,st);renderDial();});
+    b.addEventListener('click',()=>{
+      if(st==='callback'){
+        setStatus(l,'callback');
+        const zone=dialEl.querySelector('.dchips');zone.innerHTML='';
+        const h=document.createElement('div');h.className='sub2';h.textContent='↩ When do they want the call back?';zone.appendChild(h);
+        zone.appendChild(chipTimePicker({noTimeLbl:'No time →',onSet:(s,lab)=>{if(s){rec(l.dig).time=s;showToast('↩ '+lab);}save();updatePadBadge();renderDial();}}));
+      } else {setStatus(l,st);renderDial();}
+    });
     stat.appendChild(b);
   });
   const ta=dialEl.querySelector('.dnotes');ta.value=r.notes||'';
@@ -764,11 +820,15 @@ function renderPad(){
   const sub=document.createElement('div');sub.className='sub2';sub.textContent='Callbacks pull in automatically from your leads. Add your own to-dos below. Red = overdue.';
   body.appendChild(sub);
   const form=document.createElement('div');form.className='taskform';
-  form.innerHTML='<input type="text" id="ntxt" placeholder="New task… e.g. drop off rate card"><input type="datetime-local" id="ndue"><button class="btn on" id="nadd">Add</button>';
+  form.innerHTML='<input type="text" id="ntxt" placeholder="New task… e.g. drop off rate card"><button class="btn on" id="nadd">Add</button>';
   body.appendChild(form);
+  let ndue='';
+  const tlbl=document.createElement('div');tlbl.className='sub2';tlbl.style.margin='2px 2px 0';tlbl.textContent='No reminder time — or tap one:';
+  body.appendChild(tlbl);
+  body.appendChild(chipTimePicker({noTimeLbl:'No time',onSet:(s,lab)=>{ndue=s;tlbl.textContent=s?('⏰ Reminder: '+lab):'No reminder time — or tap one:';}}));
   form.querySelector('#nadd').addEventListener('click',()=>{
     const t=form.querySelector('#ntxt').value.trim();if(!t)return;
-    TASKS.push({id:Date.now()+''+Math.floor(Math.random()*1e4),txt:t,due:form.querySelector('#ndue').value||'',done:false,ts:Date.now()});
+    TASKS.push({id:Date.now()+''+Math.floor(Math.random()*1e4),txt:t,due:ndue||'',done:false,ts:Date.now()});
     saveTasks();renderPad();updatePadBadge();
   });
   const now=Date.now();
