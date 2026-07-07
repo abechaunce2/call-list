@@ -124,7 +124,25 @@
   .padhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
   .padhd b{font-size:16px;font-weight:750}
   .pad .sub2{color:var(--muted);font-size:12px;margin:2px 0 10px}
-  .pad textarea{flex:1;background:var(--fill);border:none;border-radius:12px;padding:13px;font-family:inherit;font-size:15px;line-height:1.6;color:var(--text);outline:none;resize:none}
+  .ptabs{display:flex;gap:6px;margin:8px 0 10px}
+  .ptab{flex:1;background:var(--fill);border:none;color:var(--muted);padding:8px 10px;border-radius:10px;font-size:13px;font-weight:650;cursor:pointer}
+  .ptab.on{background:var(--text);color:var(--bg)}
+  .pbody{flex:1;overflow:auto;display:flex;flex-direction:column;gap:9px;padding-bottom:6px}
+  .pbody textarea.paper{flex:1;min-height:300px;background:var(--fill);border:none;border-radius:12px;padding:13px;font-family:inherit;font-size:15px;line-height:1.6;color:var(--text);outline:none;resize:none}
+  .pcard{background:var(--fill);border-radius:12px;padding:11px 12px;flex:0 0 auto}
+  .pcard.over{border:1px solid var(--red);background:color-mix(in srgb,var(--red) 7%,var(--fill))}
+  .pchd .pcnm{font-size:14.5px;font-weight:700}
+  .pchd .pcmeta{font-size:12px;color:var(--muted);margin-top:2px}
+  .pcdm{font-size:12.5px;margin-top:5px;font-weight:600}
+  .pctime{font-size:12.5px;color:var(--orange);font-weight:700;margin-top:5px}
+  .pctime.over{color:var(--red)}
+  .pcprev{font-size:12.5px;color:var(--muted);margin-top:5px;white-space:pre-wrap}
+  .pcnote{width:100%;margin-top:8px;background:var(--card);border:.5px solid var(--sep);border-radius:9px;padding:8px 10px;font-family:inherit;font-size:14px;color:var(--text);outline:none;min-height:44px;resize:vertical}
+  .pcact{display:flex;gap:7px;margin-top:9px}
+  .taskform{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
+  .taskform input[type=text]{flex:1;min-width:120px;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:14px;outline:none}
+  .taskform input[type=datetime-local]{background:var(--fill);border:none;color:var(--text);padding:8px 10px;border-radius:10px;font-size:13px;outline:none}
+  #padbadge{display:none;background:var(--red);color:#fff;font-size:11px;font-weight:800;min-width:17px;height:17px;border-radius:99px;align-items:center;justify-content:center;padding:0 4px;margin-left:5px;vertical-align:middle}
   /* confetti */
   .cfx{position:fixed;top:18%;width:9px;height:14px;z-index:80;border-radius:2px;pointer-events:none;animation:cfall 1.4s ease-in forwards}
   @keyframes cfall{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),70vh) rotate(540deg)}}
@@ -144,7 +162,7 @@
     <input id="q" placeholder="Search name, category, town" autocomplete="off">
     <button class="btn on" id="dialgo">▶ Dial</button>
     <button class="btn" id="pitchbtn">Pitch</button>
-    <button class="btn" id="padbtn">📝 Notes</button>
+    <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
     <button class="btn" id="cbview">Callbacks</button>
     <button class="btn" id="near">Closest</button>
@@ -525,6 +543,7 @@ function updateScore(){
   bar.style.width=pct+'%';bar.classList.toggle('hit',hit);
   document.getElementById('goaltxt').textContent=hit?'🎯 Daily goal hit — keep rolling':'Today’s dial goal: '+today+' of '+GOAL;
   document.getElementById('donetxt').textContent=done+' / '+LEADS.length+' crossed off';
+  updatePadBadge();
 }
 
 // ================= RENDER =================
@@ -573,7 +592,8 @@ function noMatch(){return Object.assign(document.createElement('div'),{style:'co
 // ================= EXPORT / IMPORT =================
 function exportData(){
   let padTxt='';try{padTxt=localStorage.getItem('pad_v1_'+LIST_ID)||'';}catch(e){}
-  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt},null,2)],{type:'application/json'});
+  let tasksArr=[];try{tasksArr=JSON.parse(localStorage.getItem('tasks_v1_'+LIST_ID))||[];}catch(e){}
+  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='callstate-stfrancis-'+new Date().toISOString().slice(0,10)+'.json';
   document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('Backup downloaded');
@@ -581,8 +601,9 @@ function exportData(){
 function importData(file){
   const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
     let n=0;Object.keys(st).forEach(k=>{STATE[k]=Object.assign(rec(k),st[k]);n++;});
-    if(typeof o.pad==='string'){try{localStorage.setItem('pad_v1_'+LIST_ID,o.pad);const pt=document.querySelector('.pad textarea');if(pt)pt.value=o.pad;}catch(e){}}
-    save();build();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
+    if(typeof o.pad==='string'){try{localStorage.setItem('pad_v1_'+LIST_ID,o.pad);}catch(e){}}
+    if(Array.isArray(o.tasks)){try{localStorage.setItem('tasks_v1_'+LIST_ID,JSON.stringify(o.tasks));TASKS=o.tasks;}catch(e){}}
+    save();build();if(pad.classList.contains('show'))renderPad();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
   fr.readAsText(file);
 }
 
@@ -685,18 +706,128 @@ function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggl
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
 
-// ---- Scratch pad: one big piece of paper, saves automatically per church ----
+// ---- Notes hub: Tasks / Call notes / Paper (all saved per church) ----
 const PADKEY='pad_v1_'+LIST_ID;
+const TKEY='tasks_v1_'+LIST_ID;
+let TASKS=[];try{TASKS=JSON.parse(localStorage.getItem(TKEY))||[];}catch(e){TASKS=[];}
+function saveTasks(){try{localStorage.setItem(TKEY,JSON.stringify(TASKS));flagSaved(false);}catch(e){flagSaved(true);}}
 const pad=document.createElement('div');pad.className='pad';
-pad.innerHTML='<div class="padhd"><b>📝 Scratch pad</b><button class="btn" id="padx">✕ Close</button></div>'+
-  '<div class="sub2">Your big piece of paper — plans, targets, reminders, anything. Saves automatically on this computer, only for this church. Included in Export backups.</div>'+
-  '<textarea placeholder="Write anything…&#10;&#10;e.g.&#10;— hit all funeral homes by 11&#10;— Biega: ask for Mike after 2pm&#10;— quote card-size only, no discounts talk"></textarea>';
+pad.innerHTML='<div class="padhd"><b>📝 Notes & Tasks</b><button class="btn" id="padx">✕ Close</button></div>'+
+ '<div class="ptabs"><button class="ptab on" data-t="tasks">📋 Tasks</button><button class="ptab" data-t="notes">🗒 Call notes</button><button class="ptab" data-t="paper">✏️ Paper</button></div>'+
+ '<div class="pbody" id="pbody"></div>';
 document.body.appendChild(pad);
-const padTa=pad.querySelector('textarea');
-try{padTa.value=localStorage.getItem(PADKEY)||'';}catch(e){}
-padTa.addEventListener('input',()=>{clearTimeout(padTa._t);padTa._t=setTimeout(()=>{try{localStorage.setItem(PADKEY,padTa.value);flagSaved(false);}catch(e){flagSaved(true);}},400);});
-document.getElementById('padbtn').addEventListener('click',()=>pad.classList.toggle('show'));
+let padTab='tasks';
+pad.querySelectorAll('.ptab').forEach(b=>b.addEventListener('click',()=>{padTab=b.dataset.t;pad.querySelectorAll('.ptab').forEach(x=>x.classList.toggle('on',x===b));renderPad();}));
 pad.querySelector('#padx').addEventListener('click',()=>pad.classList.remove('show'));
+document.getElementById('padbtn').addEventListener('click',()=>{pad.classList.toggle('show');if(pad.classList.contains('show'))renderPad();});
+
+function fmtDue(t){const d=new Date(t);if(isNaN(d))return t;return d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});}
+function copyBtnEl(p){const b=document.createElement('button');b.className='cp';b.textContent='Copy';b.addEventListener('click',e=>{e.stopPropagation();copyNum(p,b);});return b;}
+function emptyMsg(m){const d=document.createElement('div');d.className='sub2';d.style.padding='20px 4px';d.textContent=m;return d;}
+
+function renderPad(){
+  const body=pad.querySelector('#pbody');body.innerHTML='';
+  if(padTab==='paper'){
+    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Freeform — your big piece of paper. Saves automatically as you type.';
+    const ta=document.createElement('textarea');ta.className='paper';
+    try{ta.value=localStorage.getItem(PADKEY)||'';}catch(e){}
+    ta.placeholder='Write anything…';
+    ta.addEventListener('input',()=>{clearTimeout(ta._t);ta._t=setTimeout(()=>{try{localStorage.setItem(PADKEY,ta.value);flagSaved(false);}catch(e){flagSaved(true);}},400);});
+    body.appendChild(sub);body.appendChild(ta);
+    return;
+  }
+  if(padTab==='notes'){
+    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Every call note, newest first — business + number above each note. Edit here; it saves straight to that lead.';
+    body.appendChild(sub);
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.notes||r.dm||r.email);}).sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
+    if(!rows.length){body.appendChild(emptyMsg('No call notes yet. Notes you write on a lead (or in Dial Mode) all collect here.'));return;}
+    rows.forEach(l=>{
+      const r=get(l.dig);
+      const c=document.createElement('div');c.className='pcard';
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent=l.n;
+      hd.querySelector('.pcmeta').textContent=l.t+' · '+l.p;
+      if(r.status){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;hd.querySelector('.pcnm').appendChild(pl);}
+      c.appendChild(hd);
+      if(r.dm){const dm=document.createElement('div');dm.className='pcdm';dm.textContent='Ask for: '+r.dm;c.appendChild(dm);}
+      if(r.time){const tm=document.createElement('div');tm.className='pctime'+(new Date(r.time)<=new Date()?' over':'');tm.textContent='↩ Call back '+fmtDue(r.time);c.appendChild(tm);}
+      const ta=document.createElement('textarea');ta.className='pcnote';ta.value=r.notes||'';ta.placeholder='Note…';
+      ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+      c.appendChild(ta);
+      const act=document.createElement('div');act.className='pcact';act.appendChild(copyBtnEl(l.p));c.appendChild(act);
+      body.appendChild(c);
+    });
+    return;
+  }
+  // Tasks tab
+  const sub=document.createElement('div');sub.className='sub2';sub.textContent='Callbacks pull in automatically from your leads. Add your own to-dos below. Red = overdue.';
+  body.appendChild(sub);
+  const form=document.createElement('div');form.className='taskform';
+  form.innerHTML='<input type="text" id="ntxt" placeholder="New task… e.g. drop off rate card"><input type="datetime-local" id="ndue"><button class="btn on" id="nadd">Add</button>';
+  body.appendChild(form);
+  form.querySelector('#nadd').addEventListener('click',()=>{
+    const t=form.querySelector('#ntxt').value.trim();if(!t)return;
+    TASKS.push({id:Date.now()+''+Math.floor(Math.random()*1e4),txt:t,due:form.querySelector('#ndue').value||'',done:false,ts:Date.now()});
+    saveTasks();renderPad();updatePadBadge();
+  });
+  const now=Date.now();
+  const items=[];
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.time){const d=new Date(r.time);items.push({kind:'cb',l,r,due:r.time,over:!isNaN(d)&&d.getTime()<=now,dt:isNaN(d)?Infinity:d.getTime()});}});
+  TASKS.filter(t=>!t.done).forEach(t=>{const d=t.due?new Date(t.due):null;items.push({kind:'task',t,due:t.due,over:!!(d&&!isNaN(d)&&d.getTime()<=now),dt:(d&&!isNaN(d))?d.getTime():Infinity});});
+  items.sort((a,b)=>(b.over-a.over)||(a.dt-b.dt));
+  if(!items.length)body.appendChild(emptyMsg('Nothing pending. Set a "Call back at" time on a lead, or add a task above.'));
+  items.forEach(it=>{
+    const c=document.createElement('div');c.className='pcard task'+(it.over?' over':'');
+    if(it.kind==='cb'){
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent='📞 '+it.l.n;
+      hd.querySelector('.pcmeta').textContent=it.l.t+' · '+it.l.p+(it.r.dm?' · ask for '+it.r.dm:'');
+      c.appendChild(hd);
+      const tm=document.createElement('div');tm.className='pctime'+(it.over?' over':'');tm.textContent=(it.over?'⚠ DUE — ':'')+'call back '+fmtDue(it.due);c.appendChild(tm);
+      if(it.r.notes){const n=document.createElement('div');n.className='pcprev';n.textContent=it.r.notes;c.appendChild(n);}
+      const act=document.createElement('div');act.className='pcact';
+      act.appendChild(copyBtnEl(it.l.p));
+      const dn=document.createElement('button');dn.className='btn';dn.textContent='✓ Done';
+      dn.addEventListener('click',()=>{rec(it.l.dig).time='';save();build();renderPad();updatePadBadge();});
+      act.appendChild(dn);c.appendChild(act);
+    } else {
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div>';hd.querySelector('.pcnm').textContent='☐ '+it.t.txt;c.appendChild(hd);
+      if(it.due){const tm=document.createElement('div');tm.className='pctime'+(it.over?' over':'');tm.textContent=(it.over?'⚠ DUE — ':'')+fmtDue(it.due);c.appendChild(tm);}
+      const act=document.createElement('div');act.className='pcact';
+      const dn=document.createElement('button');dn.className='btn';dn.textContent='✓ Done';
+      dn.addEventListener('click',()=>{it.t.done=true;saveTasks();renderPad();updatePadBadge();});
+      const del=document.createElement('button');del.className='btn';del.textContent='✕';
+      del.addEventListener('click',()=>{TASKS=TASKS.filter(x=>x.id!==it.t.id);saveTasks();renderPad();updatePadBadge();});
+      act.appendChild(dn);act.appendChild(del);c.appendChild(act);
+    }
+    body.appendChild(c);
+  });
+  const doneT=TASKS.filter(t=>t.done);
+  if(doneT.length){
+    const dh=document.createElement('div');dh.className='sub2';dh.style.marginTop='14px';dh.textContent='Done';body.appendChild(dh);
+    doneT.slice(-8).reverse().forEach(t=>{
+      const c=document.createElement('div');c.className='pcard';
+      c.innerHTML='<div class="pchd"><div class="pcnm" style="text-decoration:line-through;opacity:.55"></div></div>';
+      c.querySelector('.pcnm').textContent='✓ '+t.txt;
+      const del=document.createElement('button');del.className='btn';del.textContent='✕';del.style.marginTop='6px';
+      del.addEventListener('click',()=>{TASKS=TASKS.filter(x=>x.id!==t.id);saveTasks();renderPad();});
+      c.appendChild(del);
+      body.appendChild(c);
+    });
+  }
+}
+function updatePadBadge(){
+  const now=Date.now();let n=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.time){const d=new Date(r.time);if(!isNaN(d)&&d.getTime()<=now)n++;}});
+  TASKS.forEach(t=>{if(!t.done&&t.due){const d=new Date(t.due);if(!isNaN(d)&&d.getTime()<=now)n++;}});
+  const b=document.getElementById('padbadge');
+  if(b){b.textContent=n;b.style.display=n?'inline-flex':'none';}
+}
+setInterval(()=>{updatePadBadge();if(pad.classList.contains('show')&&padTab==='tasks'&&!(document.activeElement&&pad.contains(document.activeElement)))renderPad();},60000);
+updatePadBadge();
 
 buildChips();
 build();
