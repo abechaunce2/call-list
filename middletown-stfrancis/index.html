@@ -93,6 +93,7 @@
   .nchip{background:var(--fill);border:none;color:var(--muted);padding:6px 11px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer}
   .nchip:active{background:var(--sep)}
   .nchip.on{background:var(--text);color:var(--bg)}
+  .nchip.off{opacity:.32;cursor:default}
   .tpick .nchips{margin-top:6px}
   .tpick .nchip.tch{background:var(--card);border:.5px solid var(--sep);color:var(--text);font-weight:650;min-width:46px}
   .dial .tpick .nchip.tch{background:var(--fill);border:none}
@@ -680,14 +681,15 @@ function chipTimePicker(opts){ // {onSet(stamp,label), onClear?, noTimeLbl?}
   }
   function renderTimes(){
     timeRow.innerHTML='';
-    const now=new Date();
-    for(let h=8;h<=17;h++)for(const m of [0,30]){
-      if(dayIdx===0){const t=new Date();t.setHours(h,m,0,0);if(t<=now)continue;}
-      const b=document.createElement('button');b.className='nchip tch';b.textContent=tlabel(h,m);
-      b.addEventListener('click',e=>{e.stopPropagation();opts.onSet(stampFor(days[dayIdx].date,h,m),days[dayIdx].lbl+' '+tlabel(h,m));});
+    const now=new Date();let live=0;
+    for(let h=8;h<=16;h++)for(const m of [0,30]){
+      let past=false;
+      if(dayIdx===0){const t=new Date();t.setHours(h,m,0,0);past=t<=now;}
+      const b=document.createElement('button');b.className='nchip tch'+(past?' off':'');b.textContent=tlabel(h,m);
+      if(!past){live++;b.addEventListener('click',e=>{e.stopPropagation();opts.onSet(stampFor(days[dayIdx].date,h,m),days[dayIdx].lbl+' '+tlabel(h,m));});}
       timeRow.appendChild(b);
     }
-    if(!timeRow.children.length){const s=document.createElement('span');s.className='sub2';s.textContent='Today’s hours are done — tap Tomorrow.';timeRow.appendChild(s);}
+    if(!live){const s=document.createElement('span');s.className='sub2';s.textContent='Today’s calling hours are done — tap Tomorrow.';timeRow.appendChild(s);}
   }
   renderDays();renderTimes();
   wrap.appendChild(dayRow);wrap.appendChild(timeRow);
