@@ -162,10 +162,30 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
+const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
 const LEADS=[
+{c:"Patron / Community Sponsor 💰",n:"Malloves Jewelers (since 1937)",p:"(860) 346-9204",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Vecchitto's Italian Ice (since 1930)",p:"(860) 346-7301",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Public Market (historic Italian market)",p:"(860) 346-3340",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Avella's / Melilli's Italian Specialty Market",p:"(860) 807-3768",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Antonio's Market & Catering",p:"(860) 346-6700",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"D'eliana Public Market & Deli",p:"(860) 365-5880",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Middletown Toyota (family, since 1975)",p:"(860) 347-7294",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"ShopRite of Cromwell",p:"(860) 613-2063",t:"Cromwell"},
+{c:"Patron / Community Sponsor 💰",n:"Tri-Town Foods (Adams IGA)",p:"(860) 342-0672",t:"Portland"},
+{c:"Patron / Community Sponsor 💰",n:"Portland Home and Hardware",p:"(860) 342-4847",t:"Portland"},
+{c:"Patron / Community Sponsor 💰",n:"Precision Paving & Seal Coating (3rd gen)",p:"(860) 788-6295",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Crossroads Construction (excavation)",p:"(203) 537-4878",t:"Durham"},
+{c:"Patron / Community Sponsor 💰",n:"River Valley Oil Service (DiMauro family)",p:"(860) 342-5670",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Didato's Oil Service (since 1948)",p:"(860) 347-1764",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Brazos Oil",p:"(860) 342-1136",t:"Portland"},
+{c:"Patron / Community Sponsor 💰",n:"Quarry Ridge Golf Course",p:"(860) 788-2845",t:"Portland"},
+{c:"Patron / Community Sponsor 💰",n:"Forest City Wine & Spirits",p:"(860) 347-2877",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"The Wine Cellar (S Main St)",p:"(860) 344-1558",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Cromwell Square Wine & Liquor",p:"(860) 632-9611",t:"Cromwell"},
+{c:"Patron / Community Sponsor 💰",n:"Portland Liquors",p:"(860) 342-1576",t:"Portland"},
 {c:"Funeral Home / Monuments",n:"Doolittle Funeral Service",p:"(860) 346-6464",t:"Middletown"},
 {c:"Funeral Home / Monuments",n:"Biega Funeral Home",p:"(860) 346-1055",t:"Middletown"},
 {c:"Funeral Home / Monuments",n:"Coughlin-Lastrina Funeral Home",p:"(860) 346-5439",t:"Middletown"},
@@ -658,6 +678,7 @@ sheet.innerHTML='<div class="grab"></div>'+
  '<h3>Voicemail (~15 sec — leave one on EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Francis of Assisi weekly bulletin</b> in Middletown — I’ve got a <b>[category]</b> spot open for this year’s sponsors and your name came up. Local families, every week, small budget line. I’ll try you again — or reach me at <b>[callback #]</b>.”</p>'+
  '<h3>Make it concrete</h3><p>“Card-size ad” = 4-space · “a banner across the top” — pictures, not jargon.</p>'+
  '<h3>At the close — multiples</h3><p>“Do it for a year, I’ll check back in a few months — and if this works, I’ve got <b>other parishes near you</b>.”</p>'+
+ '<h3>💰 Patron pitch — for the “Community Sponsor” category</h3><p>Family-name businesses (dealers, jewelers, markets, oil, paving, package stores) often buy the space to <b>back the parish</b>, not for the ad. Lead with that: “A lot of our sponsors do it to support St. Francis — the <b>[family/business] name</b> in front of the parish families every Sunday, all year. It’s modest money and it writes off as advertising.” Then the soft close: “Can I put the [name] family down for a card-size spot?” Alcohol businesses: fine to sell per policy, but <b>confirm with Mark</b> before the order goes in.</p>'+
  '<h3 class="warn">Don’t sell / don’t say</h3><p class="warn">Abortion/PP · alcohol needs OK · CBD/THC mostly no · elections · anti-Catholic-values. Never promise category exclusivity (unconfirmed). Never claim to be church staff. Max 10% discount — only with Mark’s OK.</p>'+
  '<h3>Discipline</h3><p>Document EVERY call in Salesforce — undocumented = you can lose the credit · convert at any interest signal (“send pricing” counts) · 80–90 dials/day.</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
