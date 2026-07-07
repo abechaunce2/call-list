@@ -118,6 +118,13 @@
   .sheet h3{margin:15px 0 5px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
   .sheet p{margin:0;font-size:14.5px;line-height:1.55}
   .sheet .warn{color:var(--red);font-weight:600}
+  /* scratch pad */
+  .pad{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);z-index:65;background:var(--card);border-left:.5px solid var(--sep);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);transition:transform .25s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+  .pad.show{transform:none}
+  .padhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+  .padhd b{font-size:16px;font-weight:750}
+  .pad .sub2{color:var(--muted);font-size:12px;margin:2px 0 10px}
+  .pad textarea{flex:1;background:var(--fill);border:none;border-radius:12px;padding:13px;font-family:inherit;font-size:15px;line-height:1.6;color:var(--text);outline:none;resize:none}
   /* confetti */
   .cfx{position:fixed;top:18%;width:9px;height:14px;z-index:80;border-radius:2px;pointer-events:none;animation:cfall 1.4s ease-in forwards}
   @keyframes cfall{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),70vh) rotate(540deg)}}
@@ -137,6 +144,7 @@
     <input id="q" placeholder="Search name, category, town" autocomplete="off">
     <button class="btn on" id="dialgo">▶ Dial</button>
     <button class="btn" id="pitchbtn">Pitch</button>
+    <button class="btn" id="padbtn">📝 Notes</button>
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
     <button class="btn" id="cbview">Callbacks</button>
     <button class="btn" id="near">Closest</button>
@@ -523,7 +531,8 @@ function noMatch(){return Object.assign(document.createElement('div'),{style:'co
 
 // ================= EXPORT / IMPORT =================
 function exportData(){
-  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE},null,2)],{type:'application/json'});
+  let padTxt='';try{padTxt=localStorage.getItem('pad_v1_'+LIST_ID)||'';}catch(e){}
+  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='callstate-stfrancis-'+new Date().toISOString().slice(0,10)+'.json';
   document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('Backup downloaded');
@@ -531,6 +540,7 @@ function exportData(){
 function importData(file){
   const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
     let n=0;Object.keys(st).forEach(k=>{STATE[k]=Object.assign(rec(k),st[k]);n++;});
+    if(typeof o.pad==='string'){try{localStorage.setItem('pad_v1_'+LIST_ID,o.pad);const pt=document.querySelector('.pad textarea');if(pt)pt.value=o.pad;}catch(e){}}
     save();build();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
   fr.readAsText(file);
 }
@@ -632,6 +642,19 @@ sheet.innerHTML='<div class="grab"></div>'+
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
+
+// ---- Scratch pad: one big piece of paper, saves automatically per church ----
+const PADKEY='pad_v1_'+LIST_ID;
+const pad=document.createElement('div');pad.className='pad';
+pad.innerHTML='<div class="padhd"><b>📝 Scratch pad</b><button class="btn" id="padx">✕ Close</button></div>'+
+  '<div class="sub2">Your big piece of paper — plans, targets, reminders, anything. Saves automatically on this computer, only for this church. Included in Export backups.</div>'+
+  '<textarea placeholder="Write anything…&#10;&#10;e.g.&#10;— hit all funeral homes by 11&#10;— Biega: ask for Mike after 2pm&#10;— quote card-size only, no discounts talk"></textarea>';
+document.body.appendChild(pad);
+const padTa=pad.querySelector('textarea');
+try{padTa.value=localStorage.getItem(PADKEY)||'';}catch(e){}
+padTa.addEventListener('input',()=>{clearTimeout(padTa._t);padTa._t=setTimeout(()=>{try{localStorage.setItem(PADKEY,padTa.value);flagSaved(false);}catch(e){flagSaved(true);}},400);});
+document.getElementById('padbtn').addEventListener('click',()=>pad.classList.toggle('show'));
+pad.querySelector('#padx').addEventListener('click',()=>pad.classList.remove('show'));
 
 buildChips();
 build();
