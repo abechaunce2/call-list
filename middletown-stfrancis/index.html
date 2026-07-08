@@ -185,7 +185,7 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
+const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
 const LEADS=[
@@ -440,7 +440,24 @@ const LEADS=[
 {c:"Landscaping / Snow / Tree",n:"Scenic Landscaping & Property Maint.",p:"(860) 656-7440",t:"Rocky Hill"},
 {c:"Landscaping / Snow / Tree",n:"Galecki Landscaping",p:"(860) 828-8886",t:"Newington"},
 {c:"Patron / Community Sponsor 💰",n:"Glastonbury Jewelers (since 1981)",p:"(860) 659-0944",t:"Glastonbury"},
-{c:"Patron / Community Sponsor 💰",n:"Turgeon Jewelers",p:"(860) 436-6400",t:"Wethersfield"}
+{c:"Patron / Community Sponsor 💰",n:"Turgeon Jewelers",p:"(860) 436-6400",t:"Wethersfield"},
+{c:"Florist 💐",n:"Mc Inerney's Flower Shop & Greenhouse",p:"(860) 632-0789",t:"Middletown"},
+{c:"Florist 💐",n:"Amberworks Floral Design",p:"(860) 788-2056",t:"Middletown"},
+{c:"Restaurant / Banquet / Bakery",n:"The Cooking Company (catering + market)",p:"(860) 343-0008",t:"Middletown"},
+{c:"Restaurant / Banquet / Bakery",n:"Laura's Kitchen (catering)",p:"(860) 834-0358",t:"Middletown"},
+{c:"Restaurant / Banquet / Bakery",n:"Michael's Trattoria (since 1994)",p:"(203) 269-5303",t:"Wallingford"},
+{c:"Restaurant / Banquet / Bakery",n:"Serafino's Ristorante",p:"(203) 265-1244",t:"Wallingford"},
+{c:"Restaurant / Banquet / Bakery",n:"La Piazza Restaurant",p:"(203) 626-9082",t:"Wallingford"},
+{c:"Restaurant / Banquet / Bakery",n:"Kimberly's Diner (family)",p:"(203) 238-4453",t:"Meriden"},
+{c:"Restaurant / Banquet / Bakery",n:"Green Olive Diner",p:"(203) 379-0927",t:"Meriden"},
+{c:"Medical Clinic",n:"Physical Therapy Center of Rocky Hill",p:"(860) 513-1431",t:"Rocky Hill"},
+{c:"Medical Clinic",n:"Apex Physical Therapy",p:"(860) 257-3779",t:"Rocky Hill"},
+{c:"Medical Clinic",n:"ViVO Chiropractic",p:"(860) 430-9116",t:"Glastonbury"},
+{c:"Medical Clinic",n:"Damato Chiropractic Center",p:"(860) 410-4488",t:"Glastonbury"},
+{c:"Eye / Optometry",n:"Middlesex Eye Optical",p:"(860) 347-8300",t:"Middletown"},
+{c:"Hearing / Audiology",n:"Advanced Hearing Healthcare",p:"(860) 659-8805",t:"Glastonbury"},
+{c:"Financial Planner",n:"Rocky Hill Accountants LLC",p:"(860) 257-4238",t:"Rocky Hill"},
+{c:"Remodeling / Contractor",n:"For-U-Builders (windows/doors/gutters)",p:"(203) 349-6468",t:"Middletown"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
