@@ -185,7 +185,7 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
+const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
 const LEADS=[
@@ -392,7 +392,32 @@ const LEADS=[
 {c:"Auto Service / Tire",n:"Dean Autoworks",p:"(860) 349-9980",t:"Durham"},
 {c:"Auto Service / Tire",n:"Portland Automotive",p:"(860) 342-0640",t:"Portland"},
 {c:"Elder Law / Attorney",n:"Brodeur Law Firm",p:"(860) 535-1989",t:"Middletown"},
-{c:"Elder Law / Attorney",n:"Hunter Law LLC",p:"(860) 398-4357",t:"Cromwell"}
+{c:"Elder Law / Attorney",n:"Hunter Law LLC",p:"(860) 398-4357",t:"Cromwell"},
+{c:"Car Dealership 🚗",n:"Meriden Hyundai",p:"(203) 235-1669",t:"Meriden"},
+{c:"Car Dealership 🚗",n:"Barberino Nissan",p:"(203) 265-1611",t:"Wallingford"},
+{c:"Car Dealership 🚗",n:"Papa's Chrysler Dodge Jeep Ram",p:"(860) 225-8751",t:"New Britain"},
+{c:"Patron / Community Sponsor 💰",n:"Michaels Jewelers (since 1885)",p:"(203) 237-5591",t:"Meriden"},
+{c:"Patron / Community Sponsor 💰",n:"Rizzo Pools (pool builder)",p:"(860) 666-1531",t:"Newington"},
+{c:"Patron / Community Sponsor 💰",n:"Max Fish (Max Hospitality)",p:"(860) 652-3474",t:"Glastonbury"},
+{c:"Patron / Community Sponsor 💰",n:"Violi's Restaurant & Banquet",p:"(203) 639-4830",t:"Meriden"},
+{c:"Financial Planner",n:"Johnson Brunetti Retirement & Investment",p:"(860) 372-4800",t:"Wethersfield"},
+{c:"Financial Planner",n:"Guilmartin, DiPiro & Sokolowski CPA",p:"(860) 347-5689",t:"Middletown"},
+{c:"Financial Planner",n:"Mahoney Sabol CPA & Advisors",p:"(860) 541-2000",t:"Glastonbury"},
+{c:"Dentist",n:"Holzinger Periodontics & Dental Implants",p:"(860) 347-8457",t:"Middletown"},
+{c:"Dentist",n:"Shoreline Periodontics",p:"(860) 346-9665",t:"Middletown"},
+{c:"Dentist",n:"Risinger Orthodontics",p:"(860) 633-8321",t:"Glastonbury"},
+{c:"Dentist",n:"Zaidi Orthodontics",p:"(203) 269-1014",t:"Wallingford"},
+{c:"Insurance",n:"Craig Thibeau Insurance (Medicare)",p:"(860) 334-1354",t:"Middletown"},
+{c:"Medical Clinic",n:"Greenwich Medical Spa (Glastonbury)",p:"(860) 266-6502",t:"Glastonbury"},
+{c:"Heating / AC",n:"L-Train Electric (Generac dealer)",p:"(860) 343-1797",t:"Middletown"},
+{c:"Heating / AC",n:"Covenant Building Services (Generac)",p:"(860) 613-1692",t:"Cromwell"},
+{c:"Heating / AC",n:"Connecticut Propane & Petroleum",p:"(860) 365-5218",t:"Marlborough"},
+{c:"Remodeling / Contractor",n:"Budget Dry Waterproofing",p:"(203) 421-8560",t:"Killingworth"},
+{c:"Remodeling / Contractor",n:"B&B Overhead Door (garage doors)",p:"(860) 666-9315",t:"Newington"},
+{c:"Roofing / Siding / Gutters",n:"New Britain Roofing Co",p:"(860) 490-2790",t:"Newington"},
+{c:"Auto Service / Tire",n:"Denya's Auto Body & Collision",p:"(203) 237-6068",t:"Meriden"},
+{c:"Auto Service / Tire",n:"Meriden Auto Body",p:"(203) 235-5879",t:"Meriden"},
+{c:"Auto Service / Tire",n:"Victor Auto Body Works",p:"(860) 263-0431",t:"New Britain"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
