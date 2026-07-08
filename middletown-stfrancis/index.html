@@ -185,7 +185,7 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
+const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
 const LEADS=[
@@ -417,7 +417,30 @@ const LEADS=[
 {c:"Roofing / Siding / Gutters",n:"New Britain Roofing Co",p:"(860) 490-2790",t:"Newington"},
 {c:"Auto Service / Tire",n:"Denya's Auto Body & Collision",p:"(203) 237-6068",t:"Meriden"},
 {c:"Auto Service / Tire",n:"Meriden Auto Body",p:"(203) 235-5879",t:"Meriden"},
-{c:"Auto Service / Tire",n:"Victor Auto Body Works",p:"(860) 263-0431",t:"New Britain"}
+{c:"Auto Service / Tire",n:"Victor Auto Body Works",p:"(860) 263-0431",t:"New Britain"},
+{c:"Veterinarian 🐾",n:"Pieper Olson Veterinary Hospital",p:"(860) 347-1122",t:"Middletown"},
+{c:"Veterinarian 🐾",n:"Companion Animal Hospital",p:"(860) 632-7955",t:"Cromwell"},
+{c:"Veterinarian 🐾",n:"Glastonbury Animal Hospital",p:"(860) 800-6702",t:"Glastonbury"},
+{c:"Veterinarian 🐾",n:"Animal Hospital of Rocky Hill",p:"(860) 563-1027",t:"Rocky Hill"},
+{c:"Restaurant / Banquet / Bakery",n:"Krust Pizza & Bourbon Bar",p:"(860) 358-9816",t:"Middletown"},
+{c:"Restaurant / Banquet / Bakery",n:"Rocky Hill Pizza Restaurant",p:"(860) 563-5111",t:"Rocky Hill"},
+{c:"Funeral Home / Monuments",n:"Cromwell Funeral Home",p:"(860) 633-2521",t:"Cromwell"},
+{c:"Home Health Care",n:"All Connecticut Home Care",p:"(860) 924-4255",t:"Rocky Hill"},
+{c:"Financial Planner",n:"Alpha Financial Group",p:"(860) 563-6900",t:"Rocky Hill"},
+{c:"Elder Law / Attorney",n:"J. DiMauro Law (elder/estate/tax)",p:"(860) 757-3040",t:"Rocky Hill"},
+{c:"Realtor / Appraiser / Inspector",n:"Carl Guild & Associates",p:"(860) 474-3500",t:"East Hampton"},
+{c:"Insurance",n:"Petruzelo Insurance (independent)",p:"(203) 269-3551",t:"Wallingford"},
+{c:"Insurance",n:"Advanced American Financial",p:"(203) 949-1712",t:"Wallingford"},
+{c:"Heating / AC",n:"Glastonbury Burner & Boiler",p:"(860) 659-4120",t:"Glastonbury"},
+{c:"Heating / AC",n:"Degree Heating & Cooling",p:"(860) 633-6122",t:"Glastonbury"},
+{c:"Plumbing / Sewer",n:"Delponte Plumbing & Heating",p:"(860) 821-4319",t:"Glastonbury"},
+{c:"Plumbing / Sewer",n:"Mylo Plumbing & Heating",p:"(860) 633-5117",t:"Glastonbury"},
+{c:"Remodeling / Contractor",n:"Fiderio & Sons (since 1984, showroom)",p:"(203) 237-0350",t:"Meriden"},
+{c:"Remodeling / Contractor",n:"FloorsNow (flooring)",p:"(860) 548-9554",t:"Newington"},
+{c:"Landscaping / Snow / Tree",n:"Scenic Landscaping & Property Maint.",p:"(860) 656-7440",t:"Rocky Hill"},
+{c:"Landscaping / Snow / Tree",n:"Galecki Landscaping",p:"(860) 828-8886",t:"Newington"},
+{c:"Patron / Community Sponsor 💰",n:"Glastonbury Jewelers (since 1981)",p:"(860) 659-0944",t:"Glastonbury"},
+{c:"Patron / Community Sponsor 💰",n:"Turgeon Jewelers",p:"(860) 436-6400",t:"Wethersfield"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
