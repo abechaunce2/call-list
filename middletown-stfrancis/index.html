@@ -457,7 +457,14 @@ const LEADS=[
 {c:"Eye / Optometry",n:"Middlesex Eye Optical",p:"(860) 347-8300",t:"Middletown"},
 {c:"Hearing / Audiology",n:"Advanced Hearing Healthcare",p:"(860) 659-8805",t:"Glastonbury"},
 {c:"Financial Planner",n:"Rocky Hill Accountants LLC",p:"(860) 257-4238",t:"Rocky Hill"},
-{c:"Remodeling / Contractor",n:"For-U-Builders (windows/doors/gutters)",p:"(203) 349-6468",t:"Middletown"}
+{c:"Remodeling / Contractor",n:"For-U-Builders (windows/doors/gutters)",p:"(203) 349-6468",t:"Middletown"},
+{c:"Restaurant / Banquet / Bakery",n:"Rossini's Italian Restaurant",p:"(860) 267-1106",t:"East Hampton"},
+{c:"Heating / AC",n:"Cromwell Energy (oil + HVAC)",p:"(860) 635-1234",t:"Cromwell"},
+{c:"Insurance",n:"The Ariston Insurance Agency",p:"(860) 430-9820",t:"Rocky Hill"},
+{c:"Insurance",n:"D.M. Johnson Insurance Agency",p:"(860) 436-5339",t:"Newington"},
+{c:"Home Health Care",n:"Right at Home Hartford County",p:"(860) 436-9757",t:"Wethersfield"},
+{c:"Landscaping / Snow / Tree",n:"NHCO Tree Care",p:"(203) 408-6020",t:"Meriden"},
+{c:"Landscaping / Snow / Tree",n:"Redbone Turf and Tree",p:"(203) 297-3477",t:"Meriden"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
