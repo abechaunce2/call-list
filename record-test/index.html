@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recording Test — St. Francis</title>
+<style>
+  :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.12);--blue:#007aff;--green:#34c759;--red:#ff3b30;--fill:#ececf0}
+  @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.14);--fill:#2c2c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:620px;margin:0 auto;padding:24px 18px 80px}
+  .back{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none}
+  h1{font-size:27px;font-weight:800;letter-spacing:-.02em;margin:14px 0 6px}
+  .lead{color:var(--muted);font-size:15px;line-height:1.55;margin:0 0 20px}
+  .step{background:var(--card);border:.5px solid var(--sep);border-radius:16px;padding:16px 17px;margin-bottom:14px}
+  .step h3{margin:0 0 7px;font-size:15px;font-weight:750}
+  .step p{margin:0 0 12px;font-size:14px;line-height:1.5;color:var(--text)}
+  .step p b{font-weight:700}
+  button.big,a.big{display:inline-block;border:none;border-radius:13px;padding:15px 20px;font-size:17px;font-weight:750;cursor:pointer;background:var(--blue);color:#fff;text-decoration:none;text-align:center;width:100%}
+  button.big:active{transform:scale(.98)}
+  button.red{background:var(--red)}
+  button.on{background:var(--red)}
+  .meter{margin:10px 0}
+  .meter span{font-size:13px;font-weight:650;color:var(--muted);display:block;margin-bottom:4px}
+  .meter .track{height:16px;background:var(--fill);border-radius:99px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0;border-radius:99px;transition:width .05s}
+  #mmic{background:var(--green)} #msys{background:var(--blue)}
+  .hint{font-size:13px;color:var(--muted);line-height:1.5;margin-top:12px}
+  .status{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--fill);font-size:14px;line-height:1.5;font-weight:600;min-height:20px}
+  .status.err{background:color-mix(in srgb,var(--red) 14%,var(--fill));color:var(--red)}
+  .status.ok{background:color-mix(in srgb,var(--green) 16%,var(--fill));color:var(--green)}
+  audio{width:100%;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../middletown-stfrancis/">‹ Back to call list</a>
+  <h1>Call Recording — Test</h1>
+  <p class="lead">This checks whether your <b>work computer</b> will let the browser record both sides of a Salesforce call. Takes 1 minute. <b>Nothing is sent anywhere</b> — a test recording only downloads to your computer. Use <b>Chrome or Edge</b>.</p>
+
+  <div class="step">
+    <h3>Step 1 — turn on capture</h3>
+    <p>Click the button. Windows pops up a share box → pick <b>Entire Screen</b> (or your Salesforce tab) → <b>check the “Also share system audio” / “Share tab audio” box</b> (bottom-left) → click Share.</p>
+    <button id="on" class="big">🎙️ Turn on call capture</button>
+  </div>
+
+  <div class="step" id="meterstep" style="display:none">
+    <h3>Step 2 — do both bars move?</h3>
+    <div class="meter"><span>🟢 YOU (your microphone)</span><div class="track"><i id="mmic"></i></div></div>
+    <div class="meter"><span>🔵 THEM (the call audio)</span><div class="track"><i id="msys"></i></div></div>
+    <p class="hint">Talk out loud → the green bar should move. Play any video/music on the computer (or make a test call) → the blue bar should move. <b>If both move, recording will capture both sides.</b></p>
+  </div>
+
+  <div class="step" id="recstep" style="display:none">
+    <h3>Step 3 — record a test</h3>
+    <button id="rec" class="big red">● Start recording</button>
+    <audio id="pb" controls style="display:none"></audio>
+    <a id="dl" class="big" style="display:none;margin-top:10px">⬇ Download the recording</a>
+  </div>
+
+  <div id="status" class="status">Ready. Start with Step 1.</div>
+</div>
+<script>
+let sysStream, micStream, ctx, dest, rec, chunks=[], url;
+const $=id=>document.getElementById(id);
+function status(m,cls){$('status').textContent=m;$('status').className='status'+(cls?' '+cls:'');}
+
+$('on').addEventListener('click',async()=>{
+  try{
+    sysStream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
+    if(!sysStream.getAudioTracks().length){
+      status('You shared the screen but the AUDIO box wasn’t checked. Click Turn on capture again and tick “share system audio”.','err');
+      sysStream.getTracks().forEach(t=>t.stop()); return;
+    }
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    dest = ctx.createMediaStreamDestination();
+    const sysSrc = ctx.createMediaStreamSource(new MediaStream(sysStream.getAudioTracks()));
+    const micSrc = ctx.createMediaStreamSource(micStream);
+    sysSrc.connect(dest); micSrc.connect(dest);
+    meter(micSrc,'mmic'); meter(sysSrc,'msys');
+    $('meterstep').style.display='block'; $('recstep').style.display='block';
+    status('Capture is ON. Watch the two bars in Step 2, then record in Step 3.','ok');
+    sysStream.getVideoTracks()[0].addEventListener('ended',()=>status('You stopped sharing. Click Turn on capture to start again.','err'));
+  }catch(e){
+    const msg=(e&&e.message)||e;
+    if(/disallow|policy|NotAllowed/i.test(msg))
+      status('Your work computer BLOCKED it (IT policy). This browser-recording method won’t work on that machine — we’ll use the phone-debrief method instead.','err');
+    else status('Cancelled or blocked: '+msg,'err');
+  }
+});
+
+function meter(src,barId){
+  const an=ctx.createAnalyser();an.fftSize=256;src.connect(an);
+  const data=new Uint8Array(an.frequencyBinCount);const bar=$(barId);
+  (function loop(){an.getByteFrequencyData(data);let s=0;for(const v of data)s+=v;bar.style.width=Math.min(100,(s/data.length)*1.6)+'%';requestAnimationFrame(loop);})();
+}
+
+$('rec').addEventListener('click',()=>{
+  if(rec && rec.state==='recording'){rec.stop();return;}
+  chunks=[];
+  rec=new MediaRecorder(dest.stream);
+  rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
+  rec.onstop=()=>{
+    const blob=new Blob(chunks,{type:'audio/webm'});
+    if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);
+    $('pb').src=url;$('pb').style.display='block';
+    $('dl').href=url;$('dl').download='call-test.webm';$('dl').style.display='block';
+    $('rec').textContent='● Start recording';$('rec').classList.remove('on');
+    status('Saved. Play it back below — do you hear BOTH your voice AND the other audio? If yes, it works and I’ll build it into the call sheet.','ok');
+  };
+  rec.start();
+  $('rec').textContent='■ Stop recording';$('rec').classList.add('on');
+  status('Recording… talk, and play some audio. Press Stop when done.','');
+});
+</script>
+</body>
+</html>
