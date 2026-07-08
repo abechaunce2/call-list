@@ -464,7 +464,31 @@ const LEADS=[
 {c:"Insurance",n:"D.M. Johnson Insurance Agency",p:"(860) 436-5339",t:"Newington"},
 {c:"Home Health Care",n:"Right at Home Hartford County",p:"(860) 436-9757",t:"Wethersfield"},
 {c:"Landscaping / Snow / Tree",n:"NHCO Tree Care",p:"(203) 408-6020",t:"Meriden"},
-{c:"Landscaping / Snow / Tree",n:"Redbone Turf and Tree",p:"(203) 297-3477",t:"Meriden"}
+{c:"Landscaping / Snow / Tree",n:"Redbone Turf and Tree",p:"(203) 297-3477",t:"Meriden"},
+{c:"Medical Clinic",n:"Middlesex Medical Associates (primary care)",p:"(860) 347-5333",t:"Middletown"},
+{c:"Medical Clinic",n:"Dermatology Associates of Eastern CT",p:"(860) 657-3376",t:"Glastonbury"},
+{c:"Medical Clinic",n:"Banki Dermatology & Cosmetic Center",p:"(860) 659-2779",t:"Glastonbury"},
+{c:"Dentist",n:"Katz Family Dental Care",p:"(860) 799-4185",t:"Berlin"},
+{c:"Dentist",n:"C&S Family Dental",p:"(860) 224-4999",t:"New Britain"},
+{c:"Dentist",n:"New Britain Dental Arts",p:"(860) 229-8689",t:"New Britain"},
+{c:"Dentist",n:"Newbrite Plaza Family Dental",p:"(860) 223-2000",t:"New Britain"},
+{c:"Dentist",n:"West Hill Family Dental",p:"(860) 563-3303",t:"Rocky Hill"},
+{c:"Dentist",n:"Rocky Hill Dental Associates",p:"(860) 563-6500",t:"Wethersfield"},
+{c:"Restaurant / Banquet / Bakery",n:"Taste of Poland",p:"(860) 827-1888",t:"New Britain"},
+{c:"Restaurant / Banquet / Bakery",n:"Belvedere Cafe & Restaurant",p:"(860) 826-1155",t:"New Britain"},
+{c:"Restaurant / Banquet / Bakery",n:"Euro Plate Polish Restaurant",p:"(860) 356-7427",t:"New Britain"},
+{c:"Restaurant / Banquet / Bakery",n:"Paradise Pizza & Restaurant",p:"(860) 827-8123",t:"New Britain"},
+{c:"Restaurant / Banquet / Bakery",n:"The Avenue (Italian/pizza)",p:"(860) 259-5755",t:"Berlin"},
+{c:"Restaurant / Banquet / Bakery",n:"Kensington Market & Catering",p:"(860) 829-1330",t:"Berlin"},
+{c:"Restaurant / Banquet / Bakery",n:"Kensington Pizza",p:"(860) 828-0949",t:"Berlin"},
+{c:"Insurance",n:"Insurance Associates Inc",p:"(860) 225-4694",t:"New Britain"},
+{c:"Insurance",n:"John Bogden Agency",p:"(860) 828-0310",t:"Berlin"},
+{c:"Insurance",n:"Kensington Insurance Ltd",p:"(860) 828-6525",t:"Berlin"},
+{c:"Remodeling / Contractor",n:"Rosario Spada Mason Contractors (chimney/masonry)",p:"(860) 690-5061",t:"Cromwell"},
+{c:"Remodeling / Contractor",n:"A&A Masonry Construction (chimney)",p:"(860) 462-6489",t:"Cromwell"},
+{c:"Patron / Community Sponsor 💰",n:"Uncle Bob's Garden Center (family)",p:"(860) 704-8414",t:"Middletown"},
+{c:"Patron / Community Sponsor 💰",n:"Scovill's Garden Center",p:"(860) 635-2639",t:"Cromwell"},
+{c:"Patron / Community Sponsor 💰",n:"The Jewelry Store (family, 30+ yrs)",p:"(203) 238-2799",t:"Meriden"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
