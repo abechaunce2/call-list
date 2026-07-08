@@ -497,7 +497,18 @@ const LEADS=[
 {c:"Big Budget / Premium 🐋",n:"Daly Perri / Czepiga (elder law & estate — seminars)",p:"(860) 236-7673",t:"Berlin"},
 {c:"Big Budget / Premium 🐋",n:"Lux Bond & Green (upscale regional jeweler)",p:"(860) 659-8510",t:"Glastonbury"},
 {c:"Big Budget / Premium 🐋",n:"Executive Auto Group (Chevrolet — multi-brand group)",p:"(203) 265-0991",t:"Wallingford"},
-{c:"Big Budget / Premium 🐋",n:"Big Y World Class Market (regional supermarket)",p:"(203) 237-5244",t:"Meriden"}
+{c:"Big Budget / Premium 🐋",n:"Big Y World Class Market (regional supermarket)",p:"(203) 237-5244",t:"Meriden"},
+{c:"Realtor / Appraiser / Inspector",n:"Coldwell Banker Realty (Glastonbury office)",p:"(860) 633-3661",t:"Glastonbury"},
+{c:"Realtor / Appraiser / Inspector",n:"William Raveis Real Estate (Glastonbury)",p:"(860) 633-0111",t:"Glastonbury"},
+{c:"Realtor / Appraiser / Inspector",n:"William Raveis Real Estate (Wethersfield)",p:"(860) 258-6202",t:"Wethersfield"},
+{c:"Realtor / Appraiser / Inspector",n:"Century 21 (Rocky Hill office)",p:"(860) 563-0021",t:"Rocky Hill"},
+{c:"Realtor / Appraiser / Inspector",n:"Century 21 (Wethersfield office)",p:"(860) 263-2121",t:"Wethersfield"},
+{c:"Realtor / Appraiser / Inspector",n:"Clermont Real Estate",p:"(203) 675-6902",t:"Meriden"},
+{c:"Realtor / Appraiser / Inspector",n:"Simply Sold Real Estate",p:"(860) 786-7277",t:"Meriden"},
+{c:"Realtor / Appraiser / Inspector",n:"Gorski Realty",p:"(860) 517-8169",t:"Berlin"},
+{c:"Realtor / Appraiser / Inspector",n:"Capital Concepts Realty",p:"(860) 828-8015",t:"Berlin"},
+{c:"Realtor / Appraiser / Inspector",n:"Prestige Realty Group",p:"(860) 573-3690",t:"New Britain"},
+{c:"Realtor / Appraiser / Inspector",n:"Pender Property Associates (appraiser)",p:"(203) 619-2415",t:"Middletown"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
