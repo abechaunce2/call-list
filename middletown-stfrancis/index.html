@@ -185,7 +185,7 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
+const CATS=["Church List (St. Francis)","Big Budget / Premium 🐋","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
 const LEADS=[
@@ -488,7 +488,16 @@ const LEADS=[
 {c:"Remodeling / Contractor",n:"A&A Masonry Construction (chimney)",p:"(860) 462-6489",t:"Cromwell"},
 {c:"Patron / Community Sponsor 💰",n:"Uncle Bob's Garden Center (family)",p:"(860) 704-8414",t:"Middletown"},
 {c:"Patron / Community Sponsor 💰",n:"Scovill's Garden Center",p:"(860) 635-2639",t:"Cromwell"},
-{c:"Patron / Community Sponsor 💰",n:"The Jewelry Store (family, 30+ yrs)",p:"(203) 238-2799",t:"Meriden"}
+{c:"Patron / Community Sponsor 💰",n:"The Jewelry Store (family, 30+ yrs)",p:"(203) 238-2799",t:"Meriden"},
+{c:"Big Budget / Premium 🐋",n:"Liberty Bank (HQ — regional bank, Middletown-based)",p:"(860) 344-7253",t:"Middletown"},
+{c:"Big Budget / Premium 🐋",n:"Middlesex Health — Office of Philanthropy",p:"(860) 358-6200",t:"Middletown"},
+{c:"Big Budget / Premium 🐋",n:"The Flood Law Firm (personal injury — big TV/radio advertiser)",p:"(860) 346-2695",t:"Middletown"},
+{c:"Big Budget / Premium 🐋",n:"Vargas Chapman Woods (personal injury)",p:"(860) 754-1400",t:"Middletown"},
+{c:"Big Budget / Premium 🐋",n:"Loughlin FitzGerald (personal injury / trial)",p:"(203) 265-2035",t:"Wallingford"},
+{c:"Big Budget / Premium 🐋",n:"Daly Perri / Czepiga (elder law & estate — seminars)",p:"(860) 236-7673",t:"Berlin"},
+{c:"Big Budget / Premium 🐋",n:"Lux Bond & Green (upscale regional jeweler)",p:"(860) 659-8510",t:"Glastonbury"},
+{c:"Big Budget / Premium 🐋",n:"Executive Auto Group (Chevrolet — multi-brand group)",p:"(203) 265-0991",t:"Wallingford"},
+{c:"Big Budget / Premium 🐋",n:"Big Y World Class Market (regional supermarket)",p:"(203) 237-5244",t:"Meriden"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
