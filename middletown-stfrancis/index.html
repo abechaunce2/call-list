@@ -19,6 +19,8 @@
   .pip{flex:0 0 auto;background:var(--fill);border-radius:12px;padding:7px 13px;min-width:74px}
   .pip b{font-size:17px;font-weight:800;letter-spacing:-.01em;display:block;line-height:1.2}
   .pip .lbl{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600;white-space:nowrap}
+  .pip.tap{cursor:pointer}
+  .pip.tap:active{transform:scale(.96)}
   .pip.goal{background:color-mix(in srgb,var(--blue) 12%,var(--fill))}
   .pip.goal.hit{background:color-mix(in srgb,var(--green) 18%,var(--fill))}
   .pip.goal.hit b{color:var(--green)}
@@ -169,7 +171,8 @@
     <button class="btn" id="pitchbtn">Pitch</button>
     <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
-    <button class="btn" id="cbview">Callbacks</button>
+    <button class="btn" id="cbview">↩ Callbacks</button>
+    <button class="btn" id="ipview">⏳ In Progress</button>
     <button class="btn" id="near">Closest</button>
     <button class="btn" id="hide">Hide done</button>
     <button class="btn" id="exp">Export</button>
@@ -549,7 +552,7 @@ function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.
 const GOAL=80; // daily dial goal — 80–90 dials/day, always leave a VM
 
 const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
-let hideDone=false,nearOnly=false,sortMode='cat',cbView=false,chipCat='';
+let hideDone=false,nearOnly=false,sortMode='cat',statusView='',chipCat='';
 const FOLD={};
 
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
@@ -666,12 +669,12 @@ function dueBanner(){
 // ================= SCOREBOARD =================
 function updateScore(){
   let done=0,today=0,inprog=0,won=0,cbs=0;
-  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.time)cbs++;});
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.time)cbs++;});
   const hit=today>=GOAL;
   scoreEl.innerHTML=
     '<div class="pip goal'+(hit?' hit':'')+'"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
-    '<div class="pip"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
-    '<div class="pip"><b style="color:var(--orange)">'+cbs+'</b><span class="lbl">callbacks</span></div>'+
+    '<div class="pip tap" data-v="inprogress"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
+    '<div class="pip tap" data-v="callback"><b style="color:var(--orange)">'+cbs+'</b><span class="lbl">callbacks</span></div>'+
     '<div class="pip"><b style="color:var(--green)">'+won+'</b><span class="lbl">won</span></div>'+
     '<div class="pip"><b>'+done+'</b><span class="lbl">crossed off</span></div>';
   const pct=Math.min(100,Math.round(today/GOAL*100));
@@ -685,9 +688,19 @@ function updateScore(){
 function build(){
   app.innerHTML='';const term=q.value.trim().toLowerCase();
   updateScore();
-  if(cbView){
-    const b=dueBanner();
-    app.appendChild(b||Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No callbacks set yet. Set a "Call back at" time on a lead.'}));
+  if(statusView){
+    if(statusView==='callback'){const due=dueBanner();if(due)app.appendChild(due);}
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return statusView==='callback'?(r.status==='callback'||!!r.time):r.status===statusView;})
+      .slice().sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
+    if(!rows.length){
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:statusView==='callback'?'No callbacks yet. Tap ↩ Callback on any lead (or a time chip) and every single one collects here.':'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
+      return;
+    }
+    const sec=document.createElement('div');sec.className='sec';
+    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Every callback — with or without a time':'⏳ In progress — your working pipeline')+'</span><span class="n">'+rows.length+'</span></div>';
+    const card=document.createElement('div');card.className='card';
+    rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+    sec.appendChild(card);app.appendChild(sec);
     return;
   }
   const due=dueBanner();if(due)app.appendChild(due);
@@ -755,7 +768,13 @@ q.addEventListener('input',build);
 document.getElementById('sort').addEventListener('change',function(){sortMode=this.value;build();});
 document.getElementById('near').addEventListener('click',function(){nearOnly=!nearOnly;this.classList.toggle('on',nearOnly);build();});
 document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
-document.getElementById('cbview').addEventListener('click',function(){cbView=!cbView;this.classList.toggle('on',cbView);build();});
+function syncViewBtns(){
+  document.getElementById('cbview').classList.toggle('on',statusView==='callback');
+  document.getElementById('ipview').classList.toggle('on',statusView==='inprogress');
+}
+document.getElementById('cbview').addEventListener('click',function(){statusView=(statusView==='callback')?'':'callback';syncViewBtns();build();});
+document.getElementById('ipview').addEventListener('click',function(){statusView=(statusView==='inprogress')?'':'inprogress';syncViewBtns();build();});
+scoreEl.addEventListener('click',e=>{const p=e.target.closest('.pip[data-v]');if(!p)return;const v=p.dataset.v;statusView=(statusView===v)?'':v;syncViewBtns();build();});
 document.getElementById('exp').addEventListener('click',exportData);
 document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
 document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
