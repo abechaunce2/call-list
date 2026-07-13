@@ -173,6 +173,7 @@
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
     <button class="btn" id="cbview">↩ Callbacks</button>
     <button class="btn" id="ipview">⏳ In Progress</button>
+    <button class="btn" id="dayview">📊 Today</button>
     <button class="btn" id="near">Closest</button>
     <button class="btn" id="hide">Hide done</button>
     <button class="btn" id="exp">Export</button>
@@ -237,12 +238,13 @@ const STATUS={
   leftmsg:{lbl:"Left msg",c:"var(--blue)",g:"✉"},
   answered:{lbl:"Answered",c:"var(--purple)",g:"☎"},
   callback:{lbl:"Callback",c:"var(--orange)",g:"↩"},
+  followup:{lbl:"Follow-Up",c:"var(--purple)",g:"📧"},
   inprogress:{lbl:"In Progress",c:"var(--teal)",g:"⏳"},
   notnow:{lbl:"Not interested",c:"var(--red)",g:"✕"},
   won:{lbl:"WON",c:"var(--green)",g:"★"},
   called:{lbl:"Called",c:"var(--muted)",g:"✓"}
 };
-const ORDER=["noanswer","leftmsg","callback","inprogress","notnow","won"];
+const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
 const LIST_ID="corpuschristi-324quaker-eastsandwich-ma";
@@ -263,7 +265,24 @@ function flagSaved(err){const f=document.getElementById('savedflag');f.textConte
 
 // ================= HELPERS =================
 function isToday(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
-function setStatus(l,st){const r=rec(l.dig);r.status=(r.status===st)?'':st;if(r.status)r.ts=Date.now();save();if(r.status==='won')confetti();}
+function setStatus(l,st){
+  const r=rec(l.dig);r.status=(r.status===st)?'':st;
+  if(r.status){
+    r.ts=Date.now();
+    (r.hist=r.hist||[]).push({ts:r.ts,st:r.status});
+    if(r.hist.length>50)r.hist=r.hist.slice(-50);
+    // Follow-Up = sent info / somewhat interested -> auto-schedule the call-back 3 days out, 10am, skipping weekends
+    if(st==='followup'&&!r.time){
+      const d=new Date();d.setDate(d.getDate()+3);
+      while(d.getDay()===0||d.getDay()===6)d.setDate(d.getDate()+1);
+      d.setHours(10,0,0,0);
+      const p=n=>(n<10?'0':'')+n;
+      r.time=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());
+      showToast('📧 Follow-up call set — '+shortWhen(r.time));
+    }
+  }
+  save();if(r.status==='won')confetti();
+}
 const GOAL=80; // daily dial goal — 80–90 dials/day, always leave a VM
 
 const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
@@ -336,6 +355,11 @@ function detailEl(l){
   g.appendChild(field('Email',r.email,'email','text',true));
   cbk.appendChild(g);
   d.appendChild(cbk);
+  if(r.hist&&r.hist.length){
+    const hb=document.createElement('div');hb.className='lastc';
+    hb.textContent='History ('+r.hist.length+' calls): '+r.hist.slice(-6).reverse().map(h=>new Date(h.ts).toLocaleDateString([],{month:'numeric',day:'numeric'})+' '+(STATUS[h.st]?STATUS[h.st].g+' '+STATUS[h.st].lbl:h.st)).join('  ·  ');
+    d.appendChild(hb);
+  }
   const lk=document.createElement('div');lk.className='links';
   lk.innerHTML='<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
   lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
@@ -353,11 +377,13 @@ function rowEl(l,withCat){
   const meta=row.querySelector('.meta');
   meta.textContent=l.t+' · ~'+l.mi+' mi';
   const tier=document.createElement('span');tier.className='tier';tier.textContent=l.tier===1?'closest':'edge';meta.appendChild(tier);
+  const hn=(r.hist||[]).length||(r.ts?1:0);
+  if(hn){const tp=document.createElement('span');tp.className='tier';tp.textContent=hn+'× · last '+new Date(r.ts).toLocaleDateString([],{month:'numeric',day:'numeric'});meta.appendChild(tp);}
   if(r.notes){const np=document.createElement('div');np.className='notepv';np.textContent=r.notes;row.querySelector('.mid').appendChild(np);}
   if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
   if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
   row.querySelector('.cb').addEventListener('click',e=>{e.stopPropagation();const rr=rec(l.dig);rr.status=rr.status?'':'called';if(rr.status)rr.ts=Date.now();save();build();});
-  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status)rr.status='called';save();updateScore();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status){rr.status='called';(rr.hist=rr.hist||[]).push({ts:rr.ts,st:'called'});}save();updateScore();});
   row.addEventListener('click',()=>{row.classList.toggle('open');});
   return row;
 }
@@ -384,10 +410,10 @@ function dueBanner(){
 // ================= SCOREBOARD =================
 function updateScore(){
   let done=0,today=0,inprog=0,won=0,cbs=0;
-  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.time)cbs++;});
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.status==='followup'||r.time)cbs++;});
   const hit=today>=GOAL;
   scoreEl.innerHTML=
-    '<div class="pip goal'+(hit?' hit':'')+'"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
+    '<div class="pip goal tap'+(hit?' hit':'')+'" data-v="today"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
     '<div class="pip tap" data-v="inprogress"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
     '<div class="pip tap" data-v="callback"><b style="color:var(--orange)">'+cbs+'</b><span class="lbl">callbacks</span></div>'+
     '<div class="pip"><b style="color:var(--green)">'+won+'</b><span class="lbl">won</span></div>'+
@@ -403,16 +429,34 @@ function updateScore(){
 function build(){
   app.innerHTML='';const term=q.value.trim().toLowerCase();
   updateScore();
+  if(statusView==='today'){
+    const touched=LEADS.filter(l=>{const r=STATE[l.dig];return r&&isToday(r.ts);});
+    if(!touched.length){
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'No calls logged today yet. Everyone you touch today collects here, grouped by result — your end-of-day review.'}));
+      return;
+    }
+    const buckets=['won','inprogress','followup','callback','leftmsg','answered','noanswer','notnow','called'];
+    buckets.forEach(b=>{
+      const rows=touched.filter(l=>get(l.dig).status===b);
+      if(!rows.length)return;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+STATUS[b].g+' '+STATUS[b].lbl+'</span><span class="n">'+rows.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    });
+    return;
+  }
   if(statusView){
     if(statusView==='callback'){const due=dueBanner();if(due)app.appendChild(due);}
-    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return statusView==='callback'?(r.status==='callback'||!!r.time):r.status===statusView;})
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return statusView==='callback'?(r.status==='callback'||r.status==='followup'||!!r.time):r.status===statusView;})
       .slice().sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
     if(!rows.length){
-      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:statusView==='callback'?'No callbacks yet. Tap ↩ Callback on any lead (or a time chip) and every single one collects here.':'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:statusView==='callback'?'No callbacks yet. Tap ↩ Callback or 📧 Follow-Up on any lead and every single one collects here.':'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
       return;
     }
     const sec=document.createElement('div');sec.className='sec';
-    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Every callback — with or without a time':'⏳ In progress — your working pipeline')+'</span><span class="n">'+rows.length+'</span></div>';
+    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Callbacks & 📧 follow-ups — timed ones up top':'⏳ In progress — your working pipeline')+'</span><span class="n">'+rows.length+'</span></div>';
     const card=document.createElement('div');card.className='card';
     rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
     sec.appendChild(card);app.appendChild(sec);
@@ -447,7 +491,7 @@ function build(){
     if(!any)app.appendChild(noMatch());
   }
   const help=document.createElement('div');help.className='help';
-  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer, counts the dial, and marks the lead “Called” until you set the real result. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it.';
+  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer, counts the dial, and marks the lead “Called” until you set the real result. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it. <b>📧 Follow-Up</b> = sent info / somewhat interested — it auto-books your call-back 3 days out (10a, skips weekends) and tracks it. Every status tap logs to the lead’s history — the “3× · last 7/15” tag shows calls made + last contact. <b>📊 Today</b> = everyone you called today grouped by result, your end-of-day review.';
   const recCount=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.status||r.notes||r.time||r.dm||r.email||r.ts);}).length;
   let lastex='never';try{const v=localStorage.getItem('lastexport_'+LIST_ID);if(v)lastex=new Date(parseInt(v,10)).toLocaleString();}catch(e){}
   const dhh=document.createElement('div');dhh.style.marginTop='8px';
@@ -486,9 +530,11 @@ document.getElementById('hide').addEventListener('click',function(){hideDone=!hi
 function syncViewBtns(){
   document.getElementById('cbview').classList.toggle('on',statusView==='callback');
   document.getElementById('ipview').classList.toggle('on',statusView==='inprogress');
+  document.getElementById('dayview').classList.toggle('on',statusView==='today');
 }
 document.getElementById('cbview').addEventListener('click',function(){statusView=(statusView==='callback')?'':'callback';syncViewBtns();build();});
 document.getElementById('ipview').addEventListener('click',function(){statusView=(statusView==='inprogress')?'':'inprogress';syncViewBtns();build();});
+document.getElementById('dayview').addEventListener('click',function(){statusView=(statusView==='today')?'':'today';syncViewBtns();build();});
 scoreEl.addEventListener('click',e=>{const p=e.target.closest('.pip[data-v]');if(!p)return;const v=p.dataset.v;statusView=(statusView===v)?'':v;syncViewBtns();build();});
 document.getElementById('exp').addEventListener('click',exportData);
 document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
@@ -512,7 +558,7 @@ function stampFor(baseDate,h,m){const d=new Date(baseDate);d.setHours(h,m,0,0);c
 function tlabel(h,m){const ap=h<12?'a':'p';let hh=h%12;if(hh===0)hh=12;return hh+(m?':30':'')+ap;}
 function dayChoices(){
   const out=[];const now=new Date();const names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  for(let i=0;i<4;i++){const d=new Date(now);d.setDate(now.getDate()+i);out.push({lbl:i===0?'Today':(i===1?'Tomorrow':names[d.getDay()]),date:d,idx:i});}
+  for(let i=0;i<6;i++){const d=new Date(now);d.setDate(now.getDate()+i);out.push({lbl:i===0?'Today':(i===1?'Tomorrow':names[d.getDay()]),date:d,idx:i});}
   return out;
 }
 function chipTimePicker(opts){ // {onSet(stamp,label), onClear?, noTimeLbl?}
@@ -588,7 +634,7 @@ function renderDial(){
   const nb=dialEl.querySelector('.dnum');nb.textContent=l.p;
   nb.addEventListener('click',()=>{
     copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});
-    const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status)rr.status='called';save();
+    const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status){rr.status='called';(rr.hist=rr.hist||[]).push({ts:rr.ts,st:'called'});}save();
     let t2=0;LEADS.forEach(x=>{const rx=STATE[x.dig];if(rx&&isToday(rx.ts))t2++;});
     dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+t2+' / '+GOAL+' today';
   });
