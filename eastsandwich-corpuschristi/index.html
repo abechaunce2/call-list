@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>St. Francis — ARCHIVED (Middletown CT)</title>
+<title>Corpus Christi Call List — East Sandwich MA</title>
 <style>
   :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
   @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
@@ -160,9 +160,8 @@
 <div class="wrap">
 <header>
   <a class="back" href="../">‹ All churches</a>
-  <h1>St. Francis Call List <span style="font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:99px;color:#fff;background:var(--muted);vertical-align:middle">Archived</span></h1>
-  <div class="sub" style="color:var(--orange);font-weight:600">⚠ Archived week (Jul 6 – 10). Current church = Corpus Christi, East Sandwich MA — don’t dial from here unless you’re re-working St. Francis. All your calls, notes &amp; statuses from this week stay saved below.</div>
-  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of St. Francis of Assisi, 10 Elm St, Middletown CT · copy a number, call in Salesforce, then mark it here</div>
+  <h1>Corpus Christi Call List</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of Corpus Christi Parish, 324 Quaker Meetinghouse Rd, East Sandwich MA · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -189,330 +188,10 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (St. Francis)","Big Budget / Premium 🐋","Patron / Community Sponsor 💰","Car Dealership 🚗","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
+const CATS=["Church List (Corpus Christi)","Big Budget / Premium 🐋","Patron / Community Sponsor 💰","Car Dealership 🚗","Marina / Boat / Golf ⛵","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
-const TOWNMI={"Middletown":[1,1],"Portland":[3,1],"Cromwell":[4,1],"Rockfall":[6,1],"Middlefield":[7,1],"Durham":[8,1],"East Hampton":[8,1],"Higganum":[8,1],"Haddam":[9,1],"Rocky Hill":[8,1],"East Berlin":[8,1],"Berlin":[9,1],"Kensington":[9,1],"South Glastonbury":[9,1],"Meriden":[10,1],"Wethersfield":[11,2],"Glastonbury":[11,2],"Newington":[12,2],"Marlborough":[12,2],"Wallingford":[13,2],"New Britain":[13,2],"Killingworth":[13,2],"East Haddam":[14,2],"Moodus":[14,2],"Chester":[15,2]};
+const TOWNMI={"East Sandwich":[1,1],"Sandwich":[3,1],"Forestdale":[5,1],"Sagamore Beach":[6,1],"Sagamore":[6,1],"West Barnstable":[7,1],"Bourne":[8,1],"Buzzards Bay":[9,1],"Mashpee":[10,1],"Monument Beach":[10,2],"Manomet":[10,2],"Barnstable":[11,1],"Marstons Mills":[11,1],"Pocasset":[11,2],"Cotuit":[12,2],"Onset":[13,2],"Cataumet":[13,2],"Osterville":[13,2],"Centerville":[13,2],"North Falmouth":[13,2],"Plymouth":[13,2],"Hyannis":[14,2],"East Falmouth":[14,2],"Wareham":[14,2],"Yarmouth Port":[15,2]};
 const LEADS=[
-{c:"Patron / Community Sponsor 💰",n:"Malloves Jewelers (since 1937)",p:"(860) 346-9204",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Vecchitto's Italian Ice (since 1930)",p:"(860) 346-7301",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Public Market (historic Italian market)",p:"(860) 346-3340",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Avella's / Melilli's Italian Specialty Market",p:"(860) 807-3768",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Antonio's Market & Catering",p:"(860) 346-6700",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"D'eliana Public Market & Deli",p:"(860) 365-5880",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Middletown Toyota (family, since 1975)",p:"(860) 347-7294",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"ShopRite of Cromwell",p:"(860) 613-2063",t:"Cromwell"},
-{c:"Patron / Community Sponsor 💰",n:"Tri-Town Foods (Adams IGA)",p:"(860) 342-0672",t:"Portland"},
-{c:"Patron / Community Sponsor 💰",n:"Portland Home and Hardware",p:"(860) 342-4847",t:"Portland"},
-{c:"Patron / Community Sponsor 💰",n:"Precision Paving & Seal Coating (3rd gen)",p:"(860) 788-6295",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Crossroads Construction (excavation)",p:"(203) 537-4878",t:"Durham"},
-{c:"Patron / Community Sponsor 💰",n:"River Valley Oil Service (DiMauro family)",p:"(860) 342-5670",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Didato's Oil Service (since 1948)",p:"(860) 347-1764",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Brazos Oil",p:"(860) 342-1136",t:"Portland"},
-{c:"Patron / Community Sponsor 💰",n:"Quarry Ridge Golf Course",p:"(860) 788-2845",t:"Portland"},
-{c:"Patron / Community Sponsor 💰",n:"Forest City Wine & Spirits",p:"(860) 347-2877",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"The Wine Cellar (S Main St)",p:"(860) 344-1558",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Cromwell Square Wine & Liquor",p:"(860) 632-9611",t:"Cromwell"},
-{c:"Patron / Community Sponsor 💰",n:"Portland Liquors",p:"(860) 342-1576",t:"Portland"},
-{c:"Funeral Home / Monuments",n:"Doolittle Funeral Service",p:"(860) 346-6464",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"Biega Funeral Home",p:"(860) 346-1055",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"Coughlin-Lastrina Funeral Home",p:"(860) 346-5439",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"D'Angelo Funeral Home",p:"(860) 347-0752",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"McClam Funeral Home",p:"(860) 788-2375",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"John J. Ferry & Sons Funeral Home",p:"(203) 235-3338",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"Beecher & Bennett Funeral Service",p:"(203) 235-4152",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"Meriden Memorial Funeral Home (Stempien / Smith-Ruzzo)",p:"(203) 235-9181",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"Thomas L. Ferry Funeral Home",p:"(203) 634-0298",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"B.C. Bailey Funeral Home",p:"(203) 265-1111",t:"Wallingford"},
-{c:"Funeral Home / Monuments",n:"Spencer Funeral Home",p:"(860) 267-2226",t:"East Hampton"},
-{c:"Funeral Home / Monuments",n:"Duksa Family Funeral Homes (Newington Memorial)",p:"(860) 666-0600",t:"Newington"},
-{c:"Funeral Home / Monuments",n:"Erickson-Hansen Funeral Home",p:"(860) 229-5676",t:"New Britain"},
-{c:"Funeral Home / Monuments",n:"Luddy & Peterson's Funeral Home",p:"(860) 223-1043",t:"New Britain"},
-{c:"Funeral Home / Monuments",n:"Farrell Funeral Home",p:"(860) 225-8464",t:"New Britain"},
-{c:"Funeral Home / Monuments",n:"Labbadia Monuments",p:"(860) 343-7755",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"Middletown Monument Co",p:"(860) 344-0873",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"Mathieu Memorials",p:"(203) 440-9790",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"Meriden Monument Company",p:"(203) 464-3758",t:"Meriden"},
-{c:"Retirement / Senior Living",n:"The Village at South Farms (Benchmark)",p:"(860) 344-8788",t:"Middletown"},
-{c:"Retirement / Senior Living",n:"Covenant Living of Cromwell",p:"(860) 635-2690",t:"Cromwell"},
-{c:"Retirement / Senior Living",n:"The Village at Kensington Place (Benchmark)",p:"(203) 235-0181",t:"Meriden"},
-{c:"Retirement / Senior Living",n:"Masonicare at Ashlar Village",p:"(203) 679-6400",t:"Wallingford"},
-{c:"Retirement / Senior Living",n:"The Atrium at Rocky Hill (Benchmark)",p:"(860) 563-5588",t:"Rocky Hill"},
-{c:"Retirement / Senior Living",n:"Addison Place at Glastonbury",p:"(860) 652-3444",t:"Glastonbury"},
-{c:"Home Health Care",n:"Utopia Home Care",p:"(203) 599-6070",t:"Meriden"},
-{c:"Home Health Care",n:"Visiting Angels (Middlefield office)",p:"(860) 349-7016",t:"Middlefield"},
-{c:"Home Health Care",n:"Home Helpers Home Care",p:"(860) 365-6122",t:"Middletown"},
-{c:"Home Health Care",n:"Home Instead (Middletown)",p:"(860) 316-2531",t:"Middletown"},
-{c:"Financial Planner",n:"Fuchs Financial",p:"(860) 461-1709",t:"Middletown"},
-{c:"Financial Planner",n:"Comer & Company CPA",p:"(860) 346-2100",t:"Middletown"},
-{c:"Realtor / Appraiser / Inspector",n:"Glen Johnson Real Estate",p:"(860) 635-0387",t:"Cromwell"},
-{c:"Realtor / Appraiser / Inspector",n:"Puorro Realty Group",p:"(860) 558-9740",t:"Cromwell"},
-{c:"Realtor / Appraiser / Inspector",n:"William Raveis (Middletown office)",p:"(860) 344-1658",t:"Middletown"},
-{c:"Realtor / Appraiser / Inspector",n:"Executive Real Estate",p:"(860) 633-8800",t:"Glastonbury"},
-{c:"Realtor / Appraiser / Inspector",n:"Rainbow Realty Group",p:"(860) 851-6623",t:"Rocky Hill"},
-{c:"Realtor / Appraiser / Inspector",n:"Keller Williams (Wethersfield)",p:"(860) 313-0700",t:"Wethersfield"},
-{c:"Dentist",n:"Cromwell Dental",p:"(860) 635-6445",t:"Cromwell"},
-{c:"Dentist",n:"Laurence K. Levy DMD",p:"(860) 398-5432",t:"Middletown"},
-{c:"Dentist",n:"Arborview Dental Care",p:"(860) 346-2470",t:"Middletown"},
-{c:"Dentist",n:"Nova Dental (Cromwell)",p:"(860) 358-9040",t:"Cromwell"},
-{c:"Dentist",n:"Sweet Tooth Kids Pediatric Dental",p:"(860) 347-4681",t:"Middletown"},
-{c:"Dentist",n:"Gentle Dental",p:"(860) 346-9601",t:"Middletown"},
-{c:"Dentist",n:"Dr. Nicole Cambria & Team",p:"(860) 344-0004",t:"Middletown"},
-{c:"Dentist",n:"Dental Group of Meriden-Wallingford",p:"(203) 235-5588",t:"Meriden"},
-{c:"Dentist",n:"Meriden Dental Group",p:"(203) 235-3539",t:"Meriden"},
-{c:"Dentist",n:"New England Dental",p:"(203) 238-7968",t:"Meriden"},
-{c:"Eye / Optometry",n:"Connecticut Eye Physicians",p:"(860) 347-9377",t:"Middletown"},
-{c:"Eye / Optometry",n:"Meriden Eye Care",p:"(203) 237-2020",t:"Meriden"},
-{c:"Eye / Optometry",n:"OCLI Vision Meriden",p:"(203) 237-1818",t:"Meriden"},
-{c:"Eye / Optometry",n:"Professional Vision Center",p:"(203) 235-2015",t:"Meriden"},
-{c:"Heating / AC",n:"Mid-State Mechanical",p:"(860) 635-3230",t:"Middletown"},
-{c:"Heating / AC",n:"T & S Heating and Air Conditioning",p:"(860) 342-1506",t:"Portland"},
-{c:"Heating / AC",n:"Middlesex Mechanical Services",p:"(860) 949-5711",t:"Portland"},
-{c:"Heating / AC",n:"Direct Home Services",p:"(860) 339-6001",t:"Middlefield"},
-{c:"Plumbing / Sewer",n:"A1 Quality Rooter",p:"(203) 235-8504",t:"Meriden"},
-{c:"Plumbing / Sewer",n:"Middletown Plumbing Co",p:"(860) 300-8546",t:"Middletown"},
-{c:"Plumbing / Sewer",n:"American Rooter",p:"(203) 238-0453",t:"Meriden"},
-{c:"Electrician",n:"Higgins Electric",p:"(860) 267-0842",t:"East Hampton"},
-{c:"Electrician",n:"JMP Electric",p:"(860) 770-7251",t:"Middletown"},
-{c:"Funeral Home / Monuments",n:"Rose Hill Funeral Home",p:"(860) 956-6814",t:"Rocky Hill"},
-{c:"Nursing Home / Hospice",n:"Wadsworth Glen Health Care & Rehab",p:"(860) 346-9299",t:"Middletown"},
-{c:"Nursing Home / Hospice",n:"Water's Edge Center for Health & Rehab",p:"(860) 347-7286",t:"Middletown"},
-{c:"Home Health Care",n:"Franciscan Home Care and Hospice Care",p:"(203) 238-1441",t:"Meriden"},
-{c:"Elder Law / Attorney",n:"RWC Attorneys (Reed Wilson Case)",p:"(860) 669-1222",t:"Middletown"},
-{c:"Elder Law / Attorney",n:"Mahon, Quinn & Mahon P.C.",p:"(203) 238-1010",t:"Meriden"},
-{c:"Hearing / Audiology",n:"County Hearing and Balance",p:"(860) 316-2353",t:"Middletown"},
-{c:"Bank / Credit Union",n:"Seasons Federal Credit Union",p:"(860) 346-6614",t:"Middletown"},
-{c:"Insurance",n:"Curt Smith — State Farm",p:"(860) 398-6364",t:"Middletown"},
-{c:"Insurance",n:"Caleb Carney — State Farm",p:"(860) 346-4442",t:"Middletown"},
-{c:"Insurance",n:"State Wide Insurance",p:"(203) 440-9550",t:"Meriden"},
-{c:"Medical Clinic",n:"Cromwell Chiropractic Center",p:"(860) 635-4455",t:"Cromwell"},
-{c:"Medical Clinic",n:"Connecticut Spine & Sports Medicine",p:"(860) 347-1302",t:"Middletown"},
-{c:"Medical Clinic",n:"Middletown Chiropractic Center",p:"(860) 346-8000",t:"Middletown"},
-{c:"Medical Clinic",n:"Labbadia & Carroccia Chiropractic",p:"(860) 632-1022",t:"Middletown"},
-{c:"Medical Clinic",n:"Connecticut Chiropractic Network",p:"(860) 632-8886",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Red Fox Restaurant & Bar",p:"(860) 740-4967",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Carmela's on the Extension",p:"(860) 788-7922",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Amici Italian Grill",p:"(860) 346-0075",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Vero Cucino",p:"(860) 343-9413",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Cromwell Diner",p:"(860) 635-7112",t:"Cromwell"},
-{c:"Restaurant / Banquet / Bakery",n:"Marianna's Belltop Bakery",p:"(203) 238-0159",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Rocco's Pastry Shop",p:"(203) 238-0483",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Lido's Restaurant & Pizzeria",p:"(203) 634-3959",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Family Pizza",p:"(203) 237-2525",t:"Meriden"},
-{c:"Auto Service / Tire",n:"Computer Tune & Lube",p:"(860) 346-1999",t:"Middletown"},
-{c:"Auto Service / Tire",n:"Hometown Garage",p:"(860) 342-5777",t:"Portland"},
-{c:"Auto Service / Tire",n:"Ultimate Automotive (Cromwell)",p:"(860) 635-4133",t:"Cromwell"},
-{c:"Landscaping / Snow / Tree",n:"Anderson Lawn Care",p:"(860) 301-7785",t:"Middletown"},
-{c:"Landscaping / Snow / Tree",n:"Coughlin Service Corp",p:"(860) 704-0425",t:"Middletown"},
-{c:"Landscaping / Snow / Tree",n:"KC Lawn & Landscape",p:"(860) 342-0352",t:"Portland"},
-{c:"Roofing / Siding / Gutters",n:"V. Nanfito Roofing & Siding",p:"(203) 666-4192",t:"Meriden"},
-{c:"Remodeling / Contractor",n:"Bencar Building Systems",p:"(203) 269-9204",t:"Wallingford"},
-{c:"Cleaning / Restoration",n:"Bright Cleaning Services",p:"(860) 826-8227",t:"New Britain"},
-{c:"Cleaning / Restoration",n:"Molly Maid (Glastonbury)",p:"(860) 856-6691",t:"Glastonbury"},
-{c:"Cleaning / Restoration",n:"Clean My Space CT",p:"(860) 539-8725",t:"New Britain"},
-{c:"Schools / Education",n:"Town & Country Early Learning Center",p:"(860) 347-1400",t:"Middletown"},
-{c:"Schools / Education",n:"KinderCare (Cromwell)",p:"(860) 613-2263",t:"Cromwell"},
-{c:"Schools / Education",n:"Hilltop Nursery School & Day Care",p:"(860) 635-4032",t:"Cromwell"},
-{c:"Schools / Education",n:"Xavier High School (Catholic)",p:"(860) 346-7735",t:"Middletown"},
-{c:"Schools / Education",n:"Mercy High School (Catholic)",p:"(860) 343-5989",t:"Middletown"},
-{c:"Nursing Home / Hospice",n:"Miller Memorial Community",p:"(203) 237-8815",t:"Meriden"},
-{c:"Nursing Home / Hospice",n:"The Bradley Home & Pavilion",p:"(203) 235-5716",t:"Meriden"},
-{c:"Nursing Home / Hospice",n:"Regency House Nursing & Rehab",p:"(203) 265-1661",t:"Wallingford"},
-{c:"Nursing Home / Hospice",n:"Monsignor Bojnowski Manor (Catholic)",p:"(860) 229-0336",t:"New Britain"},
-{c:"Retirement / Senior Living",n:"Jerome Home / Arbor Rose",p:"(860) 229-3707",t:"New Britain"},
-{c:"Retirement / Senior Living",n:"The Residence at Glastonbury",p:"(860) 430-9938",t:"Glastonbury"},
-{c:"Home Health Care",n:"Comfort Keepers (Wallingford)",p:"(203) 697-1030",t:"Wallingford"},
-{c:"Home Health Care",n:"Visiting Angels (Newington)",p:"(860) 372-4429",t:"Newington"},
-{c:"Realtor / Appraiser / Inspector",n:"LAER Realty Partners (Wallingford)",p:"(203) 676-4415",t:"Wallingford"},
-{c:"Realtor / Appraiser / Inspector",n:"Calcagni Real Estate (Wallingford)",p:"(203) 265-1821",t:"Wallingford"},
-{c:"Realtor / Appraiser / Inspector",n:"Central Connecticut Realtors",p:"(203) 284-1636",t:"Wallingford"},
-{c:"Realtor / Appraiser / Inspector",n:"H. Pearce Real Estate (Wallingford)",p:"(203) 265-4866",t:"Wallingford"},
-{c:"Financial Planner",n:"Edward Jones — Brian Cahill",p:"(860) 657-9247",t:"Glastonbury"},
-{c:"Heating / AC",n:"NorthStar Service LLC",p:"(860) 919-4482",t:"Meriden"},
-{c:"Heating / AC",n:"Daniels Energy (oil/propane/HVAC)",p:"(860) 342-3778",t:"Portland"},
-{c:"Electrician",n:"Dynamic Electrical Systems",p:"(203) 494-1023",t:"Meriden"},
-{c:"Electrician",n:"A & A Electrical Contractors",p:"(203) 600-6363",t:"Meriden"},
-{c:"Roofing / Siding / Gutters",n:"Precision Exteriors",p:"(860) 575-0505",t:"Rocky Hill"},
-{c:"Roofing / Siding / Gutters",n:"Turner & Sons Roofing & Siding",p:"(860) 346-7405",t:"Portland"},
-{c:"Landscaping / Snow / Tree",n:"Wallingford Tree Service",p:"(203) 269-6410",t:"Wallingford"},
-{c:"Landscaping / Snow / Tree",n:"De Baise Landscaping & Tree Removal",p:"(203) 537-2749",t:"Wallingford"},
-{c:"Landscaping / Snow / Tree",n:"Lavigne's Tree Service",p:"(203) 294-1775",t:"Wallingford"},
-{c:"Landscaping / Snow / Tree",n:"Minnechaug Tree",p:"(860) 633-7158",t:"Glastonbury"},
-{c:"Landscaping / Snow / Tree",n:"L.W. Varni Company",p:"(860) 633-4436",t:"Glastonbury"},
-{c:"Auto Service / Tire",n:"Darrell's Auto Service and Towing",p:"(203) 626-9741",t:"Wallingford"},
-{c:"Restaurant / Banquet / Bakery",n:"Denovellis Restaurant",p:"(860) 563-4474",t:"Rocky Hill"},
-{c:"Medical Clinic",n:"Hancock's Pharmacy & Surgical (independent)",p:"(203) 235-6323",t:"Meriden"},
-{c:"Medical Clinic",n:"Carlson ProCare Physical Therapy",p:"(203) 238-1334",t:"Meriden"},
-{c:"Medical Clinic",n:"Physical Therapy & Sports Medicine Centers",p:"(203) 793-7592",t:"Wallingford"},
-{c:"Dentist",n:"Glastonbury Dental Care",p:"(860) 659-0278",t:"Glastonbury"},
-{c:"Dentist",n:"Glastonbury Dental Center",p:"(860) 289-8219",t:"Glastonbury"},
-{c:"Dentist",n:"Nayaug Family Dental",p:"(860) 633-6167",t:"Glastonbury"},
-{c:"Dentist",n:"DiStefano Family Dentistry",p:"(860) 854-8842",t:"Glastonbury"},
-{c:"Dentist",n:"Dental Essentials of Rocky Hill",p:"(860) 563-3766",t:"Rocky Hill"},
-{c:"Dentist",n:"Rocky Hill Dental Group",p:"(860) 563-1294",t:"Rocky Hill"},
-{c:"Dentist",n:"Dr. Bocciarelli (oral surgery)",p:"(860) 529-8582",t:"Rocky Hill"},
-{c:"Eye / Optometry",n:"Wallingford Eye Care Center",p:"(203) 265-5152",t:"Wallingford"},
-{c:"Bank / Credit Union",n:"Nutmeg State Financial CU",p:"(860) 513-5000",t:"Rocky Hill"},
-{c:"Bank / Credit Union",n:"American Eagle Financial CU (Newington)",p:"(860) 568-2020",t:"Newington"},
-{c:"Elder Law / Attorney",n:"Steinberg & Cathcart",p:"(860) 947-6543",t:"Newington"},
-{c:"Hearing / Audiology",n:"Bassett Hearing Aid Centers",p:"(203) 635-5189",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Lyman Orchards (Apple Barrel / 1741 Pub)",p:"(860) 349-1793",t:"Middlefield"},
-{c:"Restaurant / Banquet / Bakery",n:"Zandri's Catering Service",p:"(203) 269-6695",t:"Wallingford"},
-{c:"Restaurant / Banquet / Bakery",n:"First & Last Tavern",p:"(860) 430-5999",t:"Glastonbury"},
-{c:"Insurance",n:"Marcus Insurance",p:"(860) 563-9353",t:"Wethersfield"},
-{c:"Home Health Care",n:"Panda Home Care",p:"(860) 633-5907",t:"Glastonbury"},
-{c:"Financial Planner",n:"Pioneer Financial Group",p:"(203) 235-7776",t:"Meriden"},
-{c:"Financial Planner",n:"Edward Jones (Wallingford)",p:"(203) 269-4669",t:"Wallingford"},
-{c:"Dentist",n:"Family Dental Practice of Newington",p:"(860) 665-0444",t:"Newington"},
-{c:"Dentist",n:"Family Dental Center of Connecticut",p:"(860) 430-4388",t:"Wethersfield"},
-{c:"Dentist",n:"Dolan Dental",p:"(860) 529-2000",t:"Wethersfield"},
-{c:"Dentist",n:"Wethersfield Family Dental Center",p:"(860) 563-1688",t:"Wethersfield"},
-{c:"Dentist",n:"Newington Children's Dentistry",p:"(860) 372-4600",t:"Newington"},
-{c:"Eye / Optometry",n:"Solinsky EyeCare (Glastonbury)",p:"(860) 633-6634",t:"Glastonbury"},
-{c:"Eye / Optometry",n:"Glastonbury Eye Care",p:"(860) 791-4600",t:"Glastonbury"},
-{c:"Eye / Optometry",n:"OculusDocs",p:"(860) 838-3838",t:"Glastonbury"},
-{c:"Eye / Optometry",n:"Kibo Eyecare",p:"(860) 659-5900",t:"Glastonbury"},
-{c:"Auto Service / Tire",n:"Mirabelli Automotive",p:"(860) 953-5029",t:"Newington"},
-{c:"Auto Service / Tire",n:"Hicks Repair Garage",p:"(860) 563-6070",t:"Rocky Hill"},
-{c:"Medical Clinic",n:"Central Connecticut Foot Care (podiatry)",p:"(203) 238-3668",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Esca Restaurant & Wine Bar",p:"(860) 316-2552",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Luce Restaurant",p:"(860) 344-0222",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Mondo",p:"(860) 343-3300",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"NoRA Cupcake Company",p:"(860) 788-3150",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Farrell's Restaurant",p:"(860) 342-4589",t:"Portland"},
-{c:"Dentist",n:"East Hampton Family Dental",p:"(860) 267-9904",t:"East Hampton"},
-{c:"Dentist",n:"Chatham Dental Care",p:"(860) 267-4900",t:"East Hampton"},
-{c:"Dentist",n:"Durham Dental Studio",p:"(860) 349-1123",t:"Durham"},
-{c:"Dentist",n:"Matus Family Dentistry",p:"(860) 828-1475",t:"Berlin"},
-{c:"Dentist",n:"Berlin Family Dental",p:"(860) 225-2054",t:"Berlin"},
-{c:"Dentist",n:"C. Scott Buonanno DMD",p:"(860) 828-4189",t:"Berlin"},
-{c:"Realtor / Appraiser / Inspector",n:"Berkshire Hathaway HS NE Properties",p:"(860) 347-4486",t:"Middletown"},
-{c:"Medical Clinic",n:"Middletown Pharmacy (independent)",p:"(860) 894-7683",t:"Middletown"},
-{c:"Hearing / Audiology",n:"Miracle-Ear (Middletown)",p:"(860) 650-3303",t:"Middletown"},
-{c:"Heating / AC",n:"Tuxis-Ohr's Fuel",p:"(203) 639-3513",t:"Meriden"},
-{c:"Plumbing / Sewer",n:"Suburban Sanitation Service (septic)",p:"(860) 267-6102",t:"East Hampton"},
-{c:"Retirement / Senior Living",n:"The Curtis Home",p:"(203) 237-4338",t:"Meriden"},
-{c:"Funeral Home / Monuments",n:"The Wallingford Funeral Home",p:"(203) 269-7777",t:"Wallingford"},
-{c:"Funeral Home / Monuments",n:"Berlin Memorial Funeral Home",p:"(860) 828-4730",t:"Kensington"},
-{c:"Auto Service / Tire",n:"Dean Autoworks",p:"(860) 349-9980",t:"Durham"},
-{c:"Auto Service / Tire",n:"Portland Automotive",p:"(860) 342-0640",t:"Portland"},
-{c:"Elder Law / Attorney",n:"Brodeur Law Firm",p:"(860) 535-1989",t:"Middletown"},
-{c:"Elder Law / Attorney",n:"Hunter Law LLC",p:"(860) 398-4357",t:"Cromwell"},
-{c:"Car Dealership 🚗",n:"Meriden Hyundai",p:"(203) 235-1669",t:"Meriden"},
-{c:"Car Dealership 🚗",n:"Barberino Nissan",p:"(203) 265-1611",t:"Wallingford"},
-{c:"Car Dealership 🚗",n:"Papa's Chrysler Dodge Jeep Ram",p:"(860) 225-8751",t:"New Britain"},
-{c:"Patron / Community Sponsor 💰",n:"Michaels Jewelers (since 1885)",p:"(203) 237-5591",t:"Meriden"},
-{c:"Patron / Community Sponsor 💰",n:"Rizzo Pools (pool builder)",p:"(860) 666-1531",t:"Newington"},
-{c:"Patron / Community Sponsor 💰",n:"Max Fish (Max Hospitality)",p:"(860) 652-3474",t:"Glastonbury"},
-{c:"Patron / Community Sponsor 💰",n:"Violi's Restaurant & Banquet",p:"(203) 639-4830",t:"Meriden"},
-{c:"Financial Planner",n:"Johnson Brunetti Retirement & Investment",p:"(860) 372-4800",t:"Wethersfield"},
-{c:"Financial Planner",n:"Guilmartin, DiPiro & Sokolowski CPA",p:"(860) 347-5689",t:"Middletown"},
-{c:"Financial Planner",n:"Mahoney Sabol CPA & Advisors",p:"(860) 541-2000",t:"Glastonbury"},
-{c:"Dentist",n:"Holzinger Periodontics & Dental Implants",p:"(860) 347-8457",t:"Middletown"},
-{c:"Dentist",n:"Shoreline Periodontics",p:"(860) 346-9665",t:"Middletown"},
-{c:"Dentist",n:"Risinger Orthodontics",p:"(860) 633-8321",t:"Glastonbury"},
-{c:"Dentist",n:"Zaidi Orthodontics",p:"(203) 269-1014",t:"Wallingford"},
-{c:"Insurance",n:"Craig Thibeau Insurance (Medicare)",p:"(860) 334-1354",t:"Middletown"},
-{c:"Medical Clinic",n:"Greenwich Medical Spa (Glastonbury)",p:"(860) 266-6502",t:"Glastonbury"},
-{c:"Heating / AC",n:"L-Train Electric (Generac dealer)",p:"(860) 343-1797",t:"Middletown"},
-{c:"Heating / AC",n:"Covenant Building Services (Generac)",p:"(860) 613-1692",t:"Cromwell"},
-{c:"Heating / AC",n:"Connecticut Propane & Petroleum",p:"(860) 365-5218",t:"Marlborough"},
-{c:"Remodeling / Contractor",n:"Budget Dry Waterproofing",p:"(203) 421-8560",t:"Killingworth"},
-{c:"Remodeling / Contractor",n:"B&B Overhead Door (garage doors)",p:"(860) 666-9315",t:"Newington"},
-{c:"Roofing / Siding / Gutters",n:"New Britain Roofing Co",p:"(860) 490-2790",t:"Newington"},
-{c:"Auto Service / Tire",n:"Denya's Auto Body & Collision",p:"(203) 237-6068",t:"Meriden"},
-{c:"Auto Service / Tire",n:"Meriden Auto Body",p:"(203) 235-5879",t:"Meriden"},
-{c:"Auto Service / Tire",n:"Victor Auto Body Works",p:"(860) 263-0431",t:"New Britain"},
-{c:"Veterinarian 🐾",n:"Pieper Olson Veterinary Hospital",p:"(860) 347-1122",t:"Middletown"},
-{c:"Veterinarian 🐾",n:"Companion Animal Hospital",p:"(860) 632-7955",t:"Cromwell"},
-{c:"Veterinarian 🐾",n:"Glastonbury Animal Hospital",p:"(860) 800-6702",t:"Glastonbury"},
-{c:"Veterinarian 🐾",n:"Animal Hospital of Rocky Hill",p:"(860) 563-1027",t:"Rocky Hill"},
-{c:"Restaurant / Banquet / Bakery",n:"Krust Pizza & Bourbon Bar",p:"(860) 358-9816",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Rocky Hill Pizza Restaurant",p:"(860) 563-5111",t:"Rocky Hill"},
-{c:"Funeral Home / Monuments",n:"Cromwell Funeral Home",p:"(860) 633-2521",t:"Cromwell"},
-{c:"Home Health Care",n:"All Connecticut Home Care",p:"(860) 924-4255",t:"Rocky Hill"},
-{c:"Financial Planner",n:"Alpha Financial Group",p:"(860) 563-6900",t:"Rocky Hill"},
-{c:"Elder Law / Attorney",n:"J. DiMauro Law (elder/estate/tax)",p:"(860) 757-3040",t:"Rocky Hill"},
-{c:"Realtor / Appraiser / Inspector",n:"Carl Guild & Associates",p:"(860) 474-3500",t:"East Hampton"},
-{c:"Insurance",n:"Petruzelo Insurance (independent)",p:"(203) 269-3551",t:"Wallingford"},
-{c:"Insurance",n:"Advanced American Financial",p:"(203) 949-1712",t:"Wallingford"},
-{c:"Heating / AC",n:"Glastonbury Burner & Boiler",p:"(860) 659-4120",t:"Glastonbury"},
-{c:"Heating / AC",n:"Degree Heating & Cooling",p:"(860) 633-6122",t:"Glastonbury"},
-{c:"Plumbing / Sewer",n:"Delponte Plumbing & Heating",p:"(860) 821-4319",t:"Glastonbury"},
-{c:"Plumbing / Sewer",n:"Mylo Plumbing & Heating",p:"(860) 633-5117",t:"Glastonbury"},
-{c:"Remodeling / Contractor",n:"Fiderio & Sons (since 1984, showroom)",p:"(203) 237-0350",t:"Meriden"},
-{c:"Remodeling / Contractor",n:"FloorsNow (flooring)",p:"(860) 548-9554",t:"Newington"},
-{c:"Landscaping / Snow / Tree",n:"Scenic Landscaping & Property Maint.",p:"(860) 656-7440",t:"Rocky Hill"},
-{c:"Landscaping / Snow / Tree",n:"Galecki Landscaping",p:"(860) 828-8886",t:"Newington"},
-{c:"Patron / Community Sponsor 💰",n:"Glastonbury Jewelers (since 1981)",p:"(860) 659-0944",t:"Glastonbury"},
-{c:"Patron / Community Sponsor 💰",n:"Turgeon Jewelers",p:"(860) 436-6400",t:"Wethersfield"},
-{c:"Florist 💐",n:"Mc Inerney's Flower Shop & Greenhouse",p:"(860) 632-0789",t:"Middletown"},
-{c:"Florist 💐",n:"Amberworks Floral Design",p:"(860) 788-2056",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"The Cooking Company (catering + market)",p:"(860) 343-0008",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Laura's Kitchen (catering)",p:"(860) 834-0358",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Michael's Trattoria (since 1994)",p:"(203) 269-5303",t:"Wallingford"},
-{c:"Restaurant / Banquet / Bakery",n:"Serafino's Ristorante",p:"(203) 265-1244",t:"Wallingford"},
-{c:"Restaurant / Banquet / Bakery",n:"La Piazza Restaurant",p:"(203) 626-9082",t:"Wallingford"},
-{c:"Restaurant / Banquet / Bakery",n:"Kimberly's Diner (family)",p:"(203) 238-4453",t:"Meriden"},
-{c:"Restaurant / Banquet / Bakery",n:"Green Olive Diner",p:"(203) 379-0927",t:"Meriden"},
-{c:"Medical Clinic",n:"Physical Therapy Center of Rocky Hill",p:"(860) 513-1431",t:"Rocky Hill"},
-{c:"Medical Clinic",n:"Apex Physical Therapy",p:"(860) 257-3779",t:"Rocky Hill"},
-{c:"Medical Clinic",n:"ViVO Chiropractic",p:"(860) 430-9116",t:"Glastonbury"},
-{c:"Medical Clinic",n:"Damato Chiropractic Center",p:"(860) 410-4488",t:"Glastonbury"},
-{c:"Eye / Optometry",n:"Middlesex Eye Optical",p:"(860) 347-8300",t:"Middletown"},
-{c:"Hearing / Audiology",n:"Advanced Hearing Healthcare",p:"(860) 659-8805",t:"Glastonbury"},
-{c:"Financial Planner",n:"Rocky Hill Accountants LLC",p:"(860) 257-4238",t:"Rocky Hill"},
-{c:"Remodeling / Contractor",n:"For-U-Builders (windows/doors/gutters)",p:"(203) 349-6468",t:"Middletown"},
-{c:"Restaurant / Banquet / Bakery",n:"Rossini's Italian Restaurant",p:"(860) 267-1106",t:"East Hampton"},
-{c:"Heating / AC",n:"Cromwell Energy (oil + HVAC)",p:"(860) 635-1234",t:"Cromwell"},
-{c:"Insurance",n:"The Ariston Insurance Agency",p:"(860) 430-9820",t:"Rocky Hill"},
-{c:"Insurance",n:"D.M. Johnson Insurance Agency",p:"(860) 436-5339",t:"Newington"},
-{c:"Home Health Care",n:"Right at Home Hartford County",p:"(860) 436-9757",t:"Wethersfield"},
-{c:"Landscaping / Snow / Tree",n:"NHCO Tree Care",p:"(203) 408-6020",t:"Meriden"},
-{c:"Landscaping / Snow / Tree",n:"Redbone Turf and Tree",p:"(203) 297-3477",t:"Meriden"},
-{c:"Medical Clinic",n:"Middlesex Medical Associates (primary care)",p:"(860) 347-5333",t:"Middletown"},
-{c:"Medical Clinic",n:"Dermatology Associates of Eastern CT",p:"(860) 657-3376",t:"Glastonbury"},
-{c:"Medical Clinic",n:"Banki Dermatology & Cosmetic Center",p:"(860) 659-2779",t:"Glastonbury"},
-{c:"Dentist",n:"Katz Family Dental Care",p:"(860) 799-4185",t:"Berlin"},
-{c:"Dentist",n:"C&S Family Dental",p:"(860) 224-4999",t:"New Britain"},
-{c:"Dentist",n:"New Britain Dental Arts",p:"(860) 229-8689",t:"New Britain"},
-{c:"Dentist",n:"Newbrite Plaza Family Dental",p:"(860) 223-2000",t:"New Britain"},
-{c:"Dentist",n:"West Hill Family Dental",p:"(860) 563-3303",t:"Rocky Hill"},
-{c:"Dentist",n:"Rocky Hill Dental Associates",p:"(860) 563-6500",t:"Wethersfield"},
-{c:"Restaurant / Banquet / Bakery",n:"Taste of Poland",p:"(860) 827-1888",t:"New Britain"},
-{c:"Restaurant / Banquet / Bakery",n:"Belvedere Cafe & Restaurant",p:"(860) 826-1155",t:"New Britain"},
-{c:"Restaurant / Banquet / Bakery",n:"Euro Plate Polish Restaurant",p:"(860) 356-7427",t:"New Britain"},
-{c:"Restaurant / Banquet / Bakery",n:"Paradise Pizza & Restaurant",p:"(860) 827-8123",t:"New Britain"},
-{c:"Restaurant / Banquet / Bakery",n:"The Avenue (Italian/pizza)",p:"(860) 259-5755",t:"Berlin"},
-{c:"Restaurant / Banquet / Bakery",n:"Kensington Market & Catering",p:"(860) 829-1330",t:"Berlin"},
-{c:"Restaurant / Banquet / Bakery",n:"Kensington Pizza",p:"(860) 828-0949",t:"Berlin"},
-{c:"Insurance",n:"Insurance Associates Inc",p:"(860) 225-4694",t:"New Britain"},
-{c:"Insurance",n:"John Bogden Agency",p:"(860) 828-0310",t:"Berlin"},
-{c:"Insurance",n:"Kensington Insurance Ltd",p:"(860) 828-6525",t:"Berlin"},
-{c:"Remodeling / Contractor",n:"Rosario Spada Mason Contractors (chimney/masonry)",p:"(860) 690-5061",t:"Cromwell"},
-{c:"Remodeling / Contractor",n:"A&A Masonry Construction (chimney)",p:"(860) 462-6489",t:"Cromwell"},
-{c:"Patron / Community Sponsor 💰",n:"Uncle Bob's Garden Center (family)",p:"(860) 704-8414",t:"Middletown"},
-{c:"Patron / Community Sponsor 💰",n:"Scovill's Garden Center",p:"(860) 635-2639",t:"Cromwell"},
-{c:"Patron / Community Sponsor 💰",n:"The Jewelry Store (family, 30+ yrs)",p:"(203) 238-2799",t:"Meriden"},
-{c:"Big Budget / Premium 🐋",n:"Liberty Bank (HQ — regional bank, Middletown-based)",p:"(860) 344-7253",t:"Middletown"},
-{c:"Big Budget / Premium 🐋",n:"Middlesex Health — Office of Philanthropy",p:"(860) 358-6200",t:"Middletown"},
-{c:"Big Budget / Premium 🐋",n:"The Flood Law Firm (personal injury — big TV/radio advertiser)",p:"(860) 346-2695",t:"Middletown"},
-{c:"Big Budget / Premium 🐋",n:"Vargas Chapman Woods (personal injury)",p:"(860) 754-1400",t:"Middletown"},
-{c:"Big Budget / Premium 🐋",n:"Loughlin FitzGerald (personal injury / trial)",p:"(203) 265-2035",t:"Wallingford"},
-{c:"Big Budget / Premium 🐋",n:"Daly Perri / Czepiga (elder law & estate — seminars)",p:"(860) 236-7673",t:"Berlin"},
-{c:"Big Budget / Premium 🐋",n:"Lux Bond & Green (upscale regional jeweler)",p:"(860) 659-8510",t:"Glastonbury"},
-{c:"Big Budget / Premium 🐋",n:"Executive Auto Group (Chevrolet — multi-brand group)",p:"(203) 265-0991",t:"Wallingford"},
-{c:"Big Budget / Premium 🐋",n:"Big Y World Class Market (regional supermarket)",p:"(203) 237-5244",t:"Meriden"},
-{c:"Realtor / Appraiser / Inspector",n:"Coldwell Banker Realty (Glastonbury office)",p:"(860) 633-3661",t:"Glastonbury"},
-{c:"Realtor / Appraiser / Inspector",n:"William Raveis Real Estate (Glastonbury)",p:"(860) 633-0111",t:"Glastonbury"},
-{c:"Realtor / Appraiser / Inspector",n:"William Raveis Real Estate (Wethersfield)",p:"(860) 258-6202",t:"Wethersfield"},
-{c:"Realtor / Appraiser / Inspector",n:"Century 21 (Rocky Hill office)",p:"(860) 563-0021",t:"Rocky Hill"},
-{c:"Realtor / Appraiser / Inspector",n:"Century 21 (Wethersfield office)",p:"(860) 263-2121",t:"Wethersfield"},
-{c:"Realtor / Appraiser / Inspector",n:"Clermont Real Estate",p:"(203) 675-6902",t:"Meriden"},
-{c:"Realtor / Appraiser / Inspector",n:"Simply Sold Real Estate",p:"(860) 786-7277",t:"Meriden"},
-{c:"Realtor / Appraiser / Inspector",n:"Gorski Realty",p:"(860) 517-8169",t:"Berlin"},
-{c:"Realtor / Appraiser / Inspector",n:"Capital Concepts Realty",p:"(860) 828-8015",t:"Berlin"},
-{c:"Realtor / Appraiser / Inspector",n:"Prestige Realty Group",p:"(860) 573-3690",t:"New Britain"},
-{c:"Realtor / Appraiser / Inspector",n:"Pender Property Associates (appraiser)",p:"(203) 619-2415",t:"Middletown"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -531,7 +210,7 @@ const STATUS={
 const ORDER=["noanswer","leftmsg","callback","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
-const LIST_ID="stfrancis-10elm-middletown-ct";
+const LIST_ID="corpuschristi-324quaker-eastsandwich-ma";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
@@ -559,8 +238,8 @@ const FOLD={};
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
 let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
-function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' CT');}
-function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' CT');}
+function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' MA');}
+function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MA');}
 function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
 // ================= CATEGORY CHIPS =================
@@ -750,7 +429,7 @@ function exportData(){
   let tasksArr=[];try{tasksArr=JSON.parse(localStorage.getItem('tasks_v1_'+LIST_ID))||[];}catch(e){}
   const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='callstate-stfrancis-'+new Date().toISOString().slice(0,10)+'.json';
+  a.download='callstate-corpuschristi-'+new Date().toISOString().slice(0,10)+'.json';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   try{localStorage.setItem('lastexport_'+LIST_ID,String(Date.now()));}catch(e){}
   build();showToast('Backup downloaded');
@@ -900,12 +579,12 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
- '<h3>Opener (Ryan’s frame)</h3><p>“Hi, this is Abe — I work with LPi, we publish the weekly bulletin for <b>St. Francis of Assisi here in Middletown</b>. I’m lining up this year’s local sponsors and a <b>[category]</b> spot is open. It puts your business in front of the parish families every single week — it’s cost-friendly, won’t blow your ad budget, and it <b>supplements</b> what you already do.”</p>'+
+ '<h3>Opener (Ryan’s frame)</h3><p>“Hi, this is Abe — I work with LPi, we publish the weekly bulletin for <b>Corpus Christi Parish here in East Sandwich</b>. I’m lining up this year’s local sponsors and a <b>[category]</b> spot is open. It puts your business in front of the parish families every single week — it’s cost-friendly, won’t blow your ad budget, and it <b>supplements</b> what you already do.”</p>'+
  '<h3>The beats</h3><p>Hyper-local, older, loyal, homeowner audience · cost-friendly / supplements, never replaces · <b>1-year term</b> — “I’ll check back in a few months” · low budget-risk · <b>⚠ [X] parishioner households — pull the REAL count from this account’s Salesforce contract before quoting</b>.</p>'+
- '<h3>Voicemail (~15 sec — leave one on EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Francis of Assisi weekly bulletin</b> in Middletown — I’ve got a <b>[category]</b> spot open for this year’s sponsors and your name came up. Local families, every week, small budget line. I’ll try you again — or reach me at <b>[callback #]</b>.”</p>'+
+ '<h3>Voicemail (~15 sec — leave one on EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>Corpus Christi weekly bulletin</b> in East Sandwich — I’ve got a <b>[category]</b> spot open for this year’s sponsors and your name came up. Local families, every week, small budget line. I’ll try you again — or reach me at <b>[callback #]</b>.”</p>'+
  '<h3>Make it concrete</h3><p>“Card-size ad” = 4-space · “a banner across the top” — pictures, not jargon.</p>'+
  '<h3>At the close — multiples</h3><p>“Do it for a year, I’ll check back in a few months — and if this works, I’ve got <b>other parishes near you</b>.”</p>'+
- '<h3>💰 Patron pitch — for the “Community Sponsor” category</h3><p>Family-name businesses (dealers, jewelers, markets, oil, paving, package stores) often buy the space to <b>back the parish</b>, not for the ad. Lead with that: “A lot of our sponsors do it to support St. Francis — the <b>[family/business] name</b> in front of the parish families every Sunday, all year. It’s modest money and it writes off as advertising.” Then the soft close: “Can I put the [name] family down for a card-size spot?” Alcohol businesses: fine to sell per policy, but <b>confirm with Mark</b> before the order goes in.</p>'+
+ '<h3>💰 Patron pitch — for the “Community Sponsor” category</h3><p>Family-name businesses (dealers, jewelers, markets, oil, paving, package stores) often buy the space to <b>back the parish</b>, not for the ad. Lead with that: “A lot of our sponsors do it to support Corpus Christi — the <b>[family/business] name</b> in front of the parish families every Sunday, all year. It’s modest money and it writes off as advertising.” Then the soft close: “Can I put the [name] family down for a card-size spot?” Alcohol businesses: fine to sell per policy, but <b>confirm with Mark</b> before the order goes in.</p>'+
  '<h3 class="warn">Don’t sell / don’t say</h3><p class="warn">Abortion/PP · alcohol needs OK · CBD/THC mostly no · elections · anti-Catholic-values. Never promise category exclusivity (unconfirmed). Never claim to be church staff. Max 10% discount — only with Mark’s OK.</p>'+
  '<h3>Discipline</h3><p>Document EVERY call in Salesforce — undocumented = you can lose the credit · convert at any interest signal (“send pricing” counts) · 80–90 dials/day.</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
