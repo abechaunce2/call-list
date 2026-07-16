@@ -50,10 +50,11 @@
   .row:hover{background:var(--hover)}
   .row.done{opacity:.5}
   .row.done .nm{text-decoration:line-through}
-  .cb{flex:0 0 auto;width:25px;height:25px;border-radius:8px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;background:transparent}
-  .cb b{opacity:0}
-  .row.done .cb{background:var(--green);border-color:var(--green)}
-  .row.done .cb b{opacity:1}
+  .cb{flex:0 0 auto;width:27px;height:27px;border-radius:9px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;background:transparent;cursor:pointer}
+  .cb b{opacity:0;font-style:normal}
+  .cb.has{background:var(--green);border-color:var(--green)}
+  .cb.has b{opacity:1}
+  .cb:active{transform:scale(.9)}
   .mid{flex:1 1 auto;min-width:0}
   .nm{font-size:15.5px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .meta{font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -453,6 +454,10 @@ try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
 // ask the browser to protect this site's storage from eviction
 try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
 function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
+function callCount(r){if(!r)return 0;return (r.hist&&r.hist.length)||(r.ts?1:0);} // every history entry = one call; legacy ts counts as 1
+function logCall(l){const r=rec(l.dig);r.ts=Date.now();(r.hist=r.hist||[]).push({ts:r.ts,st:'called'});if(r.hist.length>50)r.hist=r.hist.slice(-50);save();}
+function undoCall(l){const r=rec(l.dig);if(r.hist&&r.hist.length){r.hist.pop();r.ts=r.hist.length?r.hist[r.hist.length-1].ts:0;save();}}
+function todayCalls(){let n=0;LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.hist)r.hist.forEach(h=>{if(isToday(h.ts))n++;});else if(isToday(r.ts))n++;});return n;}
 const EMPTY={status:'',ts:0,notes:'',dm:'',time:'',email:''};
 function get(dig){return STATE[dig]||EMPTY;}
 let saveT;
@@ -557,6 +562,9 @@ function detailEl(l){
   if(r.hist&&r.hist.length){
     const hb=document.createElement('div');hb.className='lastc';
     hb.textContent='History ('+r.hist.length+' calls): '+r.hist.slice(-6).reverse().map(h=>new Date(h.ts).toLocaleDateString([],{month:'numeric',day:'numeric'})+' '+(STATUS[h.st]?STATUS[h.st].g+' '+STATUS[h.st].lbl:h.st)).join('  ·  ');
+    const un=document.createElement('a');un.textContent='  − undo last call';un.style.cssText='color:var(--red);font-weight:650;cursor:pointer;margin-left:8px';
+    un.addEventListener('click',e=>{e.stopPropagation();undoCall(l);showToast('Last call removed');build();});
+    hb.appendChild(un);
     d.appendChild(hb);
   }
   const lk=document.createElement('div');lk.className='links';
@@ -576,13 +584,16 @@ function rowEl(l,withCat){
   const meta=row.querySelector('.meta');
   meta.textContent=l.t+' · ~'+l.mi+' mi';
   const tier=document.createElement('span');tier.className='tier';tier.textContent=l.tier===1?'closest':'edge';meta.appendChild(tier);
-  const hn=(r.hist||[]).length||(r.ts?1:0);
-  if(hn){const tp=document.createElement('span');tp.className='tier';tp.textContent=hn+'× · last '+new Date(r.ts).toLocaleDateString([],{month:'numeric',day:'numeric'});meta.appendChild(tp);}
+  const hn=callCount(r);
+  if(hn){const tp=document.createElement('span');tp.className='tier';tp.textContent='📞 '+hn+' · last '+new Date(r.ts).toLocaleDateString([],{month:'numeric',day:'numeric'});meta.appendChild(tp);}
   if(r.notes){const np=document.createElement('div');np.className='notepv';np.textContent=r.notes;row.querySelector('.mid').appendChild(np);}
   if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
   if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
-  row.querySelector('.cb').addEventListener('click',e=>{e.stopPropagation();const rr=rec(l.dig);rr.status=rr.status?'':'called';if(rr.status)rr.ts=Date.now();save();build();});
-  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status){rr.status='called';(rr.hist=rr.hist||[]).push({ts:rr.ts,st:'called'});}save();updateScore();});
+  if(r.ts&&isToday(r.ts)){const pl=document.createElement('span');pl.className='pill';pl.textContent='✓ today';pl.style.background='var(--green)';meta.appendChild(pl);}
+  const cb=row.querySelector('.cb');const cn=callCount(r);
+  if(cn){cb.classList.add('has');cb.querySelector('b').textContent=cn>99?'99':cn;}
+  cb.addEventListener('click',e=>{e.stopPropagation();logCall(l);showToast('📞 Call #'+callCount(get(l.dig))+' logged — '+l.n);build();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);});
   row.addEventListener('click',()=>{row.classList.toggle('open');});
   return row;
 }
@@ -599,7 +610,7 @@ function dueBanner(){
   items.forEach(({l,t})=>{
     const r=get(l.dig);const over=t.getTime()<=now;
     const dr=document.createElement('div');dr.className='drow';
-    dr.innerHTML='<b>'+esc(l.n)+'</b>'+(r.dm?' <span style="color:var(--muted);font-weight:500">— '+esc(r.dm)+'</span>':'')+'<span class="when'+(over?' now':'')+'">'+(over?'DUE · ':'')+shortWhen(r.time)+'</span>';
+    dr.innerHTML='<b>'+esc(l.n)+'</b>'+(r.dm?' <span style="color:var(--muted);font-weight:500">— '+esc(r.dm)+'</span>':'')+(isToday(r.ts)?' <span style="color:var(--green);font-weight:800;font-size:12px">✓ called today</span>':'')+'<span class="when'+(over?' now':'')+'">'+(over?'DUE · ':'')+shortWhen(r.time)+'</span>';
     dr.addEventListener('click',()=>{copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});showToast('Copied  '+l.p);});
     wrap.appendChild(dr);
   });
@@ -608,8 +619,9 @@ function dueBanner(){
 
 // ================= SCOREBOARD =================
 function updateScore(){
-  let done=0,today=0,inprog=0,won=0,cbs=0;
-  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(isToday(r.ts))today++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.status==='followup'||r.time)cbs++;});
+  let done=0,inprog=0,won=0,cbs=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.status==='followup'||r.time)cbs++;});
+  const today=todayCalls();
   const hit=today>=GOAL;
   scoreEl.innerHTML=
     '<div class="pip goal tap'+(hit?' hit':'')+'" data-v="today"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
@@ -649,13 +661,18 @@ function build(){
   if(statusView){
     if(statusView==='callback'){const due=dueBanner();if(due)app.appendChild(due);}
     const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return statusView==='callback'?(r.status==='callback'||r.status==='followup'||!!r.time):r.status===statusView;})
-      .slice().sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
+      .slice().sort((a,b)=>{
+        const ta=isToday(get(a.dig).ts)?1:0,tb=isToday(get(b.dig).ts)?1:0;
+        if(ta!==tb)return ta-tb; // not-yet-called-today float to the TOP
+        return (get(b.dig).ts||0)-(get(a.dig).ts||0);
+      });
     if(!rows.length){
       app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:statusView==='callback'?'No callbacks yet. Tap ↩ Callback or 📧 Follow-Up on any lead and every single one collects here.':'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
       return;
     }
+    const todo=rows.filter(l=>!isToday(get(l.dig).ts)).length;
     const sec=document.createElement('div');sec.className='sec';
-    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Callbacks & 📧 follow-ups — timed ones up top':'⏳ In progress — your working pipeline')+'</span><span class="n">'+rows.length+'</span></div>';
+    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Callbacks & 📧 follow-ups — still-to-call on top':'⏳ In progress — still-to-call on top')+'</span><span class="n">'+todo+' to call · '+(rows.length-todo)+' ✓ done today</span></div>';
     const card=document.createElement('div');card.className='card';
     rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
     sec.appendChild(card);app.appendChild(sec);
@@ -690,7 +707,7 @@ function build(){
     if(!any)app.appendChild(noMatch());
   }
   const help=document.createElement('div');help.className='help';
-  help.innerHTML='<b>How this sheet works:</b> Tap a business to open it — set a status, write what happened, set a callback time. Tap the circle to quick-cross-off. <b>Copy</b> puts the number on your clipboard for the Salesforce dialer, counts the dial, and marks the lead “Called” until you set the real result. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it. <b>📧 Follow-Up</b> = sent info / somewhat interested — it auto-books your call-back 3 days out (10a, skips weekends) and tracks it. Every status tap logs to the lead’s history — the “3× · last 7/15” tag shows calls made + last contact. <b>📊 Today</b> = everyone you called today grouped by result, your end-of-day review.';
+  help.innerHTML='<b>How this sheet works:</b> <b>The circle = your call counter.</b> Tap it each time you call someone — 1, 2, 3… so callbacks and follow-ups always show how many tries and when the last one was. Setting a status ALSO counts as a call (one tap per call total — circle when nothing changed, status when something did). <b>Copy</b> just copies the number — it does not count anything. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it. <b>📧 Follow-Up</b> = sent info / somewhat interested — it auto-books your call-back 3 days out (10a, skips weekends) and tracks it. Every status tap logs to the lead’s history — the “3× · last 7/15” tag shows calls made + last contact. <b>📊 Today</b> = everyone you called today grouped by result, your end-of-day review.';
   const recCount=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.status||r.notes||r.time||r.dm||r.email||r.ts);}).length;
   let lastex='never';try{const v=localStorage.getItem('lastexport_'+LIST_ID);if(v)lastex=new Date(parseInt(v,10)).toLocaleString();}catch(e){}
   const dhh=document.createElement('div');dhh.style.marginTop='8px';
@@ -814,7 +831,7 @@ function dialQueue(){
 function renderDial(){
   if(!dialOn){dialEl.classList.remove('show');return;}
   dialEl.classList.add('show');
-  let today=0;LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&isToday(r.ts))today++;});
+  const today=todayCalls();
   const qu=dialQueue();
   if(!qu.length){
     dialEl.innerHTML='<div class="dtop"><button class="dx">✕ Close</button><span>'+today+' / '+GOAL+' today</span><span></span></div><div class="dempty">🎉 Every lead in this view is handled.<br>Close, then clear a filter or pick another category.</div>';
@@ -833,9 +850,7 @@ function renderDial(){
   const nb=dialEl.querySelector('.dnum');nb.textContent=l.p;
   nb.addEventListener('click',()=>{
     copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});
-    const rr=rec(l.dig);rr.ts=Date.now();if(!rr.status){rr.status='called';(rr.hist=rr.hist||[]).push({ts:rr.ts,st:'called'});}save();
-    let t2=0;LEADS.forEach(x=>{const rx=STATE[x.dig];if(rx&&isToday(rx.ts))t2++;});
-    dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+t2+' / '+GOAL+' today';
+    dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+todayCalls()+' / '+GOAL+' today';
   });
   const stat=dialEl.querySelector('.dstat');
   ORDER.forEach(st=>{
