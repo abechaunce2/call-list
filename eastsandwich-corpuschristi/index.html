@@ -1038,21 +1038,58 @@ function build(){
     });
     return;
   }
+  if(statusView==='callback'){
+    // grouped by day, sorted by time — mornings first within each day
+    const withT=[],noT=[];
+    LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;
+      if(r.time){const d=new Date(r.time);if(!isNaN(d))withT.push({l,d});else noT.push(l);}
+      else if(r.status==='callback'||r.status==='followup')noT.push(l);});
+    withT.sort((a,b)=>a.d-b.d);
+    const now=new Date();const t0=new Date();t0.setHours(0,0,0,0);
+    const tom=new Date(t0);tom.setDate(t0.getDate()+1);
+    const aft=new Date(t0);aft.setDate(t0.getDate()+2);
+    const groups=[
+      ['🔴 OVERDUE — call these first',x=>x.d<=now],
+      ['🌅 TODAY — morning first',x=>x.d>now&&x.d<tom],
+      ['📅 TOMORROW',x=>x.d>=tom&&x.d<aft],
+      ['🗓 LATER THIS WEEK',x=>x.d>=aft]
+    ];
+    const used=new Set();let any=false;
+    groups.forEach(g=>{
+      const rows=withT.filter(x=>!used.has(x.l.dig)&&g[1](x));
+      rows.forEach(x=>used.add(x.l.dig));
+      if(!rows.length)return;any=true;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+g[0]+'</span><span class="n">'+rows.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      rows.forEach(x=>{card.appendChild(rowEl(x.l,true));card.appendChild(detailEl(x.l));});
+      sec.appendChild(card);app.appendChild(sec);
+    });
+    if(noT.length){
+      any=true;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>⏱ NO TIME SET — tap a chip to schedule</span><span class="n">'+noT.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      noT.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    }
+    if(!any)app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'No callbacks yet. Tap ↩ Callback or 📧 Follow-Up on any lead and it collects here, grouped by day.'}));
+    return;
+  }
   if(statusView){
-    if(statusView==='callback'){const due=dueBanner();if(due)app.appendChild(due);}
-    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return statusView==='callback'?(r.status==='callback'||r.status==='followup'||!!r.time):r.status===statusView;})
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return r.status===statusView;})
       .slice().sort((a,b)=>{
         const ta=isToday(get(a.dig).ts)?1:0,tb=isToday(get(b.dig).ts)?1:0;
-        if(ta!==tb)return ta-tb; // not-yet-called-today float to the TOP
+        if(ta!==tb)return ta-tb;
         return (get(b.dig).ts||0)-(get(a.dig).ts||0);
       });
     if(!rows.length){
-      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:statusView==='callback'?'No callbacks yet. Tap ↩ Callback or 📧 Follow-Up on any lead and every single one collects here.':'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
       return;
     }
     const todo=rows.filter(l=>!isToday(get(l.dig).ts)).length;
     const sec=document.createElement('div');sec.className='sec';
-    sec.innerHTML='<div class="lab"><span>'+(statusView==='callback'?'↩ Callbacks & 📧 follow-ups — still-to-call on top':'⏳ In progress — still-to-call on top')+'</span><span class="n">'+todo+' to call · '+(rows.length-todo)+' ✓ done today</span></div>';
+    sec.innerHTML='<div class="lab"><span>⏳ In progress — still-to-call on top</span><span class="n">'+todo+' to call · '+(rows.length-todo)+' ✓ done today</span></div>';
     const card=document.createElement('div');card.className='card';
     rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
     sec.appendChild(card);app.appendChild(sec);
