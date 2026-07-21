@@ -175,6 +175,7 @@
     <button class="btn" id="cbview">↩ Callbacks</button>
     <button class="btn" id="ipview">⏳ In Progress</button>
     <button class="btn" id="dayview">📊 Today</button>
+    <button class="btn" id="emview">✉ Emailed</button>
     <button class="btn" id="near">Closest</button>
     <button class="btn" id="hide">Hide done</button>
     <button class="btn" id="exp">Export</button>
@@ -556,13 +557,13 @@ const LEADS=[
 {c:"Veterinarian 🐾",n:"Bourne Veterinary Clinic",p:"(508) 759-8090",t:"Buzzards Bay"},
 {c:"Veterinarian 🐾",n:"Buzzards Bay Veterinary Associates",p:"(508) 759-2521",t:"Buzzards Bay"},
 {c:"Veterinarian 🐾",n:"Forestdale Veterinary Clinic",p:"(508) 477-0206",t:"Forestdale"},
-{c:"Patron / Community Sponsor 💰",n:"Kandy Korner (Hyannis institution)",p:"(508) 771-5313",t:"Hyannis"},
+{c:"Patron / Community Sponsor 💰",n:"Kandy Korner (Hyannis institution)",p:"(508) 771-5313",t:"Hyannis",e:"paulo@kandykoner.com"},
 {c:"Patron / Community Sponsor 💰",n:"1856 Country Store (Centerville institution)",p:"(508) 775-1856",t:"Centerville"},
 {c:"Patron / Community Sponsor 💰",n:"Osterville House and Garden",p:"(508) 428-6911",t:"Osterville"},
 {c:"Patron / Community Sponsor 💰",n:"Sandwich Glass Museum (gift shop/tourism)",p:"(508) 888-0251",t:"Sandwich"},
 {c:"Patron / Community Sponsor 💰",n:"Smith Family Popcorn",p:"(508) 827-7815",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Baer's Pet Depot",p:"(508) 477-2524",t:"Mashpee"},
-{c:"Patron / Community Sponsor 💰",n:"Common Threads Alterations",p:"(508) 477-0371",t:"Mashpee"},
+{c:"Patron / Community Sponsor 💰",n:"Common Threads Alterations",p:"(508) 477-0371",t:"Mashpee",e:"commonthreadsalterations@gmail.com"},
 {c:"Patron / Community Sponsor 💰",n:"The Cosmic Cod (family entertainment)",p:"(508) 477-2788",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Lucky Clubs Mini Golf",p:"(508) 292-8613",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Upside Down Escape Games",p:"(508) 681-8502",t:"Mashpee"},
@@ -600,13 +601,13 @@ const LEADS=[
 {c:"Financial Planner",n:"Beacon Financial Planning — ask: Michaela Herlihy",p:"(508) 790-7039",t:"Hyannis"},
 {c:"Financial Planner",n:"Account Ability Consulting",p:"(508) 922-7994",t:"Mashpee"},
 {c:"Retirement / Senior Living",n:"Harbor Point at Centerville (Benchmark)",p:"(508) 456-5889",t:"Centerville"},
-{c:"Retirement / Senior Living",n:"Brookdale Cape Cod",p:"(508) 790-7666",t:"Hyannis"},
+{c:"Retirement / Senior Living",n:"Brookdale Cape Cod",p:"(508) 790-7666",t:"Hyannis",e:"jmcgreg@brookdale.com"},
 {c:"Retirement / Senior Living",n:"Living Independently Forever (LIFE)",p:"(508) 477-6670",t:"Hyannis"},
 {c:"Retirement / Senior Living",n:"All American Assisted Living",p:"(774) 290-5533",t:"Wareham"},
 {c:"Nursing Home / Hospice",n:"Bourne Manor Extended Care",p:"(508) 759-8880",t:"Bourne"},
 {c:"Nursing Home / Hospice",n:"Royal Cape Cod Nursing & Rehab",p:"(508) 759-5752",t:"Buzzards Bay"},
 {c:"Funeral Home / Monuments",n:"Wareham Village Funeral Home",p:"(508) 295-9000",t:"Wareham"},
-{c:"Marina / Boat / Golf ⛵",n:"Bosun's Marine (boat dealer)",p:"(508) 477-4626",t:"Mashpee"},
+{c:"Marina / Boat / Golf ⛵",n:"Bosun's Marine (boat dealer)",p:"(508) 477-4626",t:"Mashpee",e:"jjohnson@bosuns.com"},
 {c:"Marina / Boat / Golf ⛵",n:"Hyannis Marina",p:"(508) 790-4000",t:"Hyannis"},
 {c:"Marina / Boat / Golf ⛵",n:"Parker's Boat Yard",p:"(508) 563-9366",t:"Cataumet"},
 {c:"Marina / Boat / Golf ⛵",n:"Zecco Marina",p:"(508) 759-3753",t:"Wareham"},
@@ -617,7 +618,7 @@ const LEADS=[
 {c:"Car Dealership 🚗",n:"Coastal Motors",p:"(508) 759-3760",t:"Buzzards Bay"},
 {c:"Auto Service / Tire",n:"Canning's Service Center — ask: Dave Drew",p:"(508) 888-1074",t:"East Sandwich"},
 {c:"Auto Service / Tire",n:"Rotary Collision Centers — ask: John Porkka",p:"(508) 833-0077",t:"Sandwich"},
-{c:"Auto Service / Tire",n:"Mashpee Automotive",p:"(508) 477-2460",t:"Mashpee"},
+{c:"Auto Service / Tire",n:"Mashpee Automotive",p:"(508) 477-2460",t:"Mashpee",e:"rob@mashpeeautomotive.com"},
 {c:"Auto Service / Tire",n:"Falmouth Motorcar — ask: Richard Duffy",p:"(508) 564-7910",t:"Cataumet"},
 {c:"Auto Service / Tire",n:"Hamilton Auto Body",p:"(508) 457-4300",t:"East Falmouth"},
 {c:"Auto Service / Tire",n:"Anchor Collision Repair",p:"(508) 957-6305",t:"Hyannis"},
@@ -627,7 +628,7 @@ const LEADS=[
 {c:"Auto Service / Tire",n:"Cape Tire Service",p:"(508) 771-1111",t:"Hyannis"},
 {c:"Auto Service / Tire",n:"Cape Auto Body & Repair — ask: Michelle Holmes",p:"(508) 746-0330",t:"Plymouth"},
 {c:"Insurance",n:"The Insurance Agency of Cape Cod — ask: Connie Tarvis",p:"(508) 888-2766",t:"Sandwich"},
-{c:"Insurance",n:"Hart Insurance Agency",p:"(508) 759-7326",t:"Buzzards Bay"},
+{c:"Insurance",n:"Hart Insurance Agency",p:"(508) 759-7326",t:"Buzzards Bay",e:"larbo@HartInsuranceAgency.com"},
 {c:"Insurance",n:"Tracy McCarthy Insurance Solutions",p:"(508) 685-9641",t:"Buzzards Bay"},
 {c:"Insurance",n:"C.L. Hollis Insurance — ask: Cheryl Hollis",p:"(508) 295-9500",t:"Wareham"},
 {c:"Insurance",n:"Olde Cape Cod Insurance",p:"(508) 362-0050",t:"Yarmouth Port"},
@@ -635,10 +636,10 @@ const LEADS=[
 {c:"Insurance",n:"Hahesy Insurance Agency",p:"(508) 771-3355",t:"Osterville"},
 {c:"Insurance",n:"Hannon-Murphy Insurance",p:"(508) 428-6919",t:"Osterville"},
 {c:"Insurance",n:"Hilb Group (Hyannis)",p:"(508) 775-6060",t:"Hyannis"},
-{c:"Dentist",n:"Sandwich Dental Associates",p:"(508) 888-4400",t:"Sandwich"},
+{c:"Dentist",n:"Sandwich Dental Associates",p:"(508) 888-4400",t:"Sandwich",e:"jamie.o'neill@42northdental.com"},
 {c:"Dentist",n:"Sheehan Orthodontics",p:"(508) 888-0811",t:"Sandwich"},
-{c:"Dentist",n:"Mashpee Dental Associates — ask: Dr. Darzenta",p:"(508) 477-0070",t:"Mashpee"},
-{c:"Dentist",n:"Bourne Bridge Dental — ask: Sylvia Koo",p:"(508) 759-8331",t:"Bourne"},
+{c:"Dentist",n:"Mashpee Dental Associates — ask: Dr. Darzenta",p:"(508) 477-0070",t:"Mashpee",e:"office@MashpeeDental.com"},
+{c:"Dentist",n:"Bourne Bridge Dental — ask: Sylvia Koo",p:"(508) 759-8331",t:"Bourne",e:"BourneBridgeDental@gmail.com"},
 {c:"Dentist",n:"Coastal Orthodontics",p:"(774) 678-0569",t:"Wareham"},
 {c:"Dentist",n:"Centerville Family Dental",p:"(508) 775-9363",t:"Centerville"},
 {c:"Dentist",n:"Harris Dental Cape Cod",p:"(508) 775-0105",t:"Centerville"},
@@ -677,7 +678,7 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"Two Brothers Pizza & Mexican — ask: Jimmy Arvanitopoulos",p:"(508) 888-4555",t:"Sandwich"},
 {c:"Restaurant / Banquet / Bakery",n:"The Bog Tavern — ask: Kirk Fitzgerald",p:"(508) 392-9620",t:"Bourne"},
 {c:"Restaurant / Banquet / Bakery",n:"Captain Al's Restaurant & Tiki Bar",p:"(508) 759-6701",t:"Buzzards Bay"},
-{c:"Restaurant / Banquet / Bakery",n:"Krua Thai",p:"(508) 759-9662",t:"Buzzards Bay"},
+{c:"Restaurant / Banquet / Bakery",n:"Krua Thai",p:"(508) 759-9662",t:"Buzzards Bay",e:"kruathaibourne@gmail.com"},
 {c:"Restaurant / Banquet / Bakery",n:"Buzzards Bay House of Pizza",p:"(508) 759-8912",t:"Buzzards Bay"},
 {c:"Restaurant / Banquet / Bakery",n:"Luzia's Pizza Napoletana",p:"(774) 557-9005",t:"Buzzards Bay"},
 {c:"Restaurant / Banquet / Bakery",n:"Tuk Tuk Thai Food",p:"(774) 302-4358",t:"Pocasset"},
@@ -700,7 +701,7 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"Duke's Donut Worx",p:"(774) 228-2873",t:"Mashpee"},
 {c:"Restaurant / Banquet / Bakery",n:"Clambakes Etc. (catering)",p:"(774) 413-9191",t:"Sandwich"},
 {c:"Restaurant / Banquet / Bakery",n:"Minkle Boys Catering",p:"(508) 317-6397",t:"Wareham"},
-{c:"Heating / AC",n:"Balanced HVAC",p:"(508) 290-6587",t:"Sandwich"},
+{c:"Heating / AC",n:"Balanced HVAC",p:"(508) 290-6587",t:"Sandwich",e:"office@balancedhvac.com"},
 {c:"Heating / AC",n:"Cape Cod Heat Pumps",p:"(508) 833-4822",t:"Sandwich"},
 {c:"Heating / AC",n:"Oceanfront Services",p:"(508) 301-4518",t:"Sandwich"},
 {c:"Heating / AC",n:"Cape Cod Gas Heat & A/C",p:"(508) 539-9309",t:"Sandwich"},
@@ -730,7 +731,7 @@ const LEADS=[
 {c:"Plumbing / Sewer",n:"Engineered Comfort Solutions",p:"(508) 709-1954",t:"Wareham"},
 {c:"Electrician",n:"Buzzards Bay Electric Co. — ask: Stanley Andrews",p:"(508) 759-2100",t:"Buzzards Bay"},
 {c:"Electrician",n:"EAV Solutions",p:"(508) 245-7155",t:"Buzzards Bay"},
-{c:"Roofing / Siding / Gutters",n:"Cazeault Roofing & Siding",p:"(508) 719-7017",t:"Plymouth"},
+{c:"Roofing / Siding / Gutters",n:"Cazeault Roofing & Siding",p:"(508) 719-7017",t:"Plymouth",e:"office@cazeault.com"},
 {c:"Roofing / Siding / Gutters",n:"Millers Pro Roofing & Siding",p:"(774) 245-6455",t:"East Falmouth"},
 {c:"Remodeling / Contractor",n:"Miller Starbuck Construction — ask: Philip Miller",p:"(508) 539-1124",t:"Mashpee"},
 {c:"Remodeling / Contractor",n:"Dovetail Woodworks",p:"(508) 776-5426",t:"Mashpee"},
@@ -738,7 +739,7 @@ const LEADS=[
 {c:"Remodeling / Contractor",n:"Cape & Island Kitchens — ask: Joseph Cheny",p:"(508) 888-4762",t:"Sagamore Beach"},
 {c:"Remodeling / Contractor",n:"TM Kitchens",p:"(508) 295-1311",t:"East Wareham"},
 {c:"Remodeling / Contractor",n:"Floor Coverings Intl (Cape Cod) — ask: Tim Beauregard",p:"(774) 205-3091",t:"Pocasset"},
-{c:"Remodeling / Contractor",n:"One Stop Painting & Renovating — ask: Jeff Cohen",p:"(508) 888-3500",t:"Plymouth"},
+{c:"Remodeling / Contractor",n:"One Stop Painting & Renovating — ask: Jeff Cohen",p:"(508) 888-3500",t:"Plymouth",e:"onestoppainting@comcast.net"},
 {c:"Landscaping / Snow / Tree",n:"Chris Mark & Sons Landscaping — ask: Chris",p:"(508) 564-4610",t:"Pocasset"},
 {c:"Landscaping / Snow / Tree",n:"The Maffei Companies — ask: John Figmic",p:"(508) 477-4814",t:"Mashpee"},
 {c:"Landscaping / Snow / Tree",n:"Alfieri Tree Care — ask: Jessica Alfieri",p:"(774) 327-8576",t:"Mashpee"},
@@ -752,8 +753,8 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"53 Chophouse",p:"(774) 228-2405",t:"Mashpee"},
 {c:"Restaurant / Banquet / Bakery",n:"Asti Restaurant",p:"(508) 539-4700",t:"Mashpee"},
 {c:"Restaurant / Banquet / Bakery",n:"Zoe's Pizza",p:"(508) 477-1711",t:"Mashpee"},
-{c:"Restaurant / Banquet / Bakery",n:"Cupcake Charlie's",p:"(508) 477-2253",t:"Mashpee"},
-{c:"Restaurant / Banquet / Bakery",n:"Cape Cod Coffee (Mashpee Commons)",p:"(774) 361-6506",t:"Mashpee"},
+{c:"Restaurant / Banquet / Bakery",n:"Cupcake Charlie's",p:"(508) 477-2253",t:"Mashpee",e:"mashpee@cupcakecharlies.com"},
+{c:"Restaurant / Banquet / Bakery",n:"Cape Cod Coffee (Mashpee Commons)",p:"(774) 361-6506",t:"Mashpee",e:"matt@CapeCodCoffee.com"},
 {c:"Patron / Community Sponsor 💰",n:"Ghelfi's Candies of Cape Cod",p:"(508) 477-8001",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Mashpee Fresh Market",p:"(508) 681-8571",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Puritan Cape Cod (since 1919)",p:"(508) 477-4333",t:"Mashpee"},
@@ -761,33 +762,33 @@ const LEADS=[
 {c:"Patron / Community Sponsor 💰",n:"Elfstone Silver & Gold (jeweler)",p:"(508) 477-1888",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Sachs Jewelers",p:"(508) 444-4009",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Liberty Liquors",p:"(508) 477-7788",t:"Mashpee"},
-{c:"Florist 💐",n:"Verde Floral Designs — ask: Hira Rafiq",p:"(508) 681-8169",t:"Mashpee"},
+{c:"Florist 💐",n:"Verde Floral Designs — ask: Hira Rafiq",p:"(508) 681-8169",t:"Mashpee",e:"hira@verdeflorals.com"},
 {c:"Eye / Optometry",n:"Sol Optics",p:"(508) 477-2548",t:"Mashpee"},
 {c:"Veterinarian 🐾",n:"Caring Hearts Animal Hospital",p:"(508) 477-2525",t:"Mashpee"},
 {c:"Veterinarian 🐾",n:"Leach Animal Hospital",p:"(508) 477-3320",t:"Mashpee"},
 {c:"Veterinarian 🐾",n:"Mid Cape Animal Hospital",p:"(508) 428-2989",t:"Marstons Mills"},
 {c:"Veterinarian 🐾",n:"Cape Cod Animal Hospital",p:"(508) 428-6393",t:"West Barnstable"},
-{c:"Big Budget / Premium 🐋",n:"Cape Cod 5 (Mashpee — regional bank)",p:"(508) 539-2500",t:"Mashpee"},
+{c:"Big Budget / Premium 🐋",n:"Cape Cod 5 (Mashpee — regional bank)",p:"(508) 539-2500",t:"Mashpee",e:"marketing@capecodefive.com"},
 {c:"Dentist",n:"Mashpee Orthodontics",p:"(508) 539-0355",t:"Mashpee"},
-{c:"Elder Law / Attorney",n:"Law Offices of Steven Snow — ask: Jessica Fallen",p:"(508) 477-7100",t:"Mashpee"},
+{c:"Elder Law / Attorney",n:"Law Offices of Steven Snow — ask: Jessica Fallen",p:"(508) 477-7100",t:"Mashpee",e:"jlf@snowlawfirm.com"},
 {c:"Elder Law / Attorney",n:"McNamara & Yates P.C.",p:"(508) 888-8100",t:"Mashpee"},
 {c:"Medical Clinic",n:"Cape Cod Family Practice & Sports Medicine",p:"(508) 539-3353",t:"Mashpee"},
 {c:"Medical Clinic",n:"GFaceMD (med spa)",p:"(508) 681-0231",t:"Mashpee"},
-{c:"Car Dealership 🚗",n:"Marty's Chevrolet (hometown dealer)",p:"(508) 759-2900",t:"Bourne"},
+{c:"Car Dealership 🚗",n:"Marty's Chevrolet (hometown dealer)",p:"(508) 759-2900",t:"Bourne",e:"brianm@martysgmc.com"},
 {c:"Hearing / Audiology",n:"Cape Cod Hearing Center",p:"(508) 775-0959",t:"Hyannis"},
-{c:"Hearing / Audiology",n:"Advanced Audiology Associates",p:"(508) 539-9780",t:"Marstons Mills"},
+{c:"Hearing / Audiology",n:"Advanced Audiology Associates",p:"(508) 539-9780",t:"Marstons Mills",e:"lof@hearingonthecape.com"},
 {c:"Eye / Optometry",n:"Bayview Optometrics",p:"(508) 477-7423",t:"Mashpee"},
 {c:"Patron / Community Sponsor 💰",n:"Scenic Roots Garden Center (35+ yrs)",p:"(508) 888-0044",t:"East Sandwich"},
 {c:"Restaurant / Banquet / Bakery",n:"Kettle Ho (Cotuit tavern)",p:"(508) 428-1862",t:"Cotuit"},
 {c:"Restaurant / Banquet / Bakery",n:"Five Bays Bistro — ask: Jamie Surprenant",p:"(508) 420-5559",t:"Osterville"},
 {c:"Marina / Boat / Golf ⛵",n:"Crosby Yacht Yard (since 1850)",p:"(508) 428-6900",t:"Osterville"},
-{c:"Funeral Home / Monuments",n:"Chapman Funerals & Cremations (Mashpee)",p:"(508) 477-4025",t:"Mashpee"},
+{c:"Funeral Home / Monuments",n:"Chapman Funerals & Cremations (Mashpee)",p:"(508) 477-4025",t:"Mashpee",e:"mashpee@chapmanfuneral.com"},
 {c:"Dentist",n:"Bourne Dental Associates",p:"(508) 759-2724",t:"Bourne"},
 {c:"Dentist",n:"Canal Side Family Dental",p:"(508) 465-5256",t:"Buzzards Bay"},
 {c:"Retirement / Senior Living",n:"Bridges by EPOCH (memory care) — ask: Allison Russell",p:"(508) 477-0043",t:"Mashpee"},
-{c:"Retirement / Senior Living",n:"Keystone Place at Buzzards Bay",p:"(774) 302-4539",t:"Buzzards Bay"},
+{c:"Retirement / Senior Living",n:"Keystone Place at Buzzards Bay",p:"(774) 302-4539",t:"Buzzards Bay",e:"dgriffith@keystonesenior.com"},
 {c:"Elder Law / Attorney",n:"Kennan Law Offices (estate/elder)",p:"(508) 888-7111",t:"Sandwich"},
-{c:"Big Budget / Premium 🐋",n:"Boyd & Boyd P.C. (estate planning)",p:"(508) 775-7800",t:"Hyannis"},
+{c:"Big Budget / Premium 🐋",n:"Boyd & Boyd P.C. (estate planning)",p:"(508) 775-7800",t:"Hyannis",e:"kb3@boydandboydpc.com"},
 {c:"Insurance",n:"Murray & MacDonald Insurance",p:"(508) 540-2400",t:"Bourne"},
 {c:"Insurance",n:"McShea Insurance Agency",p:"(508) 420-9011",t:"Centerville"},
 {c:"Restaurant / Banquet / Bakery",n:"Trevi Cafe & Wine Bar",p:"(508) 477-0055",t:"Mashpee"},
@@ -798,13 +799,13 @@ const LEADS=[
 {c:"Marina / Boat / Golf ⛵",n:"The Ridge Club (private)",p:"(508) 428-6800",t:"Sandwich"},
 {c:"Marina / Boat / Golf ⛵",n:"Quashnet Valley Country Club",p:"(508) 477-4412",t:"Mashpee"},
 {c:"Marina / Boat / Golf ⛵",n:"Kingman Yacht Center",p:"(508) 433-9487",t:"Cataumet"},
-{c:"Retirement / Senior Living",n:"Decatur House Assisted Living",p:"(508) 888-6404",t:"Sandwich"},
+{c:"Retirement / Senior Living",n:"Decatur House Assisted Living",p:"(508) 888-6404",t:"Sandwich",e:"sarah@DecaturHouse.com"},
 {c:"Insurance",n:"Almeida & Carlson Insurance Agency",p:"(508) 888-0207",t:"Sandwich"},
-{c:"Restaurant / Banquet / Bakery",n:"Seafood Sam's",p:"(508) 888-4629",t:"Sandwich"},
+{c:"Restaurant / Banquet / Bakery",n:"Seafood Sam's",p:"(508) 888-4629",t:"Sandwich",e:"samsclams@gmail.com"},
 {c:"Restaurant / Banquet / Bakery",n:"Marshland Restaurant & Bakery — ask: Skip Cooke",p:"(508) 888-9824",t:"Sandwich"},
 {c:"Patron / Community Sponsor 💰",n:"Dan'l Webster Inn & Spa (Sandwich institution)",p:"(508) 888-3622",t:"Sandwich"},
 {c:"Realtor / Appraiser / Inspector",n:"Kinlin Grover Compass (Sandwich office)",p:"(508) 833-3333",t:"Sandwich"},
-{c:"Dentist",n:"Woods Orthodontics — ask: Dr. Warren Woods",p:"(508) 888-6222",t:"Sandwich"},
+{c:"Dentist",n:"Woods Orthodontics — ask: Dr. Warren Woods",p:"(508) 888-6222",t:"Sandwich",e:"woodorthodonticspc@gmail.com"},
 {c:"Veterinarian 🐾",n:"Oceanside Animal Hospital",p:"(508) 744-3838",t:"Sandwich"},
 {c:"Veterinarian 🐾",n:"Shawme Animal Hospital",p:"(508) 833-0883",t:"Sandwich"},
 {c:"Heating / AC",n:"Scudder Taylor Fuel (oil, since 1894)",p:"(508) 771-8077",t:"Hyannis"}
@@ -870,7 +871,7 @@ function setStatus(l,st){
 const GOAL=80; // daily dial goal — 80–90 dials/day, always leave a VM
 
 const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
-let hideDone=false,nearOnly=false,sortMode='cat',statusView='',chipCat='';
+let hideDone=false,nearOnly=false,emOnly=false,sortMode='cat',statusView='',chipCat='';
 const FOLD={};
 
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
@@ -948,7 +949,7 @@ function detailEl(l){
     d.appendChild(hb);
   }
   const lk=document.createElement('div');lk.className='links';
-  lk.innerHTML='<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
+  lk.innerHTML=(l.e?'<a href="mailto:'+l.e+'">✉ '+esc(l.e)+'</a>':'')+'<a target="_blank" rel="noopener" href="'+srch(l.n,l.t)+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
   lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
   d.appendChild(lk);
   if(r.ts){const lc=document.createElement('div');lc.className='lastc';lc.textContent='Last marked: '+new Date(r.ts).toLocaleString();d.appendChild(lc);}
@@ -970,6 +971,7 @@ function rowEl(l,withCat){
   if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
   if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
   if(r.ts&&isToday(r.ts)){const pl=document.createElement('span');pl.className='pill';pl.textContent='✓ today';pl.style.background='var(--green)';meta.appendChild(pl);}
+  if(l.e){const pl=document.createElement('span');pl.className='pill';pl.textContent='✉ emailed';pl.style.background='var(--purple)';meta.appendChild(pl);}
   const cb=row.querySelector('.cb');const cn=callCount(r);
   if(cn){cb.classList.add('has');cb.querySelector('b').textContent=cn>99?'99':cn;}
   cb.addEventListener('click',e=>{e.stopPropagation();logCall(l);showToast('📞 Call #'+callCount(get(l.dig))+' logged — '+l.n);build();});
@@ -1096,7 +1098,7 @@ function build(){
     return;
   }
   const due=dueBanner();if(due)app.appendChild(due);
-  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
   if(sortMode==='dist'){
     const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
     if(!rows.length){app.appendChild(noMatch());return;}
@@ -1159,6 +1161,7 @@ function importData(file){
 q.addEventListener('input',build);
 document.getElementById('sort').addEventListener('change',function(){sortMode=this.value;build();});
 document.getElementById('near').addEventListener('click',function(){nearOnly=!nearOnly;this.classList.toggle('on',nearOnly);build();});
+document.getElementById('emview').addEventListener('click',function(){emOnly=!emOnly;this.classList.toggle('on',emOnly);build();});
 document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
 function syncViewBtns(){
   document.getElementById('cbview').classList.toggle('on',statusView==='callback');
