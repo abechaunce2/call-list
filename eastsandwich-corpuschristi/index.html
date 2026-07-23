@@ -178,7 +178,7 @@
     <button class="btn" id="emview">✉ Emailed</button>
     <button class="btn" id="near">Closest</button>
     <button class="btn" id="hide">Hide done</button>
-    <button class="btn" id="exp">Export</button>
+    <button class="btn" id="exp">Export</button>     <button class="btn" id="expc">📋 Copy</button>
     <button class="btn" id="imp">Import</button>
     <input type="file" id="impf" accept="application/json" style="display:none">
     <button class="btn" id="print">Print</button>
@@ -1181,6 +1181,14 @@ document.getElementById('ipview').addEventListener('click',function(){statusView
 document.getElementById('dayview').addEventListener('click',function(){statusView=(statusView==='today')?'':'today';syncViewBtns();build();});
 scoreEl.addEventListener('click',e=>{const p=e.target.closest('.pip[data-v]');if(!p)return;const v=p.dataset.v;statusView=(statusView===v)?'':v;syncViewBtns();build();});
 document.getElementById('exp').addEventListener('click',exportData);
+document.getElementById('expc').addEventListener('click',function(){
+  let padTxt='';try{padTxt=localStorage.getItem('pad_v1_'+LIST_ID)||'';}catch(e){}
+  let tasksArr=[];try{tasksArr=JSON.parse(localStorage.getItem('tasks_v1_'+LIST_ID))||[];}catch(e){}
+  const txt=JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr});
+  function done(){try{localStorage.setItem('lastexport_'+LIST_ID,String(Date.now()));}catch(e){}build();showToast('Copied — paste into an email to yourself');}
+  function fallback(){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);if(ok)done();else showToast('Copy blocked — use Export instead');}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback);}else{fallback();}
+});
 document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
 document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
 document.getElementById('print').addEventListener('click',()=>window.print());
