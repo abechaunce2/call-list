@@ -808,7 +808,15 @@ const LEADS=[
 {c:"Dentist",n:"Woods Orthodontics — ask: Dr. Warren Woods",p:"(508) 888-6222",t:"Sandwich",e:"woodorthodonticspc@gmail.com"},
 {c:"Veterinarian 🐾",n:"Oceanside Animal Hospital",p:"(508) 744-3838",t:"Sandwich"},
 {c:"Veterinarian 🐾",n:"Shawme Animal Hospital",p:"(508) 833-0883",t:"Sandwich"},
-{c:"Heating / AC",n:"Scudder Taylor Fuel (oil, since 1894)",p:"(508) 771-8077",t:"Hyannis"}
+{c:"Heating / AC",n:"Scudder Taylor Fuel (oil, since 1894)",p:"(508) 771-8077",t:"Hyannis"},
+{c:"Electrician",n:"E.F. Winslow Home Services (plumb/HVAC/elec/generators, since 1971) — St. Pius X zone",p:"(508) 394-7778",t:"Yarmouth Port"},
+{c:"Electrician",n:"Cape Cod Independent Power (Kohler generators)",p:"(508) 477-8887",t:"Sandwich"},
+{c:"Roofing / Siding / Gutters",n:"Souza Brothers Construction — St. Joseph zone",p:"(508) 524-4991",t:"Falmouth"},
+{c:"Roofing / Siding / Gutters",n:"Brock's Building (roofing/siding, family 20 yrs) — St. M&M zone",p:"(508) 441-8931",t:"Wareham"},
+{c:"Plumbing / Sewer",n:"Cape Cod Septic Services (Title 5, pumping)",p:"(508) 775-2825",t:"Mashpee"},
+{c:"Remodeling / Contractor",n:"Cape Cod Painting (30+ yrs) — St. Pius X zone",p:"(508) 775-2000",t:"Yarmouth Port"},
+{c:"Remodeling / Contractor",n:"Multicolor Painting & Handyman — ask: Walter — OLV/Assumption zone",p:"(508) 737-0710",t:"Centerville"},
+{c:"Landscaping / Snow / Tree",n:"Ryt Now Irrigation — ask: Robby Connors — St. Pius X zone",p:"(774) 400-4584",t:"Yarmouth Port"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
