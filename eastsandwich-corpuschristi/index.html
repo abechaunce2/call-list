@@ -174,7 +174,7 @@
     <button class="btn" id="pitchbtn">Pitch</button>
     <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
     <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
-    <button class="btn" id="cbview">↩ Callbacks</button>
+    <button class="btn" id="planview">🎯 Call Plan</button>     <button class="btn" id="cbview">↩ Callbacks</button>
     <button class="btn" id="ipview">⏳ In Progress</button>
     <button class="btn" id="dayview">📊 Today</button>
     <button class="btn" id="emview">✉ Emailed</button>
@@ -1029,10 +1029,51 @@ function updateScore(){
   updatePadBadge();
 }
 
+// ================= PLAN VIEW (🎯 who to call NOW: skips anyone touched yesterday/today) =================
+function planSet(){
+  const d=new Date();const p2=n=>String(n).padStart(2,'0');
+  const tYMD=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+  const td=d.toDateString(), yd=new Date(Date.now()-864e5).toDateString();
+  const touchedOn=(r,ds)=>{const a=(r.hist||[]).map(h=>new Date(h.ts).toDateString());if(r.ts)a.push(new Date(r.ts).toDateString());return a.some(x=>ds.indexOf(x)>=0);};
+  const g1=[],g2=[],g3=[],g4=[];
+  LEADS.forEach(l=>{
+    const r=STATE[l.dig];
+    if(!r||(!r.status&&!(r.hist||[]).length)){g4.push(l);return;}
+    if(r.status!=='callback'&&r.status!=='followup')return;
+    const booked=(r.time||'').slice(0,10)===tYMD;
+    if(booked){if(!touchedOn(r,[td]))g1.push(l);return;}
+    if(touchedOn(r,[td,yd]))return;
+    if(r.status==='callback'){g2.push(l);return;}
+    const due=(r.time||'').slice(0,10);
+    if(!due||due<tYMD)g3.push(l);
+  });
+  g1.sort((a,b)=>((STATE[a.dig].time||'')<(STATE[b.dig].time||'')?-1:1));
+  const ord={};CATS.forEach((c,i)=>ord[c]=i);
+  g4.sort((a,b)=>((ord[a.c]||0)-(ord[b.c]||0))||(a.mi-b.mi));
+  return {g1:g1,g2:g2,g3:g3,g4:g4};
+}
 // ================= RENDER =================
 function build(){
   app.innerHTML='';const term=q.value.trim().toLowerCase();
   updateScore();
+  if(statusView==='plan'){
+    const g=planSet();
+    const mk=(title,arr)=>{
+      if(!arr.length)return;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+title+'</span><span class="n">'+arr.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      arr.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    };
+    mk('⏰ BOOKED FOR TODAY — they asked for this call',g.g1);
+    mk('↩ CALLBACKS — clean (no call yesterday or today)',g.g2);
+    mk('📧 FOLLOW-UPS OVERDUE — a week+ since contact',g.g3);
+    mk('❄️ NEVER CALLED — fresh leads',g.g4);
+    if(!g.g1.length&&!g.g2.length&&!g.g3.length&&!g.g4.length)
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'🎉 Plan clear — every callable lead is handled.'}));
+    return;
+  }
   if(statusView==='today'){
     const touched=LEADS.filter(l=>{const r=STATE[l.dig];return r&&isToday(r.ts);});
     if(!touched.length){
@@ -1175,10 +1216,12 @@ document.getElementById('near').addEventListener('click',function(){nearOnly=!ne
 document.getElementById('emview').addEventListener('click',function(){emOnly=!emOnly;this.classList.toggle('on',emOnly);build();});
 document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
 function syncViewBtns(){
+  document.getElementById('planview').classList.toggle('on',statusView==='plan');
   document.getElementById('cbview').classList.toggle('on',statusView==='callback');
   document.getElementById('ipview').classList.toggle('on',statusView==='inprogress');
   document.getElementById('dayview').classList.toggle('on',statusView==='today');
 }
+document.getElementById('planview').addEventListener('click',function(){statusView=(statusView==='plan')?'':'plan';syncViewBtns();build();});
 document.getElementById('cbview').addEventListener('click',function(){statusView=(statusView==='callback')?'':'callback';syncViewBtns();build();});
 document.getElementById('ipview').addEventListener('click',function(){statusView=(statusView==='inprogress')?'':'inprogress';syncViewBtns();build();});
 document.getElementById('dayview').addEventListener('click',function(){statusView=(statusView==='today')?'':'today';syncViewBtns();build();});
@@ -1262,6 +1305,10 @@ function confetti(){
 let dialOn=false;const SKIPPED=new Set();
 const dialEl=document.createElement('div');dialEl.className='dial';document.body.appendChild(dialEl);
 function dialQueue(){
+  if(statusView==='plan'){
+    const g=planSet();
+    return [].concat(g.g1,g.g2,g.g3,g.g4).filter(l=>!SKIPPED.has(l.dig));
+  }
   const term=q.value.trim().toLowerCase();
   const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
   const rows=[];CATS.forEach(cat=>{LEADS.filter(l=>l.c===cat).filter(m).slice().sort((a,b)=>a.mi-b.mi).forEach(l=>rows.push(l));});
