@@ -311,7 +311,30 @@ const LEADS=[
 {c:"Plumbing / Sewer",n:"Wm E Stanley Plumbing & Heating (35 yrs)",p:"(339) 201-1476",t:"Whitman"},
 {c:"Roofing / Siding / Gutters",n:"Carpe Diem Contracting & Roofing",p:"(617) 903-2304",t:"Halifax"},
 {c:"Veterinarian 🐾",n:"Halifax Veterinary Service — the parish's own town",p:"(781) 294-8155",t:"Halifax"},
-{c:"Veterinarian 🐾",n:"Pembroke Animal Hospital",p:"(781) 293-5184",t:"Pembroke"}
+{c:"Veterinarian 🐾",n:"Pembroke Animal Hospital",p:"(781) 293-5184",t:"Pembroke"},
+{c:"Elder Law / Attorney",n:"Kenneth S. Elsner, Attorney (est. 30+ yrs) — ask: Kenneth Elsner",p:"(781) 536-8037",t:"Marshfield"},
+{c:"Elder Law / Attorney",n:"Law Office of Ronald N. Whitney (est. 1987) — ask: Ronald Whitney",p:"(781) 447-3899",t:"Whitman"},
+{c:"Financial Planner",n:"Ann S Hughes CPA — ask: Ann Hughes",p:"(781) 934-4645",t:"Duxbury"},
+{c:"Insurance",n:"Cavanaugh Insurance Agency",p:"(781) 585-6050",t:"Kingston"},
+{c:"Insurance",n:"East Bridgewater Insurance Agency (30+ yrs) — ask: Peg Spagone",p:"(508) 378-3991",t:"East Bridgewater"},
+{c:"Insurance",n:"C&S Insurance (Estabrook & Chamberlain, est. 1955)",p:"(508) 697-6963",t:"Bridgewater"},
+{c:"Dentist",n:"Hanson Family Dental — ask: Dr. Mia Russo",p:"(781) 294-8022",t:"Hanson"},
+{c:"Dentist",n:"Fisher Family Dentistry (40+ yrs, 3 Drs. Fisher)",p:"(508) 697-7102",t:"Bridgewater"},
+{c:"Dentist",n:"Crystal Family Dental — ask: Dr. Omar Al-Kazaz",p:"(508) 697-6596",t:"Bridgewater"},
+{c:"Dentist",n:"East Bridgewater Dental — ask: Dr. Gloria Barzi",p:"(508) 378-3442",t:"East Bridgewater"},
+{c:"Dentist",n:"Wiemeyer Dentistry (est. 1973) — ask: Dr. Amy Ferson",p:"(781) 934-5292",t:"Duxbury"},
+{c:"Dentist",n:"Kingston Bay Dentistry",p:"(781) 202-6534",t:"Kingston"},
+{c:"Dentist",n:"Pembroke Dental Associates (35+ yrs) — ask: Dr. Margaret Jones",p:"(781) 826-8339",t:"Pembroke"},
+{c:"Dentist",n:"Dr. David C. DiBenedetto",p:"(781) 826-5150",t:"Pembroke"},
+{c:"Medical Clinic",n:"True Life Chiropractic — ask: Dr. Susan Waletkus",p:"(781) 585-0585",t:"Kingston"},
+{c:"Heating / AC",n:"Steven Moore HVAC — ask: Steven Moore",p:"(781) 291-3720",t:"Whitman"},
+{c:"Heating / AC",n:"Mass HVAC Pros (15+ yrs)",p:"(781) 738-9792",t:"Rockland"},
+{c:"Heating / AC",n:"Henrikson Heating & Air",p:"(339) 469-7067",t:"Abington"},
+{c:"Plumbing / Sewer",n:"Spry Plumbing & Heating",p:"(781) 982-0027",t:"Rockland"},
+{c:"Plumbing / Sewer",n:"AJM Plumbing & Heating — ask: Anthony Miccichi",p:"(781) 853-1310",t:"Rockland"},
+{c:"Plumbing / Sewer",n:"John Hoadley Plumbing & Heating",p:"(781) 878-8098",t:"Rockland"},
+{c:"Plumbing / Sewer",n:"Blue Harbor Plumbing, Heating & Cooling",p:"(781) 421-7377",t:"Norwell"},
+{c:"Roofing / Siding / Gutters",n:"Morrissey Family Roofing — ask: Gary Morrissey",p:"(781) 534-8466",t:"East Bridgewater"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
