@@ -304,7 +304,14 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"Carmela's",p:"(781) 585-2148",t:"Kingston"},
 {c:"Restaurant / Banquet / Bakery",n:"Oropa",p:"(508) 207-5442",t:"Duxbury"},
 {c:"Funeral Home / Monuments",n:"MacKinnon Funeral Home (est. 1906)",p:"(781) 447-4141",t:"Whitman"},
-{c:"Elder Law / Attorney",n:"Woodford & Fraser Law P.C.",p:"(781) 982-6093",t:"Abington"}
+{c:"Elder Law / Attorney",n:"Woodford & Fraser Law P.C.",p:"(781) 982-6093",t:"Abington"},
+{c:"Heating / AC",n:"Hanson Fuel (family, coal-to-oil since 1979 — Greeley/Curtin competitor pitch)",p:"(781) 293-5022",t:"Hanson"},
+{c:"Heating / AC",n:"Ken Duval Oil (oil + HVAC since 1999; also runs Bridgewater Fuel brand)",p:"(781) 878-8005",t:"Abington"},
+{c:"Heating / AC",n:"McClaren Heating & Air (since 1996)",p:"(781) 447-0136",t:"East Bridgewater"},
+{c:"Plumbing / Sewer",n:"Wm E Stanley Plumbing & Heating (35 yrs)",p:"(339) 201-1476",t:"Whitman"},
+{c:"Roofing / Siding / Gutters",n:"Carpe Diem Contracting & Roofing",p:"(617) 903-2304",t:"Halifax"},
+{c:"Veterinarian 🐾",n:"Halifax Veterinary Service — the parish's own town",p:"(781) 294-8155",t:"Halifax"},
+{c:"Veterinarian 🐾",n:"Pembroke Animal Hospital",p:"(781) 293-5184",t:"Pembroke"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
