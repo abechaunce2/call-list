@@ -351,7 +351,12 @@ const LEADS=[
 {c:"Heating / AC",n:"Pilgrim Propane",p:"(781) 878-5518",t:"Hanover"},
 {c:"Restaurant / Banquet / Bakery",n:"The Fireside Grille (50+ yrs, chamber Business of the Year)",p:"(508) 947-5333",t:"Middleborough"},
 {c:"Restaurant / Banquet / Bakery",n:"Lorenzo's Italian Restaurant (since the 1950s)",p:"(508) 947-3000",t:"Middleborough"},
-{c:"Restaurant / Banquet / Bakery",n:"Persy's Place (family breakfast since 1982)",p:"(508) 946-0022",t:"Middleborough"}
+{c:"Restaurant / Banquet / Bakery",n:"Persy's Place (family breakfast since 1982)",p:"(508) 946-0022",t:"Middleborough"},
+{c:"Funeral Home / Monuments",n:"Custom Monuments (headstones, lettering, cleaning)",p:"(781) 871-5190",t:"Rockland"},
+{c:"Schools / Education",n:"Pembroke School of Performing Arts (dance, ages 18mo-adult)",p:"(781) 826-0506",t:"Pembroke"},
+{c:"Schools / Education",n:"Kid's Country Child Care — 572 Maquan St, same street as SJTW church",p:"(781) 294-0033",t:"Hanson"},
+{c:"Schools / Education",n:"Community Nursery Kindergarten",p:"(781) 294-1654",t:"Pembroke"},
+{c:"Cleaning / Restoration",n:"Gallant Moving & Storage (local movers)",p:"(508) 580-1122",t:"Bridgewater"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
