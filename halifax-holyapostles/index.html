@@ -534,7 +534,13 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"Spiro's II Pizza & Grill [HBN]",p:"(781) 293-2989",t:"Hanson"},
 {c:"Restaurant / Banquet / Bakery",n:"Restoration Coffee (999 Main St) [HBN]",p:"(508) 807-6689",t:"Hanson"},
 {c:"Roofing / Siding / Gutters",n:"Wilcox Aluminum (storm windows/siding) [HBN]",p:"(781) 447-0026",t:"Hanson"},
-{c:"Remodeling / Contractor",n:"Almar Building & Remodeling [HBN]",p:"(781) 826-2577",t:"Hanover"}
+{c:"Remodeling / Contractor",n:"Almar Building & Remodeling [HBN]",p:"(781) 826-2577",t:"Hanover"},
+{c:"Car Dealership 🚗",n:"Copeland Toyota (family since 1970 — group also runs Copeland Chevy + Subaru)",p:"(508) 232-4691",t:"Brockton"},
+{c:"Car Dealership 🚗",n:"Mastria Auto Group (family since 1955, 6 stores; local concierge line — mains are 888s)",p:"(508) 802-6138",t:"Raynham"},
+{c:"Car Dealership 🚗",n:"Sullivan Brothers Toyota (family group; + Nissan + collision)",p:"(781) 585-1300",t:"Kingston"},
+{c:"Car Dealership 🚗",n:"Planet Subaru (independent)",p:"(781) 826-4444",t:"Hanover"},
+{c:"Car Dealership 🚗",n:"McGee Toyota of Hanover (family group)",p:"(781) 826-8333",t:"Hanover"},
+{c:"Car Dealership 🚗",n:"Jannell Ford (3rd-generation family)",p:"(781) 982-4500",t:"Hanover"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
