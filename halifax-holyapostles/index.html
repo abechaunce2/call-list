@@ -344,7 +344,14 @@ const LEADS=[
 {c:"Patron / Community Sponsor 💰",n:"Bridgewater Farm Supply (since 1947)",p:"(508) 697-0357",t:"Bridgewater"},
 {c:"Patron / Community Sponsor 💰",n:"Seoane's Garden Center",p:"(781) 878-1306",t:"Abington"},
 {c:"Patron / Community Sponsor 💰",n:"Hanson Ace Hardware (locally owned)",p:"(781) 293-6344",t:"Hanson"},
-{c:"Auto Service / Tire",n:"Abington Sunoco (AAA-certified — repair/tire/towing)",p:"(781) 878-8415",t:"Abington"}
+{c:"Auto Service / Tire",n:"Abington Sunoco (AAA-certified — repair/tire/towing)",p:"(781) 878-8415",t:"Abington"},
+{c:"Patron / Community Sponsor 💰",n:"Wyman's Garden Center (~50 yrs)",p:"(781) 447-5400",t:"Hanson"},
+{c:"Restaurant / Banquet / Bakery",n:"Rockland House of Pizza",p:"(781) 871-1131",t:"Rockland"},
+{c:"Heating / AC",n:"Wrightington Gas (propane, South Shore)",p:"(781) 585-2246",t:"Kingston"},
+{c:"Heating / AC",n:"Pilgrim Propane",p:"(781) 878-5518",t:"Hanover"},
+{c:"Restaurant / Banquet / Bakery",n:"The Fireside Grille (50+ yrs, chamber Business of the Year)",p:"(508) 947-5333",t:"Middleborough"},
+{c:"Restaurant / Banquet / Bakery",n:"Lorenzo's Italian Restaurant (since the 1950s)",p:"(508) 947-3000",t:"Middleborough"},
+{c:"Restaurant / Banquet / Bakery",n:"Persy's Place (family breakfast since 1982)",p:"(508) 946-0022",t:"Middleborough"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
