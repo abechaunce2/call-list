@@ -527,7 +527,14 @@ const LEADS=[
 {c:"Realtor / Appraiser / Inspector",n:"Paradise Properties Brokerage [town dir]",p:"(781) 248-4678",t:"Halifax"},
 {c:"Realtor / Appraiser / Inspector",n:"Select Property Network [town dir]",p:"(781) 927-9424",t:"Halifax"},
 {c:"Bank / Credit Union",n:"Mutual Bank — Halifax branch [town dir]",p:"(781) 294-0500",t:"Halifax"},
-{c:"Bank / Credit Union",n:"Rockland Trust — Halifax branch [town dir]",p:"(781) 293-3531",t:"Halifax"}
+{c:"Bank / Credit Union",n:"Rockland Trust — Halifax branch [town dir]",p:"(781) 293-3531",t:"Halifax"},
+{c:"Heating / AC",n:"I.P.G. Oil Heat (family oil/boiler — 4th fuel co, Greeley/Curtin pitch) [HBN]",p:"(781) 733-0016",t:"Hanson"},
+{c:"Electrician",n:"Kemmett Electric & Climate Control — ask: John Kemmett (master electrician since 1988) [HBN]",p:"(781) 857-0485",t:"Hanson"},
+{c:"Elder Law / Attorney",n:"Coletta Cutler Law (business/RE/estate) — ask: Rebecca Coletta [HBN]",p:"(339) 244-4774",t:"Hanson"},
+{c:"Restaurant / Banquet / Bakery",n:"Spiro's II Pizza & Grill [HBN]",p:"(781) 293-2989",t:"Hanson"},
+{c:"Restaurant / Banquet / Bakery",n:"Restoration Coffee (999 Main St) [HBN]",p:"(508) 807-6689",t:"Hanson"},
+{c:"Roofing / Siding / Gutters",n:"Wilcox Aluminum (storm windows/siding) [HBN]",p:"(781) 447-0026",t:"Hanson"},
+{c:"Remodeling / Contractor",n:"Almar Building & Remodeling [HBN]",p:"(781) 826-2577",t:"Hanover"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
