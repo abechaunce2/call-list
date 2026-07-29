@@ -334,7 +334,17 @@ const LEADS=[
 {c:"Plumbing / Sewer",n:"AJM Plumbing & Heating — ask: Anthony Miccichi",p:"(781) 853-1310",t:"Rockland"},
 {c:"Plumbing / Sewer",n:"John Hoadley Plumbing & Heating",p:"(781) 878-8098",t:"Rockland"},
 {c:"Plumbing / Sewer",n:"Blue Harbor Plumbing, Heating & Cooling",p:"(781) 421-7377",t:"Norwell"},
-{c:"Roofing / Siding / Gutters",n:"Morrissey Family Roofing — ask: Gary Morrissey",p:"(781) 534-8466",t:"East Bridgewater"}
+{c:"Roofing / Siding / Gutters",n:"Morrissey Family Roofing — ask: Gary Morrissey",p:"(781) 534-8466",t:"East Bridgewater"},
+{c:"Restaurant / Banquet / Bakery",n:"Meadow Brook Restaurant & Functions",p:"(781) 293-7900",t:"Hanson"},
+{c:"Restaurant / Banquet / Bakery",n:"Nick and Angelos (Rt 106, 40+ yrs, Halifax line)",p:"(508) 697-1948",t:"Bridgewater"},
+{c:"Restaurant / Banquet / Bakery",n:"Good Day's Restaurant (breakfast all day)",p:"(508) 584-0077",t:"West Bridgewater"},
+{c:"Restaurant / Banquet / Bakery",n:"Grand Slam Pizza & Pub",p:"(508) 588-8858",t:"West Bridgewater"},
+{c:"Restaurant / Banquet / Bakery",n:"Bridgewater Star Pizza",p:"(508) 588-5706",t:"West Bridgewater"},
+{c:"Bank / Credit Union",n:"BrightBridge Credit Union — Bridgewater branch",p:"(508) 279-2425",t:"Bridgewater"},
+{c:"Patron / Community Sponsor 💰",n:"Bridgewater Farm Supply (since 1947)",p:"(508) 697-0357",t:"Bridgewater"},
+{c:"Patron / Community Sponsor 💰",n:"Seoane's Garden Center",p:"(781) 878-1306",t:"Abington"},
+{c:"Patron / Community Sponsor 💰",n:"Hanson Ace Hardware (locally owned)",p:"(781) 293-6344",t:"Hanson"},
+{c:"Auto Service / Tire",n:"Abington Sunoco (AAA-certified — repair/tire/towing)",p:"(781) 878-8415",t:"Abington"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
