@@ -193,7 +193,7 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["Church List (Holy Apostles)","Big Budget / Premium 🐋","Patron / Community Sponsor 💰","Car Dealership 🚗","Marina / Boat / Golf ⛵","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
+const CATS=["🔥 CLOSE — live deals","Church List (Holy Apostles)","Big Budget / Premium 🐋","Patron / Community Sponsor 💰","Car Dealership 🚗","Marina / Boat / Golf ⛵","Funeral Home / Monuments","Retirement / Senior Living","Home Health Care","Nursing Home / Hospice","Medical Clinic","Veterinarian 🐾","Dentist","Eye / Optometry","Hearing / Audiology","Elder Law / Attorney","Financial Planner","Bank / Credit Union","Insurance","Realtor / Appraiser / Inspector","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Contractor","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Banquet / Bakery","Florist 💐","Schools / Education"];
 // town -> [~miles from 10 Elm St Middletown, tier 1=closest 2=edge]
 const TOWNMI={"Halifax":[1,1],"Monponsett":[1,1],"Hanson":[3,1],"Bryantville":[3,1],"Plympton":[4,1],"Whitman":[6,1],"East Bridgewater":[6,1],"Pembroke":[6,1],"Hanover":[8,1],"Carver":[8,1],"Bridgewater":[8,1],"Kingston":[8,2],"Abington":[9,2],"Rockland":[9,2],"Middleborough":[9,2],"Middleboro":[9,2],"West Bridgewater":[10,2],"Brockton":[10,2],"Duxbury":[10,2],"Norwell":[12,2],"Plymouth":[12,2],"Marshfield":[12,2],"Lakeville":[13,2],"Raynham":[14,2],"Holbrook":[13,2]};
 const LEADS=[
@@ -240,7 +240,7 @@ const LEADS=[
 {c:"Elder Law / Attorney",n:"Law Office of Karen I. Bonn",p:"(781) 857-3663",t:"Whitman"},
 {c:"Elder Law / Attorney",n:"Tempus Fugit Law",p:"(617) 752-2371",t:"Plymouth"},
 {c:"Elder Law / Attorney",n:"Farrell Law Group PLLC — ask: Peter Farrell",p:"(781) 934-3934",t:"Duxbury"},
-{c:"Financial Planner",n:"Cozby & Company CPAs — ask: Heather L. Cozby",p:"(508) 830-0007",t:"Plymouth"},
+{c:"🔥 CLOSE — live deals",n:"🔥 Heather Cozby CPA — email sent Wed; did the pricing land? category still open",p:"(508) 830-0007",t:"Plymouth"},
 {c:"Financial Planner",n:"Campbell Financial Services — ask: Deborah Campbell",p:"(508) 747-5249",t:"Plymouth"},
 {c:"Financial Planner",n:"Benjamin Husted CPA — ask: Benjamin Husted",p:"(508) 747-6447",t:"Plymouth"},
 {c:"Financial Planner",n:"Cornerstone Financial Group LLC — ask: Nicholas DiMenna",p:"(508) 927-4536",t:"Plymouth"},
@@ -249,7 +249,7 @@ const LEADS=[
 {c:"Financial Planner",n:"Client Priority Financial Advisors LLC",p:"(617) 980-9880",t:"Plymouth"},
 {c:"Financial Planner",n:"Ronald H. Holmgren, CPA, EA, ATA",p:"(508) 427-5522",t:"West Bridgewater"},
 {c:"Insurance",n:"Donald L. Ford Insurance Agency, Inc. (est. 1960)",p:"(781) 293-2545",t:"Hanson"},
-{c:"Insurance",n:"Hannon-Murphy Insurance Associates, Inc.",p:"(781) 293-5500",t:"Pembroke"},
+{c:"🔥 CLOSE — live deals",n:"🔥 Hannon-Murphy Ins — interested Wed, email sent; TODAY: thoughts on the Pembroke spot?",p:"(781) 293-5500",t:"Pembroke"},
 {c:"Insurance",n:"Hannon-Murphy Insurance Agency, LLC — ask: Steven Murphy",p:"(508) 746-0030",t:"Plymouth"},
 {c:"Insurance",n:"Kirby Insurance (est. 1926)",p:"(781) 447-5511",t:"Whitman"},
 {c:"Insurance",n:"DH Smith Insurance Agency, Inc.",p:"(781) 447-3389",t:"Whitman"},
@@ -305,7 +305,7 @@ const LEADS=[
 {c:"Restaurant / Banquet / Bakery",n:"Oropa",p:"(508) 207-5442",t:"Duxbury"},
 {c:"Funeral Home / Monuments",n:"MacKinnon Funeral Home (est. 1906)",p:"(781) 447-4141",t:"Whitman"},
 {c:"Elder Law / Attorney",n:"Woodford & Fraser Law P.C.",p:"(781) 982-6093",t:"Abington"},
-{c:"Heating / AC",n:"Hanson Fuel — ask: James Lamparelli, President (via Supreme Energy; Greeley/Curtin pitch)",p:"(781) 293-5022",t:"Hanson",e:"jmlamparelli@supremeenergy.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 James Lamparelli @ Hanson Fuel — emailed Mon; ask for James BY NAME; winter-oil hook",p:"(781) 293-5022",t:"Hanson",e:"jmlamparelli@supremeenergy.com"},
 {c:"Heating / AC",n:"Ken Duval Oil (oil + HVAC since 1999; also runs Bridgewater Fuel brand)",p:"(781) 878-8005",t:"Abington"},
 {c:"Heating / AC",n:"McClaren Heating & Air (since 1996)",p:"(781) 447-0136",t:"East Bridgewater"},
 {c:"Plumbing / Sewer",n:"Wm E Stanley Plumbing & Heating (35 yrs)",p:"(339) 201-1476",t:"Whitman"},
@@ -318,7 +318,7 @@ const LEADS=[
 {c:"Insurance",n:"Cavanaugh Insurance Agency",p:"(781) 585-6050",t:"Kingston"},
 {c:"Insurance",n:"East Bridgewater Insurance Agency (30+ yrs) — ask: Peg Spagone",p:"(508) 378-3991",t:"East Bridgewater"},
 {c:"Insurance",n:"C&S Insurance (Estabrook & Chamberlain, est. 1955)",p:"(508) 697-6963",t:"Bridgewater"},
-{c:"Dentist",n:"Hanson Family Dental — ask: Dr. Mia Russo",p:"(781) 294-8022",t:"Hanson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 Hanson Family Dental — pricing sent Tue; close the Deluxe + team photo — ask: Dr. Mia Russo",p:"(781) 294-8022",t:"Hanson"},
 {c:"Dentist",n:"Fisher Family Dentistry (40+ yrs, 3 Drs. Fisher)",p:"(508) 697-7102",t:"Bridgewater"},
 {c:"Dentist",n:"Crystal Family Dental — ask: Dr. Omar Al-Kazaz",p:"(508) 697-6596",t:"Bridgewater"},
 {c:"Dentist",n:"East Bridgewater Dental — ask: Dr. Gloria Barzi",p:"(508) 378-3442",t:"East Bridgewater"},
@@ -540,7 +540,10 @@ const LEADS=[
 {c:"Car Dealership 🚗",n:"Sullivan Brothers Toyota (family group; + Nissan + collision)",p:"(781) 585-1300",t:"Kingston"},
 {c:"Car Dealership 🚗",n:"Planet Subaru (independent)",p:"(781) 826-4444",t:"Hanover"},
 {c:"Car Dealership 🚗",n:"McGee Toyota of Hanover (family group)",p:"(781) 826-8333",t:"Hanover"},
-{c:"Car Dealership 🚗",n:"Jannell Ford (3rd-generation family)",p:"(781) 982-4500",t:"Hanover"}
+{c:"Car Dealership 🚗",n:"Jannell Ford (3rd-generation family)",p:"(781) 982-4500",t:"Hanover"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SARAH @ DECATUR HOUSE — SAID YES: get billing + payment TODAY (order rides the Corpus book)",p:"(508) 888-6404",t:"Sandwich"},
+{c:"🔥 CLOSE — live deals",n:"🔥 CURLEY ROOFING — wants 1-space, proof ready; get bulletin choice + billing name + card",p:"(508) 790-4508",t:"Hyannis"},
+{c:"🔥 CLOSE — live deals",n:"🔥 CHRISTINE @ CAPE WIDE — lock-rate/deferred-start text; try (508) 815-9617 as cell; 3:30 dial",p:"(508) 470-5709",t:"Hyannis"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
