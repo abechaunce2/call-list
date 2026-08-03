@@ -221,7 +221,13 @@ const LEADS=[
 {c:"Heating / AC",n:"Target Air HVAC [verified]",p:"(734) 656-8559",t:"Livonia"},
 {c:"Heating / AC",n:"Pete's Heating & Cooling [verified]",p:"(734) 525-3488",t:"Livonia"},
 {c:"Electrician",n:"Bratcher Electric (60+ yrs) [verified]",p:"(734) 722-0037",t:"Wayne"},
-{c:"Electrician",n:"Buzz Electric — Plymouth Rd, Redford (parish's own town) [verified]",p:"(313) 632-1065",t:"Redford"}
+{c:"Electrician",n:"Buzz Electric — Plymouth Rd, Redford (parish's own town) [verified]",p:"(313) 632-1065",t:"Redford"},
+{c:"Heating / AC",n:"Ace HVAC Detroit (24/7, Woodward Ave) [verified]",p:"(313) 552-7177",t:"Detroit"},
+{c:"Retirement / Senior Living",n:"Oakmont Livonia (independent living) [verified — # corrected]",p:"(734) 338-8608",t:"Livonia"},
+{c:"Retirement / Senior Living",n:"Allegria Village (formerly Henry Ford Village — huge Dearborn campus) [verified]",p:"(313) 584-1000",t:"Dearborn"},
+{c:"Dentist",n:"Livonia Dental Care (5 Mile Rd) [verified]",p:"(734) 427-7555",t:"Livonia"},
+{c:"Dentist",n:"Farmington Smiles [verified]",p:"(248) 474-8060",t:"Farmington"},
+{c:"Dentist",n:"Pearl Dental [verified — # + town corrected]",p:"(248) 476-4416",t:"Farmington Hills"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
