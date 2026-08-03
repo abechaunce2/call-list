@@ -203,7 +203,15 @@ const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"🔥 Hanson Family Dental — pricing sent Tue; close the Deluxe + team photo — ask: Dr. Mia Russo",p:"(781) 294-8022",t:"Hanson"},
 {c:"🔥 CLOSE — live deals",n:"🔥 SARAH @ DECATUR HOUSE — SAID YES: get billing + payment TODAY (order rides the Corpus book)",p:"(508) 888-6404",t:"Sandwich"},
 {c:"🔥 CLOSE — live deals",n:"🔥 CURLEY ROOFING — wants 1-space, proof ready; get bulletin choice + billing name + card",p:"(508) 790-4508",t:"Hyannis"},
-{c:"🔥 CLOSE — live deals",n:"🔥 CHRISTINE @ CAPE WIDE — lock-rate/deferred-start text; try (508) 815-9617 as cell; 3:30 dial",p:"(508) 470-5709",t:"Hyannis"}
+{c:"🔥 CLOSE — live deals",n:"🔥 CHRISTINE @ CAPE WIDE — lock-rate/deferred-start text; try (508) 815-9617 as cell; 3:30 dial",p:"(508) 470-5709",t:"Hyannis"},
+{c:"Funeral Home / Monuments",n:"John N. Santeiu & Son (Garden City family, 24/7) [verified]",p:"(734) 427-3800",t:"Garden City"},
+{c:"Funeral Home / Monuments",n:"R.G. & G.R. Harris Funeral Home (Livonia + 2 chapels) [verified — Gemini # was wrong, corrected]",p:"(734) 422-6720",t:"Livonia"},
+{c:"Funeral Home / Monuments",n:"Voran Funeral Home — Dearborn (+ Allen Park + Taylor chapels = mini-multiples) [verified]",p:"(313) 278-5100",t:"Dearborn"},
+{c:"Funeral Home / Monuments",n:"Howe-Peterson Funeral Home — Dearborn (+ Taylor + Lincoln Park) [verified]",p:"(313) 561-1500",t:"Dearborn"},
+{c:"Funeral Home / Monuments",n:"Schrader-Howell Funeral Home (Plymouth; serves Livonia/Northville) [verified]",p:"(734) 453-3333",t:"Plymouth"},
+{c:"Funeral Home / Monuments",n:"Vermeulen-Sajewski Funeral Home — Westland (+ Plymouth chapel) [verified]",p:"(734) 326-1300",t:"Westland"},
+{c:"Funeral Home / Monuments",n:"Uht Funeral Home [verified]",p:"(734) 721-8555",t:"Westland"},
+{c:"Home Health Care",n:"Angela Hospice (Felician-founded, Livonia — perfect parish fit) [verified]",p:"(734) 464-7810",t:"Livonia"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
