@@ -211,7 +211,17 @@ const LEADS=[
 {c:"Funeral Home / Monuments",n:"Schrader-Howell Funeral Home (Plymouth; serves Livonia/Northville) [verified]",p:"(734) 453-3333",t:"Plymouth"},
 {c:"Funeral Home / Monuments",n:"Vermeulen-Sajewski Funeral Home — Westland (+ Plymouth chapel) [verified]",p:"(734) 326-1300",t:"Westland"},
 {c:"Funeral Home / Monuments",n:"Uht Funeral Home [verified]",p:"(734) 721-8555",t:"Westland"},
-{c:"Home Health Care",n:"Angela Hospice (Felician-founded, Livonia — perfect parish fit) [verified]",p:"(734) 464-7810",t:"Livonia"}
+{c:"Home Health Care",n:"Angela Hospice (Felician-founded, Livonia — perfect parish fit) [verified]",p:"(734) 464-7810",t:"Livonia"},
+{c:"Funeral Home / Monuments",n:"Thayer-Rock Funeral Home (Farmington) [verified]",p:"(248) 474-4131",t:"Farmington"},
+{c:"Funeral Home / Monuments",n:"Weise Funeral Home (family since 1975) [verified]",p:"(313) 382-1150",t:"Allen Park"},
+{c:"Funeral Home / Monuments",n:"Kemp Funeral Home & Cremation [verified]",p:"(248) 702-5367",t:"Southfield"},
+{c:"Funeral Home / Monuments",n:"James H. Cole Home for Funerals — NW chapel (+ Grand Blvd chapel) [verified]",p:"(313) 835-3997",t:"Detroit"},
+{c:"Retirement / Senior Living",n:"Manoogian Manor (Armenian home, Livonia) [verified]",p:"(734) 522-5780",t:"Livonia"},
+{c:"Retirement / Senior Living",n:"Woodhaven Retirement Community [verified]",p:"(734) 261-9000",t:"Livonia"},
+{c:"Heating / AC",n:"Target Air HVAC [verified]",p:"(734) 656-8559",t:"Livonia"},
+{c:"Heating / AC",n:"Pete's Heating & Cooling [verified]",p:"(734) 525-3488",t:"Livonia"},
+{c:"Electrician",n:"Bratcher Electric (60+ yrs) [verified]",p:"(734) 722-0037",t:"Wayne"},
+{c:"Electrician",n:"Buzz Electric — Plymouth Rd, Redford (parish's own town) [verified]",p:"(313) 632-1065",t:"Redford"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
