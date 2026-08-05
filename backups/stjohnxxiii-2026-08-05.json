@@ -1,0 +1,1666 @@
+{
+ "list": "stjohnxxiii-12100beechdaly-redford-mi",
+ "exported": "2026-08-05T13:39:37.246Z",
+ "state": {
+  "2482315563": {
+   "status": "leftmsg",
+   "ts": 1785866748515,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785866748515,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2482403443": {
+   "status": "noanswer",
+   "ts": 1785778373965,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785778373965,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2482426766": {
+   "status": "notnow",
+   "ts": 1785866036478,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785866036478,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2483058900": {
+   "status": "noanswer",
+   "ts": 1785852482058,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852482058,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2483470995": {
+   "status": "noanswer",
+   "ts": 1785852571417,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852571417,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2483564342": {
+   "status": "noanswer",
+   "ts": 1785851882766,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785851880465,
+     "st": "notnow"
+    },
+    {
+     "ts": 1785851882766,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2483580600": {
+   "status": "leftmsg",
+   "ts": 1785852901362,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852901362,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2483800000": {
+   "status": "followup",
+   "ts": 1785773750568,
+   "notes": "stubbs@thefgfirm.law",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785773750568,
+     "st": "followup"
+    }
+   ]
+  },
+  "2484428500": {
+   "status": "leftmsg",
+   "ts": 1785784237195,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785784237195,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2484440392": {
+   "status": "leftmsg",
+   "ts": 1785781750820,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785781750820,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2484744131": {
+   "status": "followup",
+   "ts": 1785868234602,
+   "notes": "shannon call tomorrow \u00a0\u00b7 Send info info@Thayer-rock.com",
+   "dm": "",
+   "time": "2026-08-04T13:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785765943919,
+     "st": "callback"
+    },
+    {
+     "ts": 1785868234602,
+     "st": "followup"
+    }
+   ]
+  },
+  "2484767022": {
+   "status": "leftmsg",
+   "ts": 1785785363958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785785363958,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2484882620": {
+   "status": "notnow",
+   "ts": 1785865848260,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865848260,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2485320608": {
+   "status": "notnow",
+   "ts": 1785852428612,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852428612,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2485694646": {
+   "status": "leftmsg",
+   "ts": 1785774596246,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785774596246,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2485961200": {
+   "status": "notnow",
+   "ts": 1785865966502,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865966502,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2487025367": {
+   "status": "followup",
+   "ts": 1785767461650,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785767461650,
+     "st": "followup"
+    }
+   ]
+  },
+  "2487072912": {
+   "status": "followup",
+   "ts": 1785771215275,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785771215275,
+     "st": "followup"
+    }
+   ]
+  },
+  "2487735555": {
+   "status": "noanswer",
+   "ts": 1785777469520,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785777469520,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2487737807": {
+   "status": "leftmsg",
+   "ts": 1785866669419,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785866669419,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2487774700": {
+   "status": "leftmsg",
+   "ts": 1785788264043,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785788264043,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2487985909": {
+   "status": "leftmsg",
+   "ts": 1785852094341,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852094341,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2488650001": {
+   "status": "notnow",
+   "ts": 1785864116691,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785864116691,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2488841704": {
+   "status": "notnow",
+   "ts": 1785852258824,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852258824,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2489210617": {
+   "status": "notnow",
+   "ts": 1785868725859,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785868725859,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2489249784": {
+   "status": "leftmsg",
+   "ts": 1785865802708,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865802708,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2489350107": {
+   "status": "leftmsg",
+   "ts": 1785779012023,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785779012023,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2489380000": {
+   "status": "noanswer",
+   "ts": 1785852337793,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852337793,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2489380777": {
+   "status": "leftmsg",
+   "ts": 1785852552420,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852552420,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2489399393": {
+   "status": "noanswer",
+   "ts": 1785783632683,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783632683,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3132290064": {
+   "status": "followup",
+   "ts": 1785870484807,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-07T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785870484807,
+     "st": "followup"
+    }
+   ]
+  },
+  "3132744800": {
+   "status": "notnow",
+   "ts": 1785857612563,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785857612563,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3132770050": {
+   "status": "notnow",
+   "ts": 1785853662034,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785853662034,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3132785100": {
+   "status": "followup",
+   "ts": 1785764747261,
+   "notes": "Send info",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785764747261,
+     "st": "followup"
+    }
+   ]
+  },
+  "3133004818": {
+   "status": "notnow",
+   "ts": 1785781607519,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785781607519,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3133821150": {
+   "status": "notnow",
+   "ts": 1785766377578,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785766377578,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3134149797": {
+   "status": "leftmsg",
+   "ts": 1785783601977,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783601977,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3135057299": {
+   "status": "leftmsg",
+   "ts": 1785856275669,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785856275669,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3135333412": {
+   "status": "noanswer",
+   "ts": 1785858253497,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785858253497,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3135337350": {
+   "status": "noanswer",
+   "ts": 1785857763506,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785857763506,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3135527177": {
+   "status": "followup",
+   "ts": 1785784107587,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785784107587,
+     "st": "followup"
+    }
+   ]
+  },
+  "3135611500": {
+   "status": "followup",
+   "ts": 1785765117458,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785765117458,
+     "st": "followup"
+    }
+   ]
+  },
+  "3135659184": {
+   "status": "noanswer",
+   "ts": 1785870419130,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785870419130,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3135841000": {
+   "status": "followup",
+   "ts": 1785770982334,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785770978430,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1785770982334,
+     "st": "followup"
+    }
+   ]
+  },
+  "3136180647": {
+   "status": "notnow",
+   "ts": 1785853377241,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785853377241,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3137407135": {
+   "status": "noanswer",
+   "ts": 1785856803580,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785856803580,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3138353997": {
+   "status": "followup",
+   "ts": 1785767625303,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785767625303,
+     "st": "followup"
+    }
+   ]
+  },
+  "3138446179": {
+   "status": "notnow",
+   "ts": 1785788222246,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785788222246,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3139371100": {
+   "status": "followup",
+   "ts": 1785857495942,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-07T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785857495942,
+     "st": "followup"
+    }
+   ]
+  },
+  "3139371340": {
+   "status": "leftmsg",
+   "ts": 1785856882201,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785856882201,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3139636420": {
+   "status": "notnow",
+   "ts": 1785776054541,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785776054541,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3139644500": {
+   "status": "leftmsg",
+   "ts": 1785865220010,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865220010,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344273800": {
+   "status": "leftmsg",
+   "ts": 1785764043783,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785764043783,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344226720": {
+   "status": "notnow",
+   "ts": 1785764106555,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785764106555,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7344533333": {
+   "status": "followup",
+   "ts": 1785765659536,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785765659536,
+     "st": "followup"
+    }
+   ]
+  },
+  "7343261300": {
+   "status": "notnow",
+   "ts": 1785765796806,
+   "notes": "7344592250 boss number",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785765796806,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7347218555": {
+   "status": "notnow",
+   "ts": 1785765850856,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785765847973,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1785765850856,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7344648060": {
+   "status": "notnow",
+   "ts": 1785767857634,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785767857634,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7345225780": {
+   "status": "followup",
+   "ts": 1785770142543,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785770142543,
+     "st": "followup"
+    }
+   ]
+  },
+  "7342619000": {
+   "status": "leftmsg",
+   "ts": 1785770346888,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785770346888,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7343388608": {
+   "status": "notnow",
+   "ts": 1785770394818,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785770394818,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7346443222": {
+   "status": "leftmsg",
+   "ts": 1785771084502,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785771084502,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344647810": {
+   "status": "notnow",
+   "ts": 1785771450673,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785771450673,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7348555419": {
+   "status": "leftmsg",
+   "ts": 1785773832978,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785773832978,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344225900": {
+   "status": "leftmsg",
+   "ts": 1785773958134,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785773958134,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344552000": {
+   "status": "notnow",
+   "ts": 1785774045625,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785774045625,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7342612400": {
+   "status": "leftmsg",
+   "ts": 1785775006229,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785775006229,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7347294465": {
+   "status": "notnow",
+   "ts": 1785775062979,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785775062979,
+     "st": "notnow"
+    }
+   ]
+  },
+  "5087904508": {
+   "status": "noanswer",
+   "ts": 1785776712347,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785776710198,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1785776712347,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7344255400": {
+   "status": "noanswer",
+   "ts": 1785777159837,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785777159837,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7344222111": {
+   "status": "leftmsg",
+   "ts": 1785778315246,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785778315246,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7347288000": {
+   "status": "leftmsg",
+   "ts": 1785778950717,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785778950717,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344047127": {
+   "status": "notnow",
+   "ts": 1785781547853,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785781547853,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7348123179": {
+   "status": "leftmsg",
+   "ts": 1785781669671,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785781669671,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7346377120": {
+   "status": "leftmsg",
+   "ts": 1785781842290,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785781842290,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7345214335": {
+   "status": "notnow",
+   "ts": 1785782462165,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785782462165,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7345583228": {
+   "status": "leftmsg",
+   "ts": 1785783123271,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783123271,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7347162111": {
+   "status": "noanswer",
+   "ts": 1785783657701,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783657701,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7346568559": {
+   "status": "noanswer",
+   "ts": 1785783831290,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783831290,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7345253488": {
+   "status": "notnow",
+   "ts": 1785783903806,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785783903806,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7346376736": {
+   "status": "followup",
+   "ts": 1785784433367,
+   "notes": "protouchhvac@gmail.com",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785784433367,
+     "st": "followup"
+    }
+   ]
+  },
+  "7344522000": {
+   "status": "followup",
+   "ts": 1785785535610,
+   "notes": "vanessa.dowdell@trane.com",
+   "dm": "",
+   "time": "2026-08-06T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785785535610,
+     "st": "followup"
+    }
+   ]
+  },
+  "7345600582": {
+   "status": "noanswer",
+   "ts": 1785785561655,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785785561655,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7342665475": {
+   "status": "leftmsg",
+   "ts": 1785785655780,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785785655780,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7348920782": {
+   "status": "noanswer",
+   "ts": 1785785762813,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785785762813,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7344270030": {
+   "status": "leftmsg",
+   "ts": 1785786649594,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785786649594,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344541700": {
+   "status": "noanswer",
+   "ts": 1785786717684,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785786717684,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7345241030": {
+   "status": "noanswer",
+   "ts": 1785788138537,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785788138537,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7342612814": {
+   "status": "leftmsg",
+   "ts": 1785788320341,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785788320341,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7345214466": {
+   "status": "leftmsg",
+   "ts": 1785851717410,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785851717410,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7342078788": {
+   "status": "leftmsg",
+   "ts": 1785851815650,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785851815650,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7343269280": {
+   "status": "notnow",
+   "ts": 1785851838108,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785851838108,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7344595577": {
+   "status": "noanswer",
+   "ts": 1785851966111,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785851966111,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7344594141": {
+   "status": "noanswer",
+   "ts": 1785852122772,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852122772,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7343263900": {
+   "status": "notnow",
+   "ts": 1785852287100,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785852287100,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7346671204": {
+   "status": "notnow",
+   "ts": 1785853509961,
+   "notes": "call in january out of money now",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785853509961,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7343268321": {
+   "status": "noanswer",
+   "ts": 1785853585610,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785853585610,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7345259547": {
+   "status": "leftmsg",
+   "ts": 1785856170007,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785856170007,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344215299": {
+   "status": "leftmsg",
+   "ts": 1785857011066,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785857011066,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7345915400": {
+   "status": "notnow",
+   "ts": 1785857754549,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785857754549,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7342615100": {
+   "status": "leftmsg",
+   "ts": 1785858218264,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785858218264,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344256500": {
+   "status": "leftmsg",
+   "ts": 1785858426114,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785858426114,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7345255000": {
+   "status": "leftmsg",
+   "ts": 1785859012998,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785859012998,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344217000": {
+   "status": "notnow",
+   "ts": 1785859130708,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785859130708,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7344532424": {
+   "status": "leftmsg",
+   "ts": 1785859232113,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785859232113,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7348381820": {
+   "status": "noanswer",
+   "ts": 1785859794809,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785859794809,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7348380200": {
+   "status": "leftmsg",
+   "ts": 1785863807689,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785863807689,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7345913737": {
+   "status": "leftmsg",
+   "ts": 1785864527660,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785864527660,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7344270303": {
+   "status": "leftmsg",
+   "ts": 1785864673905,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785864673905,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7348782367": {
+   "status": "leftmsg",
+   "ts": 1785865295306,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865295306,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7347799999": {
+   "status": "notnow",
+   "ts": 1785865342463,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785865342463,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7344518200": {
+   "status": "noanswer",
+   "ts": 1785866820189,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785866820189,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7344595100": {
+   "status": "noanswer",
+   "ts": 1785866932763,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785866932763,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7346672746": {
+   "status": "notnow",
+   "ts": 1785868778243,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785868778243,
+     "st": "notnow"
+    }
+   ]
+  },
+  "7347221670": {
+   "status": "followup",
+   "ts": 1785873020254,
+   "notes": "",
+   "dm": "",
+   "time": "2026-08-07T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785873020254,
+     "st": "followup"
+    }
+   ]
+  },
+  "7345912468": {
+   "status": "noanswer",
+   "ts": 1785873568882,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785873568882,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "7342155390": {
+   "status": "noanswer",
+   "ts": 1785874036898,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1785874036898,
+     "st": "noanswer"
+    }
+   ]
+  }
+ },
+ "pad": "",
+ "tasks": []
+}
