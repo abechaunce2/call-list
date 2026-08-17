@@ -252,6 +252,12 @@ const LEADS=[
 {c:"Funeral Home / Monuments",n:"⭐ McKnatt, Carpenter & Baker Funeral Home — Lofland's sister home, same Carpenter family [own-site ✓ Grok2]",p:"(302) 398-3228",t:"Harrington"},
 {c:"Restaurant / Bakery / Catering",n:"Mike & Mel's Family Restaurant — ask: Mike + Melissa Wooleyhand [Central DE chamber ✓ Grok2]",p:"(302) 697-7448",t:"Wyoming"},
 {c:"Insurance",n:"Mark Schanne State Farm (31+ yrs; captive flag) [statefarm.com ✓ Grok2]",p:"(302) 422-2235",t:"Milford"},
+{c:"Hearing / Audiology",n:"⭐ Hearsay Services — ask: Dr. Robinson (Milford's own hearing clinic) [own-site ✓]",p:"(302) 401-4578",t:"Milford"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Doyle Law LLC — ask: Rebecca N. Doyle [own-site ✓]",p:"(302) 532-3139",t:"Lewes"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Schmittinger & Rodriguez (major DE firm, trusts & estates) [own-site ✓]",p:"(302) 674-0140",t:"Dover"},
+{c:"Retirement / Senior Living",n:"⭐ Harmony at Kent (AL/IL/memory care; Harmony Senior Svcs operator flag) [own-site ✓]",p:"(302) 505-1920",t:"Dover"},
+{c:"Retirement / Senior Living",n:"⭐ Westminster Village (Presbyterian Senior Living nonprofit) [own-site ✓]",p:"(302) 744-3600",t:"Dover"},
+{c:"Heating / AC",n:"F.H. Furr Delmarva (big regional; flag) [own-site ✓]",p:"(302) 262-5627",t:"Georgetown"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
