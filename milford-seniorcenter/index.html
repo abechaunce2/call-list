@@ -229,9 +229,9 @@ const LEADS=[
 {c:"Home Health / In-Home Care",n:"⭐ Americare Home Solutions (independent) [own-site ✓ DR]",p:"(302) 747-7424",t:"Dover"},
 {c:"Elder Law / Estate Attorney",n:"⭐ Procino-Wells & Woodland (est. 2005) [own-site ✓ DR]",p:"(302) 628-4140",t:"Lewes"},
 {c:"Elder Law / Estate Attorney",n:"⭐ Brockstedt Mandalas Federico [own-site ✓ DR]",p:"(302) 677-0061",t:"Dover"},
-{c:"Funeral Home / Monuments",n:"⭐ Berry-Short Funeral (Milford) (4 chapels) [own-site ✓ DR]",p:"(302) 422-8091",t:"Milford"},
+{c:"Funeral Home / Monuments",n:"⭐ Berry-Short Funeral (Milford) — Short family, multi-gen; chapels: Milton HQ (302) 684-8521 · Felton · Georgetown [own-site ✓]",p:"(302) 422-8091",t:"Milford"},
 {c:"Funeral Home / Monuments",n:"⭐ Michael J Ambruso Funeral [own-site ✓ DR]",p:"(302) 734-2281",t:"Dover"},
-{c:"Funeral Home / Monuments",n:"⭐ Lofland Funeral Home — ask: Bill+Connie Carpenter [own-site ✓ DR]",p:"(302) 422-5416",t:"Milford"},
+{c:"Funeral Home / Monuments",n:"⭐ Lofland Funeral Home — SINCE 1919 — ask: Bill + Connie Carpenter [own-site ✓]",p:"(302) 422-5416",t:"Milford"},
 {c:"Funeral Home / Monuments",n:"⭐ Pippin Funeral Home — ask: Pippin family (est. 1975) [own-site ✓ DR]",p:"(302) 697-7002",t:"Wyoming"},
 {c:"Funeral Home / Monuments",n:"⭐ Evan W. Smith Funeral (est. 2016) [own-site ✓ DR]",p:"(302) 526-4662",t:"Dover"},
 {c:"Funeral Home / Monuments",n:"⭐ Delaware Memorials [own-site ✓ DR]",p:"(302) 734-3535",t:"Dover"},
@@ -249,6 +249,9 @@ const LEADS=[
 {c:"Dentist / Dentures",n:"⭐ Steward & Gaull DDS — ask: Steward+Gaull [own-site ✓ DR]",p:"(302) 422-9791",t:"Milford"},
 {c:"Bank / Credit Union",n:"Del-One Federal CU — ask: Shari Lord (Milford) (central #) [own-site ✓ DR]",p:"(302) 739-4496",t:"Milford"},
 {c:"Heating / AC",n:"Coastal Air [own-site ✓ DR]",p:"(302) 398-4668",t:"Harrington"},
+{c:"Funeral Home / Monuments",n:"⭐ McKnatt, Carpenter & Baker Funeral Home — Lofland's sister home, same Carpenter family [own-site ✓ Grok2]",p:"(302) 398-3228",t:"Harrington"},
+{c:"Restaurant / Bakery / Catering",n:"Mike & Mel's Family Restaurant — ask: Mike + Melissa Wooleyhand [Central DE chamber ✓ Grok2]",p:"(302) 697-7448",t:"Wyoming"},
+{c:"Insurance",n:"Mark Schanne State Farm (31+ yrs; captive flag) [statefarm.com ✓ Grok2]",p:"(302) 422-2235",t:"Milford"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
