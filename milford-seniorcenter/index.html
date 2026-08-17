@@ -164,7 +164,7 @@
 <header>
   <a class="back" href="../">‹ All churches</a>
   <h1>Milford Senior Center — DE</h1>
-  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of Milford Senior Center, 111 Park Ave, Milford DE 19963 (Kent/Sussex line — the Delaware senior belt) · MONTHLY newsletter · acct # = read off the paper footer · copy a number, call in Salesforce, then mark it here</div>
+  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of Milford Senior Center, 111 Park Ave, Milford DE 19963 (Kent/Sussex line — the Delaware senior belt) · MONTHLY newsletter · acct 06-5374 · ⭐ GREEN-FIELD BOOK (only HomeWell + filler) · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -207,6 +207,12 @@ const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"⏰ TUE 8/18: Jeremy @ J.W. Morgan Construction — HE asked for the Tuesday call",p:"(810) 691-6281",t:"Milford",e:"jeremy@jwmorganconstruction.com"},
 {c:"🔥 CLOSE — live deals",n:"⏰ WED-THU 8/19-20: Pro Touch Heating & Cooling — he asked for the call this week",p:"(734) 637-6736",t:"Milford",e:"protouchhvac@gmail.com"},
 {c:"🔥 CLOSE — live deals",n:"⏰ FRI 8/22: SPRINGVALE DEADLINE you gave Natalie — the go-ahead lands or the nudge goes",p:"(810) 588-2147",t:"Milford"},
+{c:"Funeral Home / Monuments",n:"⭐ Wm. V. Sipple & Son Monuments — since 1869, MILFORD'S OLDEST BUSINESS, 5th-6th gen — ask: Jennifer Boyer [own-site ✓ Grok]",p:"(302) 422-4214",t:"Milford"},
+{c:"Funeral Home / Monuments",n:"⭐ Rogers-Hovatter Funeral Home — family-run since 1955 [own-site ✓ Grok]",p:"(302) 422-4025",t:"Milford"},
+{c:"Restaurant / Bakery / Catering",n:"Dolce Bakery & Coffee Shop (est. ~2004) — ask: Mark Dissinger [own-site ✓ Grok]",p:"(302) 422-5760",t:"Milford"},
+{c:"Florist 💐",n:"Milford Florist [own-site ✓ Grok]",p:"(302) 422-4961",t:"Milford"},
+{c:"Patron / Community Sponsor 💰",n:"E.K.A. Jewelers (since 1990) [own-site ✓ Grok]",p:"(302) 422-7138",t:"Milford"},
+{c:"Patron / Community Sponsor 💰",n:"Southern States Milford Co-Op (farm/garden, farmer-owned) [own-site ✓ Grok]",p:"(302) 422-8066",t:"Milford"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -748,7 +754,7 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
- '<h3>⚠️ SENIOR CENTER #2 — DELAWARE</h3><p><b>Milford Senior Center, 111 Park Ave, Milford DE 19963</b> · (302) 422-3385 · milfordseniorcenter.net. NOT a church: <b>never say parish, Mass, bulletin, parishioners — say "the senior center newsletter."</b> MONTHLY = <b>divide prices by 12, never by 52.</b> ⚠️ Acct # + the advertiser wall: <b>read them off the paper bulletin</b> — the MCO page is bare (new-account smell). If the ad page is EMPTY, this is a GREEN-FIELD book: every category open, first-in owns it.</p>'+
+ '<h3>⚠️ SENIOR CENTER #2 — DELAWARE</h3><p><b>Milford Senior Center, 111 Park Ave, Milford DE 19963</b> · (302) 422-3385 · milfordseniorcenter.net. NOT a church: <b>never say parish, Mass, bulletin, parishioners — say "the senior center newsletter."</b> MONTHLY = <b>divide prices by 12, never by 52.</b> <b>Acct 06-5374.</b> ⭐ <b>GREEN-FIELD CONFIRMED:</b> the ad page has ONE local advertiser — <b>HomeWell Care Services (in-home care, statewide; do NOT pitch)</b> — plus national filler (SMP/MDMedAlert/ADT) and four advertise-here cells. <b>Every category is OPEN. The pitch: “brand-new book for the senior center — first one in owns the category.”</b></p>'+
  '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the monthly newsletter for the <b>Milford Senior Center</b>. Got 30 seconds?” Then: “it goes out to seniors across Milford and the surrounding towns every month, and I’ve got space open.”</p>'+
  '<h3>The area — say it plainly</h3><p><b>Lower Delaware is a retirement belt</b> — seniors are the growth population here, and Milford sits on the Kent/Sussex line with <b>Bayhealth’s hospital campus right in town</b>. The center is where the county’s most concentrated senior audience shows up every week.</p>'+
  '<h3>🎯 Who to call first (senior ICP)</h3><p>Medicare/senior insurance agents (⭐ AEP budgets lock NOW — Oct 15 enrollment) · hearing aids · funeral homes/monuments/pre-planning · assisted/independent living · home health & in-home care · elder law & estate attorneys · financial/retirement advisors · pharmacies · mobility/medical supply · dentists/dentures · optometry · PT/chiro · senior-move realtors · banks/credit unions · HVAC/plumbing/roofing · family restaurants/diners · florists · bus tours & travel.</p>'+
