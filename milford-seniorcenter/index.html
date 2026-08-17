@@ -258,6 +258,13 @@ const LEADS=[
 {c:"Retirement / Senior Living",n:"⭐ Harmony at Kent (AL/IL/memory care; Harmony Senior Svcs operator flag) [own-site ✓]",p:"(302) 505-1920",t:"Dover"},
 {c:"Retirement / Senior Living",n:"⭐ Westminster Village (Presbyterian Senior Living nonprofit) [own-site ✓]",p:"(302) 744-3600",t:"Dover"},
 {c:"Heating / AC",n:"F.H. Furr Delmarva (big regional; flag) [own-site ✓]",p:"(302) 262-5627",t:"Georgetown"},
+{c:"Pharmacy",n:"⭐ Milford Rx Pharmacy — BRAND NEW 2025, ask: Dr. Dimpi Patel (free 10-mi delivery; new biz = hungry for visibility) [own-site ✓]",p:"(302) 503-5132",t:"Milford"},
+{c:"Pharmacy",n:"⭐ Rodney Village Pharmacy (est. 2011; mobility aids + pill packaging) [own-site ✓]",p:"(302) 747-7533",t:"Dover"},
+{c:"Pharmacy",n:"⭐ Hometown Drugs (est. 2020, drive-thru + free delivery) [own-site ✓]",p:"(302) 450-1970",t:"Harrington"},
+{c:"Pharmacy",n:"Dover Community Pharmacy (indep., GNP-network page flag) [GNP ✓]",p:"(302) 724-9323",t:"Dover"},
+{c:"Financial Planner / Retirement",n:"⭐ CSG Financial LLC (Dover RIA) [own-site ✓]",p:"(302) 678-8701",t:"Dover"},
+{c:"Medicare / Senior Insurance",n:"⭐ Downes Insurance Associates — MILFORD-proper independent agency [own-site ✓]",p:"(302) 422-8863",t:"Milford"},
+{c:"Insurance",n:"L&W Insurance (Dover independent) [own-site ✓]",p:"(302) 674-3500",t:"Dover"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
