@@ -275,7 +275,7 @@ const LEADS=[
 {c:"Patron / Community Sponsor 💰",n:"⭐ Haven Lake Animal Hospital (Milford vet — seniors + pets) [own-site ✓ mill]",p:"(302) 422-8100",t:"Milford"},
 {c:"Remodeling / Bath & Accessibility",n:"Hickman Overhead Door — est. 1978 [own-site ✓ mill]",p:"(302) 422-4249",t:"Milford"},
 {c:"Patron / Community Sponsor 💰",n:"Fur-Baby Pet Resort (boarding+grooming) [own-site ✓ mill]",p:"(302) 725-5078",t:"Milford"},
-{c:"Insurance",n:"Dorey Insurance & Financial Services — Milford proper [own-site ✓ mill]",p:"(302) 424-8459",t:"Milford"},
+{c:"Insurance",n:"Dorey Insurance & Financial — ask: Angela Dorey — Milford proper [own-site ✓]",p:"(302) 424-8459",t:"Milford"},
 {c:"Medical Clinic / Primary Care",n:"Phases Medical Spa (city-list) [own-site ✓ mill]",p:"(302) 500-4220",t:"Milford"},
 {c:"Medical Clinic / Primary Care",n:"⭐ Ultrasound Express (diagnostic imaging, city-list) [own-site ✓ mill]",p:"(302) 422-2612",t:"Milford"},
 {c:"Restaurant / Bakery / Catering",n:"La Hacienda (downtown anchor, city-list) [own-site ✓ mill]",p:"(302) 735-4677",t:"Milford"},
@@ -331,6 +331,16 @@ const LEADS=[
 {c:"Podiatry / Mobility / Medical Supply",n:"⭐ Delaware Total Foot & Ankle — Drs. Wendolowski + Kane [own-site ✓]",p:"(302) 297-8431",t:"Lewes"},
 {c:"Physical Therapy / Chiropractic",n:"Delaware Integrative Healthcare — ask: Dr. Adkins [own-site ✓]",p:"(302) 744-8650",t:"Dover"},
 {c:"Physical Therapy / Chiropractic",n:"Dover Health Care Center — Drs. Epps + Chi [own-site ✓]",p:"(302) 736-0330",t:"Dover"},
+{c:"Plumbing / Sewer",n:"⭐ Henry Eashum & Son — SINCE 1947, 79 YEARS (Camden institution) [own-site ✓]",p:"(302) 697-6164",t:"Camden"},
+{c:"Hearing / Audiology",n:"⭐ Brandywine Hearing Center (Dover; regional-group flag) [own-site ✓]",p:"(302) 387-0306",t:"Dover"},
+{c:"Dentist / Dentures",n:"⭐ Family Dental Associates — ask: Dr. Heather Boyle [own-site ✓]",p:"(302) 674-8810",t:"Dover"},
+{c:"Eye / Optometry",n:"⭐ Dover Family Eye Care — 41 YEARS (alt line 734-3511) [own-site ✓]",p:"(302) 410-7724",t:"Dover"},
+{c:"Dentist / Dentures",n:"⭐ Williamson Dental Solutions — ask: Dr. Richard Williamson [own-site ✓]",p:"(302) 734-8887",t:"Dover"},
+{c:"Physical Therapy / Chiropractic",n:"Dover Family Chiropractic — ask: Dr. Bryan Errico [own-site ✓]",p:"(302) 531-1900",t:"Camden"},
+{c:"Heating / AC",n:"Air Quality HVAC (Camden-Wyoming) [own-site ✓]",p:"(302) 697-1475",t:"Wyoming"},
+{c:"Roofing / Siding / Gutters",n:"Fadely Co Roofing & Sheet Metal (Felton) [own-site ✓]",p:"(302) 943-4240",t:"Felton"},
+{c:"Dentist / Dentures",n:"American Dental Care (Dover group) [own-site ✓]",p:"(302) 734-7634",t:"Dover"},
+{c:"Heating / AC",n:"Summit Heating & AC (Dover-based) [own-site ✓]",p:"(302) 378-1203",t:"Dover"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
