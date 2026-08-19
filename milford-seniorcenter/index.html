@@ -326,6 +326,11 @@ const LEADS=[
 {c:"Hearing / Audiology",n:"⭐ Dover Telex Hearing Aid Center (13 yrs) [YP dedicated]",p:"(302) 734-8620",t:"Dover"},
 {c:"Hearing / Audiology",n:"⭐ Sound Advice Hearing Aid Centers (39 yrs) [YP dedicated] · ✉ sent 8/19 · HearUSA-owned flag",p:"(302) 644-1268",t:"Lewes",e:"18002@hearusa.com"},
 {c:"Hearing / Audiology",n:"⭐ International Hearing Systems [YP dedicated]",p:"(302) 645-8091",t:"Lewes"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Adkins Law Firm — ask: Jason W. Adkins (estate planning, Milton) [own-site ✓]",p:"(302) 505-5773",t:"Milton"},
+{c:"Physical Therapy / Chiropractic",n:"302 Chiropractic — ask: Dr. Epps [own-site ✓]",p:"(302) 386-7002",t:"Lewes"},
+{c:"Podiatry / Mobility / Medical Supply",n:"⭐ Delaware Total Foot & Ankle — Drs. Wendolowski + Kane [own-site ✓]",p:"(302) 297-8431",t:"Lewes"},
+{c:"Physical Therapy / Chiropractic",n:"Delaware Integrative Healthcare — ask: Dr. Adkins [own-site ✓]",p:"(302) 744-8650",t:"Dover"},
+{c:"Physical Therapy / Chiropractic",n:"Dover Health Care Center — Drs. Epps + Chi [own-site ✓]",p:"(302) 736-0330",t:"Dover"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
