@@ -68,7 +68,7 @@ function classify(r,s){
   if(s.time){const t=new Date(s.time).getTime();
    const today=new Date();today.setHours(0,0,0,0);
    const tom=today.getTime()+86400000;
-   if(t<now)return{sec:"overdue",emailed};
+   if(t<now)return{sec:(now-t>14*86400000)?"old":"overdue",emailed};
    if(t<tom)return{sec:"today",emailed};
    return{sec:"sched",emailed};}
   return{sec:emailed?"emailed":"cb",emailed};}
@@ -76,7 +76,7 @@ function classify(r,s){
  if(emailed&&["leftmsg","noanswer","callback","followup"].includes(s.status))return{sec:"emailed",emailed:true};
  return null;
 }
-const SECS=[["sold","🏆 SOLD — the board of trophies"],["overdue","🔴 OVERDUE — they're waiting on you"],["today","🟠 DUE TODAY"],["emailed","✉️ EMAILED — no call back yet (oldest silence first)"],["prog","⏳ IN PROGRESS"],["cb","↩ CALL BACK — no time set"],["sched","📅 SCHEDULED AHEAD"]];
+const SECS=[["sold","🏆 SOLD — the board of trophies"],["overdue","🔴 OVERDUE — they're waiting on you"],["today","🟠 DUE TODAY"],["emailed","✉️ EMAILED — no call back yet (oldest silence first)"],["prog","⏳ IN PROGRESS"],["cb","↩ CALL BACK — no time set"],["sched","📅 SCHEDULED AHEAD"],["old","🗄 OLD — overdue 2+ weeks (skim once, mark them)"]];
 function setStatus(bid,d,status,time){
  const dev=devState(bid);const book=BOOKS.find(x=>x.id===bid);
  const cur=(dev[d]||book.base[d]||{status:"",ts:0,notes:"",dm:"",time:"",email:""});
@@ -120,6 +120,9 @@ function render(){
     const d=digits(r.p);
     if(key==="sold"){div.classList.add("sold");
      const tro=TROPHIES.find(t=>t.m.test(r.n));
+     const lbl=tro?tro.label:r.n;
+     if(card._seen===undefined)card._seen=new Set();
+     if(card._seen.has(lbl))return;card._seen.add(lbl);
      div.innerHTML='<div class="nm">'+esc(tro?tro.label:r.n.replace(/\[[^\]]*\]/g,"").trim())+'<span class="bdg" style="background:'+b.color+'">'+b.badge+'</span></div>';
      card.appendChild(div);return;}
     const rc=recentcall(s);
