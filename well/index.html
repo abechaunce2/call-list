@@ -51,12 +51,17 @@ const TROPHIES=[
  {label:"Springvale by StoryPoint — SOLD \$500 1-space, card by phone (8/21)",badge:"SWARTZ CK",color:"#34c759"}
 ];
 const DEAD_DIGITS=new Set(["5087757800"]);
+const ABE_REPORTED={
+ "7345241000":{status:"callback",ts:1787330000000,notes:"ask for STACY — she said call MONDAY (8/21 call)",dm:"",time:"2026-08-24T10:00",email:"",hist:[{ts:1787330000000,st:"callback"}]},
+ "2489576228":{status:"followup",ts:1787330000000,notes:"GK 8/21 — gatekeeper says he will talk to the boss",dm:"",time:"2026-08-25T10:00",email:"",hist:[{ts:1787330000000,st:"followup"}]},
+ "8103979393":{status:"notnow",ts:1787330000000,notes:"not interested — broke til spring (8/20+8/21)",dm:"",time:"",email:"",hist:[{ts:1787330000000,st:"notnow"}]}
+};
 const SOLD_DIGITS=new Set(["5084774025","5084285705","5088886404","7346376736","3024224025","8103740282","8102306644","8105882147"]);
 const SKEY=id=>"callstate_v2_"+id;
 const digits=p=>p.replace(/\D/g,"");
 let bookOn={};BOOKS.forEach(b=>bookOn[b.id]=true);
 function devState(id){try{return JSON.parse(localStorage.getItem(SKEY(id))||"{}")}catch(e){return{}}}
-function mergedState(b){const out={};Object.assign(out,b.base);const d=devState(b.id);Object.keys(d).forEach(k=>out[k]=d[k]);return out}
+function mergedState(b){const out={};Object.assign(out,b.base);Object.keys(ABE_REPORTED).forEach(k=>{if(b.rows.some(r=>r.p.replace(/D/g,"")===k))out[k]=ABE_REPORTED[k]});const d=devState(b.id);Object.keys(d).forEach(k=>out[k]=d[k]);return out}
 function fdate(ts){const d=new Date(ts);return (d.getMonth()+1)+"/"+d.getDate()}
 function ftime(t){if(!t)return"";const d=new Date(t);const h=d.getHours(),m=d.getMinutes();return (d.getMonth()+1)+"/"+d.getDate()+" "+((h%12)||12)+(m?":"+String(m).padStart(2,"0"):"")+(h<12?"a":"p")}
 function callInfo(s){if(!s)return{n:0,last:0};const n=(s.hist&&s.hist.length)||(s.status?1:0);const last=(s.hist&&s.hist.length?s.hist[s.hist.length-1].ts:s.ts)||0;return{n,last}}
@@ -91,6 +96,14 @@ function setStatus(bid,d,status,time){
  dev[d]=s;localStorage.setItem(SKEY(bid),JSON.stringify(dev));
  toast(status==="notnow"?"Not interested — removed":status+" saved ✓");render();
 }
+function gk(bid,d){
+ const dev=devState(bid);const book=BOOKS.find(x=>x.id===bid);
+ const cur=(dev[d]||ABE_REPORTED[d]||book.base[d]||{status:"",ts:0,notes:"",dm:"",time:"",email:""});
+ const s2=JSON.parse(JSON.stringify(cur));
+ const dt=new Date();s2.notes=((s2.notes||"")+" · GK "+(dt.getMonth()+1)+"/"+dt.getDate()).trim();
+ dev[d]=s2;localStorage.setItem(SKEY(bid),JSON.stringify(dev));
+ fup3(bid,d);
+}
 function fup3(bid,d){
  let dt=new Date();let add=3;while(add>0){dt.setDate(dt.getDate()+1);const w=dt.getDay();if(w!==0&&w!==6)add--;}
  const iso=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0")+"T10:00";
@@ -115,7 +128,9 @@ function render(){
  SECS.forEach(([key,label])=>{
   const items=secData[key];
   if(key==="sold"||key==="overdue"||key==="today"||key==="emailed"||items.length){
-   const lab=document.createElement("div");lab.className="lab";lab.textContent=label+" ("+items.length+")";secs.appendChild(lab);
+   const lab=document.createElement("div");lab.className="lab";lab.textContent=label+" ("+items.length+")";
+   if(key==="old"&&items.length){const cb=document.createElement("button");cb.textContent="🗑 mark all "+items.length+" done";cb.style.cssText="margin-left:10px;border:1px solid var(--sep);background:#fff;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700;cursor:pointer";cb.onclick=()=>{if(confirm("Mark all "+items.length+" OLD rows as not interested? They leave the Well."))items.forEach(({b,r})=>{const dev=devState(b.id);const dd=r.p.replace(/D/g,"");const cur=dev[dd]||b.base[dd]||{status:"",ts:0,notes:"",dm:"",time:"",email:""};const s3=JSON.parse(JSON.stringify(cur));s3.status="notnow";s3.ts=Date.now();s3.hist=(s3.hist||[]);s3.hist.push({ts:s3.ts,st:"notnow"});dev[dd]=s3;localStorage.setItem(SKEY(b.id),JSON.stringify(dev))}),render()};lab.appendChild(cb)}
+   secs.appendChild(lab);
    const card=document.createElement("div");card.className="card";
    if(key==="sold"){TROPHIES.forEach(t=>{const tv=document.createElement("div");tv.className="row sold";tv.innerHTML='<div class="nm">'+t.label+'<span class="bdg" style="background:'+t.color+'">'+t.badge+'</span></div>';card.appendChild(tv)});}
    if(!items.length&&key!=="sold"){card.innerHTML='<div class="empty">Nothing here ✓</div>';}
