@@ -50,6 +50,7 @@ const TROPHIES=[
  {label:"Rogers-Hovatter Funeral Home — SOLD \$1,300 4-space, ORDER IN (8/20)",badge:"MILFORD DE",color:"#007aff"},
  {label:"Springvale by StoryPoint — SOLD 8/21, card by phone (deadline day)",badge:"SWARTZ CK",color:"#34c759"}
 ];
+const DEAD_DIGITS=new Set(["5087757800"]);
 const SOLD_DIGITS=new Set(["5084774025","5084285705","5088886404","7346376736","3024224025","8103740282","8102306644","8105882147"]);
 const SKEY=id=>"callstate_v2_"+id;
 const digits=p=>p.replace(/\D/g,"");
@@ -63,6 +64,7 @@ function recentcall(s){const {last}=callInfo(s);if(!last)return null;const now=n
 function classify(r,s){
  const emailed=(r.e&&r.e.length>3)||/@/.test((s&&s.notes)||"");
  if(SOLD_DIGITS.has(r.p.replace(/\D/g,"")))return null;
+ if(DEAD_DIGITS.has(r.p.replace(/\D/g,"")))return null;
  if(s&&s.status==="won")return{sec:"sold",emailed};
  if(s&&s.status==="notnow")return null;
  if(!s)return null;
@@ -150,6 +152,7 @@ function render(){
  const chips=document.getElementById("bookChips");chips.innerHTML="";
  BOOKS.forEach(b=>{
   const merged=mergedState(b);const has=Object.keys(merged).length;
+  if(!has)return;
   const c=document.createElement("button");c.className="bchip"+(bookOn[b.id]?" on":"");
   c.style.borderColor=b.color;c.textContent=b.badge+" ("+has+")";
   c.onclick=()=>{bookOn[b.id]=!bookOn[b.id];render()};chips.appendChild(c);
