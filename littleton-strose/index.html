@@ -195,6 +195,9 @@
 // ================= DATA =================
 const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Florist 💐","Travel / Tours / Recreation","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
+// in-the-book counts per category (from the 8/24 bulletin ad page) — update each new week from the wall photo
+const WALLN={"Funeral Home / Monuments":{n:2,who:"Ross Funeral + Littleton Monument"},"Dentist / Dentures":{n:1,who:"Dr. Hugh\u2019s Dental"},"Realtor / Downsizing / Senior Move":{n:1,who:"Peabody & Smith (Patty O\u2019Brien, parishioner)"},"Auto Service / Tire":{n:1,who:"Arrow Express Auto"},"Remodeling / Bath & Accessibility":{n:1,who:"BPI Design Center"},"Landscaping / Snow / Tree":{n:1,who:"Central Asphalt (paving)"},"Patron / Community Sponsor 💰":{n:2,who:"Porfido\u2019s Market + White Mountain General Store"}};
+function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
 const TOWNMI={"Littleton":[0,1],"Bethlehem":[5,1],"Sugar Hill":[6,1],"Franconia":[7,1],"Lisbon":[8,1],"Dalton":[8,1],"Waterford":[9,1],"Landaff":[9,1],"Lyman":[9,1],"Whitefield":[11,1],"Easton":[11,1],"Monroe":[12,1],"Carroll":[12,1],"Twin Mountain":[12,1],"Bath":[13,2],"Lunenburg":[14,2],"Lancaster":[15,2],"Concord VT":[16,2],"St. Johnsbury":[17,2],"Woodsville":[17,2],"Haverhill":[18,2],"Barnet":[18,2],"Danville":[22,2],"Ryegate":[22,2],"Lyndonville":[23,2]};
 const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \\$500 1sp ST JOHN XXIII (14-0127) — collect billing+terms by phone; art by email",p:"(734) 637-6736",t:"Littleton",e:"protouchhvac@gmail.com"},
@@ -647,7 +650,7 @@ function build(){
       const folded=!!FOLD[cat];
       const sec=document.createElement('div');sec.className='sec';
       const lab=document.createElement('div');lab.className='lab';
-      lab.innerHTML='<span><span class="arr">'+(folded?'▸':'▾')+'</span>'+esc(cat)+'</span><span class="n">'+rows.length+'</span>';
+      lab.innerHTML='<span><span class="arr">'+(folded?'▸':'▾')+'</span>'+esc(cat)+wallTag(cat)+'</span><span class="n">'+rows.length+'</span>';
       lab.addEventListener('click',()=>{FOLD[cat]=!FOLD[cat];build();});
       sec.appendChild(lab);
       if(!folded){
