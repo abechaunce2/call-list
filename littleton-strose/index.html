@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Milford Senior Center — ARCHIVED (DE)</title>
+<title>St. Rose of Lima Call List — Littleton NH</title>
 <style>
   :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
   @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
@@ -163,8 +163,8 @@
 <div class="wrap">
 <header>
   <a class="back" href="../">‹ All churches</a>
-  <div style="background:#ff9500;color:#fff;font-weight:700;text-align:center;padding:8px;border-radius:10px;margin-bottom:10px">📦 ARCHIVED — sell week ended Aug 22. Call data preserved. Current book: <a href="../littleton-strose/" style="color:#fff;text-decoration:underline">St. Rose of Lima — Littleton NH</a> · deals live on the <a href="../pipeline/" style="color:#fff;text-decoration:underline">💰 Pipeline</a></div><h1>Milford Senior Center — DE</h1>
-  <div class="sub"><span id="hdrcount"></span> verified leads · within ~15 mi of Milford Senior Center, 111 Park Ave, Milford DE 19963 (Kent/Sussex line — the Delaware senior belt) · MONTHLY newsletter · acct 06-5374 · ⭐ GREEN-FIELD BOOK (only HomeWell + filler) · copy a number, call in Salesforce, then mark it here</div>
+  <h1>St. Rose of Lima — Littleton NH</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · ~15-18 mi ring around St. Rose of Lima, 77 Clay St, Littleton NH 03561 (White Mountains + Northeast Kingdom — BOTH sides of the river) · WEEKLY parish bulletin · acct 04-0478 · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -193,154 +193,114 @@
 <div class="saved" id="savedflag">Saved ✓</div>
 <script>
 // ================= DATA =================
-const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Senior Center List (Swartz Creek)","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Florist 💐","Travel / Tours / Recreation","Patron / Community Sponsor 💰"];
+const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Florist 💐","Travel / Tours / Recreation","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
-const TOWNMI={"Milford":[0,1],"Lincoln":[4,1],"Houston":[5,1],"Slaughter Beach":[8,1],"Ellendale":[8,1],"Frederica":[8,1],"Milton":[11,1],"Harrington":[11,1],"Canterbury":[12,2],"Greenwood":[13,2],"Felton":[13,2],"Magnolia":[13,2],"Bridgeville":[16,2],"Georgetown":[16,2],"Camden":[16,2],"Wyoming":[17,2],"Dover":[18,2],"Lewes":[20,2]};
+const TOWNMI={"Littleton":[0,1],"Bethlehem":[5,1],"Sugar Hill":[6,1],"Franconia":[7,1],"Lisbon":[8,1],"Dalton":[8,1],"Waterford":[9,1],"Landaff":[9,1],"Lyman":[9,1],"Whitefield":[11,1],"Easton":[11,1],"Monroe":[12,1],"Carroll":[12,1],"Twin Mountain":[12,1],"Bath":[13,2],"Lunenburg":[14,2],"Lancaster":[15,2],"Concord VT":[16,2],"St. Johnsbury":[17,2],"Woodsville":[17,2],"Haverhill":[18,2],"Barnet":[18,2],"Danville":[22,2],"Ryegate":[22,2],"Lyndonville":[23,2]};
 const LEADS=[
-{c:"🔥 CLOSE — live deals",n:"🔥 SPRINGVALE (StoryPoint) — AT CORPORATE MARKETING; Natalie Ovadek (810) 588-2147 asked when-needed-by → answer said Fri 8/22; Stephanie (810) 230-6644",p:"(810) 374-0282",t:"Milford",e:"stephanie.surinck@springvaleassistedliving.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BARNETT FINANCIAL — CEO had Karen's handoff, was calling Fri 4pm — reconnect Karen if no contact",p:"(810) 695-7510",t:"Milford",e:"karen@bftwealth.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 JESSICA @ DESTINATION HEALTH & HEALING — called back 8/14, details emailed; nudge: did it land?",p:"(810) 288-4743",t:"Milford",e:"destination.health.healing@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 JEFFREY AUSTIN LAW — has 2sp $850 / 4sp $1,250 since Mon; which felt right?",p:"(810) 223-6510",t:"Milford",e:"jeffrey@jeffreyaustinlawfirm.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BLUE LINE DETAILING — very interested, msgs left; keep dialing",p:"(810) 874-7091",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 KATIE @ ALL AMERICAN — 4-space inbound; msg left 8/14; ask for Katie",p:"(781) 447-4100",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 CURLEY — send the closing-out TEXT (weeks unanswered): still want the two spots?",p:"(508) 790-4508",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"⏰ TUE 8/18: Jeremy @ J.W. Morgan Construction — HE asked for the Tuesday call",p:"(810) 691-6281",t:"Milford",e:"jeremy@jwmorganconstruction.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — SAID YES 8/20: 1-space $500 SJXXIII! Close email SENT — awaiting reply (art + billing + invoice pick) → enter order",p:"(734) 637-6736",t:"Milford",e:"protouchhvac@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"⏰ FRI 8/22: SPRINGVALE DEADLINE you gave Natalie — the go-ahead lands or the nudge goes",p:"(810) 588-2147",t:"Milford"},
-{c:"Funeral Home / Monuments",n:"⭐ Wm. V. Sipple & Son Monuments — since 1869, MILFORD'S OLDEST BUSINESS, 5th-6th gen — ask: Jennifer Boyer [own-site ✓ Grok] · ✉ sent 8/19",p:"(302) 422-4214",t:"Milford",e:"wmvsipple@verizon.net"},
-{c:"Funeral Home / Monuments",n:"🏆 SOLD 8/20 — Rogers-Hovatter Funeral Home, 4-SPACE \$1,300 — ORDER ENTERED (06-5374); Matthew Hovatter; logo PDF attached",p:"(302) 422-4025",t:"Milford",e:"rogersfhmilford@gmail.com"},
-{c:"Restaurant / Bakery / Catering",n:"Dolce Bakery & Coffee Shop (est. ~2004) — ask: Mark Dissinger [own-site ✓ Grok]",p:"(302) 422-5760",t:"Milford"},
-{c:"Florist 💐",n:"Milford Florist [own-site ✓ Grok]",p:"(302) 422-4961",t:"Milford"},
-{c:"Patron / Community Sponsor 💰",n:"E.K.A. Jewelers (since 1990) [own-site ✓ Grok]",p:"(302) 422-7138",t:"Milford"},
-{c:"Patron / Community Sponsor 💰",n:"Southern States Milford Co-Op (farm/garden, farmer-owned) [own-site ✓ Grok]",p:"(302) 422-8066",t:"Milford"},
-{c:"Medicare / Senior Insurance",n:"⭐ Select Financial Group — ask: Drew R. Sammons [own-site ✓ DR]",p:"(302) 424-7777",t:"Milford"},
-{c:"Medicare / Senior Insurance",n:"⭐ Clay A. Monroe Health Broker — ask: Clay A. Monroe (est. 1975) [own-site ✓ DR]",p:"(302) 645-6565",t:"Lewes"},
-{c:"Medicare / Senior Insurance",n:"⭐ IRACARE — ask: Wayne S. Creeden Jr. [own-site ✓ DR]",p:"(302) 376-6168",t:"Dover"},
-{c:"Medicare / Senior Insurance",n:"⭐ Michael D Frankos Agency (Nationwide) — ask: Michael Frankos (captive) [own-site ✓ DR]",p:"(302) 531-0831",t:"Dover"},
-{c:"Insurance",n:"Natalie Pardee (American National) — ask: Natalie Pardee (captive) [own-site ✓ DR]",p:"(302) 398-8827",t:"Harrington"},
-{c:"Insurance",n:"Greg Reddell State Farm — ask: Greg Reddell (captive) [own-site ✓ DR]",p:"(302) 566-1064",t:"Harrington"},
-{c:"Insurance",n:"Mid-State Insurance [own-site ✓ DR] · ✉ sent 8/19 · ask: Michael",p:"(302) 422-3058",t:"Milford",e:"michael@midstateinsurancede.com"},
-{c:"Insurance",n:"Muncie Insurance (Nationwide) — ask: Marvin Muncie Jr. (captive) [own-site ✓ DR]",p:"(302) 856-6601",t:"Georgetown"},
-{c:"Hearing / Audiology",n:"⭐ All About Audiology — ask: Stacy Sanders [own-site ✓ DR] · ✉ sent 8/19 · ask: Justine Alba",p:"(302) 738-8991",t:"Dover",e:"justine.alba@allaboutaudiologyde.com"},
-{c:"Hearing / Audiology",n:"⭐ Cape ENT & Hearing [own-site ✓ DR]",p:"(302) 703-4025",t:"Lewes"},
-{c:"Hearing / Audiology",n:"⭐ Bayside Audiology (est. 2008) [own-site ✓ DR] · ✉ sent 8/19",p:"(302) 645-7603",t:"Lewes",e:"office@baysideaudiology.com"},
-{c:"Hearing / Audiology",n:"⭐ Hear on the Shore [own-site ✓ DR] · ✉ sent 8/19",p:"(302) 313-5249",t:"Lewes",e:"hearontheshore@yahoo.com"},
-{c:"Home Health / In-Home Care",n:"⭐ Visiting Angels Sussex — ask: Karen Reed Noel (franchise-local) [own-site ✓ DR] · ✉ sent 8/19",p:"(302) 329-9475",t:"Milton",e:"knoel@visitingangels.com"},
-{c:"Home Health / In-Home Care",n:"⭐ Americare Home Solutions (independent) [own-site ✓ DR]",p:"(302) 747-7424",t:"Dover"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Procino-Wells & Woodland (est. 2005) [own-site ✓ DR]",p:"(302) 628-4140",t:"Lewes"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Brockstedt Mandalas Federico [own-site ✓ DR]",p:"(302) 677-0061",t:"Dover"},
-{c:"Funeral Home / Monuments",n:"⭐ Berry-Short Funeral (Milford) — Short family, multi-gen; chapels: Milton HQ (302) 684-8521 · Felton · Georgetown [own-site ✓] · ✉ sent 8/19 · ask: Janet",p:"(302) 422-8091",t:"Milford",e:"GJV4216@aol.com"},
-{c:"Funeral Home / Monuments",n:"⭐ Michael J Ambruso Funeral [own-site ✓ DR]",p:"(302) 734-2281",t:"Dover"},
-{c:"Funeral Home / Monuments",n:"⭐ Lofland Funeral Home — SINCE 1919 — ask: Bill + Connie Carpenter [own-site ✓]",p:"(302) 422-5416",t:"Milford"},
-{c:"Funeral Home / Monuments",n:"⭐ Pippin Funeral Home — ask: Pippin family (est. 1975) [own-site ✓ DR]",p:"(302) 697-7002",t:"Wyoming"},
-{c:"Funeral Home / Monuments",n:"⭐ Evan W. Smith Funeral (est. 2016) [own-site ✓ DR]",p:"(302) 526-4662",t:"Dover"},
-{c:"Funeral Home / Monuments",n:"⭐ Delaware Memorials [own-site ✓ DR]",p:"(302) 734-3535",t:"Dover"},
-{c:"Podiatry / Mobility / Medical Supply",n:"⭐ Delaware Podiatric Medicine — ask: Dr. Jacob Hanlon [own-site ✓ DR]",p:"(302) 674-9255",t:"Milford"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Aquacare Physical Therapy [own-site ✓ DR]",p:"(302) 491-4196",t:"Milford"},
-{c:"Medical Clinic / Primary Care",n:"First State Orthopaedics [own-site ✓ DR]",p:"(302) 735-8700",t:"Milford"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Premier PT & Sports Performance [own-site ✓ DR]",p:"(302) 449-2048",t:"Milford"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Atlantic Chiropractic [own-site ✓ DR]",p:"(302) 309-9900",t:"Milford"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Aging In Place Physical Therapy [own-site ✓ DR]",p:"(302) 444-8318",t:"Lewes"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ First State Health & Wellness — ask: Dr. Zach Tomko [own-site ✓ DR]",p:"(302) 644-5750",t:"Lewes"},
-{c:"Medical Clinic / Primary Care",n:"302 Family Medicine [own-site ✓ DR]",p:"(302) 300-3514",t:"Milford"},
-{c:"Medical Clinic / Primary Care",n:"Milford Primary Care Associates [own-site ✓ DR]",p:"(302) 536-2580",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Awayes Family Dentistry — ask: Dr. Adly Awayes (est. 1999) [own-site ✓ DR]",p:"(302) 422-7800",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ The Dental Group (est. 1974) [own-site ✓ DR]",p:"(302) 645-8993",t:"Lewes"},
-{c:"Dentist / Dentures",n:"⭐ Steward & Gaull DDS — ask: Steward+Gaull [own-site ✓ DR]",p:"(302) 422-9791",t:"Milford"},
-{c:"Bank / Credit Union",n:"Del-One Federal CU — ask: Shari Lord (Milford) (central #) [own-site ✓ DR]",p:"(302) 739-4496",t:"Milford"},
-{c:"Heating / AC",n:"Coastal Air [own-site ✓ DR]",p:"(302) 398-4668",t:"Harrington"},
-{c:"Funeral Home / Monuments",n:"⭐ McKnatt, Carpenter & Baker Funeral Home — Lofland's sister home, same Carpenter family [own-site ✓ Grok2]",p:"(302) 398-3228",t:"Harrington"},
-{c:"Restaurant / Bakery / Catering",n:"Mike & Mel's Family Restaurant — ask: Mike + Melissa Wooleyhand [Central DE chamber ✓ Grok2]",p:"(302) 697-7448",t:"Wyoming"},
-{c:"Insurance",n:"Mark Schanne State Farm (31+ yrs; captive flag) [statefarm.com ✓ Grok2] — ask: SHAWN",p:"(302) 422-2235",t:"Milford"},
-{c:"Hearing / Audiology",n:"⭐ Hearsay Services — ask: Dr. Robinson (Milford's own hearing clinic) [own-site ✓]",p:"(302) 401-4578",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Doyle Law LLC — ask: Rebecca N. Doyle [own-site ✓]",p:"(302) 532-3139",t:"Lewes"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Schmittinger & Rodriguez (major DE firm, trusts & estates) [own-site ✓]",p:"(302) 674-0140",t:"Dover"},
-{c:"Retirement / Senior Living",n:"⭐ Harmony at Kent (AL/IL/memory care; Harmony Senior Svcs operator flag) [own-site ✓] — front desk: ask ANGIE",p:"(302) 505-1920",t:"Dover"},
-{c:"Retirement / Senior Living",n:"⭐ Westminster Village (Presbyterian Senior Living nonprofit) [own-site ✓]",p:"(302) 744-3600",t:"Dover"},
-{c:"Heating / AC",n:"F.H. Furr Delmarva (big regional; flag) [own-site ✓]",p:"(302) 262-5627",t:"Georgetown"},
-{c:"Pharmacy",n:"⭐ Milford Rx Pharmacy — BRAND NEW 2025, ask: Dr. Dimpi Patel (free 10-mi delivery; new biz = hungry for visibility) [own-site ✓]",p:"(302) 503-5132",t:"Milford"},
-{c:"Pharmacy",n:"⭐ Rodney Village Pharmacy (est. 2011; mobility aids + pill packaging) [own-site ✓]",p:"(302) 747-7533",t:"Dover"},
-{c:"Pharmacy",n:"⭐ Hometown Drugs (est. 2020, drive-thru + free delivery) [own-site ✓]",p:"(302) 450-1970",t:"Harrington"},
-{c:"Pharmacy",n:"Dover Community Pharmacy (indep., GNP-network page flag) [GNP ✓]",p:"(302) 724-9323",t:"Dover"},
-{c:"Financial Planner / Retirement",n:"⭐ CSG Financial LLC (Dover RIA) [own-site ✓]",p:"(302) 678-8701",t:"Dover"},
-{c:"Medicare / Senior Insurance",n:"⭐ Downes Insurance Associates — MILFORD-proper independent agency [own-site ✓]",p:"(302) 422-8863",t:"Milford"},
-{c:"Insurance",n:"L&W Insurance (Dover independent) [own-site ✓]",p:"(302) 674-3500",t:"Dover"},
-{c:"Heating / AC",n:"J.C. Eisenbrey & Son — Milford family HVAC [own-site ✓]",p:"(302) 422-5845",t:"Milford"},
-{c:"Heating / AC",n:"Atlantic Refrigeration & AC (serves Milford, IAQ specialists) [own-site ✓]",p:"(302) 856-9300",t:"Georgetown"},
-{c:"Plumbing / Sewer",n:"Lindale Plumbing — Milford proper [own-site ✓]",p:"(302) 422-6445",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Chesapeake Home Services (17+ yrs, plumbing+HVAC) [own-site ✓]",p:"(302) 732-6006",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Messina Plumbing, Electric & HVAC (35+ yrs) — ask: Charlie Messina [own-site ✓]",p:"(302) 674-5696",t:"Dover"},
-{c:"Plumbing / Sewer",n:"K.B.'s Plumbing Inc. [own-site ✓]",p:"(302) 697-0571",t:"Dover"},
-{c:"Florist 💐",n:"Not Too Shabby Florist (Milford's 2nd florist) [own-site ✓] · ✉ sent 8/19 · ask: Hailey",p:"(302) 200-0752",t:"Milford",e:"nottooshabby.hailey@gmail.com"},
-{c:"Patron / Community Sponsor 💰",n:"⭐ Haven Lake Animal Hospital (Milford vet — seniors + pets) [own-site ✓ mill]",p:"(302) 422-8100",t:"Milford"},
-{c:"Remodeling / Bath & Accessibility",n:"Hickman Overhead Door — est. 1978 [own-site ✓ mill]",p:"(302) 422-4249",t:"Milford"},
-{c:"Patron / Community Sponsor 💰",n:"Fur-Baby Pet Resort (boarding+grooming) [own-site ✓ mill]",p:"(302) 725-5078",t:"Milford"},
-{c:"Insurance",n:"Dorey Insurance & Financial — ask: Angela Dorey — Milford proper [own-site ✓]",p:"(302) 424-8459",t:"Milford"},
-{c:"Medical Clinic / Primary Care",n:"Phases Medical Spa (city-list) [own-site ✓ mill]",p:"(302) 500-4220",t:"Milford"},
-{c:"Medical Clinic / Primary Care",n:"⭐ Ultrasound Express (diagnostic imaging, city-list) [own-site ✓ mill]",p:"(302) 422-2612",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"La Hacienda (downtown anchor, city-list) [own-site ✓ mill]",p:"(302) 735-4677",t:"Milford"},
-{c:"Realtor / Downsizing / Senior Move",n:"Joanne Milton Real Estate (city-list) [own-site ✓ mill] · ✉ sent 8/19 · ask: Joanne",p:"(302) 245-3346",t:"Milford",e:"jmiltonre@gmail.com"},
-{c:"Financial Planner / Retirement",n:"Starkey & Company PA (CPA firm, city-list) [own-site ✓ mill]",p:"(302) 422-5530",t:"Milford"},
-{c:"Bank / Credit Union",n:"Tidemark Federal CU — Milford branch (central # flag) [own-site ✓ mill]",p:"(302) 629-0100",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Family Dentistry of Milford [YP dedicated]",p:"(302) 422-6924",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Steven Alban Family Dentistry [YP dedicated] · ✉ sent 8/19",p:"(302) 422-9637",t:"Milford",e:"smile@albandental.com"},
-{c:"Dentist / Dentures",n:"⭐ Delaware Pediatric Dentistry (12 years) [YP dedicated]",p:"(302) 315-2019",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ William, Leighton L, DDS [YP dedicated]",p:"(302) 930-9915",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Demartin & Associates [YP dedicated]",p:"(302) 424-1185",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Pagan-Perez, Mildred Y, DMD [YP dedicated]",p:"(302) 424-8512",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Diamond State Dentistry [YP dedicated]",p:"(302) 430-0976",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Bunting-Clark, Lucinda K, DDS [YP dedicated]",p:"(302) 424-7976",t:"Milford"},
-{c:"Dentist / Dentures",n:"⭐ Mercer, Sean M, DDS [YP dedicated]",p:"(302) 684-1100",t:"Milton"},
-{c:"Dentist / Dentures",n:"⭐ James Anderson [YP dedicated]",p:"(302) 335-3051",t:"Felton"},
-{c:"Eye / Optometry",n:"⭐ Halpern Eye Care (80 years) [YP dedicated] · ✉ sent 8/19 · MyEyeDr-affiliated",p:"(302) 422-2020",t:"Milford",e:"dhobbs@myeyedr.com"},
-{c:"Eye / Optometry",n:"⭐ Underwood, Lance E, OD [YP dedicated]",p:"(302) 651-4413",t:"Milford"},
-{c:"Eye / Optometry",n:"⭐ Castillo, Laura, OD [YP dedicated]",p:"(302) 422-8188",t:"Milford"},
-{c:"Eye / Optometry",n:"⭐ Heaney, Karen L, OD [YP dedicated]",p:"(302) 424-5420",t:"Milford"},
-{c:"Eye / Optometry",n:"⭐ Delaware Eyecare Center (11 years) [YP dedicated]",p:"(302) 422-5155",t:"Milford"},
-{c:"Eye / Optometry",n:"⭐ Delaware Eye Care Center [YP dedicated]",p:"(302) 422-5668",t:"Milford"},
-{c:"Eye / Optometry",n:"⭐ Harrington Eye Care Center (28 years) [YP dedicated]",p:"(302) 398-8404",t:"Harrington"},
-{c:"Eye / Optometry",n:"⭐ Sussex Eye Center PA [YP dedicated]",p:"(302) 856-2020",t:"Georgetown"},
-{c:"Eye / Optometry",n:"⭐ Delaware Eye Clinics (23 years) [YP dedicated]",p:"(302) 684-2020",t:"Milton"},
-{c:"Auto Service / Tire",n:"One Stop Auto Shop (21 yrs) [YP dedicated]",p:"(302) 213-3324",t:"Milford"},
-{c:"Auto Service / Tire",n:"William T Wadkins Garage (YP-confirmed, Grok quarantine resolved) [YP dedicated]",p:"(302) 422-0265",t:"Milford"},
-{c:"Auto Service / Tire",n:"Bud's Auto Body (42 yrs) [YP dedicated]",p:"(302) 422-8448",t:"Milford"},
-{c:"Auto Service / Tire",n:"Shorts's Auto Repair (29 yrs) [YP dedicated]",p:"(302) 422-2886",t:"Milford"},
-{c:"Auto Service / Tire",n:"Clear Definition Auto Body (37 yrs) [YP dedicated]",p:"(302) 503-7560",t:"Milford"},
-{c:"Auto Service / Tire",n:"Walls Service Center (68 YEARS) [YP dedicated]",p:"(302) 422-8110",t:"Milford"},
-{c:"Auto Service / Tire",n:"Second Chance Auto Reconditioning (16 yrs) [YP dedicated]",p:"(302) 491-4497",t:"Milford"},
-{c:"Auto Service / Tire",n:"Carrillo Car Care [YP dedicated]",p:"(302) 422-7760",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Milford Diner (YP-confirmed — Grok quarantine resolved) [YP dedicated]",p:"(302) 424-0222",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"West Side Restaurant (31 yrs) [YP dedicated]",p:"(302) 424-4888",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Georgia House Restaurant (local diner) [YP dedicated]",p:"(302) 422-6763",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Mama Maria Italian Restaurant (41 yrs) [YP dedicated]",p:"(302) 422-2661",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Arena's at Milford (DE family group) [YP dedicated]",p:"(302) 422-3354",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Park Place Restaurant & Lounge [YP dedicated]",p:"(302) 422-2112",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Meding & Son Seafood (43 yrs) [YP dedicated]",p:"(302) 335-3944",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Hometown Diner [YP dedicated]",p:"(302) 424-1100",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"My Sister's Fault (bakery, 8 yrs) [YP dedicated]",p:"(302) 503-7446",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Benvenuto (13 yrs) [YP dedicated]",p:"(302) 265-2652",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Aunt Mary's Soul Food & Crab House (29 yrs) [YP dedicated]",p:"(302) 422-7685",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Surf & Turf Seafood & Steak (11 yrs) [YP dedicated]",p:"(302) 491-4532",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Touch of Italy [YP dedicated]",p:"(302) 491-6004",t:"Milford"},
-{c:"Hearing / Audiology",n:"⭐ Hearing Tinnitus Balance Solutions / Direct Care (Milford proper) [YP dedicated]",p:"(302) 722-8193",t:"Milford"},
-{c:"Hearing / Audiology",n:"⭐ Dover Telex Hearing Aid Center (13 yrs) [YP dedicated]",p:"(302) 734-8620",t:"Dover"},
-{c:"Hearing / Audiology",n:"⭐ Sound Advice Hearing Aid Centers (39 yrs) [YP dedicated] · ✉ sent 8/19 · HearUSA-owned flag",p:"(302) 644-1268",t:"Lewes",e:"18002@hearusa.com"},
-{c:"Hearing / Audiology",n:"⭐ International Hearing Systems [YP dedicated]",p:"(302) 645-8091",t:"Lewes"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Adkins Law Firm — ask: Jason W. Adkins (estate planning, Milton) [own-site ✓]",p:"(302) 505-5773",t:"Milton"},
-{c:"Physical Therapy / Chiropractic",n:"302 Chiropractic — ask: Dr. Epps [own-site ✓]",p:"(302) 386-7002",t:"Lewes"},
-{c:"Podiatry / Mobility / Medical Supply",n:"⭐ Delaware Total Foot & Ankle — Drs. Wendolowski + Kane [own-site ✓]",p:"(302) 297-8431",t:"Lewes"},
-{c:"Physical Therapy / Chiropractic",n:"Delaware Integrative Healthcare — ask: Dr. Adkins [own-site ✓]",p:"(302) 744-8650",t:"Dover"},
-{c:"Physical Therapy / Chiropractic",n:"Dover Health Care Center — Drs. Epps + Chi [own-site ✓]",p:"(302) 736-0330",t:"Dover"},
-{c:"Plumbing / Sewer",n:"⭐ Henry Eashum & Son — SINCE 1947, 79 YEARS (Camden institution) [own-site ✓]",p:"(302) 697-6164",t:"Camden"},
-{c:"Hearing / Audiology",n:"⭐ Brandywine Hearing Center (Dover; regional-group flag) [own-site ✓]",p:"(302) 387-0306",t:"Dover"},
-{c:"Dentist / Dentures",n:"⭐ Family Dental Associates — ask: Dr. Heather Boyle [own-site ✓]",p:"(302) 674-8810",t:"Dover"},
-{c:"Eye / Optometry",n:"⭐ Dover Family Eye Care — 41 YEARS (alt line 734-3511) [own-site ✓]",p:"(302) 410-7724",t:"Dover"},
-{c:"Dentist / Dentures",n:"⭐ Williamson Dental Solutions — ask: Dr. Richard Williamson [own-site ✓]",p:"(302) 734-8887",t:"Dover"},
-{c:"Physical Therapy / Chiropractic",n:"Dover Family Chiropractic — ask: Dr. Bryan Errico [own-site ✓]",p:"(302) 531-1900",t:"Camden"},
-{c:"Heating / AC",n:"Air Quality HVAC (Camden-Wyoming) [own-site ✓]",p:"(302) 697-1475",t:"Wyoming"},
-{c:"Roofing / Siding / Gutters",n:"Fadely Co Roofing & Sheet Metal (Felton) [own-site ✓]",p:"(302) 943-4240",t:"Felton"},
-{c:"Dentist / Dentures",n:"American Dental Care (Dover group) [own-site ✓]",p:"(302) 734-7634",t:"Dover"},
-{c:"Heating / AC",n:"Summit Heating & AC (Dover-based) [own-site ✓]",p:"(302) 378-1203",t:"Dover"},
+{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \\$500 1sp ST JOHN XXIII (14-0127) — collect billing+terms by phone; art by email",p:"(734) 637-6736",t:"Littleton",e:"protouchhvac@gmail.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 BERNADETTA / Chant Realtors — \\$750 2sp ST PATRICK MILFORD PA (03-1332) — awaiting her email; office (570) 296-7717",p:"(332) 220-7410",t:"Littleton",e:"bcastellano@chantre.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 HEATHER ATWOOD / Travis Landscape — CORPUS (03-0377) — pricing sent Fri; call if quiet",p:"(617) 592-6991",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — Monday callback; museum main (508) 775-0331",p:"(508) 364-5039",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Westborn Market — ST JOHN XXIII — ask for STACY (your Friday note) [LW chamber ✓]",p:"(734) 524-1000",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Kris @ Alliance Financial — SWARTZ CREEK (15-0694) — decision lady BACK TODAY",p:"(810) 232-2300",t:"Littleton",e:"kris@afgconsultants.com"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: K.B.'s Plumbing (Kenny Boots) — MILFORD (06-5374) — \\$500 quoted, follow-up due today",p:"(302) 697-0571",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: First State Health & Wellness — MILFORD — skelly@ emailed; follow-up due",p:"(302) 644-5750",t:"Littleton",e:"skelly@firststatehealth.com"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Air Quality HVAC — MILFORD — follow-up due",p:"(302) 697-1475",t:"Littleton",e:"AirQualityHVACservices@gmail.com"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: American Dental Care — MILFORD — follow-up due",p:"(302) 734-7634",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"🔥 JEFFREY AUSTIN LAW — SWARTZ CREEK — has 2sp \\$850/4sp \\$1,250; which one?",p:"(810) 223-6510",t:"Littleton",e:"jeffrey@jeffreyaustinlawfirm.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 JESSICA @ DESTINATION HEALTH — SWARTZ CREEK — details emailed; did it land?",p:"(810) 288-4743",t:"Littleton",e:"destination.health.healing@gmail.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 BLUE LINE DETAILING — SWARTZ CREEK — very interested, phone-only",p:"(810) 874-7091",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"🔥 KATIE @ ALL AMERICAN — HOLY APOSTLES (04-0536) — 4-space want",p:"(781) 447-4100",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"🔥 CURLEY — TEXT: still want the two spots? — CAPE",p:"(508) 790-4508",t:"Littleton"},
+{c:"🔥 CLOSE — live deals",n:"🔥 BONNIE @ ALTERNATIVE ELDERLY CARE — SWARTZ CREEK — emailed 8/21, fresh-opp flag",p:"(810) 691-9749",t:"Littleton",e:"altelder@aol.com"},
+{c:"Funeral Home / Monuments",n:"⭐ Ross Funeral Home — since 1967, dir. Tammy Ross [own-site ✓✓ 2-source]",p:"(603) 444-5377",t:"Littleton"},
+{c:"Funeral Home / Monuments",n:"⭐ Phaneuf Funeral Homes — Littleton chapel (NH family network, 4th gen) [own-site ✓✓]",p:"(603) 444-3311",t:"Littleton"},
+{c:"Funeral Home / Monuments",n:"⭐ Ricker Funeral Home — Adam Smith & Tammy Ross-Smith (Ross family tie!) [own-site ✓]",p:"(603) 747-2717",t:"Woodsville"},
+{c:"Funeral Home / Monuments",n:"⭐ Sayles Funeral Home [own-site ✓✓]",p:"(802) 748-3955",t:"St. Johnsbury"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Law Office of Michael M. Ransmeier — since 1990 [own-site ✓]",p:"(603) 444-2454",t:"Littleton"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Samaha Russell Hodgdon — ask: Jody Hodgdon, estate planning [firm-site ✓]",p:"(603) 444-2552",t:"Littleton"},
+{c:"Elder Law / Estate Attorney",n:"Harden Law Offices — Leonard Harden [own-site ✓]",p:"(603) 788-2080",t:"Lancaster"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Gensburg & Greaves — 80 yrs combined [own-site ✓]",p:"(802) 748-5338",t:"St. Johnsbury"},
+{c:"Elder Law / Estate Attorney",n:"Clarke Atwell — 29 yrs [own-site ✓]",p:"(802) 424-1717",t:"St. Johnsbury"},
+{c:"Elder Law / Estate Attorney",n:"Wendy E. Roberts — family & estate [own-site ✓]",p:"(603) 684-2351",t:"Lancaster"},
+{c:"Elder Law / Estate Attorney",n:"Upton & Hatfield — ask: James Raymond [firm-site ✓]",p:"(603) 788-2410",t:"Lancaster"},
+{c:"Financial Planner / Retirement",n:"Driscoll & Co CPA [chamber ✓]",p:"(603) 444-6733",t:"Littleton"},
+{c:"Financial Planner / Retirement",n:"⭐ Keeler Accounting — Daniel Keeler, 35 yrs [own-site ✓✓]",p:"(603) 444-7272",t:"Littleton"},
+{c:"Financial Planner / Retirement",n:"⭐ Creative Financial Strategies — since 1975 [own-site ✓]",p:"(603) 444-7035",t:"Littleton"},
+{c:"Financial Planner / Retirement",n:"A.M. Peisch & Co CPAs [own-site ✓]",p:"(802) 748-5654",t:"St. Johnsbury"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Michael Green (captive-brand, local buyer) [EJ page ✓]",p:"(603) 207-2728",t:"Littleton"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — James Benoit [EJ page ✓]",p:"(603) 788-4575",t:"Lancaster"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Eric Wilson [EJ page ✓]",p:"(802) 748-0040",t:"St. Johnsbury"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Shaina Calhoun [EJ page ✓]",p:"(802) 397-9888",t:"St. Johnsbury"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Tom O'Reilly [EJ page ✓]",p:"(802) 535-3328",t:"St. Johnsbury"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Larry Cipollone [EJ page ✓]",p:"(802) 397-5114",t:"St. Johnsbury"},
+{c:"Financial Planner / Retirement",n:"Edward Jones — Lauren Stinehour [EJ page ✓]",p:"(802) 748-5377",t:"St. Johnsbury"},
+{c:"Insurance",n:"⭐ Hunkins & Eaton Agency — Littleton institution [local dir — spot-check]",p:"(603) 444-3975",t:"Littleton"},
+{c:"Insurance",n:"Brad Bailey State Farm (captive flag) [local dir]",p:"(603) 444-4420",t:"Littleton"},
+{c:"Insurance",n:"⭐ Darrell A. Louis Insurance & Financial [own-site ✓]",p:"(603) 444-4801",t:"Littleton"},
+{c:"Insurance",n:"⭐ Carter Insurance Agency [own-site ✓]",p:"(802) 748-8081",t:"St. Johnsbury"},
+{c:"Insurance",n:"⭐ Barrett Insurance — Mike Barrett, family agency [own-site ✓]",p:"(802) 748-5224",t:"St. Johnsbury"},
+{c:"Home Health / In-Home Care",n:"⭐ North Country Home Health & Hospice (nonprofit) [own-site ✓]",p:"(603) 444-5317",t:"Littleton"},
+{c:"Retirement / Senior Living",n:"⭐ The Village at Riverglen — assisted living [operator-site ✓]",p:"(603) 444-8880",t:"Littleton"},
+{c:"Medical Clinic / Primary Care",n:"Ammonoosuc Community Health — Littleton main (+ Franconia/Whitefield/Woodsville clinics) [own-site ✓]",p:"(603) 444-2464",t:"Littleton"},
+{c:"Hearing / Audiology",n:"⭐ Hear NH — Jason Vanier, BC-HIS [own-site ✓]",p:"(603) 259-1977",t:"Littleton"},
+{c:"Hearing / Audiology",n:"LRH Audiology (hospital dept) [hospital site ✓]",p:"(603) 259-7692",t:"Littleton"},
+{c:"Eye / Optometry",n:"⭐ Littleton Eye Care Center [own-site ✓]",p:"(603) 444-2592",t:"Littleton"},
+{c:"Eye / Optometry",n:"Woodsville Eye Care Center (same practice) [own-site ✓]",p:"(603) 747-3190",t:"Woodsville"},
+{c:"Eye / Optometry",n:"⭐ Hometown Eye Care — Dr. Joel Tuite [own-site ✓]",p:"(603) 259-1400",t:"Littleton"},
+{c:"Eye / Optometry",n:"Hometown Eye Care of Lancaster [own-site — number as cited, spot-check]",p:"(603) 444-7117",t:"Lancaster"},
+{c:"Eye / Optometry",n:"⭐ Shippee Family Eye Care — Littleton [own-site ✓]",p:"(603) 444-2484",t:"Littleton"},
+{c:"Eye / Optometry",n:"Shippee Family Eye Care — Lancaster [own-site ✓]",p:"(603) 788-3561",t:"Lancaster"},
+{c:"Eye / Optometry",n:"Shippee Family Eye Care — St. Johnsbury [own-site ✓]",p:"(802) 748-3536",t:"St. Johnsbury"},
+{c:"Dentist / Dentures",n:"⭐ Santilli Family Dentistry [own-site ✓]",p:"(603) 444-6411",t:"Littleton"},
+{c:"Dentist / Dentures",n:"⭐ Littleton Dental Care — Dr. Brian Reeder [own-site ✓]",p:"(603) 444-7761",t:"Littleton"},
+{c:"Dentist / Dentures",n:"St. Johnsbury Dental Associates [own-site ✓]",p:"(802) 748-9357",t:"St. Johnsbury"},
+{c:"Physical Therapy / Chiropractic",n:"⭐ Dan Wyand PT & Associates [own-site ✓]",p:"(802) 748-3722",t:"St. Johnsbury"},
+{c:"Physical Therapy / Chiropractic",n:"Dan Wyand PT — Lyndonville branch [own-site ✓]",p:"(802) 745-1105",t:"Lyndonville"},
+{c:"Physical Therapy / Chiropractic",n:"⭐ North Country Chiropractic — Littleton [own-site ✓ multi-loc]",p:"(603) 575-5764",t:"Littleton"},
+{c:"Physical Therapy / Chiropractic",n:"North Country Chiropractic — St. Johnsbury [own-site ✓✓]",p:"(802) 748-3166",t:"St. Johnsbury"},
+{c:"Heating / AC",n:"⭐⭐ Fitch Fuel Co. — 5th generation since 1923, oil + propane [own-site ✓✓]",p:"(603) 788-4904",t:"Lancaster"},
+{c:"Plumbing / Sewer",n:"⭐ Roland C. Abbott Plumbing & Heating — 24/7, since 2001 [own-site ✓]",p:"(603) 444-7100",t:"Littleton"},
+{c:"Electrician",n:"⭐ Norris Davis Electric [own-site ✓]",p:"(603) 837-9912",t:"Whitefield"},
+{c:"Roofing / Siding / Gutters",n:"Roofing Guys [own-site ✓]",p:"(603) 575-1656",t:"Littleton"},
+{c:"Landscaping / Snow / Tree",n:"⭐ Green Acres Landscaping — 20+ yrs [own-site ✓]",p:"(603) 991-7435",t:"Franconia"},
+{c:"Auto Service / Tire",n:"⭐ Mike's Garage [own-site ✓]",p:"(603) 787-9011",t:"Woodsville"},
+{c:"Auto Service / Tire",n:"Goose Lane Truck & Auto [FMCSA record — spot-check]",p:"(603) 747-2541",t:"Bath"},
+{c:"Bank / Credit Union",n:"⭐ Passumpsic Bank — Littleton (mutual community bank) [chamber ✓]",p:"(603) 444-1370",t:"Littleton"},
+{c:"Bank / Credit Union",n:"Passumpsic Bank — Lancaster [chamber ✓]",p:"(603) 788-4715",t:"Lancaster"},
+{c:"Bank / Credit Union",n:"Passumpsic Bank — St. Johnsbury [own-site ✓]",p:"(802) 748-3196",t:"St. Johnsbury"},
+{c:"Bank / Credit Union",n:"⭐ Union Bank — Littleton Main St [own-site ✓]",p:"(603) 444-5321",t:"Littleton"},
+{c:"Bank / Credit Union",n:"Union Bank — Littleton Dells Rd [own-site ✓]",p:"(603) 444-7136",t:"Littleton"},
+{c:"Bank / Credit Union",n:"Union Bank — St. Johnsbury Railroad St [own-site ✓]",p:"(802) 748-3131",t:"St. Johnsbury"},
+{c:"Bank / Credit Union",n:"Union Bank — St. Johnsbury Portland St [own-site ✓]",p:"(802) 748-3121",t:"St. Johnsbury"},
+{c:"Bank / Credit Union",n:"Community National Bank [own-site ✓]",p:"(802) 748-3605",t:"St. Johnsbury"},
+{c:"Bank / Credit Union",n:"Bar Harbor Bank & Trust — Franconia [own-site ✓]",p:"(603) 823-8199",t:"Franconia"},
+{c:"Bank / Credit Union",n:"Bar Harbor Bank & Trust — Woodsville [own-site ✓]",p:"(603) 747-0477",t:"Woodsville"},
+{c:"Bank / Credit Union",n:"⭐ Woodsville Guaranty Savings — since 1889, Littleton Cottage St [own-site ✓]",p:"(603) 444-5237",t:"Littleton"},
+{c:"Bank / Credit Union",n:"Woodsville Guaranty Savings — Littleton Meadow St [own-site ✓]",p:"(603) 444-0740",t:"Littleton"},
+{c:"Realtor / Downsizing / Senior Move",n:"⭐ Badger Peabody & Smith — Franconia [own-site ✓]",p:"(603) 823-5700",t:"Franconia"},
+{c:"Realtor / Downsizing / Senior Move",n:"Badger Peabody & Smith — Littleton [spot-check number]",p:"(603) 444-1294",t:"Littleton"},
+{c:"Realtor / Downsizing / Senior Move",n:"⭐ Lisa Hampton Real Estate (independent) [own-site ✓]",p:"(603) 788-5106",t:"Lancaster"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Gold House Pizza & Greek — 30+ yrs family [own-site ✓]",p:"(603) 444-6190",t:"Littleton"},
+{c:"Restaurant / Bakery / Catering",n:"Sour's Taverna [own-site ✓]",p:"(603) 932-5272",t:"Littleton"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Cold Mountain Cafe — since 1999 [own-site ✓]",p:"(603) 869-2500",t:"Bethlehem"},
+{c:"Restaurant / Bakery / Catering",n:"The Place Above The Notch [own-site ✓]",p:"(603) 869-0011",t:"Bethlehem"},
+{c:"Restaurant / Bakery / Catering",n:"Franconia Coffee House [own-site ✓]",p:"(603) 823-2142",t:"Franconia"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Anthony's Diner [town site ✓]",p:"(802) 748-3613",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Spoon Thawee Thai [town site ✓]",p:"(802) 424-1100",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Kingdom Crust [town site ✓]",p:"(802) 424-1744",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Salt Bistro [town site ✓]",p:"(802) 424-1690",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"New East Garden [town site ✓]",p:"(802) 748-9088",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"St. Johnsbury House of Pizza [town site ✓]",p:"(802) 748-5144",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"The Buttery [town site ✓]",p:"(802) 424-1710",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Amato's [town site ✓]",p:"(802) 748-1331",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Riley's Fish Shack [town site ✓]",p:"(802) 751-1111",t:"St. Johnsbury"},
+{c:"Restaurant / Bakery / Catering",n:"Javier Bills (name as town-listed — confirm on call) [town site]",p:"(802) 424-1301",t:"St. Johnsbury"},
+{c:"Patron / Community Sponsor 💰",n:"⭐ Fogg's Lumber & Hardware [parent-site ✓]",p:"(603) 747-8151",t:"Woodsville"},
+{c:"Patron / Community Sponsor 💰",n:"⭐ Bethlehem Village Store — open 365 days [town site ✓]",p:"(603) 869-2201",t:"Bethlehem"},
+{c:"Patron / Community Sponsor 💰",n:"Big Papa's Fruit & Vegetable [local dir — spot-check]",p:"(603) 444-2311",t:"Littleton"},
+{c:"Patron / Community Sponsor 💰",n:"Noah's Ark Pet Shop [local dir — spot-check]",p:"(603) 444-0307",t:"Littleton"},
+{c:"Patron / Community Sponsor 💰",n:"White Mountain Footwear Group (manufacturer, patron-tier) [trade dir]",p:"(603) 838-6694",t:"Lisbon"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -360,7 +320,7 @@ const STATUS={
 const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
-const LIST_ID="milford-111park-seniorcenter-de";
+const LIST_ID="strose-77clay-littleton-nh";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
@@ -409,7 +369,7 @@ const FOLD={};
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
 let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
-function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' MI');}
+const VTT=new Set(['St. Johnsbury','Waterford','Barnet','Danville','Lunenburg','Ryegate','Concord VT','Lyndonville']);function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' '+(VTT.has(town)?'VT':'NH'));}
 function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MI');}
 function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
@@ -882,16 +842,16 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
- '<h3>⚠️ SENIOR CENTER #2 — DELAWARE</h3><p><b>Milford Senior Center, 111 Park Ave, Milford DE 19963</b> · (302) 422-3385 · milfordseniorcenter.net. NOT a church: <b>never say parish, Mass, bulletin, parishioners — say "the senior center newsletter."</b> MONTHLY = <b>divide prices by 12, never by 52.</b> <b>Acct 06-5374.</b> ⭐ <b>GREEN-FIELD CONFIRMED:</b> the ad page has ONE local advertiser — <b>HomeWell Care Services (in-home care, statewide; do NOT pitch)</b> — plus national filler (SMP/MDMedAlert/ADT) and four advertise-here cells. <b>Every category is OPEN. The pitch: “brand-new book for the senior center — first one in owns the category.”</b></p>'+
- '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the monthly newsletter for the <b>Milford Senior Center</b>. Got 30 seconds?” Then: “it goes out to seniors across Milford and the surrounding towns every month, and I’ve got space open.”</p>'+
- '<h3>The area — say it plainly</h3><p><b>Lower Delaware is a retirement belt</b> — seniors are the growth population here, and Milford sits on the Kent/Sussex line with <b>Bayhealth’s hospital campus right in town</b>. The center is where the county’s most concentrated senior audience shows up every week.</p>'+
- '<h3>🎯 Who to call first (senior ICP)</h3><p>Medicare/senior insurance agents (⭐ AEP budgets lock NOW — Oct 15 enrollment) · hearing aids · funeral homes/monuments/pre-planning · assisted/independent living · home health & in-home care · elder law & estate attorneys · financial/retirement advisors · pharmacies · mobility/medical supply · dentists/dentures · optometry · PT/chiro · senior-move realtors · banks/credit unions · HVAC/plumbing/roofing · family restaurants/diners · florists · bus tours & travel.</p>'+
- '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>Milford Senior Center newsletter</b> — I’ve got advertising space open and I think you’d be a great fit for this audience. Give me a call back at (440) 867-0599. Thanks!”</p>'+
- '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Free ad design OR they send their own art — <b>both paths, always</b>: “You’re welcome to send over your own ad design if you have one, or our design team will build it for you at no cost. Either way, you approve the final and you’re in the next issue.” Print includes the digital listing + link on MyCommunityOnline.</p>'+
- '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — what’s the best address? And so I don’t pester you: is this a maybe, or a no?”<br><b>“It’s only seniors.”</b> → “That’s the point — seniors are who buys what you sell, and their kids read it too.”<br><b>“Too expensive.”</b> → divide by 12, then “what’s one new customer worth to you?”</p>'+
- '<h3>At the close — multiples</h3><p>“Do it for the year, I’ll check back in a few months — and if this works I’ve got other community books.” Second senior center = the senior-center PLAYBOOK is now repeatable; every close proves the next.</p>'+
- '<h3 class="warn">Don’t sell / don’t say</h3><p class="warn">Abortion/PP · elections/candidates · psychics/tarot · alcohol needs an OK · CBD: senior centers often allow — ASK MARK first. Never claim to be center staff. Never promise exclusivity or placement.</p>'+
- '<h3>Discipline</h3><p>Document EVERY call in Salesforce · convert at any interest signal · Closed Won AND Create Ad Order = two steps · never upload .MSG · new-week emails: bridge line + straight to substance + both-design-paths ending.</p>';
+ '<h3>⛪ BACK TO A PARISH — WEEK 7, CHURCH #7, STATE #5</h3><p><b>St. Rose of Lima Church, 77 Clay St, Littleton NH 03561</b> · (603) 444-2593 · <b>Acct 04-0478</b> · Diocese of Manchester. <b>WEEKLY bulletin (52 issues) — parish language is BACK ON: parishioners, Mass, bulletin.</b> Weekly math again: \$1,000/yr ≈ \$19 a week. Cluster/linked parishes + advertiser wall + rate card: pull from SF + the bulletin — UNKNOWN until checked, so no "only X in the book" claims yet.</p>'+
+ '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Rose of Lima here in Littleton</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
+ '<h3>The area — say it plainly</h3><p>Rural White Mountains: <b>older, homeowner, generational-loyalty country</b> — people hire the plumber their church knows. Littleton + St. Johnsbury are the two hub towns; the bulletin reaches the families both hubs live off.</p>'+
+ '<h3>🎯 Who to call first</h3><p>Funeral homes/monuments · elder law &amp; estate · financial advisors (the Edward Jones offices = individual local buyers) · independent insurance/Medicare · heating oil &amp; propane (⭐ WINTER IS THE SEASON — Fitch Fuel class) · HVAC/plumbing/electric · home health &amp; senior living · hearing · optometry/dental · banks (community banks here LOVE local sponsorship) · realtors · family restaurants/diners · hardware/farm stores (patron class).</p>'+
+ '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Rose of Lima bulletin here in Littleton</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
+ '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Both design paths, always: “Send over your own ad design if you have one, or our design team builds it for you at no cost. Either way, you approve the final and you&rsquo;re in the next issue.” Print includes the free digital ad on the parish&rsquo;s ParishesOnline page.</p>'+
+ '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Small town, everyone knows me.”</b> → “Exactly — this keeps it that way. It&rsquo;s the cheapest way to stay the name they think of first.”<br><b>“Too expensive.”</b> → divide by 52, then “what&rsquo;s one new customer worth?”</p>'+
+ '<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works I&rsquo;ve got other parishes.” (Check SF for linked parishes first — north-country churches often share one pastor.)</p>'+
+ '<h3 class="warn">Don&rsquo;t sell / don&rsquo;t say</h3><p class="warn">Abortion/PP · elections · psychics/tarot · alcohol needs an OK · CBD needs Mark. Never claim to be church staff. Never promise exclusivity or placement.</p>'+
+ '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: the ATTRAX pull (zip 03561;15 + 04-0478 inactives).</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
