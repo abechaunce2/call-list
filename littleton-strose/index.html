@@ -316,7 +316,10 @@ const LEADS=[
 {c:"Realtor / Downsizing / Senior Move",n:"⭐ RE/MAX Northern Edge [NG chamber ✓]",p:"(603) 788-2131",t:"Lancaster"},
 {c:"Auto Service / Tire",n:"⭐ Schurman Motor Company [NG chamber ✓]",p:"(603) 788-4443",t:"Lancaster"},
 {c:"Retirement / Senior Living",n:"⭐ The Morrison Communities [NG chamber ✓]",p:"(603) 837-3640",t:"Whitefield"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Wendell Rexford & Sons — excavation/septic [NG chamber ✓]",p:"(603) 837-2451",t:"Whitefield"}
+{c:"Landscaping / Snow / Tree",n:"⭐ Wendell Rexford & Sons — excavation/septic [NG chamber ✓]",p:"(603) 837-2451",t:"Whitefield"},
+{c:"Heating / AC",n:"⭐ Presby Energy — family oil/kerosene/diesel/propane + fuel pumps at exit 38 [own-site ✓ — the blog number was wrong, this is their real line]",p:"(603) 823-5298",t:"Franconia"},
+{c:"Heating / AC",n:"⭐ Jeff MacKay Mechanical — 185 School St [own-site ✓, quarantine resolved]",p:"(603) 616-9664",t:"Littleton"},
+{c:"Electrician",n:"⭐ One Ten Electric — Scott, 635 Town Forest Rd [own-site ✓]",p:"(802) 473-8993",t:"St. Johnsbury"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
