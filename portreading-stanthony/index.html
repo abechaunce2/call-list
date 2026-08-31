@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>St. Rose of Lima — ARCHIVED (NH)</title>
+<title>St. Anthony of Padua Call List — Port Reading NJ</title>
 <style>
   :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
   @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
@@ -163,8 +163,8 @@
 <div class="wrap">
 <header>
   <a class="back" href="../">‹ All churches</a>
-  <div style="background:#ff9500;color:#fff;font-weight:700;text-align:center;padding:8px;border-radius:10px;margin-bottom:10px">📦 ARCHIVED — sell week ended Aug 29. Call data preserved. Current book: <a href="../portreading-stanthony/" style="color:#fff;text-decoration:underline">St. Anthony of Padua — Port Reading NJ</a> · deals live on the <a href="../pipeline/" style="color:#fff;text-decoration:underline">💰 Pipeline</a></div><h1>St. Rose of Lima — Littleton NH</h1>
-  <div class="sub"><span id="hdrcount"></span> verified leads · ~15-18 mi ring around St. Rose of Lima, 77 Clay St, Littleton NH 03561 (White Mountains + Northeast Kingdom — BOTH sides of the river) · WEEKLY parish bulletin · acct 04-0478 · copy a number, call in Salesforce, then mark it here</div>
+  <h1>St. Anthony of Padua — Port Reading NJ</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · ~10 mi ring around St. Anthony of Padua, 436 Port Reading Ave, Port Reading NJ 07064 (Woodbridge Twp / Middlesex) · WEEKLY parish bulletin · acct 04-1083 · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -196,215 +196,67 @@
 const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
 // in-the-book counts per category (from the 8/24 bulletin ad page) — update each new week from the wall photo
-const WALLN={"Funeral Home / Monuments":{n:2,who:"Ross Funeral + Littleton Monument"},"Dentist / Dentures":{n:1,who:"Dr. Hugh\u2019s Dental"},"Realtor / Downsizing / Senior Move":{n:1,who:"Peabody & Smith (Patty O\u2019Brien, parishioner)"},"Auto Service / Tire":{n:1,who:"Arrow Express Auto"},"Remodeling / Bath & Accessibility":{n:1,who:"BPI Design Center"},"Landscaping / Snow / Tree":{n:1,who:"Central Asphalt (paving)"},"Patron / Community Sponsor 💰":{n:2,who:"Porfido\u2019s Market + White Mountain General Store"}};
+const WALLN={}; // WALL UNKNOWN — fill from the bulletin ad-page photo
 function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
-const TOWNMI={"Littleton":[0,1],"Bethlehem":[5,1],"Sugar Hill":[6,1],"Franconia":[7,1],"Lisbon":[8,1],"Dalton":[8,1],"Waterford":[9,1],"Landaff":[9,1],"Lyman":[9,1],"Whitefield":[11,1],"Easton":[11,1],"Monroe":[12,1],"Carroll":[12,1],"Twin Mountain":[12,1],"Bath":[13,2],"Lunenburg":[14,2],"Lancaster":[15,2],"Concord VT":[16,2],"St. Johnsbury":[17,2],"Woodsville":[17,2],"Haverhill":[18,2],"Barnet":[18,2],"Danville":[22,2],"Ryegate":[22,2],"Lyndonville":[23,2]};
+const TOWNMI={"Port Reading":[0,1],"Woodbridge":[2,1],"Sewaren":[2,1],"Avenel":[3,1],"Carteret":[3,1],"Fords":[4,1],"Iselin":[4,1],"Colonia":[5,1],"Hopelawn":[5,1],"Keasbey":[5,1],"Perth Amboy":[5,1],"Rahway":[5,1],"Menlo Park Terrace":[5,1],"Edison":[7,2],"Metuchen":[7,2],"Clark":[7,2],"Linden":[7,2],"South Amboy":[7,2],"Sayreville":[8,2],"Parlin":[8,2],"Cranford":[10,2],"Elizabeth":[10,2]};
 const LEADS=[
-{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \\$500 1sp ST JOHN XXIII (14-0127) — collect billing+terms by phone; art by email",p:"(734) 637-6736",t:"Littleton",e:"protouchhvac@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BERNADETTA / Chant Realtors — \\$750 2sp ST PATRICK MILFORD PA (03-1332) — awaiting her email; office (570) 296-7717",p:"(332) 220-7410",t:"Littleton",e:"bcastellano@chantre.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 HEATHER ATWOOD / Travis Landscape — CORPUS (03-0377) — pricing sent Fri; call if quiet",p:"(617) 592-6991",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — Monday callback; museum main (508) 775-0331",p:"(508) 364-5039",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Westborn Market — ST JOHN XXIII — ask for STACY (your Friday note) [LW chamber ✓]",p:"(734) 524-1000",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Kris @ Alliance Financial — SWARTZ CREEK (15-0694) — decision lady BACK TODAY",p:"(810) 232-2300",t:"Littleton",e:"kris@afgconsultants.com"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: K.B.'s Plumbing (Kenny Boots) — MILFORD (06-5374) — \\$500 quoted, follow-up due today",p:"(302) 697-0571",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: First State Health & Wellness — MILFORD — skelly@ emailed; follow-up due",p:"(302) 644-5750",t:"Littleton",e:"skelly@firststatehealth.com"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: Air Quality HVAC — MILFORD — follow-up due",p:"(302) 697-1475",t:"Littleton",e:"AirQualityHVACservices@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/24: American Dental Care — MILFORD — follow-up due",p:"(302) 734-7634",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"🔥 JEFFREY AUSTIN LAW — SWARTZ CREEK — has 2sp \\$850/4sp \\$1,250; which one?",p:"(810) 223-6510",t:"Littleton",e:"jeffrey@jeffreyaustinlawfirm.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 JESSICA @ DESTINATION HEALTH — SWARTZ CREEK — details emailed; did it land?",p:"(810) 288-4743",t:"Littleton",e:"destination.health.healing@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BLUE LINE DETAILING — SWARTZ CREEK — very interested, phone-only",p:"(810) 874-7091",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"🔥 KATIE @ ALL AMERICAN — HOLY APOSTLES (04-0536) — 4-space want",p:"(781) 447-4100",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"🔥 CURLEY — TEXT: still want the two spots? — CAPE",p:"(508) 790-4508",t:"Littleton"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BONNIE @ ALTERNATIVE ELDERLY CARE — SWARTZ CREEK — emailed 8/21, fresh-opp flag",p:"(810) 691-9749",t:"Littleton",e:"altelder@aol.com"},
-{c:"Funeral Home / Monuments",n:"⛔ IN THE BOOK — Ross Funeral Home (Thomas Ross pres., Tammy Ross-Smith + Adam Smith dirs.) — do NOT cold-pitch; competitor ammo for Phaneuf/Ricker/Sayles",p:"(603) 444-5377",t:"Littleton"},
-{c:"Funeral Home / Monuments",n:"⭐ Phaneuf Funeral Homes — Littleton chapel (NH family network, 4th gen) [own-site ✓✓]",p:"(603) 444-3311",t:"Littleton"},
-{c:"Funeral Home / Monuments",n:"⭐ Ricker Funeral Home — Adam Smith & Tammy Ross-Smith (Ross family tie!) [own-site ✓]",p:"(603) 747-2717",t:"Woodsville"},
-{c:"Funeral Home / Monuments",n:"⭐ Sayles Funeral Home [own-site ✓✓]",p:"(802) 748-3955",t:"St. Johnsbury"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Law Office of Michael M. Ransmeier — since 1990 [own-site ✓]",p:"(603) 444-2454",t:"Littleton"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Samaha Russell Hodgdon — ask: Jody Hodgdon, estate planning [firm-site ✓]",p:"(603) 444-2552",t:"Littleton"},
-{c:"Elder Law / Estate Attorney",n:"Harden Law Offices — Leonard Harden [own-site ✓]",p:"(603) 788-2080",t:"Lancaster"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Gensburg & Greaves — 80 yrs combined [own-site ✓]",p:"(802) 748-5338",t:"St. Johnsbury"},
-{c:"Elder Law / Estate Attorney",n:"Clarke Atwell — 29 yrs [own-site ✓]",p:"(802) 424-1717",t:"St. Johnsbury"},
-{c:"Elder Law / Estate Attorney",n:"Wendy E. Roberts — family & estate [own-site ✓]",p:"(603) 684-2351",t:"Lancaster"},
-{c:"Elder Law / Estate Attorney",n:"Upton & Hatfield — ask: James Raymond [firm-site ✓]",p:"(603) 788-2410",t:"Lancaster"},
-{c:"Financial Planner / Retirement",n:"Driscoll & Co CPA [chamber ✓]",p:"(603) 444-6733",t:"Littleton"},
-{c:"Financial Planner / Retirement",n:"⭐ Keeler Accounting — Daniel Keeler, 35 yrs [own-site ✓✓]",p:"(603) 444-7272",t:"Littleton"},
-{c:"Financial Planner / Retirement",n:"⭐ Creative Financial Strategies — since 1975 [own-site ✓]",p:"(603) 444-7035",t:"Littleton"},
-{c:"Financial Planner / Retirement",n:"A.M. Peisch & Co CPAs [own-site ✓]",p:"(802) 748-5654",t:"St. Johnsbury"},
-{c:"Insurance",n:"⭐ Hunkins & Eaton Agency — Littleton institution [local dir — spot-check]",p:"(603) 444-3975",t:"Littleton"},
-{c:"Insurance",n:"Brad Bailey State Farm (captive flag) [local dir]",p:"(603) 444-4420",t:"Littleton"},
-{c:"Insurance",n:"⭐ Darrell A. Louis Insurance & Financial [own-site ✓]",p:"(603) 444-4801",t:"Littleton"},
-{c:"Insurance",n:"⭐ Carter Insurance Agency [own-site ✓]",p:"(802) 748-8081",t:"St. Johnsbury"},
-{c:"Insurance",n:"⭐ Barrett Insurance — Mike Barrett, family agency [own-site ✓]",p:"(802) 748-5224",t:"St. Johnsbury"},
-{c:"Home Health / In-Home Care",n:"⭐ North Country Home Health & Hospice (nonprofit) [own-site ✓]",p:"(603) 444-5317",t:"Littleton"},
-{c:"Retirement / Senior Living",n:"⭐ The Village at Riverglen — assisted living [operator-site ✓]",p:"(603) 444-8880",t:"Littleton"},
-{c:"Medical Clinic / Primary Care",n:"Ammonoosuc Community Health — Littleton main (+ Franconia/Whitefield/Woodsville clinics) [own-site ✓]",p:"(603) 444-2464",t:"Littleton"},
-{c:"Hearing / Audiology",n:"⭐ Hear NH — Jason Vanier, BC-HIS [own-site ✓]",p:"(603) 259-1977",t:"Littleton"},
-{c:"Hearing / Audiology",n:"LRH Audiology (hospital dept) [hospital site ✓]",p:"(603) 259-7692",t:"Littleton"},
-{c:"Eye / Optometry",n:"⭐ Littleton Eye Care Center [own-site ✓] · ✉ sent 8/27",p:"(603) 444-2592",t:"Littleton",e:"info@littletoneyecare.net"},
-{c:"Eye / Optometry",n:"Woodsville Eye Care Center (same practice) [own-site ✓] · ✉ sent 8/27",p:"(603) 747-3190",t:"Woodsville",e:"info@woodsvilleeyecare.net"},
-{c:"Eye / Optometry",n:"⭐ Hometown Eye Care — Dr. Joel Tuite [own-site ✓] · ✉ sent 8/27",p:"(603) 259-1400",t:"Littleton",e:"ashley.hometownec@gmail.com"},
-{c:"Eye / Optometry",n:"Hometown Eye Care of Lancaster [own-site — number as cited, spot-check]",p:"(603) 444-7117",t:"Lancaster"},
-{c:"Eye / Optometry",n:"⭐ Shippee Family Eye Care — Littleton [own-site ✓]",p:"(603) 444-2484",t:"Littleton"},
-{c:"Eye / Optometry",n:"Shippee Family Eye Care — Lancaster [own-site ✓]",p:"(603) 788-3561",t:"Lancaster"},
-{c:"Eye / Optometry",n:"Shippee Family Eye Care — St. Johnsbury [own-site ✓]",p:"(802) 748-3536",t:"St. Johnsbury"},
-{c:"Dentist / Dentures",n:"⭐ Santilli Family Dentistry [own-site ✓] · ✉ sent 8/27",p:"(603) 444-6411",t:"Littleton",e:"smile@santillifamilydentistry.com"},
-{c:"Dentist / Dentures",n:"⭐ Littleton Dental Care — Dr. Brian Reeder [own-site ✓]",p:"(603) 444-7761",t:"Littleton"},
-{c:"Dentist / Dentures",n:"St. Johnsbury Dental Associates [own-site ✓]",p:"(802) 748-9357",t:"St. Johnsbury"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Dan Wyand PT & Associates [own-site ✓]",p:"(802) 748-3722",t:"St. Johnsbury"},
-{c:"Physical Therapy / Chiropractic",n:"Dan Wyand PT — Lyndonville branch [own-site ✓]",p:"(802) 745-1105",t:"Lyndonville"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ North Country Chiropractic — Littleton [own-site ✓ multi-loc]",p:"(603) 575-5764",t:"Littleton"},
-{c:"Physical Therapy / Chiropractic",n:"North Country Chiropractic — St. Johnsbury [own-site ✓✓] · ✉ sent 8/28",p:"(802) 748-3166",t:"St. Johnsbury",e:"info@ncchiro.net"},
-{c:"Heating / AC",n:"⭐⭐ Fitch Fuel Co. — 5th generation since 1923, oil + propane [own-site ✓✓]",p:"(603) 788-4904",t:"Lancaster"},
-{c:"Plumbing / Sewer",n:"⭐ Roland C. Abbott Plumbing & Heating — 24/7, since 2001 [own-site ✓]",p:"(603) 444-7100",t:"Littleton"},
-{c:"Electrician",n:"⭐ Norris Davis Electric [own-site ✓]",p:"(603) 837-9912",t:"Whitefield"},
-{c:"Roofing / Siding / Gutters",n:"Roofing Guys [own-site ✓]",p:"(603) 575-1656",t:"Littleton"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Green Acres Landscaping — 20+ yrs [own-site ✓]",p:"(603) 991-7435",t:"Franconia"},
-{c:"Auto Service / Tire",n:"⭐ Mike's Garage [own-site ✓]",p:"(603) 787-9011",t:"Woodsville"},
-{c:"Auto Service / Tire",n:"Goose Lane Truck & Auto [FMCSA record — spot-check]",p:"(603) 747-2541",t:"Bath"},
-{c:"Bank / Credit Union",n:"⭐ Passumpsic Bank — Littleton (mutual community bank) [chamber ✓]",p:"(603) 444-1370",t:"Littleton"},
-{c:"Bank / Credit Union",n:"Passumpsic Bank — Lancaster [chamber ✓]",p:"(603) 788-4715",t:"Lancaster"},
-{c:"Bank / Credit Union",n:"Passumpsic Bank — St. Johnsbury [own-site ✓]",p:"(802) 748-3196",t:"St. Johnsbury"},
-{c:"Bank / Credit Union",n:"⭐ Union Bank — Littleton Main St [own-site ✓]",p:"(603) 444-5321",t:"Littleton"},
-{c:"Bank / Credit Union",n:"Union Bank — Littleton Dells Rd [own-site ✓]",p:"(603) 444-7136",t:"Littleton"},
-{c:"Bank / Credit Union",n:"Union Bank — St. Johnsbury Railroad St [own-site ✓]",p:"(802) 748-3131",t:"St. Johnsbury"},
-{c:"Bank / Credit Union",n:"Union Bank — St. Johnsbury Portland St [own-site ✓]",p:"(802) 748-3121",t:"St. Johnsbury"},
-{c:"Bank / Credit Union",n:"Community National Bank [own-site ✓]",p:"(802) 748-3605",t:"St. Johnsbury"},
-{c:"Bank / Credit Union",n:"Bar Harbor Bank & Trust — Franconia [own-site ✓]",p:"(603) 823-8199",t:"Franconia"},
-{c:"Bank / Credit Union",n:"Bar Harbor Bank & Trust — Woodsville [own-site ✓]",p:"(603) 747-0477",t:"Woodsville"},
-{c:"Bank / Credit Union",n:"⭐ Woodsville Guaranty Savings — since 1889, Littleton Cottage St [own-site ✓]",p:"(603) 444-5237",t:"Littleton"},
-{c:"Bank / Credit Union",n:"Woodsville Guaranty Savings — Littleton Meadow St [own-site ✓]",p:"(603) 444-0740",t:"Littleton"},
-{c:"Realtor / Downsizing / Senior Move",n:"⛔ IN THE BOOK — Peabody & Smith (Patty runs her ad) — but APRIL asked for info · ✉ sent 8/28 (aprilr@)",p:"(603) 823-5700",t:"Franconia"},
-{c:"Realtor / Downsizing / Senior Move",n:"⛔ IN THE BOOK — Peabody & Smith Littleton office (Patty O Brien ad) — do not cold-pitch",p:"(603) 444-1294",t:"Littleton"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Lisa Hampton Real Estate (independent) [own-site ✓]",p:"(603) 788-5106",t:"Lancaster"},
-{c:"Bank / Credit Union",n:"Bank of New Hampshire - Littleton — 125 Main Street [LAC chamber ✓]",p:"(603) 444-5192",t:"Littleton"},
-{c:"Remodeling / Bath & Accessibility",n:"Building Professionals Inc — 81 Main Street, Rear [LAC chamber ✓]",p:"(603) 869-0100",t:"Littleton"},
-{c:"Insurance",n:"Colby Insurance Group — 1 Forest Street [LAC chamber ✓]",p:"(603) 747-2731",t:"Haverhill"},
-{c:"Bank / Credit Union",n:"Coldwell Banker Lifestyles — 222 Main Street [LAC chamber ✓]",p:"(603) 444-6737",t:"Littleton"},
-{c:"Remodeling / Bath & Accessibility",n:"Community Builders Hub — 37 Holly Heights [LAC chamber ✓]",p:"(603) 991-2382",t:"Whitefield"},
-{c:"Financial Planner / Retirement",n:"Community Financial Services Group — 260 Cottage Street, Suite D [LAC chamber ✓]",p:"(603) 444-5807",t:"Littleton"},
-{c:"Auto Service / Tire",n:"C&S Auto & Truck Parts — 225 Union Street [LAC chamber ✓]",p:"(603) 444-2982",t:"Littleton"},
-{c:"Realtor / Downsizing / Senior Move",n:"Eames Realty Company — 32 Main Street [LAC chamber ✓]",p:"(603) 444-6944",t:"Littleton"},
-{c:"Eye / Optometry",n:"Envision Rehab & Performance — 566 Meadow Street [LAC chamber ✓]",p:"(603) 991-5030",t:"Littleton"},
-{c:"Electrician",n:"JA Corey Electric — 276 Main Street [LAC chamber ✓]",p:"(603) 444-1146",t:"Littleton"},
-{c:"Realtor / Downsizing / Senior Move",n:"Loveless Family Properties — PO Box 452 [LAC chamber ✓]",p:"(603) 991-0529",t:"Bethlehem"},
-{c:"Bank / Credit Union",n:"Mascoma Bank — 8 Main Street [LAC chamber ✓]",p:"(603) 444-5333",t:"Littleton"},
-{c:"Financial Planner / Retirement",n:"Masterpiece Bookkeeping Services — 4 Highland Avenue [LAC chamber ✓]",p:"(802) 299-9240",t:"Lisbon"},
-{c:"Landscaping / Snow / Tree",n:"Navarra’s Landscaping — 353 Hilltop Road [LAC chamber ✓]",p:"(603) 991-2934",t:"Littleton"},
-{c:"Home Health / In-Home Care",n:"North Country Home Health & Hospice — 252 Meadow Street [LAC chamber ✓]",p:"(603) 444-8324",t:"Littleton"},
-{c:"Remodeling / Bath & Accessibility",n:"North Woods Construction — 986 Whitefield Road [LAC chamber ✓]",p:"(603) 278-9051",t:"Dalton"},
-{c:"Financial Planner / Retirement",n:"Northern Community Investment Capital — 111 Main Street, Suite 100 [LAC chamber ✓]",p:"(603) 856-0714",t:"Littleton"},
-{c:"Bank / Credit Union",n:"Northern Lights Credit Union — 218 Dells Road [LAC chamber ✓]",p:"(603) 444-9964",t:"Littleton"},
-{c:"Financial Planner / Retirement",n:"Rise Private Wealth Management — 105 West Main Street [LAC chamber ✓]",p:"(603) 444-7473",t:"Littleton"},
-{c:"Physical Therapy / Chiropractic",n:"Santos Physical Therapy — 5 South Main Street [LAC chamber ✓] · ✉ sent 8/28",p:"(603) 838-8225",t:"Lisbon",e:"eric@santosphysicaltherapy.com"},
-{c:"Landscaping / Snow / Tree",n:"UpRooted Greenhouse and Custom Landscaping — Littleton [LAC chamber ✓]",p:"(802) 274-9614",t:"Littleton"},
-{c:"Elder Law / Estate Attorney",n:"Ward Law Group — 180 Main Street [LAC chamber ✓]",p:"(603) 444-5499",t:"Littleton"},
-{c:"Funeral Home / Monuments",n:"⭐ Bailey Funeral Home [NG chamber ✓]",p:"(603) 788-3381",t:"Lancaster"},
-{c:"Plumbing / Sewer",n:"⭐ Capital Well Company [NG chamber ✓]",p:"(603) 788-5550",t:"Lancaster"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Carlisle Place Physical Therapy & Wellness Center [NG chamber ✓]",p:"(603) 586-4100",t:"Lancaster"},
-{c:"Financial Planner / Retirement",n:"⭐ Cohos Advisors CPA [NG chamber ✓]",p:"(603) 788-4928",t:"Lancaster"},
-{c:"Heating / AC",n:"⭐ Doolan Fuel Company, Inc. [NG chamber ✓]",p:"(603) 788-4422",t:"Lancaster"},
-{c:"Insurance",n:"⭐ Geo. M. Stevens & Son Co. [NG chamber ✓]",p:"(603) 788-2555",t:"Lancaster"},
-{c:"Dentist / Dentures",n:"⭐ Lancaster Dental Care [NG chamber ✓]",p:"(603) 788-2517",t:"Lancaster"},
-{c:"Insurance",n:"⭐ Marshall Insurance Agency [NG chamber ✓]",p:"(603) 788-4657",t:"Lancaster"},
-{c:"Dentist / Dentures",n:"⭐ Mountain View Dental [NG chamber ✓]",p:"(603) 837-9342",t:"Whitefield"},
-{c:"Auto Service / Tire",n:"⭐ North Country Ford Inc. [NG chamber ✓] · ✉ sent 8/28",p:"(603) 788-2311",t:"Lancaster",e:"alauzb.ncford@gmail.com"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Peter W. Powell Real Estate [NG chamber ✓]",p:"(603) 788-4848",t:"Lancaster"},
-{c:"Elder Law / Estate Attorney",n:"Primmer Piper Eggleston & Cramer — ⚠ number = firm main (Burlington VT); Littleton office local line TBD [NG chamber]",p:"(802) 660-3315",t:"Littleton"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Pure Health Functional Medicine, PLLC [NG chamber ✓]",p:"(603) 631-0720",t:"Lancaster"},
-{c:"Financial Planner / Retirement",n:"Raymond James Financial — Lancaster branch ⚠ exchange looks southern-NH, spot-check [NG chamber]",p:"(603) 899-7430",t:"Lancaster"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ RE/MAX Northern Edge [NG chamber ✓]",p:"(603) 788-2131",t:"Lancaster"},
-{c:"Auto Service / Tire",n:"⭐ Schurman Motor Company [NG chamber ✓]",p:"(603) 788-4443",t:"Lancaster"},
-{c:"Retirement / Senior Living",n:"⭐ The Morrison Communities [NG chamber ✓]",p:"(603) 837-3640",t:"Whitefield"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Wendell Rexford & Sons — excavation/septic [NG chamber ✓]",p:"(603) 837-2451",t:"Whitefield"},
-{c:"Heating / AC",n:"⭐ Presby Energy — family oil/kerosene/diesel/propane + fuel pumps at exit 38 [own-site ✓ — the blog number was wrong, this is their real line] · ✉ sent 8/28",p:"(603) 823-5298",t:"Franconia",e:"info@presbyconstruction.com"},
-{c:"Heating / AC",n:"⭐ Jeff MacKay Mechanical — 185 School St [own-site ✓, quarantine resolved]",p:"(603) 616-9664",t:"Littleton"},
-{c:"Electrician",n:"⭐ One Ten Electric — Scott, 635 Town Forest Rd [own-site ✓]",p:"(802) 473-8993",t:"St. Johnsbury"},
-{c:"Electrician",n:"⭐ Ash Electric — Ian Ash, 84 Central St Ste 106 [own-site ✓ resolved]",p:"(802) 535-6182",t:"St. Johnsbury"},
-{c:"Electrician",n:"⭐ CFW Electric — Bradley Fontaine [own-site ✓]",p:"(802) 684-2157",t:"Danville"},
-{c:"Electrician",n:"Pierce Electric [own-site ✓]",p:"(802) 745-8409",t:"St. Johnsbury"},
-{c:"Electrician",n:"Dicks Electric [own-site ✓]",p:"(802) 222-1466",t:"Haverhill"},
-{c:"Electrician",n:"Ellsworth Electric — 202 Stonybrook Rd [FB-official + 2nd source]",p:"(802) 748-2952",t:"Waterford"},
-{c:"Plumbing / Sewer",n:"⭐ Presby Plumbing & Heating — the plumbing division, 244 Main St [own-site ✓ resolved]",p:"(603) 823-5327",t:"Franconia"},
-{c:"Plumbing / Sewer",n:"C.B. Matthews Plumbing — Chris Matthews, NH Master #4682 [FB-official + license + 3-source]",p:"(603) 837-2826",t:"Whitefield"},
-{c:"Plumbing / Sewer",n:"⭐ J&S Water Works — Joe Dauphin, wells/water [own-site ✓]",p:"(802) 535-9242",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Alliance Consulting & Excavation — Casey Leithead [own-site ✓]",p:"(802) 274-1776",t:"Danville"},
-{c:"Landscaping / Snow / Tree",n:"Goodell Property Services — Walter Goodell [own-site ✓]",p:"(802) 535-6079",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Nick’s Landscaping & Firewood [own-site ✓]",p:"(802) 535-8485",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Vermont Tree Climbers — Dan Deleo, 467 Breezy Hill Rd [own-site ✓]",p:"(802) 535-3945",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Ainsworth Excavation — Jarred Ainsworth, 2610 N Littleton Rd [registry+FB — spot-check]",p:"(603) 991-0884",t:"Littleton"},
-{c:"Roofing / Siding / Gutters",n:"⭐ Quality Roofing & Siding — 30+ yrs [own-site ✓ resolved]",p:"(802) 461-5078",t:"Ryegate"},
-{c:"Roofing / Siding / Gutters",n:"⭐ My Affordable Roofing — 16 Cross St [own-site ✓]",p:"(603) 991-7476",t:"Bethlehem"},
-{c:"Financial Planner / Retirement",n:"⭐ Milne Financial Planning — Katheryn Milne, FEE-ONLY, 770 Railroad St [own-site ✓]",p:"(802) 249-7107",t:"St. Johnsbury"},
-{c:"Financial Planner / Retirement",n:"⭐ McCormick & Company CPAs — 1360 Main St [own-site ✓]",p:"(802) 748-4914",t:"St. Johnsbury"},
-{c:"Insurance",n:"Brett Gale State Farm (captive flag) [own-site ✓]",p:"(802) 626-8651",t:"Lyndonville"},
-{c:"Insurance",n:"Kevin Cole — American National [agent page ✓]",p:"(802) 427-3371",t:"Lyndonville"},
-{c:"Insurance",n:"⭐ Sally Gaynor-Knecht — American National, 33 yrs [agent page ✓]",p:"(603) 788-3544",t:"Lancaster"},
-{c:"Insurance",n:"⭐ Denis, Ricker & Brown — 80+ years, 23 Church St [own-site ✓]",p:"(802) 626-3354",t:"Lyndonville"},
-{c:"🔥 CLOSE — live deals",n:"⏰ THU 12:00 NOON — Angie @ The Place Above The Notch (Bethlehem café/coworking) — HER callback ask",p:"(603) 869-0011",t:"Bethlehem"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Begin Realty Associates [NEK chamber ✓]",p:"(802) 748-2045",t:"St. Johnsbury"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Better Real Estate [NEK chamber ✓]",p:"(802) 424-6691",t:"St. Johnsbury"},
-{c:"Remodeling / Bath & Accessibility",n:"⭐ Bobs Construction [NEK chamber ✓]",p:"(802) 535-5860",t:"St. Johnsbury"},
-{c:"Remodeling / Bath & Accessibility",n:"⭐ Cannon View Farm And Construction [NEK chamber ✓]",p:"(802) 535-1942",t:"St. Johnsbury"},
-{c:"Auto Service / Tire",n:"⭐ Gregs Auto Repair [NEK chamber ✓]",p:"(802) 626-5888",t:"Lyndonville"},
-{c:"Electrician",n:"⭐ Hall Electric [NEK chamber ✓]",p:"(802) 274-6376",t:"St. Johnsbury"},
-{c:"Plumbing / Sewer",n:"⭐ Harris Plumbing And Heating [NEK chamber ✓]",p:"(802) 626-5841",t:"Lyndonville"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Impeys Vermont Real Estate [NEK chamber ✓]",p:"(802) 748-8993",t:"St. Johnsbury"},
-{c:"Insurance",n:"⭐ Kinney Pike Insurance Inc [NEK chamber ✓]",p:"(802) 748-1010",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Kirby Mt Lawn And Landscaping LLC [NEK chamber ✓]",p:"(802) 626-1300",t:"Lyndonville"},
-{c:"Remodeling / Bath & Accessibility",n:"⭐ Km Carpentry [NEK chamber ✓]",p:"(802) 535-9115",t:"St. Johnsbury"},
-{c:"Remodeling / Bath & Accessibility",n:"⭐ Mike Leonard Carpentry [NEK chamber ✓]",p:"(802) 922-5039",t:"St. Johnsbury"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Mountainview Chiropractic [NEK chamber ✓]",p:"(802) 684-9707",t:"Danville"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Mrm Landscape And Fence [NEK chamber ✓]",p:"(802) 535-4072",t:"St. Johnsbury"},
-{c:"Financial Planner / Retirement",n:"⭐ Nek Bookkeeping Services [NEK chamber ✓]",p:"(802) 473-0408",t:"St. Johnsbury"},
-{c:"Bank / Credit Union",n:"⭐ Northern Lights Credit Union [NEK chamber ✓]",p:"(802) 748-2288",t:"St. Johnsbury"},
-{c:"Retirement / Senior Living",n:"⭐ Northern Senior Housing St. J House [NEK chamber ✓]",p:"(802) 748-1772",t:"St. Johnsbury"},
-{c:"Roofing / Siding / Gutters",n:"⭐ Rodd The Roofer [NEK chamber ✓]",p:"(802) 748-4555",t:"St. Johnsbury"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Sleigh Law [NEK chamber ✓]",p:"(802) 748-5176",t:"St. Johnsbury"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Tim Scott Real Estate [NEK chamber ✓]",p:"(802) 748-8000",t:"St. Johnsbury"},
-{c:"Auto Service / Tire",n:"⭐ Ville Auto Supply [NEK chamber ✓]",p:"(802) 626-8181",t:"Lyndonville"},
-{c:"Auto Service / Tire",n:"⭐ Wes Ward Auto Repair [NEK chamber ✓]",p:"(802) 748-3636",t:"St. Johnsbury"},
-{c:"Physical Therapy / Chiropractic",n:"⭐ Lyndonville Family Chiropractic [NEK chamber ✓]",p:"(802) 626-5866",t:"Lyndonville"},
-{c:"Electrician",n:"Aubin Electric [⚠ realtor-list — number unverified]",p:"(802) 626-4556",t:"Lyndonville"},
-{c:"Electrician",n:"Barrett Electric [⚠ realtor-list — number unverified]",p:"(802) 535-5815",t:"Danville"},
-{c:"Electrician",n:"Chabot Electric — Tim Chabot [⚠ realtor-list — number unverified]",p:"(802) 745-7462",t:"Lyndonville"},
-{c:"Electrician",n:"Fall Brook Electric — Eric Corliss [⚠ realtor-list — number unverified]",p:"(802) 751-5284",t:"St. Johnsbury"},
-{c:"Electrician",n:"G&B Electric — Gary Briggs [⚠ realtor-list — number unverified]",p:"(802) 633-4333",t:"Barnet"},
-{c:"Electrician",n:"Lepine Electric — Greg Lepine [⚠ realtor-list — number unverified]",p:"(802) 535-5250",t:"St. Johnsbury"},
-{c:"Electrician",n:"Nutter Electric [⚠ realtor-list — number unverified]",p:"(802) 535-0154",t:"St. Johnsbury"},
-{c:"Electrician",n:"Smith Electrical [⚠ realtor-list — number unverified]",p:"(802) 535-2777",t:"St. Johnsbury"},
-{c:"Electrician",n:"Sutton River Electrical [⚠ realtor-list — number unverified]",p:"(802) 427-3152",t:"Lyndonville"},
-{c:"Electrician",n:"Henry’s Electric — Clifford Henry [⚠ realtor-list — number unverified]",p:"(603) 991-3126",t:"Dalton"},
-{c:"Electrician",n:"Royal Electric [⚠ realtor-list — number unverified]",p:"(603) 747-2722",t:"Woodsville"},
-{c:"Electrician",n:"Ray Flint [⚠ realtor-list — number unverified]",p:"(603) 387-3913",t:"Littleton"},
-{c:"Electrician",n:"Wills Electric — Rene Wills [⚠ realtor-list — number unverified]",p:"(603) 616-9094",t:"Franconia"},
-{c:"Electrician",n:"JW Mason Electrical — Jim Mason [⚠ realtor-list — number unverified]",p:"(603) 616-7017",t:"Littleton"},
-{c:"Electrician",n:"EJME North — Evan Jones [⚠ realtor-list — number unverified]",p:"(603) 289-1589",t:"Carroll"},
-{c:"Electrician",n:"Barneys Electric [⚠ realtor-list — number unverified]",p:"(603) 998-0625",t:"Lyman"},
-{c:"Plumbing / Sewer",n:"Absolute Plumbing & Heating — David Costa [⚠ realtor-list — number unverified]",p:"(802) 751-5807",t:"St. Johnsbury"},
-{c:"Plumbing / Sewer",n:"B&B Septic — David Bedor [⚠ realtor-list — number unverified]",p:"(802) 748-9858",t:"St. Johnsbury"},
-{c:"Plumbing / Sewer",n:"James Bettencourt Plumbing [⚠ realtor-list — number unverified]",p:"(603) 616-1996",t:"Littleton"},
-{c:"Plumbing / Sewer",n:"Tim Challinor Plumbing [⚠ realtor-list — number unverified]",p:"(603) 616-6674",t:"Littleton"},
-{c:"Plumbing / Sewer",n:"Kirby Huntoon Plumbing [⚠ realtor-list — number unverified]",p:"(603) 616-6380",t:"Littleton"},
-{c:"Plumbing / Sewer",n:"Larry’s Plumbing [⚠ realtor-list — number unverified]",p:"(603) 444-7400",t:"Whitefield"},
-{c:"Plumbing / Sewer",n:"Lennon Plumbing & Heating [⚠ realtor-list — number unverified]",p:"(603) 846-2208",t:"Whitefield"},
-{c:"Plumbing / Sewer",n:"RL Lacoss Plumbing & Heating [⚠ realtor-list — number unverified]",p:"(603) 838-2007",t:"Lyman"},
-{c:"Plumbing / Sewer",n:"Partridge Plumbing & Comfort [⚠ realtor-list — number unverified]",p:"(603) 241-5013",t:"Littleton"},
-{c:"Plumbing / Sewer",n:"Ed Quigley Plumbing [⚠ realtor-list — number unverified]",p:"(603) 837-2848",t:"Whitefield"},
-{c:"Plumbing / Sewer",n:"Giddings Plumbing & Heating [⚠ realtor-list — number unverified]",p:"(603) 616-2223",t:"Waterford"},
-{c:"Heating / AC",n:"The LP Gas Guy [⚠ realtor-list — number unverified]",p:"(603) 991-2426",t:"Bath"},
-{c:"Roofing / Siding / Gutters",n:"Solution Roofing [⚠ realtor-list — number unverified]",p:"(603) 706-7473",t:"Littleton"},
-{c:"Landscaping / Snow / Tree",n:"C&L Cass Construction — Chris Cass [⚠ realtor-list — number unverified]",p:"(603) 455-7567",t:"Monroe"},
-{c:"Landscaping / Snow / Tree",n:"Connecticut Valley Designs — Mike Carbonneau [⚠ realtor-list — number unverified]",p:"(603) 444-2072",t:"Littleton"},
-{c:"Landscaping / Snow / Tree",n:"Dan Webb Excavation [⚠ realtor-list — number unverified]",p:"(603) 444-6507",t:"Bethlehem"},
-{c:"Landscaping / Snow / Tree",n:"Bedor & Son Logging [⚠ realtor-list — number unverified]",p:"(802) 793-8186",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Jim Bassett — 20 yrs [⚠ realtor-list — number unverified]",p:"(802) 673-4133",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Ryan’s Tree Removal — Ryan Robie [⚠ realtor-list — number unverified]",p:"(802) 274-5441",t:"Monroe"},
-{c:"Landscaping / Snow / Tree",n:"Catamount Tree Service [⚠ realtor-list — number unverified]",p:"(802) 473-2606",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Jordans Tree Service — Jordan Mattei [⚠ realtor-list — number unverified]",p:"(802) 274-1560",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Josh Pike Tree — 10+ yrs [⚠ realtor-list — number unverified]",p:"(802) 397-8712",t:"St. Johnsbury"},
-{c:"Landscaping / Snow / Tree",n:"Stannard Mountain Earthmoving — Silas Ratico [⚠ realtor-list — number unverified]",p:"(802) 535-2113",t:"Danville"},
-{c:"Landscaping / Snow / Tree",n:"Wes Everts [⚠ realtor-list — number unverified]",p:"(802) 535-6504",t:"St. Johnsbury"}
+{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \\$500 1sp ST JOHN XXIII (14-0127) — still collecting billing+terms",p:"(734) 637-6736",t:"Port Reading",e:"protouchhvac@gmail.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 BERNADETTA / Chant Realtors — \\$750 2sp ST PATRICK PA (03-1332) — 3 answers owed",p:"(332) 220-7410",t:"Port Reading",e:"bcastellano@chantre.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 VICKY BECKER — ST. JOSEPH-LINCOLN SC, St. Joe MI — husband-check; her Aug deal expired Sat — call + re-frame",p:"(269) 470-4818",t:"Port Reading"},
+{c:"🔥 CLOSE — live deals",n:"🔥 BPI upgrade \\$500 (2sp→4sp) — ST. ROSE (04-0478) — emailed info@; VM Fri",p:"(603) 869-0100",t:"Port Reading",e:"info@buildingprofessionalsinc.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 ANGIE @ Place Above The Notch — ST. ROSE — her callback ask, still unreached",p:"(603) 869-0011",t:"Port Reading"},
+{c:"🔥 CLOSE — live deals",n:"🔥 K.B.’s (Kenny Boots) — \\$500 quoted — MILFORD (06-5374) — no recorded no; close it",p:"(302) 697-0571",t:"Port Reading"},
+{c:"🔥 CLOSE — live deals",n:"🔥 ONE STOP AUTO — MILFORD — emailed 8/27; did it land?",p:"(302) 213-3324",t:"Port Reading",e:"onestopautoshop@comcast.net"},
+{c:"🔥 CLOSE — live deals",n:"⏰ MON 8/31: STEPHANIE / Springvale — SWARTZ CK (15-0694) — HER DESIGN DUE TODAY (+ upgrade offer live)",p:"(810) 230-6644",t:"Port Reading",e:"stephanie.surinck@springvaleassistedliving.com"},
+{c:"🔥 CLOSE — live deals",n:"⏰ THU 9/3: KISSA HARDEN / Raymond James — SWARTZ CK — very interested, back from vacation",p:"(810) 695-3589",t:"Port Reading",e:"kissa.harden@raymondjames.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — boss-check still open",p:"(508) 364-5039",t:"Port Reading"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SAVANNAH @ Mannor Law — SWARTZ CK — mockup-offer email sent 8/28",p:"(810) 694-9000",t:"Port Reading",e:"savannah@mannorlaw.com"},
+{c:"🔥 CLOSE — live deals",n:"🔥 KRIS @ Alliance Financial — SWARTZ CK — decision lady back; they owe the call",p:"(810) 232-2300",t:"Port Reading",e:"kris@afgconsultants.com"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Chubenko Funeral Home — 625 PORT READING AVE (the parish’s own street!) — Gregory + Peter Chubenko [own-site ✓]",p:"(732) 634-6009",t:"Port Reading"},
+{c:"Funeral Home / Monuments",n:"⭐ Gerity & Chubenko — since 1951 [own-site ✓]",p:"(732) 634-2818",t:"Woodbridge"},
+{c:"Funeral Home / Monuments",n:"⭐ Flynn and Son / Mitruska — 126 yrs, Brendan Flynn Jr. [own-site ✓]",p:"(732) 826-0358",t:"Fords"},
+{c:"Funeral Home / Monuments",n:"Flynn and Son / Koyen — Metuchen chapel [own-site ✓]",p:"(732) 548-2134",t:"Metuchen"},
+{c:"Funeral Home / Monuments",n:"⭐ Costello-Koyen — Avenel [own-site ✓]",p:"(732) 636-2275",t:"Avenel"},
+{c:"Funeral Home / Monuments",n:"Costello-Greiner — Woodbridge chapel [own-site ✓]",p:"(732) 634-0264",t:"Woodbridge"},
+{c:"Funeral Home / Monuments",n:"⭐ Costello-Runyon — Joseph V. Costello III/IV [own-site ✓]",p:"(732) 548-0149",t:"Metuchen"},
+{c:"Funeral Home / Monuments",n:"Costello-Runyon — Iselin chapel, since 1954 [own-site ✓]",p:"(732) 283-0075",t:"Iselin"},
+{c:"Funeral Home / Monuments",n:"⭐ Zylka Funeral Home — since 1905 [own-site ✓]",p:"(732) 442-0702",t:"Perth Amboy"},
+{c:"Funeral Home / Monuments",n:"Novak & Chubenko (Gustav J. Novak, 1932) [own-site ✓]",p:"(732) 826-4525",t:"Perth Amboy"},
+{c:"Funeral Home / Monuments",n:"Zevallos/Skrocki Home for Funerals — Ana Maria Zevallos [own-site ✓]",p:"(732) 826-1321",t:"Perth Amboy"},
+{c:"Funeral Home / Monuments",n:"Lehrer-Gibilisco — independent [own-site ✓]",p:"(732) 388-1874",t:"Rahway"},
+{c:"Funeral Home / Monuments",n:"Pettit-Davis [own-site ✓]",p:"(732) 388-0038",t:"Rahway"},
+{c:"Funeral Home / Monuments",n:"⭐ Kowalski — 70+ yrs, 3rd-gen, Teresa + Nicholas Kowalski [own-site ✓]",p:"(908) 486-7111",t:"Linden"},
+{c:"Funeral Home / Monuments",n:"⭐ Gosselin — since 1960, Mary Ann Gosselin [own-site ✓]",p:"(732) 381-5858",t:"Edison"},
+{c:"Funeral Home / Monuments",n:"Carmen F. Spezzi [own-site ✓]",p:"(732) 721-1290",t:"Parlin"},
+{c:"Funeral Home / Monuments",n:"Maliszewski Memorial (Spezzi family) [own-site ✓]",p:"(732) 254-1428",t:"Sayreville"},
+{c:"Funeral Home / Monuments",n:"Sayreville Memorial — Joseph Kurzawski Jr. [own-site ✓]",p:"(732) 257-3134",t:"South Amboy"},
+{c:"Funeral Home / Monuments",n:"Gray Memorial — Dale Schoustra [own-site ✓]",p:"(908) 276-0092",t:"Cranford"},
+{c:"Funeral Home / Monuments",n:"Boylan Funeral Home [florist-list — spot-check]",p:"(732) 572-0076",t:"Edison"},
+{c:"Funeral Home / Monuments",n:"⭐ Shevchenko Monuments — since 1908 [own-site ✓]",p:"(732) 442-1286",t:"Perth Amboy"},
+{c:"Funeral Home / Monuments",n:"St. Gertrude Cemetery (Catholic, serves the Twp parishes) [FH resource ✓]",p:"(732) 388-0311",t:"Colonia"},
+{c:"Funeral Home / Monuments",n:"Mt. Calvary Cemetery (Catholic) [FH resource ✓]",p:"(908) 862-4832",t:"Linden"},
+{c:"Pharmacy",n:"⭐ Colonia Pharmacy — independent, compounding [own-site ✓]",p:"(732) 381-3400",t:"Colonia"},
+{c:"Pharmacy",n:"⭐ Avenel Pharmacy — free local delivery [own-site ✓]",p:"(732) 634-1914",t:"Avenel"},
+{c:"Pharmacy",n:"⭐ Iselin Pharmacy [own-site ✓]",p:"(732) 283-1111",t:"Iselin"},
+{c:"Pharmacy",n:"Bonhamtown Pharmacy [Horizon dir]",p:"(732) 605-4307",t:"Edison"},
+{c:"Pharmacy",n:"Faithful Pharmacy [Horizon dir]",p:"(732) 287-3999",t:"Edison"},
+{c:"Pharmacy",n:"LG Pharmacy [Horizon dir]",p:"(732) 354-3777",t:"Edison"},
+{c:"Pharmacy",n:"Oak Tree Drugs [Horizon dir]",p:"(732) 662-9292",t:"Edison"},
+{c:"Pharmacy",n:"Park Drugs [Horizon dir]",p:"(908) 486-1875",t:"Linden"},
+{c:"Pharmacy",n:"Southwood Rita Pharmacy [Horizon dir]",p:"(908) 862-4444",t:"Linden"},
+{c:"Pharmacy",n:"St. Mary Pharmacy [Horizon dir]",p:"(908) 925-7700",t:"Linden"},
+{c:"Pharmacy",n:"St Georges Pharmacy [Horizon dir]",p:"(908) 925-4567",t:"Linden"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Wolfe Ossa Law — elder law + Medicaid planning [own-site ✓]",p:"(732) 548-5400",t:"Metuchen"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Kenneth Vercammen — 40 yrs elder/estate [dedicated page]",p:"(732) 572-0500",t:"Edison"},
+{c:"Elder Law / Estate Attorney",n:"Gill & Chamas (PI firm) [own-site ✓]",p:"(732) 324-7600",t:"Woodbridge"},
+{c:"Elder Law / Estate Attorney",n:"John M. Parvin — Main St Woodbridge [YP dedicated]",p:"(732) 636-1220",t:"Woodbridge"},
+{c:"Restaurant / Bakery / Catering",n:"Benny’s Pizza [own-site ✓]",p:"(732) 218-5253",t:"Woodbridge"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Jersey Pizza Boys — Testa family [own-site ✓]",p:"(732) 634-3983",t:"Avenel"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Leandro’s Pizza — 933 PORT READING AVE (parish street!) [grubhub — confirm # on call]",p:"(732) 352-0583",t:"Port Reading"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Edison Pizza — Mandreucci family since 1967 [own-site ✓]",p:"(732) 985-1733",t:"Edison"},
+{c:"Restaurant / Bakery / Catering",n:"⭐ Nasto’s Ice Cream — since 1939 [grubhub — confirm # on call]",p:"(732) 218-5319",t:"Woodbridge"},
+{c:"Medical Clinic / Primary Care",n:"Avenel Iselin Medical Group [Woodbridge chamber ✓]",p:"(732) 404-1580",t:"Iselin"},
+{c:"Realtor / Downsizing / Senior Move",n:"Next Generation Homes [Woodbridge chamber ✓]",p:"(732) 853-0271",t:"Woodbridge"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -424,7 +276,7 @@ const STATUS={
 const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
-const LIST_ID="strose-77clay-littleton-nh";
+const LIST_ID="stanthony-436portreading-nj";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
@@ -473,7 +325,7 @@ const FOLD={};
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
 let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
-const VTT=new Set(['St. Johnsbury','Waterford','Barnet','Danville','Lunenburg','Ryegate','Concord VT','Lyndonville']);function srch(name,town){return 'https://www.google.com/search?q='+encodeURIComponent(name+' '+town+' '+(VTT.has(town)?'VT':'NH'));}
+function srch(name,town){return "https://www.google.com/search?q="+encodeURIComponent(name+" "+town+" NJ");}
 function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MI');}
 function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
@@ -946,16 +798,17 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
- '<h3>⛪ BACK TO A PARISH — WEEK 7, CHURCH #7, STATE #5</h3><p><b>St. Rose of Lima Church, 77 Clay St, Littleton NH 03561</b> · (603) 444-2593 · <b>Acct 04-0478</b> · Diocese of Manchester. <b>WEEKLY bulletin (52 issues) — parish language is BACK ON: parishioners, Mass, bulletin.</b> Weekly math again: \$1,000/yr ≈ \$19 a week. ⭐ THE WALL (8/24 bulletin photo): Ross Funeral · Dr. Hugh&rsquo;s Dental · Porfido&rsquo;s Market (1920) · White Mountain General Store · Patty O&rsquo;Brien/Peabody &amp; Smith Realty (parishioner) · Littleton Monument &amp; Vault (1948) · Central Asphalt · Arrow Express Auto · BPI Design Center — <b>do NOT cold-pitch these 9; they are competitor ammo.</b> ONE empty cell + the house ad on the page. <b>OPEN: elder law · financial · insurance/Medicare · heating oil (Fitch!) · plumbing · electric · hearing · optometry · PT/chiro · banks · restaurants · landscaping · senior care · pharmacy — the money categories are EMPTY. Pitch: your category&rsquo;s open; first one in owns it.</b> Rate card + households: still pull from SF.</p>'+
- '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Rose of Lima here in Littleton</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
- '<h3>The area — say it plainly</h3><p>Rural White Mountains: <b>older, homeowner, generational-loyalty country</b> — people hire the plumber their church knows. Littleton + St. Johnsbury are the two hub towns; the bulletin reaches the families both hubs live off.</p>'+
- '<h3>🎯 Who to call first</h3><p>Funeral homes/monuments · elder law &amp; estate · financial advisors (the Edward Jones offices = individual local buyers) · independent insurance/Medicare · heating oil &amp; propane (⭐ WINTER IS THE SEASON — Fitch Fuel class) · HVAC/plumbing/electric · home health &amp; senior living · hearing · optometry/dental · banks (community banks here LOVE local sponsorship) · realtors · family restaurants/diners · hardware/farm stores (patron class).</p>'+
- '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Rose of Lima bulletin here in Littleton</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
- '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Both design paths, always: “Send over your own ad design if you have one, or our design team builds it for you at no cost. Either way, you approve the final and you&rsquo;re in the next issue.” Print includes the free digital ad on the parish&rsquo;s ParishesOnline page.</p>'+
- '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Small town, everyone knows me.”</b> → “Exactly — this keeps it that way. It&rsquo;s the cheapest way to stay the name they think of first.”<br><b>“Too expensive.”</b> → divide by 52, then “what&rsquo;s one new customer worth?”</p>'+
- '<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works I&rsquo;ve got other parishes.” (Check SF for linked parishes first — north-country churches often share one pastor.)</p>'+
+ '<h3>⛪ WEEK 8 — CHURCH #8, FIRST NEW JERSEY (state #6)</h3><p><b>St. Anthony of Padua, 436 Port Reading Ave, Port Reading NJ 07064</b> · <b>Acct 04-1083</b> · Woodbridge Township, Middlesex County. <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>Advertiser wall + rate card + households: UNKNOWN until the bulletin photo + SF pull — NO "only X in the book" claims yet.</b> Dense old-parish metro: Italian/Polish/Hungarian family businesses, multi-generation funeral homes everywhere.</p>'+
+ '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Anthony&rsquo;s in Port Reading</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
+ '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, St. Anthony&rsquo;s gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
+ '<h3>The area — say it plainly</h3><p>Old-parish Jersey: generational loyalty, family names on trucks and funeral homes. The bulletin is the one page these families read EVERY week.</p>'+
+ '<h3>🎯 Who to call first</h3><p>Funeral homes (the deepest bench you&rsquo;ve ever had — 18 independents in ring) · monuments · elder law &amp; estate · CPAs/financial (no EJ) · independent pharmacies · insurance/Medicare · dentists · optometry · PT/chiro · HVAC/plumbing/electric/roofing family shops · landscaping/paving/masonry · family auto · realtors · pizzerias/diners/delis/bakeries (patron class in a parish town) · florists · Catholic cemeteries.</p>'+
+ '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Anthony&rsquo;s bulletin in Port Reading</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
+ '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Both design paths, always: “Send over your own ad design, or our design team builds it for you at no cost — either way, you approve the final and you&rsquo;re in the next issue.” Print includes the free digital ad on ParishesOnline.</p>'+
+ '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Already advertise.”</b> → “This supplements it — Google can&rsquo;t target the St. Anthony&rsquo;s pews.”<br><b>“Too expensive.”</b> → divide by 52, then “what&rsquo;s one new customer worth?”</p>'+
+ '<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works I&rsquo;ve got other parishes nearby.” (Middlesex is THICK with LPi parishes — check SF for the cluster.)</p>'+
  '<h3 class="warn">Don&rsquo;t sell / don&rsquo;t say</h3><p class="warn">Abortion/PP · elections · psychics/tarot · alcohol needs an OK · CBD needs Mark. Never claim to be church staff. Never promise exclusivity or placement.</p>'+
- '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: the ATTRAX pull (zip 03561;15 + 04-0478 inactives).</p>';
+ '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: ATTRAX pull (07064;15 + 04-1083 inactives).</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
