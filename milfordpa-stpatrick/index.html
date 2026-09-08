@@ -196,8 +196,8 @@
 const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
 // in-the-book counts per category — fill from the wall photo + ATTRAX each new week
-const WALL_KNOWN=false; // flip to true ONLY when WALLN is filled from the bulletin ad-page photo
-const WALLN={}; // WALL UNKNOWN — fill from the bulletin ad-page photo + ATTRAX (the pre-dial gates)
+const WALL_KNOWN=true; // wall captured 9/8 off the bulletin photo + ATTRAX actives (cross-verified)
+const WALLN={"Funeral Home / Monuments":{n:3},"Elder Law / Estate Attorney":{n:1},"Heating / AC":{n:1},"Bank / Credit Union":{n:1}}; // Gray-Parker + Stroyan + TriState Memorial (Stroyan=TriState=Brighton, one buyer) · Capita Law · Cold Breeze ×2 ads · Dime Bank + MDMedAlert filler · JUST-LAPSED still printing: Walsh CPA 8/23 + Milford Diner 8/16
 function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";if(!WALL_KNOWN)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#8e8e93;border-radius:6px;padding:1px 7px;vertical-align:middle">wall unknown — no in-book claims</span>`;const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
 const TOWNMI={"Milford":[0,1],"Westfall":[2,1],"Matamoras":[3,1],"Port Jervis NY":[3,1],"Millrift":[4,1],"Sparrowbush NY":[5,1],"Montague NJ":[6,1],"Huguenot NY":[7,2],"Shohola":[8,1],"Dingmans Ferry":[8,1],"Sandyston NJ":[10,2],"Lords Valley":[11,2],"Hemlock Farms":[11,2],"Layton NJ":[11,2],"Greeley":[12,2],"Lackawaxen":[13,2],"Wantage NJ":[13,2],"Branchville NJ":[14,2],"Deerpark NY":[6,2]};
 const LEADS=[
@@ -213,7 +213,32 @@ const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"BPI upgrade \$500 — ST. ROSE — Thu outcome?",p:"(603) 869-0100",t:"Milford"},
 {c:"🔥 CLOSE — live deals",n:"ANGIE @ Place Above The Notch — ST. ROSE — Thu outcome?",p:"(603) 869-0011",t:"Milford"},
 {c:"🔥 CLOSE — live deals",n:"ONE STOP AUTO — MILFORD DE — Thu outcome?",p:"(302) 213-3324",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"KRIS @ Alliance Financial — SWARTZ CK — they owe the call (alt line 810-232-1112, Chris Christenson)",p:"(810) 232-2300",t:"Milford"}
+{c:"🔥 CLOSE — live deals",n:"KRIS @ Alliance Financial — SWARTZ CK — they owe the call (alt line 810-232-1112, Chris Christenson)",p:"(810) 232-2300",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ KELLI WALSH CPA — lapsed 8/23/26, HER AD STILL PRINTS — kwalshcpa@gmail.com [ATTRAX+wall]",p:"(570) 491-4058",t:"Matamoras"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ MILFORD DINER — Nick Vacari — lapsed 8/16/26, AD STILL PRINTS — 301 Broad St — milforddinerpa@gmail.com [ATTRAX+wall]",p:"(570) 296-8611",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ LAUREL GROVE FLORIST — Eileen Batzel — lapsed 5/26 — laurelgrove@frontiernet.net · alt 845-856-4391 [ATTRAX]",p:"(845) 856-2713",t:"Port Jervis NY"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ JOHN’S MOWER SHOP — John Sawe — lapsed 5/26 [ATTRAX]",p:"(845) 856-7120",t:"Port Jervis NY"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ PRIME TIME MEATS — butcher, Kenny Peereboom — lapsed 6/25 — ptm@ptm.net [ATTRAX]",p:"(570) 296-6064",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ TWIN CEDARS SENIOR LIVING — lapsed 1/24 — twincedarspch.com [ATTRAX]",p:"(570) 252-4255",t:"Shohola"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"ATTORNEY LINDSEY COLLINS — 214 Broad St — lapsed 7/23 — lcollins@ptd.net [ATTRAX]",p:"(570) 242-2791",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"PIKE ACUPUNCTURE & WELLNESS — Kay Carver — lapsed 5/23 — patientcare@pikeacupuncture.com [ATTRAX]",p:"(570) 832-8600",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"MILFORD AUTO BODY — Mary Farula — lapsed 2/23 — milfordautobody@yahoo.com [ATTRAX]",p:"(570) 296-6651",t:"Shohola"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"JOHN FISCHER OD — optometrist, John & Audrey — lapsed 6/22 — jfischer10@outlook.com [ATTRAX]",p:"(570) 296-3300",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"BLAKE’S LAWN CARE — Ryan Blake — lapsed 6/22 — rblake824@gmail.com [ATTRAX]",p:"(973) 945-0854",t:"Dingmans Ferry"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"GUIDING LIGHT FINANCIAL — George Siracuse — lapsed 1/21 — invest@glightfinancial.com [ATTRAX]",p:"(570) 296-9494",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"FLATBROOK GARAGE — Chris Justus — lapsed 9/20 — flatbrookgarage@yahoo.com [ATTRAX]",p:"(973) 250-0186",t:"Montague NJ"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"MICHAEL’S MOVING & STORAGE — Meaghan Michaels — lapsed 12/20 [ATTRAX]",p:"(570) 828-8238",t:"Dingmans Ferry"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"AMBIENCE FURNITURE — Deb Shafer — lapsed 10/20 [ATTRAX]",p:"(570) 409-3168",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"ACCESS PTW — physical therapy — lapsed 1/21 — elogan@accessptw.com [ATTRAX]",p:"(845) 636-4344",t:"Dingmans Ferry"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"ALLIANCE SENIOR LIVING — Georgina Miner — lapsed 9/20 — allianceseniorhome2014@gmail.com [ATTRAX]",p:"(570) 409-3198",t:"Matamoras"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"GHIGGERI’S OLIVE OILS — Gina — 220 Broad St — lapsed 9/20 [ATTRAX]",p:"(570) 409-4744",t:"Milford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"POLAR BEAR ICE CREAM — Shawn Heater — lapsed 2/21 [ATTRAX]",p:"(570) 491-4311",t:"Matamoras"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"SCOTTY’S AUTO — Scott Romyns — lapsed 12/20 — scottysautomotiveservices.com [ATTRAX]",p:"(973) 293-8665",t:"Montague NJ"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"EL PATRON — Mexican restaurant — lapsed 2/21 — elpatronpj@gmail.com [ATTRAX]",p:"(845) 856-8701",t:"Port Jervis NY"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"JEFF’S GARDEN SHOP — Jeff Mance — lapsed 9/20 — jeff@jeffsgardenshop.com [ATTRAX]",p:"(570) 491-4008",t:"Matamoras"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"BUZZ CUTZ SALON — Yuliya Kay — lapsed 9/20 [ATTRAX]",p:"(570) 828-7905",t:"Dingmans Ferry"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"DELAWARE AUTO PARTS — Stuart Dooley — lapsed 5/21 [ATTRAX]",p:"(570) 828-9391",t:"Dingmans Ferry"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"DON BOARD PAINTING — lapsed 9/20 — doncanpaint@yahoo.com [ATTRAX]",p:"(570) 686-1736",t:"Milford"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -758,7 +783,7 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
-  '<h3>⛪ WEEK 9 — CHURCH #9, FIRST PENNSYLVANIA (state #7) — 3-WEEK PA RUN BEGINS</h3><p><b>St. Patrick Church, Milford PA 18337</b> · <b>Acct 03-1332</b> · Pike County — the PA/NY/NJ tri-state corner (Port Jervis NY is 3 mi; NJ across the river; parishioners shop all three). <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>WALL UNKNOWN — bulletin photo + ATTRAX (18337;15 + 03-1332) are the PRE-DIAL GATES: no cold dials until they land (the Costello law). Warm/carryover calls are open now.</b> Your house ad already prints here (Renata called off it 8/20) — expect inbounds. Rural-resort county: retirees, second homes, family businesses on Broad and Harford St.</p>'+
+  '<h3>⛪ WEEK 9 — CHURCH #9, FIRST PENNSYLVANIA (state #7) — 3-WEEK PA RUN BEGINS</h3><p><b>St. Patrick Church, Milford PA 18337</b> · <b>Acct 03-1332</b> · Pike County — the PA/NY/NJ tri-state corner (Port Jervis NY is 3 mi; NJ across the river; parishioners shop all three). <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>THE WALL (9/8 photo + ATTRAX): Gray-Parker FH (Port Jervis) · Stroyan FH + Tri-State Memorial (SAME buyer — Christopher Brighton, one phone) · Capita Law (elder law!) · Cold Breeze HVAC (2 ads) · Dime Bank + MDMedAlert filler. ⛔ Never dial a wall name. JUST-LAPSED but STILL PRINTING: Kelli Walsh CPA (8/23) + Milford Diner (8/16) — the two hottest calls in the county.</b> Your house ad already prints here (Renata called off it 8/20) — expect inbounds. Rural-resort county: retirees, second homes, family businesses on Broad and Harford St.</p>'+
  '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Patrick&rsquo;s here in Milford</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
  '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, St. Patrick&rsquo;s gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
  '<h3>The area — say it plainly</h3><p>Old-parish Jersey: generational loyalty, family names on trucks and funeral homes. The bulletin is the one page these families read EVERY week.</p>'+
