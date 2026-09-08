@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>St. Anthony of Padua — ARCHIVED (NJ)</title>
+<title>St. Patrick Call List — Milford PA</title>
 <style>
   :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
   @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
@@ -163,8 +163,8 @@
 <div class="wrap">
 <header>
   <a class="back" href="../">‹ All churches</a>
-  <div style="background:#ff9500;color:#fff;font-weight:700;text-align:center;padding:8px;border-radius:10px;margin-bottom:10px">📦 ARCHIVED — sell week ended Sep 5. Call data preserved. Current book: <a href="../milfordpa-stpatrick/" style="color:#fff;text-decoration:underline">St. Patrick — Milford PA</a> · deals live on the <a href="../pipeline/" style="color:#fff;text-decoration:underline">💰 Pipeline</a></div><h1>St. Anthony of Padua — Port Reading NJ</h1>
-  <div class="sub"><span id="hdrcount"></span> verified leads · ~10 mi ring around St. Anthony of Padua, 436 Port Reading Ave, Port Reading NJ 07064 (Woodbridge Twp / Middlesex) · WEEKLY parish bulletin · acct 04-1083 · copy a number, call in Salesforce, then mark it here</div>
+  <h1>St. Patrick — Milford PA</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · ~15 mi tri-state ring around St. Patrick, Milford PA 18337 (Pike County — PA/NY/NJ corner) · WEEKLY parish bulletin · acct 03-1332 · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -195,234 +195,25 @@
 // ================= DATA =================
 const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
-// in-the-book counts per category (from the 8/31 bulletin ad page + ATTRAX current contracts) — update each new week from the wall photo
-const WALL_KNOWN=true; // wall captured 8/31 off the bulletin ad-page photo + ATTRAX current contracts (7/7 cross-verified)
-const WALLN={"Funeral Home / Monuments":{n:1},"Elder Law / Estate Attorney":{n:1},"Plumbing / Sewer":{n:1},"Electrician":{n:1},"Roofing / Siding / Gutters":{n:1}}; // Costello-Greiner banner · Gill&Chamas (PI) · Dunigan · Safer Electric · Expert Chimney (+ Neves jewelers + KoC + ADT/CatholicMatch filler, no sheet category)
+// in-the-book counts per category — fill from the wall photo + ATTRAX each new week
+const WALL_KNOWN=false; // flip to true ONLY when WALLN is filled from the bulletin ad-page photo
+const WALLN={}; // WALL UNKNOWN — fill from the bulletin ad-page photo + ATTRAX (the pre-dial gates)
 function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";if(!WALL_KNOWN)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#8e8e93;border-radius:6px;padding:1px 7px;vertical-align:middle">wall unknown — no in-book claims</span>`;const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
-const TOWNMI={"Port Reading":[0,1],"Woodbridge":[2,1],"Sewaren":[2,1],"Avenel":[3,1],"Carteret":[3,1],"Fords":[4,1],"Iselin":[4,1],"Colonia":[5,1],"Hopelawn":[5,1],"Keasbey":[5,1],"Perth Amboy":[5,1],"Rahway":[5,1],"Menlo Park Terrace":[5,1],"Edison":[7,2],"Metuchen":[7,2],"Clark":[7,2],"Linden":[7,2],"South Amboy":[7,2],"Sayreville":[8,2],"Parlin":[8,2],"Cranford":[10,2],"Elizabeth":[10,2],"Piscataway":[9,2],"Morganville":[14,2]};
+const TOWNMI={"Milford":[0,1],"Westfall":[2,1],"Matamoras":[3,1],"Port Jervis NY":[3,1],"Millrift":[4,1],"Sparrowbush NY":[5,1],"Montague NJ":[6,1],"Huguenot NY":[7,2],"Shohola":[8,1],"Dingmans Ferry":[8,1],"Sandyston NJ":[10,2],"Lords Valley":[11,2],"Hemlock Farms":[11,2],"Layton NJ":[11,2],"Greeley":[12,2],"Lackawaxen":[13,2],"Wantage NJ":[13,2],"Branchville NJ":[14,2],"Deerpark NY":[6,2]};
 const LEADS=[
-{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \\$500 1sp ST JOHN XXIII (14-0127) — still collecting billing+terms",p:"(734) 637-6736",t:"Port Reading",e:"protouchhvac@gmail.com"},
-{c:"🔥 CLOSE — live deals",n:"⏳ POSTPONED 8/31 — RENATA (Bernadetta) / Chant Realtors — \\$750 2sp ST PATRICK PA — her email: apologizes, postponing — re-touch ~OCT",p:"(332) 220-7410",t:"Port Reading",e:"bcastellano@chantre.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 VICKY BECKER — ST. JOSEPH-LINCOLN SC, St. Joe MI — husband-check; her Aug deal expired Sat — call + re-frame",p:"(269) 470-4818",t:"Port Reading"},
-{c:"🔥 CLOSE — live deals",n:"🔥 BPI upgrade \\$500 (2sp→4sp) — ST. ROSE (04-0478) — emailed info@; VM Fri",p:"(603) 869-0100",t:"Port Reading",e:"info@buildingprofessionalsinc.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 ANGIE @ Place Above The Notch — ST. ROSE — her callback ask, still unreached",p:"(603) 869-0011",t:"Port Reading"},
-{c:"🔥 CLOSE — live deals",n:"🔥 ONE STOP AUTO — MILFORD — emailed 8/27; did it land?",p:"(302) 213-3324",t:"Port Reading",e:"onestopautoshop@comcast.net"},
-{c:"🔥 CLOSE — live deals",n:"⏰ THU 9/3: KISSA HARDEN / Raymond James — SWARTZ CK — very interested, back from vacation",p:"(810) 695-3589",t:"Port Reading",e:"kissa.harden@raymondjames.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — boss-check still open",p:"(508) 364-5039",t:"Port Reading"},
-{c:"🔥 CLOSE — live deals",n:"🔥 SAVANNAH @ Mannor Law — SWARTZ CK — she asked for the newsletter 8/31 → Sept issue + the 4sp-banner pitch REPLIED same day",p:"(810) 694-9000",t:"Port Reading",e:"savannah@mannorlaw.com"},
-{c:"🔥 CLOSE — live deals",n:"🔥 KRIS @ Alliance Financial — SWARTZ CK — Abe dialed 810-232-1112 Mon PM (caller-ID Chris Christenson [INFERRED = Kris]); they owe the call",p:"(810) 232-2300",t:"Port Reading",e:"kris@afgconsultants.com"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ CHUBENKO FUNERAL HOME — 625 PORT READING AVE (parish street!) — advertised thru ~2015 — Peter/Gregory Chubenko · chubenkofuneralhome@yahoo.com · alt 732-744-6551 [own-site ✓ + ATTRAX]",p:"(732) 634-6009",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ GERITY & CHUBENKO — since 1951, advertised thru ~2011 (as Leon J. Gerity FH) — ask for Shawn Bukofsky (mgr) · petergerityfh@yahoo.com [own-site ✓ + ATTRAX]",p:"(732) 634-2818",t:"Woodbridge"},
-{c:"Funeral Home / Monuments",n:"⭐ Flynn and Son / Mitruska — 126 yrs, Brendan Flynn Jr.; Perth Amboy chapel (James J. Flynn IV) rings same line [own-site ✓]",p:"(732) 826-0358",t:"Fords"},
-{c:"Funeral Home / Monuments",n:"Flynn and Son / Koyen — Metuchen chapel — Craig Tuma (caller-ID) [own-site ✓]",p:"(732) 548-2134",t:"Metuchen"},
-{c:"Funeral Home / Monuments",n:"⛔ Costello-Koyen (Avenel) — same family as the BANNER holder (Thomas Costello) — do NOT cold call",p:"(732) 636-2275",t:"Avenel"},
-{c:"Funeral Home / Monuments",n:"⛔ IN THE BOOK — COSTELLO-GREINER, the 5sp BANNER thru 3/27 (Patrick J. Costello) — do NOT cold call (dialed 8/31 ☠); year-1 upsell/multiples lane only",p:"(732) 634-0264",t:"Woodbridge"},
-{c:"Funeral Home / Monuments",n:"⛔ Costello-Runyon (Metuchen) — same family as the BANNER holder — do NOT cold call",p:"(732) 548-0149",t:"Metuchen"},
-{c:"Funeral Home / Monuments",n:"⛔ Costello-Runyon (Iselin) — same family as the BANNER holder — do NOT cold call",p:"(732) 283-0075",t:"Iselin"},
-{c:"Funeral Home / Monuments",n:"⭐ Zylka Funeral Home — since 1905 — ask for Ashley Palermo (caller-ID) [own-site ✓]",p:"(732) 442-0702",t:"Perth Amboy"},
-{c:"Funeral Home / Monuments",n:"Novak & Chubenko (Gustav J. Novak, 1932) [own-site ✓]",p:"(732) 826-4525",t:"Perth Amboy"},
-{c:"Funeral Home / Monuments",n:"Zevallos/Skrocki Home for Funerals — Ana Maria Zevallos [own-site ✓]",p:"(732) 826-1321",t:"Perth Amboy"},
-{c:"Funeral Home / Monuments",n:"Lehrer-Gibilisco — independent [own-site ✓]",p:"(732) 388-1874",t:"Rahway"},
-{c:"Funeral Home / Monuments",n:"Pettit-Davis — William G. Davis Jr. (caller-ID) [own-site ✓]",p:"(732) 388-0038",t:"Rahway"},
-{c:"Funeral Home / Monuments",n:"⭐ Kowalski — 70+ yrs, 3rd-gen — Terry Kowalski (caller-ID) + Nicholas [own-site ✓]",p:"(908) 486-7111",t:"Linden"},
-{c:"Funeral Home / Monuments",n:"⭐ Gosselin — since 1960, Mary Ann Gosselin [own-site ✓]",p:"(732) 381-5858",t:"Edison"},
-{c:"Funeral Home / Monuments",n:"Carmen F. Spezzi — Mr Carmen Spezzi himself answers (caller-ID); asked CALL AT 1PM [own-site ✓]",p:"(732) 721-1290",t:"Parlin"},
-{c:"Funeral Home / Monuments",n:"Maliszewski Memorial (Spezzi family — Meaghan Spezzi, caller-ID) [own-site ✓]",p:"(732) 254-1428",t:"Sayreville"},
-{c:"Funeral Home / Monuments",n:"Sayreville Memorial — Joseph Kurzawski Jr. [own-site ✓]",p:"(732) 257-3134",t:"South Amboy"},
-{c:"Funeral Home / Monuments",n:"Gray Memorial — John-Michael Jones (caller-ID; Dale Schoustra on site) [own-site ✓]",p:"(908) 276-0092",t:"Cranford"},
-{c:"Funeral Home / Monuments",n:"Boylan Funeral Home — since 1890 [Edison chamber ✓ — spot-check cleared]",p:"(732) 572-0076",t:"Edison"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ SHEVCHENKO MONUMENTS — since 1908, advertised thru ~2013 — Nick Shevchenko [own-site ✓ + ATTRAX]",p:"(732) 442-1286",t:"Perth Amboy"},
-{c:"Funeral Home / Monuments",n:"St. Gertrude Cemetery (Catholic, serves the Twp parishes) [FH resource ✓]",p:"(732) 388-0311",t:"Colonia"},
-{c:"Funeral Home / Monuments",n:"Mt. Calvary Cemetery (Catholic) [FH resource ✓]",p:"(908) 862-4832",t:"Linden"},
-{c:"Pharmacy",n:"⭐ Colonia Pharmacy — independent, compounding [own-site ✓]",p:"(732) 381-3400",t:"Colonia"},
-{c:"Pharmacy",n:"⭐ Avenel Pharmacy — free local delivery — Hank Incognito R.Ph. (caller-ID) [own-site ✓]",p:"(732) 634-1914",t:"Avenel"},
-{c:"Pharmacy",n:"⭐ Iselin Pharmacy [own-site ✓]",p:"(732) 283-1111",t:"Iselin"},
-{c:"Pharmacy",n:"Bonhamtown Pharmacy [Horizon dir]",p:"(732) 605-4307",t:"Edison"},
-{c:"Pharmacy",n:"Faithful Pharmacy [Horizon dir]",p:"(732) 287-3999",t:"Edison"},
-{c:"Pharmacy",n:"LG Pharmacy [Horizon dir]",p:"(732) 354-3777",t:"Edison"},
-{c:"Pharmacy",n:"Oak Tree Drugs [Horizon dir]",p:"(732) 662-9292",t:"Edison"},
-{c:"Pharmacy",n:"Park Drugs [Horizon dir]",p:"(908) 486-1875",t:"Linden"},
-{c:"Pharmacy",n:"Southwood Rita Pharmacy — Jignesh Mehta (caller-ID) [Horizon dir]",p:"(908) 862-4444",t:"Linden"},
-{c:"Pharmacy",n:"St. Mary Pharmacy [Horizon dir]",p:"(908) 925-7700",t:"Linden"},
-{c:"Pharmacy",n:"St Georges Pharmacy [Horizon dir]",p:"(908) 925-4567",t:"Linden"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Wolfe Ossa Law — elder law + Medicaid planning [own-site ✓]",p:"(732) 548-5400",t:"Metuchen"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Kenneth Vercammen — 40 yrs elder/estate [dedicated page]",p:"(732) 572-0500",t:"Edison"},
-{c:"Elder Law / Estate Attorney",n:"⛔ IN THE BOOK thru 8/27 — Gill & Chamas (PI firm, James Pagliuca) — current advertiser, do NOT call",p:"(732) 324-7600",t:"Woodbridge"},
-{c:"Elder Law / Estate Attorney",n:"John M. Parvin — Main St Woodbridge [YP dedicated]",p:"(732) 636-1220",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"Benny’s Pizza [own-site ✓]",p:"(732) 218-5253",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Jersey Pizza Boys — Testa family [own-site ✓]",p:"(732) 634-3983",t:"Avenel"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Leandro’s Pizza — 933 PORT READING AVE (parish street!) [grubhub — confirm # on call]",p:"(732) 352-0583",t:"Port Reading"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Edison Pizza — Mandreucci family since 1967 [own-site ✓]",p:"(732) 985-1733",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Nasto’s Ice Cream — since 1939 [grubhub — confirm # on call]",p:"(732) 218-5319",t:"Woodbridge"},
-{c:"Funeral Home / Monuments",n:"⭐ The Gundrum Service — since 1919 — Hugh G. Rone (caller-ID) [own-site ✓]",p:"(732) 727-0666",t:"South Amboy"},
-{c:"Funeral Home / Monuments",n:"⭐ Kurzawa Funeral Home — since 1933 — Rocco Kurzawa (caller-ID) [own-site ✓]",p:"(732) 721-0475",t:"South Amboy"},
-{c:"Funeral Home / Monuments",n:"Raritan Bay Funeral Service — independent — Matthew Freeman (caller-ID) [own-site ✓]",p:"(732) 313-7715",t:"South Amboy"},
-{c:"Funeral Home / Monuments",n:"Leonard Lee Funeral Home — family-owned — Vincent Badalis (caller-ID) [own-site ✓]",p:"(908) 486-4993",t:"Linden"},
-{c:"Funeral Home / Monuments",n:"Dooley Funeral Home [own-site ✓]",p:"(908) 276-0255",t:"Cranford"},
-{c:"Funeral Home / Monuments",n:"⭐ Walter Johnson Funeral Home — family group w/ Krowicki Gorny + Werson, ONE call — Lynn Johnson (caller-ID) [own-site ✓]",p:"(732) 382-6262",t:"Clark"},
-{c:"Funeral Home / Monuments",n:"Krowicki Gorny Memorial (Walter Johnson family, same address) [group site ✓]",p:"(732) 382-1400",t:"Clark"},
-{c:"Funeral Home / Monuments",n:"Werson Funeral Home (Walter Johnson family) [group site ✓]",p:"(908) 486-4118",t:"Linden"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Hynes Law Group — elder law + estate planning [Cranford BID ✓]",p:"(908) 514-8008",t:"Cranford"},
-{c:"Financial Planner / Retirement",n:"Keybridge Financial Group [Cranford BID ✓]",p:"(908) 276-5100",t:"Cranford"},
-{c:"Financial Planner / Retirement",n:"⭐ Senior Advisors — senior-focused financial [Cranford BID ✓]",p:"(908) 272-1970",t:"Cranford"},
-{c:"Bank / Credit Union",n:"Central Jersey Federal Credit Union — Main St [Woodbridge chamber ✓]",p:"(732) 634-0600",t:"Woodbridge"},
-{c:"Bank / Credit Union",n:"Jersey Central Federal Credit Union [Cranford BID ✓]",p:"(908) 272-3040",t:"Cranford"},
-{c:"Bank / Credit Union",n:"Amboy Bank — Middlesex community bank, Woodbridge branch [Woodbridge chamber ✓]",p:"(732) 855-1842",t:"Woodbridge"},
-{c:"Insurance",n:"Fraser Brothers Group — independent [Edison chamber ✓]",p:"(732) 738-7400",t:"Edison"},
-{c:"Insurance",n:"Mitchell Insurance Services [Woodbridge chamber ✓]",p:"(732) 738-5500",t:"Fords"},
-{c:"Insurance",n:"Overmyer Insurance Agency [Cranford BID ✓]",p:"(908) 476-8685",t:"Cranford"},
-{c:"Insurance",n:"⭐ Nick Karras — State Farm agency, named local agent [Woodbridge chamber ✓]",p:"(732) 634-8844",t:"Woodbridge"},
-{c:"Heating / AC",n:"First Choice Heating & Cooling [Edison chamber ✓]",p:"(732) 906-9111",t:"Metuchen"},
-{c:"Heating / AC",n:"Sam’s Air Control — owner-named [Edison chamber ✓]",p:"(908) 930-5244",t:"Edison"},
-{c:"Plumbing / Sewer",n:"⛔ IN THE BOOK thru 11/29 — Dunigan Plumbing ($1,219 contract, ATTRAX) — current advertiser, do NOT call",p:"(732) 634-0630",t:"Woodbridge"},
-{c:"Plumbing / Sewer",n:"Freedom Mechanical & Sewer Service [Edison chamber ✓]",p:"(732) 853-4115",t:"Rahway"},
-{c:"Electrician",n:"⭐⭐ Gurney Electric — PORT READING [Woodbridge chamber ✓]",p:"(732) 742-0100",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"VALIANT HOME REMODELERS — advertised thru 10/22 — Paul Pelosi · paul@valianthome.com [Woodbridge chamber ✓ + ATTRAX]",p:"(732) 541-7966",t:"Carteret"},
-{c:"Remodeling / Bath & Accessibility",n:"Certified Kitchens Inc. [Edison chamber ✓]",p:"(732) 512-1000",t:"Edison"},
-{c:"Remodeling / Bath & Accessibility",n:"J&A Pro Painting [Edison chamber ✓]",p:"(908) 356-9882",t:"Edison"},
-{c:"Remodeling / Bath & Accessibility",n:"Juhas Construction — owner-named [Edison chamber ✓]",p:"(908) 692-1841",t:"Cranford"},
-{c:"Remodeling / Bath & Accessibility",n:"Lenguy Construction [Edison chamber ✓]",p:"(732) 632-9250",t:"Edison"},
-{c:"Remodeling / Bath & Accessibility",n:"Milano Contracting — Vincent Milano (caller-ID) [Edison chamber ✓]",p:"(732) 558-1009",t:"Edison"},
-{c:"Remodeling / Bath & Accessibility",n:"Prayosha GMC [Edison chamber ✓]",p:"(732) 620-4431",t:"Edison"},
-{c:"Remodeling / Bath & Accessibility",n:"Red Trim Painting Services [Edison chamber ✓]",p:"(848) 225-5545",t:"Fords"},
-{c:"Remodeling / Bath & Accessibility",n:"Ryan Ozimanic — solo GC [Edison chamber ✓]",p:"(908) 487-7717",t:"Linden"},
-{c:"Remodeling / Bath & Accessibility",n:"Tri-Form Construction [Edison chamber ✓]",p:"(732) 548-8161",t:"Metuchen"},
-{c:"Remodeling / Bath & Accessibility",n:"⭐⭐ R.S. Marble & Granite — 900 PORT READING AVE (parish street!) [Edison chamber ✓]",p:"(732) 802-9220",t:"Port Reading"},
-{c:"Remodeling / Bath & Accessibility",n:"Siano Brothers Contracting — family-named — Christian Siano (caller-ID) [Cranford BID ✓]",p:"(908) 497-1335",t:"Cranford"},
-{c:"Remodeling / Bath & Accessibility",n:"Blue Umbrella Waterproofing [Cranford BID ✓]",p:"(908) 356-5460",t:"Cranford"},
-{c:"Remodeling / Bath & Accessibility",n:"Hull-Vicci Construction [Cranford BID ✓]",p:"(908) 272-3500",t:"Cranford"},
-{c:"Remodeling / Bath & Accessibility",n:"Academy Glass [Rahway chamber ✓]",p:"(732) 381-7272",t:"Rahway"},
-{c:"Remodeling / Bath & Accessibility",n:"Giacobbe & Sons Contractors — family-named [Rahway chamber ✓]",p:"(732) 382-0758",t:"Rahway"},
-{c:"Remodeling / Bath & Accessibility",n:"Linden Windows and Cabinets [Edison chamber ✓]",p:"(908) 587-1111",t:"Linden"},
-{c:"Remodeling / Bath & Accessibility",n:"Carpet Maven — Main St Woodbridge [Woodbridge chamber ✓]",p:"(732) 855-0494",t:"Woodbridge"},
-{c:"Landscaping / Snow / Tree",n:"NJ Paver — driveways/hardscape [Edison chamber ✓]",p:"(732) 627-4453",t:"Edison"},
-{c:"Landscaping / Snow / Tree",n:"Action Property Management — landscaping + snow [Woodbridge chamber ✓]",p:"(732) 742-5430",t:"Woodbridge"},
-{c:"Landscaping / Snow / Tree",n:"Aquila Landscape Contractors [Woodbridge chamber ✓]",p:"(732) 750-4466",t:"Avenel"},
-{c:"Landscaping / Snow / Tree",n:"Sequoia Land Design [Edison chamber ✓]",p:"(732) 331-7304",t:"Woodbridge"},
-{c:"Landscaping / Snow / Tree",n:"Azzarello Landscaping — owner-named [Edison chamber ✓]",p:"(732) 819-8851",t:"Edison"},
-{c:"Cleaning / Restoration",n:"Powerful Wash — pressure washing [Woodbridge chamber ✓]",p:"(908) 494-6961",t:"Colonia"},
-{c:"Physical Therapy / Chiropractic",n:"Backsmart Wellness Center [Woodbridge chamber ✓]",p:"(732) 661-1121",t:"Fords"},
-{c:"Physical Therapy / Chiropractic",n:"Advanced Family Chiropractic [Woodbridge chamber ✓]",p:"(732) 499-9191",t:"Colonia"},
-{c:"Physical Therapy / Chiropractic",n:"Hudak Chiropractic — owner-named [Edison chamber ✓]",p:"(732) 661-0800",t:"Edison"},
-{c:"Physical Therapy / Chiropractic",n:"Adroit Rehabilitation — 25+ yrs [Rahway chamber ✓]",p:"(732) 499-7927",t:"Rahway"},
-{c:"Physical Therapy / Chiropractic",n:"Mitruska Integrated Wellness (funeral-family name — ask!) [Edison chamber ✓]",p:"(732) 324-4300",t:"Perth Amboy"},
-{c:"Podiatry / Mobility / Medical Supply",n:"Affiliated Foot & Ankle Center — Varun B Gujral (caller-ID) [Edison chamber ✓]",p:"(732) 662-3050",t:"Edison"},
-{c:"Podiatry / Mobility / Medical Supply",n:"Ideal Healthcare / Mobility Clinic [Edison chamber ✓]",p:"(732) 662-5700",t:"Edison"},
-{c:"Dentist / Dentures",n:"Growing Faces Pediatric Dentistry [Edison chamber ✓]",p:"(732) 375-1000",t:"Edison"},
-{c:"Dentist / Dentures",n:"Isaac Menasha DDS [Edison chamber ✓]",p:"(732) 985-7666",t:"Edison"},
-{c:"Dentist / Dentures",n:"Legacy Dental [Edison chamber ✓]",p:"(732) 549-0173",t:"Metuchen"},
-{c:"Dentist / Dentures",n:"Galkin Orthodontics [Woodbridge chamber ✓]",p:"(732) 636-2828",t:"Woodbridge"},
-{c:"Dentist / Dentures",n:"Cranford Dental Arts [Cranford BID ✓]",p:"(908) 276-4116",t:"Cranford"},
-{c:"Dentist / Dentures",n:"Cranford Orthodontics — Stanley Gersch (caller-ID) [Cranford BID ✓]",p:"(908) 272-5595",t:"Cranford"},
-{c:"Dentist / Dentures",n:"Cranford Smiles [Cranford BID ✓]",p:"(908) 272-0787",t:"Cranford"},
-{c:"Dentist / Dentures",n:"South Avenue Dental [Cranford BID ✓]",p:"(908) 272-7272",t:"Cranford"},
-{c:"Dentist / Dentures",n:"New Image Dental — Cayetano L Farcon (caller-ID) [Woodbridge chamber ✓]",p:"(732) 225-1020",t:"Fords"},
-{c:"Eye / Optometry",n:"Better Vision New Jersey — Heidi Calderone (caller-ID) [Cranford BID ✓]",p:"(908) 276-3030",t:"Cranford"},
-{c:"Eye / Optometry",n:"Cranford Eye Care — Christy T Hoang (caller-ID) [Cranford BID ✓]",p:"(908) 276-0200",t:"Cranford"},
-{c:"Eye / Optometry",n:"Hilke & Weng Optometric Physicians — Bruce Weng (caller-ID) [Cranford BID ✓]",p:"(908) 276-1332",t:"Cranford"},
-{c:"Medical Clinic / Primary Care",n:"Woodbridge Radiology [Edison chamber ✓]",p:"(732) 326-1515",t:"Iselin"},
-{c:"Medical Clinic / Primary Care",n:"Excel Urgent Care of Iselin [Woodbridge chamber ✓]",p:"(732) 874-5507",t:"Iselin"},
-{c:"Home Health / In-Home Care",n:"Stanford Angels — senior care [Edison chamber ✓]",p:"(732) 318-6820",t:"Edison"},
-{c:"Retirement / Senior Living",n:"Heritage at Clara Barton — assisted living [Edison chamber ✓]",p:"(732) 225-5990",t:"Edison"},
-{c:"Pharmacy",n:"Bell Pharmacy — independent — Tony Feijoo (caller-ID) [Edison chamber ✓]",p:"(732) 985-1211",t:"Edison"},
-{c:"Pharmacy",n:"Baron Drugs — independent [Cranford BID ✓]",p:"(908) 276-6100",t:"Cranford"},
-{c:"Pharmacy",n:"Bell’s Pharmacy — independent [Cranford BID ✓]",p:"(908) 276-0062",t:"Cranford"},
-{c:"Auto Service / Tire",n:"Jones Automotive [Edison chamber ✓]",p:"(848) 200-7233",t:"Edison"},
-{c:"Auto Service / Tire",n:"Advanced Autoworks [Cranford BID ✓]",p:"(908) 377-9392",t:"Cranford"},
-{c:"Auto Service / Tire",n:"Carmen’s Foreign Car Repair [Cranford BID ✓]",p:"(908) 272-8708",t:"Cranford"},
-{c:"Auto Service / Tire",n:"Cranford Auto Repair [Cranford BID ✓]",p:"(908) 276-9800",t:"Cranford"},
-{c:"Auto Service / Tire",n:"Dan and Tony’s Accurate Auto [Cranford BID ✓]",p:"(908) 272-2288",t:"Cranford"},
-{c:"Auto Service / Tire",n:"Heavenly Body Works [Woodbridge chamber ✓]",p:"(732) 726-1114",t:"Woodbridge"},
-{c:"Auto Service / Tire",n:"Olger Motors [Woodbridge chamber ✓]",p:"(732) 527-0259",t:"Woodbridge"},
-{c:"Auto Service / Tire",n:"A & A Auto Center [Rahway chamber ✓]",p:"(732) 382-2888",t:"Rahway"},
-{c:"Auto Service / Tire",n:"Dependable Auto Repair [Rahway chamber ✓]",p:"(732) 340-9006",t:"Rahway"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ J.J. Elek Realty — longstanding, Main St — 🎯 agent Connie Botwin advertised thru 11/21, ASK FOR HER [Woodbridge chamber ✓ + ATTRAX]",p:"(732) 634-9100",t:"Woodbridge"},
-{c:"Realtor / Downsizing / Senior Move",n:"On Track Realty — since 1994 [Edison chamber ✓]",p:"(732) 494-2211",t:"Edison"},
-{c:"Realtor / Downsizing / Senior Move",n:"Samsel & Associates [Edison chamber ✓]",p:"(908) 514-4105",t:"Clark"},
-{c:"Realtor / Downsizing / Senior Move",n:"Marc Kelley Realtors [Cranford BID ✓]",p:"(908) 276-7888",t:"Cranford"},
-{c:"Realtor / Downsizing / Senior Move",n:"Shannon DellaFortuna Homes [Cranford BID ✓]",p:"(908) 403-7797",t:"Cranford"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ La Bon Bake Shoppes — longstanding [Woodbridge chamber ✓]",p:"(732) 636-0121",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Ferrara Bakery — family-name [Woodbridge chamber ✓]",p:"(732) 687-3895",t:"Perth Amboy"},
-{c:"Restaurant / Bakery / Catering",n:"Knot Just Bagels [Woodbridge chamber ✓]",p:"(732) 750-1999",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Moby Dicks Restaurant — Sewaren landmark [Woodbridge chamber ✓]",p:"(732) 634-7572",t:"Sewaren"},
-{c:"Restaurant / Bakery / Catering",n:"Sapphire Banquet — Edyta Arianas (caller-ID) [Woodbridge chamber ✓]",p:"(732) 326-1400",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"Strawberry’s Pub & Pizza [Woodbridge chamber ✓]",p:"(732) 634-3131",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"Roosevelt’s Deli & Catering — Mike Castro (caller-ID) [Woodbridge chamber ✓]",p:"(732) 738-9399",t:"Fords"},
-{c:"Restaurant / Bakery / Catering",n:"Maglione’s Italian Ices — family-name [Woodbridge chamber ✓]",p:"(732) 283-0705",t:"Iselin"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Dominic’s Italian Restaurant — Frank Pesce (caller-ID) [Woodbridge chamber ✓]",p:"(732) 726-3355",t:"Avenel"},
-{c:"Restaurant / Bakery / Catering",n:"Il Castello’s — Main St [Woodbridge chamber ✓]",p:"(732) 602-0090",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"Anchors Tiki Bar — Sewaren waterfront [Woodbridge chamber ✓]",p:"(732) 554-1960",t:"Sewaren"},
-{c:"Restaurant / Bakery / Catering",n:"Chris Michael’s Steakhouse [Edison chamber ✓]",p:"(732) 634-5355",t:"Woodbridge"},
-{c:"Restaurant / Bakery / Catering",n:"Automat [Edison chamber ✓]",p:"(732) 548-7676",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Edison Tex Mex Deli [Edison chamber ✓]",p:"(732) 640-2929",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Elixir Bar & Grill [Edison chamber ✓]",p:"(732) 819-4026",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Ferraro 1061 — family-name Italian — Steven Ferraro (caller-ID) [Edison chamber ✓]",p:"(732) 225-3113",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Latin Port [Edison chamber ✓]",p:"(848) 219-0334",t:"Metuchen"},
-{c:"Restaurant / Bakery / Catering",n:"LouCas — Italian (quarantine resolved via chamber) [Edison chamber ✓]",p:"(732) 549-8580",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Ruby Ke Kitchen Se [Edison chamber ✓]",p:"(732) 579-7249",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Skylark Diner [Edison chamber ✓]",p:"(732) 777-7878",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Sunshine Grill [Edison chamber ✓]",p:"(908) 227-1338",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"The Mexi-Boys [Edison chamber ✓]",p:"(732) 803-9330",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Famous Samosas — catering [Edison chamber ✓]",p:"(732) 740-7373",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Frappe Joe Coffee [Edison chamber ✓]",p:"(732) 372-7700",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Oakwood Pizza — Carmelo (caller-ID) [Edison chamber ✓]",p:"(732) 494-0340",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Pines Manor — banquets, longstanding [Edison chamber ✓]",p:"(732) 287-2222",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"U Dumpling [Edison chamber ✓]",p:"(732) 317-8396",t:"Edison"},
-{c:"Restaurant / Bakery / Catering",n:"Ambeli Greek Taverna [Cranford BID ✓]",p:"(908) 272-4111",t:"Cranford"},
-{c:"Restaurant / Bakery / Catering",n:"Cranford Station House — diner [Cranford BID ✓]",p:"(908) 276-2818",t:"Cranford"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Perrotti’s Quality Meats — family butcher [Cranford BID ✓]",p:"(908) 272-4980",t:"Cranford"},
-{c:"Restaurant / Bakery / Catering",n:"Vinny’s Pizza & Pasta [Cranford BID ✓]",p:"(908) 709-9000",t:"Cranford"},
-{c:"Restaurant / Bakery / Catering",n:"Butch Kowal’s Tavern — old-Rahway name [Rahway chamber ✓]",p:"(732) 453-4171",t:"Rahway"},
-{c:"Restaurant / Bakery / Catering",n:"Casamon Caribbean Cuisine [Rahway chamber ✓]",p:"(732) 829-3012",t:"Rahway"},
-{c:"Restaurant / Bakery / Catering",n:"Flynn’s Pub House [Rahway chamber ✓]",p:"(732) 397-5472",t:"Rahway"},
-{c:"Restaurant / Bakery / Catering",n:"The Waiting Room — Chris Wenson (caller-ID) [Rahway chamber ✓]",p:"(732) 382-0900",t:"Rahway"},
-{c:"Restaurant / Bakery / Catering",n:"It’s Delicious Ice Cream [Rahway chamber ✓]",p:"(732) 540-8642",t:"Clark"},
-{c:"Restaurant / Bakery / Catering",n:"The Coffee Box [Rahway chamber ✓]",p:"(862) 812-1893",t:"Rahway"},
-{c:"Patron / Community Sponsor 💰",n:"Colonia Country Club — events/banquets — Kevin Maciorowski (caller-ID) [Woodbridge chamber ✓]",p:"(732) 381-9500",t:"Colonia"},
-{c:"Patron / Community Sponsor 💰",n:"Majestic Lanes — family bowling [Woodbridge chamber ✓]",p:"(732) 826-6800",t:"Hopelawn"},
-{c:"Medicare / Senior Insurance",n:"⭐ MEDICARE ADVISORS INSURANCE GROUP — 3 Broad St, since 2014 — info@mymedicareadvisors.com + agent roster on site [own-site ✓ medicareabc.com]",p:"(908) 469-3833",t:"Elizabeth"},
-{c:"Insurance",n:"Sangha Insurance Agency — independent, ask for Jay — jay@sanghainsuranceagency.com [own-site ✓]",p:"(732) 306-5889",t:"Iselin"},
-{c:"Retirement / Senior Living",n:"⭐⭐ ST. JOSEPH SENIOR HOME & NURSING CENTER — CATHOLIC, run by the Sisters, Woodbridge proper — info@stjosephseniorhome.com [own-site ✓]",p:"(732) 634-0004",t:"Woodbridge"},
-{c:"Hearing / Audiology",n:"⭐ The Hearing Center — 29 yrs, audiology, 49 Brant Ave — Meredith Rothenberg (caller-ID) [own-site ✓ thcaudiology.com]",p:"(732) 574-3550",t:"Clark"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ AIRTEC SERVICE — HVAC, lapsed MAY 2026 (3.5 mo — hottest) — Eileen McKenzie · airtecnj2@gmail.com [ATTRAX]",p:"(732) 634-4188",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ ELITE NURSING CONCIERGE — home nursing, lapsed JUNE 2026 — Sensas Saint Paul · alt 908-248-1599 · sf.gelin@gmail.com [ATTRAX]",p:"(848) 336-3685",t:"Rahway"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ D’ORSI’S BAKERY — 479 PORT READING AVE (parish street!), lapsed 11/21 — Steve · dorsisbakery@gmail.com [ATTRAX]",p:"(732) 634-7994",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ ABSOLUTE EYEWEAR — 42 Main St, lapsed 6/25 — Janine Michaud · jmichaud2@comcast.net [ATTRAX]",p:"(732) 326-3937",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ ALLIANCE PLUMBING & MECHANICAL — lapsed 8/24 — Patty Weber · allplumb@comcast.net [ATTRAX]",p:"(732) 602-9703",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ DIOCESE OF METUCHEN CATHOLIC CEMETERIES — lapsed 8/24 — Ed Stevens · estevens@diometuchen.org · ⚠ 800# = email-first lane [ATTRAX]",p:"(800) 943-8400",t:"Piscataway"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ RICK’S PRECISION CLEANING — lapsed 7/24 — Kissy Gonzalez · kissy_gonzalez@yahoo.com [ATTRAX]",p:"(973) 760-6653",t:"Perth Amboy"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ SAN REMO PIZZA — 87 Main St, lapsed 7/23 — Joe Tramontama · italkid@optonline.net [ATTRAX]",p:"(732) 634-7151",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ MEDICINE SHOPPE — independent pharmacy, lapsed 9/20 — Amy Joswick · alt 732-925-4261 · chlone01@aol.com [ATTRAX]",p:"(732) 636-0011",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ GARLAND LAW njelders.com — ELDER LAW, lapsed 12/19 — Gary Garland · gary@njelders.com (Morganville base) [ATTRAX]",p:"(732) 972-6700",t:"Morganville"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"ALMASY LAW — 429 Amboy Ave, lapsed 11/20 — James Almasy · alt 732-742-1366 · james@almasylaw.com [ATTRAX]",p:"(732) 582-2500",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"MULBERRY STREET RESTAURANT — lapsed 10/19 — Paul LaGrutta · paul.lagrutta@mulberrystreetrestaurant.com [ATTRAX]",p:"(732) 634-4699",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"KEVIN GARCIA — Allstate agent, lapsed 10/17 — kevin.garcia@allstate.com [ATTRAX]",p:"(732) 460-7175",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ SYNOWIECKI FUNERAL HOME — lapsed 2010 — Irene Synowiecki — Lori Samuelson (caller-ID) [ATTRAX]",p:"(732) 541-5715",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"UNITED ROOSEVELT BANK — Carteret local bank, lapsed 7/19 — Marylouise Filomeno · mfilomeno@ursbank.com [ATTRAX]",p:"(732) 541-5445",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"WIZNA SMALL ENGINE REPAIR — lapsed 10/19 — Daryl Wizna · wizna31@aol.com [ATTRAX]",p:"(732) 541-5500",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"AAA ALL CAR AUTO SALVAGE — lapsed 10/20 — Dennis Smith · alt 732-672-0192 · aaaallcar@yahoo.com [ATTRAX]",p:"(732) 381-2646",t:"Avenel"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"MIKE GILLIGAN — income tax prep, lapsed 3/20 — m.b.gilligan@comcast.net [ATTRAX]",p:"(732) 541-9692",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"FLORAL EXPRESSIONS — florist, 91 Main St, lapsed 7/16 — James Olgreen · floralexpressionsnj@comcast.net [ATTRAX]",p:"(732) 634-6868",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"LARRY ADAMSON — realtor, lapsed 3/14 — iga120951@aol.com [ATTRAX]",p:"(908) 930-6653",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"CENTER BAR & PIZZERIA — 46 Marion St, lapsed 5/14 — Jackie/Robert DeSantis [ATTRAX]",p:"(732) 969-2390",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"TOM DUNN & SON CARPENTRY — lapsed 5/15 — Tom Dunn [ATTRAX]",p:"(732) 621-6183",t:"Fords"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"A-5 ELECTRIC & SECURITY — lapsed 6/13 — Al Angrisani · aaa1261@msn.com [ATTRAX]",p:"(732) 713-4393",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"EDGAR ALB DMD — dentist, lapsed 9/12 — ask for Diana · edalbdmd@gmail.com [ATTRAX]",p:"(732) 636-8002",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"EM-VIANN’S HAIR SALON — 775 PORT READING AVE, lapsed 2/11 [ATTRAX]",p:"(732) 541-1333",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"MARTY’S BRAKES & MUFFLERS — Rt 35, lapsed 6/11 — Marty Klien · martyk50@aol.com [ATTRAX]",p:"(732) 634-0866",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"DENNIS HOME IMPROVEMENT — lapsed 8/10 — Dennis Schnorrbusch [ATTRAX]",p:"(732) 969-0766",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"SUPREME CLEANERS — lapsed 8/10 — Mercedes [ATTRAX]",p:"(732) 541-2560",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"SSR LANDSCAPE — Sewaren, lapsed 7/10 — Bob Smolder · ssrlandscapecontracting@hotmail.com [ATTRAX]",p:"(732) 266-5576",t:"Sewaren"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"HOMETOWN DELI — 177 PORT READING AVE, lapsed 1/10 — Joseph Deleoni III [ATTRAX]",p:"(732) 602-1604",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"NUZZO’S PIZZA — 82B Main St, lapsed 3/09 — Philomina Nuzzo [ATTRAX]",p:"(732) 602-9889",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"TOUCH OF ITALY — 969 Rahway Ave, lapsed 7/09 — Richard Slicner [ATTRAX]",p:"(732) 750-4300",t:"Avenel"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"PAT’S AUTO BODY — lapsed 6/09 — Pat Defederico · alt 732-261-7009 [ATTRAX]",p:"(732) 541-1640",t:"Carteret"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"FAMILY MEDICAL CENTER — Woodbridge Ctr, lapsed 7/09 — Jackie McCarthy [ATTRAX]",p:"(732) 636-3669",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"GENNA CLEANERS — lapsed 6/09 — Nelly Tamburello [ATTRAX]",p:"(732) 636-0080",t:"Woodbridge"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"CHARLES DUNN SYSTEMS — lapsed 5/09 [ATTRAX]",p:"(732) 969-2708",t:"Port Reading"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"JOHN CARPENITO — Century 21, lapsed 8/09 [ATTRAX]",p:"(908) 380-6564",t:"Port Reading"},
-{c:"Medical Clinic / Primary Care",n:"Avenel Iselin Medical Group [Woodbridge chamber ✓]",p:"(732) 404-1580",t:"Iselin"},
-{c:"Realtor / Downsizing / Senior Move",n:"Next Generation Homes — # CORRECTED off chamber card (old # belonged to NJ Realty Advisory) [Woodbridge chamber ✓]",p:"(973) 418-4595",t:"Woodbridge"}
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 CURLEY — \$1,000: \$500×2 books (OLV + Assumption Osterville) — he OFFERED HIS CARD 9/3 — payment status?!",p:"(508) 790-4508",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 RENATA (Bernadetta) / Chant Realtors — \$750 2sp — ⭐ HER BOOK = THIS WEEK'S BOOK — the honest window call",p:"(332) 220-7410",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \$500 1sp ST JOHN XXIII (14-0127) — email resent 9/3; collect billing+terms",p:"(734) 637-6736",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 ALL AMERICAN ASSISTED LIVING — CALLED ABE 7/31 WANTING A 4-SPACE (Holy Apostles) — never collected",p:"(781) 447-4100",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 VICKY BECKER — St. Joseph-Lincoln SC MI — \$500/\$750 quoted — Thu-call outcome?",p:"(269) 470-4818",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 KISSA HARDEN / Raymond James — SWARTZ CK — Thu-call outcome?",p:"(810) 695-3589",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 JEFFREY AUSTIN LAW — SWARTZ CK — quoted \$850 2sp / \$1,250 4sp — in-or-out ask",p:"(810) 223-6510",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 HANNON-MURPHY INSURANCE — Holy Apostles — said INTERESTED 7/29 — AEP line now",p:"(781) 293-5500",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — boss-check still open",p:"(508) 364-5039",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"BPI upgrade \$500 — ST. ROSE — Thu outcome?",p:"(603) 869-0100",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"ANGIE @ Place Above The Notch — ST. ROSE — Thu outcome?",p:"(603) 869-0011",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"ONE STOP AUTO — MILFORD DE — Thu outcome?",p:"(302) 213-3324",t:"Milford"},
+{c:"🔥 CLOSE — live deals",n:"KRIS @ Alliance Financial — SWARTZ CK — they owe the call (alt line 810-232-1112, Chris Christenson)",p:"(810) 232-2300",t:"Milford"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -442,7 +233,7 @@ const STATUS={
 const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
-const LIST_ID="stanthony-436portreading-nj";
+const LIST_ID="stpatrick-milfordpa-03-1332";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
@@ -494,7 +285,7 @@ const FOLD={};
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
 let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
-function srch(name,town){return "https://www.google.com/search?q="+encodeURIComponent(name+" "+town+" NJ");}
+function srch(name,town){return "https://www.google.com/search?q="+encodeURIComponent(name+" "+town+(/ (NY|NJ)$/.test(town)?"":" PA"));}
 function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MI');}
 function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
@@ -967,17 +758,17 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
- '<h3>⛪ WEEK 8 — CHURCH #8, FIRST NEW JERSEY (state #6)</h3><p><b>St. Anthony of Padua, 436 Port Reading Ave, Port Reading NJ 07064</b> · <b>Acct 04-1083</b> · Woodbridge Township, Middlesex County. <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>THE WALL (8/31 photo + ATTRAX, cross-verified): Costello-Greiner (5sp BANNER) · Dunigan Plumbing · Safer Electric · Expert Chimney &amp; Roofing · Gill &amp; Chamas · Neves Jewelers · KoC 5809 + ADT/CatholicMatch filler — and OPEN CELLS on the page (real inventory).</b> ⛔ Never dial a wall name. Rate card + households still owed from SF. Your house ad prints with your name — expect inbounds. Dense old-parish metro: Italian/Polish/Hungarian family businesses, multi-generation funeral homes everywhere.</p>'+
- '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Anthony&rsquo;s in Port Reading</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
- '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, St. Anthony&rsquo;s gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
+  '<h3>⛪ WEEK 9 — CHURCH #9, FIRST PENNSYLVANIA (state #7) — 3-WEEK PA RUN BEGINS</h3><p><b>St. Patrick Church, Milford PA 18337</b> · <b>Acct 03-1332</b> · Pike County — the PA/NY/NJ tri-state corner (Port Jervis NY is 3 mi; NJ across the river; parishioners shop all three). <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>WALL UNKNOWN — bulletin photo + ATTRAX (18337;15 + 03-1332) are the PRE-DIAL GATES: no cold dials until they land (the Costello law). Warm/carryover calls are open now.</b> Your house ad already prints here (Renata called off it 8/20) — expect inbounds. Rural-resort county: retirees, second homes, family businesses on Broad and Harford St.</p>'+
+ '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Patrick&rsquo;s here in Milford</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
+ '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, St. Patrick&rsquo;s gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
  '<h3>The area — say it plainly</h3><p>Old-parish Jersey: generational loyalty, family names on trucks and funeral homes. The bulletin is the one page these families read EVERY week.</p>'+
- '<h3>🎯 Who to call first</h3><p><b>WIN-BACKS FIRST (the 🎯 section — past advertisers, ATTRAX 8/31): Airtec HVAC (lapsed May) · Elite Nursing (lapsed June) · D&rsquo;Orsi&rsquo;s Bakery + Chubenko (parish street) — frame: new rep + you supported the book before + spots open.</b> Then: funeral homes (24 independents in ring; Costello = ⛔ in-book — competitor ammo for the rest: &ldquo;Costello holds the banner in front of the parish&rdquo;) · monuments · elder law &amp; estate · CPAs/financial (no EJ) · independent pharmacies · insurance/Medicare · dentists · optometry · PT/chiro · HVAC/plumbing/electric/roofing family shops · landscaping/paving/masonry · family auto · realtors · pizzerias/diners/delis/bakeries (patron class in a parish town) · florists · Catholic cemeteries.</p>'+
- '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Anthony&rsquo;s bulletin in Port Reading</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
+  '<h3>🎯 Who to call first</h3><p><b>The carryover deals up top (Curley + Renata first)</b> · then when the wall + ATTRAX land: funeral homes · elder law · financial/Medicare (AEP NOW) · pharmacies · dentists/eye/hearing · home services (septic/excavating/tree count out here) · realtors (resort county = busy) · family restaurants/diners · auto. Tri-state: Port Jervis NY businesses serve this parish too.</p>'+
+ '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Patrick&rsquo;s bulletin here in Milford</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
  '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Both design paths, always: “Send over your own ad design, or our design team builds it for you at no cost — either way, you approve the final and you&rsquo;re in the next issue.” Print includes the free digital ad on ParishesOnline.</p>'+
  '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Already advertise.”</b> → “This supplements it — Google can&rsquo;t target the St. Anthony&rsquo;s pews.”<br><b>“Too expensive.”</b> → divide by 52, then “what&rsquo;s one new customer worth?”</p>'+
  '<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works I&rsquo;ve got other parishes nearby.” (Middlesex is THICK with LPi parishes — check SF for the cluster.)</p>'+
  '<h3 class="warn">Don&rsquo;t sell / don&rsquo;t say</h3><p class="warn">Abortion/PP · elections · psychics/tarot · alcohol needs an OK · CBD needs Mark. Never claim to be church staff. Never promise exclusivity or placement.</p>'+
- '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: ATTRAX pull (07064;15 + 04-1083 inactives).</p>';
+ '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: ATTRAX pull (18337;15 + 03-1332 inactives) + bulletin wall photo BEFORE cold dials.</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
