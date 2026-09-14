@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>St. Patrick — ARCHIVED (PA)</title>
+<title>St. Francis Xavier & St. Aloysius Call List — Cresson PA</title>
 <style>
   :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
   @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
@@ -163,8 +163,8 @@
 <div class="wrap">
 <header>
   <a class="back" href="../">‹ All churches</a>
-  <div style="background:#ff9500;color:#fff;font-weight:700;text-align:center;padding:8px;border-radius:10px;margin-bottom:10px">📦 ARCHIVED — sell week ended Sep 12. Call data preserved. Current book: <a href="../cresson-stfrancisaloysius/" style="color:#fff;text-decoration:underline">St. Francis Xavier & St. Aloysius — Cresson PA</a> · deals live on the <a href="../pipeline/" style="color:#fff;text-decoration:underline">💰 Pipeline</a></div><h1>St. Patrick — Milford PA</h1>
-  <div class="sub"><span id="hdrcount"></span> verified leads · ~15 mi tri-state ring around St. Patrick, Milford PA 18337 (Pike County — PA/NY/NJ corner) · WEEKLY parish bulletin · acct 03-1332 · copy a number, call in Salesforce, then mark it here</div>
+  <h1>St. Francis Xavier & St. Aloysius — Cresson PA</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · ~15 mi ring around Cresson PA 16630 (Cambria County — Allegheny coal country, Altoona over the mountain) · WEEKLY parish bulletin · acct 14-1078 · copy a number, call in Salesforce, then mark it here</div>
   <div class="score" id="score"></div>
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
@@ -196,187 +196,24 @@
 const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰","Big Budget / Premium 🐋","Funeral Home / Monuments","Retirement / Senior Living","Home Health / In-Home Care","Nursing / Rehab / Hospice","Hearing / Audiology","Medicare / Senior Insurance","Elder Law / Estate Attorney","Financial Planner / Retirement","Medical Clinic / Primary Care","Dentist / Dentures","Eye / Optometry","Podiatry / Mobility / Medical Supply","Pharmacy","Physical Therapy / Chiropractic","Bank / Credit Union","Insurance","Realtor / Downsizing / Senior Move","Heating / AC","Plumbing / Sewer","Electrician","Roofing / Siding / Gutters","Remodeling / Bath & Accessibility","Landscaping / Snow / Tree","Cleaning / Restoration","Auto Service / Tire","Restaurant / Bakery / Catering","Patron / Community Sponsor 💰"];
 // town -> [~miles from 111 Park Ave Milford DE, tier 1=closest 2=edge] (approx)
 // in-the-book counts per category — fill from the wall photo + ATTRAX each new week
-const WALL_KNOWN=true; // wall captured 9/8 off the bulletin photo + ATTRAX actives (cross-verified)
-const WALLN={"Funeral Home / Monuments":{n:3},"Elder Law / Estate Attorney":{n:1},"Heating / AC":{n:1},"Bank / Credit Union":{n:1}}; // Gray-Parker + Stroyan + TriState Memorial (Stroyan=TriState=Brighton, one buyer) · Capita Law · Cold Breeze ×2 ads · Dime Bank + MDMedAlert filler · JUST-LAPSED still printing: Walsh CPA 8/23 + Milford Diner 8/16
+const WALL_KNOWN=false; // flip true ONLY when WALLN fills from the bulletin ad-page photo
+const WALLN={}; // WALL UNKNOWN — photo + ATTRAX (16630;15 + 14-1078) = the pre-dial gates
 function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";if(!WALL_KNOWN)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#8e8e93;border-radius:6px;padding:1px 7px;vertical-align:middle">wall unknown — no in-book claims</span>`;const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
-const TOWNMI={"Milford":[0,1],"Westfall":[2,1],"Matamoras":[3,1],"Port Jervis NY":[3,1],"Millrift":[4,1],"Sparrowbush NY":[5,1],"Montague NJ":[6,1],"Huguenot NY":[7,2],"Shohola":[8,1],"Dingmans Ferry":[8,1],"Sandyston NJ":[10,2],"Lords Valley":[11,2],"Hemlock Farms":[11,2],"Layton NJ":[11,2],"Greeley":[12,2],"Lackawaxen":[13,2],"Wantage NJ":[13,2],"Branchville NJ":[14,2],"Sussex NJ":[15,2],"Deerpark NY":[6,2]};
+const TOWNMI={"Cresson":[0,1],"Gallitzin":[3,1],"Lilly":[4,1],"Loretto":[5,1],"Ashville":[5,1],"Portage":[7,1],"Dysart":[7,2],"Wilmore":[8,2],"Summerhill":[9,2],"Ebensburg":[9,2],"Patton":[10,2],"South Fork":[11,2],"Duncansville":[11,2],"Carrolltown":[12,2],"Hollidaysburg":[12,2],"Altoona":[13,2],"Nanty Glo":[13,2]};
 const LEADS=[
-{c:"🔥 CLOSE — live deals",n:"🔥🔥 CURLEY — \$1,000: \$500×2 books (OLV + Assumption Osterville) — he OFFERED HIS CARD 9/3 — payment status?!",p:"(508) 790-4508",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥🔥 RENATA (Bernadetta) / Chant Realtors — \$750 2sp — ⭐ HER BOOK = THIS WEEK'S BOOK — the honest window call",p:"(332) 220-7410",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 PRO TOUCH — YES \$500 1sp ST JOHN XXIII (14-0127) — email resent 9/3; collect billing+terms",p:"(734) 637-6736",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 ALL AMERICAN ASSISTED LIVING — CALLED ABE 7/31 WANTING A 4-SPACE (Holy Apostles) — never collected",p:"(781) 447-4100",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 VICKY BECKER — St. Joseph-Lincoln SC MI — \$500/\$750 quoted — Thu-call outcome?",p:"(269) 470-4818",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 KISSA HARDEN / Raymond James — SWARTZ CK — Thu-call outcome?",p:"(810) 695-3589",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 JEFFREY AUSTIN LAW — SWARTZ CK — quoted \$850 2sp / \$1,250 4sp — in-or-out ask",p:"(810) 223-6510",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 HANNON-MURPHY INSURANCE — Holy Apostles — said INTERESTED 7/29 — AEP line now",p:"(781) 293-5500",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 MUSEUM LADY — 1sp OUR LADY OF VICTORY (04-0085) — boss-check still open",p:"(508) 364-5039",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"BPI upgrade \$500 — ST. ROSE — Thu outcome?",p:"(603) 869-0100",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"ANGIE @ Place Above The Notch — ST. ROSE — Thu outcome?",p:"(603) 869-0011",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"ONE STOP AUTO — MILFORD DE — Thu outcome?",p:"(302) 213-3324",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"KRIS @ Alliance Financial — SWARTZ CK — they owe the call (alt line 810-232-1112, Chris Christenson)",p:"(810) 232-2300",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ KELLI WALSH CPA — lapsed 8/23/26, HER AD STILL PRINTS — kwalshcpa@gmail.com [ATTRAX+wall]",p:"(570) 491-4058",t:"Matamoras"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ MILFORD DINER — Nick Vacari — lapsed 8/16/26, AD STILL PRINTS — 301 Broad St — milforddinerpa@gmail.com [ATTRAX + wall + own-site ✓]",p:"(570) 296-8611",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ LAUREL GROVE FLORIST — Eileen Batzel — lapsed 5/26 — laurelgrove@frontiernet.net · alt 845-856-4391 [ATTRAX]",p:"(845) 856-2713",t:"Port Jervis NY"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ JOHN’S MOWER SHOP — John Sawe — lapsed 5/26 [ATTRAX]",p:"(845) 856-7120",t:"Port Jervis NY"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ PRIME TIME MEATS — butcher, Kenny Peereboom — lapsed 6/25 — ptm@ptm.net [ATTRAX]",p:"(570) 296-6064",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ TWIN CEDARS SENIOR LIVING — lapsed 1/24 — ⚠ number conflict: chamber says 570-296-7471, ATTRAX 570-252-4255 — try both — twincedarspch.com [ATTRAX + chamber]",p:"(570) 252-4255",t:"Shohola"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"ATTORNEY LINDSEY COLLINS — 214 Broad St — lapsed 7/23 — lcollins@ptd.net [ATTRAX]",p:"(570) 242-2791",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"PIKE ACUPUNCTURE & WELLNESS — Kay Carver — lapsed 5/23 — patientcare@pikeacupuncture.com [ATTRAX]",p:"(570) 832-8600",t:"Milford",e:"patientcare@pikeacupuncture.com"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"MILFORD AUTO BODY — Mary Farula — lapsed 2/23 — milfordautobody@yahoo.com [ATTRAX]",p:"(570) 296-6651",t:"Shohola"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"JOHN FISCHER OD — optometrist, John & Audrey — lapsed 6/22 — jfischer10@outlook.com [ATTRAX]",p:"(570) 296-3300",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"BLAKE’S LAWN CARE — Ryan Blake — lapsed 6/22 — rblake824@gmail.com [ATTRAX]",p:"(973) 945-0854",t:"Dingmans Ferry"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"GUIDING LIGHT FINANCIAL — George Siracuse — lapsed 1/21 — invest@glightfinancial.com [ATTRAX]",p:"(570) 296-9494",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"FLATBROOK GARAGE — Chris Justus — lapsed 9/20 — flatbrookgarage@yahoo.com [ATTRAX]",p:"(973) 250-0186",t:"Montague NJ"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"MICHAEL’S MOVING & STORAGE — Meaghan Michaels — lapsed 12/20 [ATTRAX]",p:"(570) 828-8238",t:"Dingmans Ferry"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"AMBIENCE FURNITURE — Deb Shafer — lapsed 10/20 [ATTRAX]",p:"(570) 409-3168",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ ACCESS PT & WELLNESS — past advertiser (lapsed 1/21) — Milford office 570-296-3333 + Dingmans — elogan@accessptw.com [ATTRAX + Pike chamber ✓]",p:"(845) 636-4344",t:"Dingmans Ferry"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"ALLIANCE SENIOR LIVING — Georgina Miner — lapsed 9/20 — alt cell 917-257-0561 — allianceseniorhome2014@gmail.com [ATTRAX]",p:"(570) 409-3198",t:"Matamoras"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"GHIGGERI’S OLIVE OILS — Gina — 220 Broad St — lapsed 9/20 [ATTRAX]",p:"(570) 409-4744",t:"Milford"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"POLAR BEAR ICE CREAM — Shawn Heater — lapsed 2/21 [ATTRAX]",p:"(570) 491-4311",t:"Matamoras"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ SCOTTY’S AUTO — Scott Romyns — lapsed 12/20 — ASE shop, serves Milford/Matamoras [ATTRAX + own-site ✓]",p:"(973) 293-8665",t:"Montague NJ"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"EL PATRON — Mexican restaurant — lapsed 2/21 — elpatronpj@gmail.com [ATTRAX]",p:"(845) 856-8701",t:"Port Jervis NY"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"JEFF’S GARDEN SHOP — Jeff Mance — lapsed 9/20 — jeff@jeffsgardenshop.com [ATTRAX]",p:"(570) 491-4008",t:"Matamoras"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"BUZZ CUTZ SALON — Yuliya Kay — lapsed 9/20 [ATTRAX]",p:"(570) 828-7905",t:"Dingmans Ferry"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"DELAWARE AUTO PARTS — Stuart Dooley — lapsed 5/21 [ATTRAX]",p:"(570) 828-9391",t:"Dingmans Ferry"},
-{c:"🎯 WIN-BACK — past advertisers 💰",n:"DON BOARD PAINTING — lapsed 9/20 — doncanpaint@yahoo.com [ATTRAX]",p:"(570) 686-1736",t:"Milford"},{c:"Funeral Home / Monuments",n:"⭐ Knight-Auchmoody Funeral Home — since 1953, Michael C. Horkan [own-site ✓]",p:"(845) 856-3312",t:"Port Jervis NY"},
-{c:"Funeral Home / Monuments",n:"⭐ Wolfe Granite Memorials — since 1873, family [own-site ✓]",p:"(973) 875-3900",t:"Sussex NJ"},
-{c:"Funeral Home / Monuments",n:"⭐ PINKEL FUNERAL HOME + High Point Monuments — same family/address, 141 yrs [YP + cross-confirmed]",p:"(973) 875-3272",t:"Sussex NJ"},
-{c:"Elder Law / Estate Attorney",n:"⭐ Jacobs, Wilson & Onofry — 30+ yrs, wills/trusts/Medicaid — Sarah Wilson + Jennifer Onofry [own-site ✓]",p:"(570) 904-2098",t:"Milford"},
-{c:"Financial Planner / Retirement",n:"⭐ Biondo Investment Advisors — flagship Milford office since 2004, fiduciary [own-site ✓]",p:"(570) 296-5525",t:"Milford"},
-{c:"Financial Planner / Retirement",n:"Myer & Myer CPA — Gregory Myer, tax/estate, since 2001 [own-site ✓]",p:"(570) 296-2889",t:"Milford"},
-{c:"Insurance",n:"🔥 KEITH CAMIRE — State Farm Milford — CALLED BACK 9/11, REALLY INTERESTED — no email (form-only site keithcamire.com) — TEXT him for an address — deals-thru-Sept quoted [own-site ✓]",p:"(570) 296-8591",t:"Milford"},
-{c:"Insurance",n:"Johnson & Conroy Agency — 64 yrs, tri-state [own-site ✓]",p:"(845) 856-5341",t:"Port Jervis NY"},
-{c:"Insurance",n:"Pike County Insurance Agency — 58 yrs [YP ✓]",p:"(570) 296-7422",t:"Milford",e:"reggie@rhworthingtongroup.com"},
-{c:"Insurance",n:"Turano Insurance — Luke Turano, Nationwide [carrier page ✓]",p:"(570) 253-0301",t:"Milford",e:"info@turanoinsurance.com"},
-{c:"Insurance",n:"Lehman Strickler Agency — Amy Strickler, Nationwide [carrier page ✓]",p:"(570) 296-6416",t:"Milford",e:"kimw@lehmanstricklerins.com"},
-{c:"Insurance",n:"Joel Mermelstein — State Farm, NY/PA/NJ [own-site ✓]",p:"(845) 506-2075",t:"Port Jervis NY",e:"joel@mermelstein.com"},
-{c:"Insurance",n:"Yetter Insurance — Erie agents, Sherelyn Schoch [YP ✓]",p:"(570) 296-8329",t:"Milford"},
-{c:"Pharmacy",n:"⭐ The Medicine Shoppe / Dickson Apothecary — Andrew Dickson RPh, 37 yrs [own-site ✓]",p:"(570) 296-5138",t:"Milford"},
-{c:"Pharmacy",n:"Good Health Pharmacy — independent, 16 yrs [YP ✓]",p:"(570) 828-7494",t:"Dingmans Ferry"},
-{c:"Pharmacy",n:"⭐ Family Drug Shop — independent [town dir ✓]",p:"(973) 948-3170",t:"Branchville NJ"},
-{c:"Dentist / Dentures",n:"Family Smile Center [NPI dir — confirm on dial]",p:"(570) 296-0300",t:"Milford"},
-{c:"Dentist / Dentures",n:"Dr. Harry G. Boyle [NPI dir — confirm on dial]",p:"(570) 296-2390",t:"Milford"},
-{c:"Dentist / Dentures",n:"Dr. Kenneth Rosanelli [NPI dir — confirm on dial]",p:"(570) 296-9202",t:"Milford"},
-{c:"Dentist / Dentures",n:"Dr. Justin Joseph / Coppola office [YP ✓]",p:"(570) 296-2259",t:"Milford",e:"msdfrontdesk@gmail.com"},
-{c:"Dentist / Dentures",n:"Dr. Noor Shamim — family/pediatric since 1998 [YP ✓]",p:"(570) 296-2569",t:"Milford",e:"info@poconooralsurgery.com"},
-{c:"Dentist / Dentures",n:"Sung H. Cho DMD [YP ✓]",p:"(570) 491-4145",t:"Matamoras"},
-{c:"Dentist / Dentures",n:"Colin B. Johnston DDS [YP ✓]",p:"(845) 856-4439",t:"Port Jervis NY"},
-{c:"Dentist / Dentures",n:"Muhlise Dide Tosyali DMD [YP ✓]",p:"(845) 856-5049",t:"Port Jervis NY"},
-{c:"Dentist / Dentures",n:"Quinn Mariotti Abod — 19 yrs [YP ✓]",p:"(570) 686-2951",t:"Dingmans Ferry"},
-{c:"Eye / Optometry",n:"Professional Eye Group — Dingmans office [own-site ✓ — verify office # on dial]",p:"(570) 686-1102",t:"Dingmans Ferry"},
-{c:"Eye / Optometry",n:"Dr. Robert Lehrer OD — 45 yrs [YP ✓]",p:"(845) 856-1023",t:"Port Jervis NY"},
-{c:"Eye / Optometry",n:"Middletown Tri-State Eye / Dr. Palydowycz — 26 yrs, Milford office [YP ✓]",p:"(570) 296-9696",t:"Milford"},
-{c:"Eye / Optometry",n:"Branchville Eye Associates — Fabery + Ross ODs [town dir ✓]",p:"(973) 948-7272",t:"Branchville NJ"},
-{c:"Retirement / Senior Living",n:"⭐ Belle Reve Senior Living — personal + memory care, 20+ yrs [operator site ✓]",p:"(570) 409-9191",t:"Milford"},
-{c:"Retirement / Senior Living",n:"Delaware Valley Personal Care Residence [news feature — confirm #]",p:"(570) 491-1002",t:"Matamoras"},
-{c:"Home Health / In-Home Care",n:"Above the Rest Homecare — in-home care [own-site ✓]",p:"(570) 409-4888",t:"Milford"},
-{c:"Home Health / In-Home Care",n:"CareGivers America — Milford office, since 2002 [own-site ✓]",p:"(570) 832-1000",t:"Milford"},
-{c:"Home Health / In-Home Care",n:"Progressive Health of PA — since 1994, CEO Paul Brooks [own-site ✓]",p:"(570) 296-5156",t:"Milford"},
-{c:"Heating / AC",n:"Blissful Homes Heating & AC — Tamas Baka, since 2016 [own-site ✓]",p:"(570) 409-4321",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Phoenix Plumbing — Matthew Adames [Pike dir ✓]",p:"(570) 296-2604",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Jim Reithmayr Plumbing & Heating — alt 914-443-8453 [Pike dir ✓]",p:"(570) 686-1905",t:"Dingmans Ferry"},
-{c:"Plumbing / Sewer",n:"John McCaslin Plumbing & Heating [Pike dir ✓]",p:"(570) 686-3151",t:"Dingmans Ferry"},
-{c:"Electrician",n:"Voltron Electric [Pike dir ✓]",p:"(570) 491-4070",t:"Matamoras"},
-{c:"Electrician",n:"Diamond Electric [Pike dir ✓]",p:"(570) 296-6888",t:"Milford"},
-{c:"Electrician",n:"MK Electrical — Marty [Pike dir ✓]",p:"(570) 350-6654",t:"Milford"},
-{c:"Roofing / Siding / Gutters",n:"Summit Exteriors [Pike dir ✓]",p:"(570) 832-2400",t:"Milford"},
-{c:"Landscaping / Snow / Tree",n:"⭐ Blue Ridge Tree Services — 25+ yrs, arborists — alt 570-828-8801 [own-site ✓]",p:"(570) 872-6479",t:"Dingmans Ferry"},
-{c:"Landscaping / Snow / Tree",n:"Siegel’s Total Renovations — landscaping/roofing/excavation [own-site ✓]",p:"(845) 313-0514",t:"Port Jervis NY"},
-{c:"Bank / Credit Union",n:"Wayne Bank — NEPA community bank, Milford branch since 1987 (the Dime is in the book — ammo) [own-site ✓]",p:"(570) 296-5377",t:"Milford"},
-{c:"Auto Service / Tire",n:"Tri-State Shell — tires/repair [own-site ✓]",p:"(570) 491-4827",t:"Matamoras"},
-{c:"Auto Service / Tire",n:"JR’s Auto Repairs [dir — confirm on dial]",p:"(570) 491-2478",t:"Matamoras"},
-{c:"Auto Service / Tire",n:"The Shop [dir — confirm on dial]",p:"(570) 491-2750",t:"Matamoras"},
-{c:"Auto Service / Tire",n:"Fetch & Fix [dir — confirm on dial]",p:"(570) 832-4445",t:"Matamoras"},
-{c:"Auto Service / Tire",n:"M & M Auto & Cycle — 15 yrs [YP ✓]",p:"(973) 293-8588",t:"Montague NJ"},
-{c:"Auto Service / Tire",n:"Tony & Sons — 25 yrs, father-son [YP ✓]",p:"(973) 293-7517",t:"Montague NJ"},
-{c:"Restaurant / Bakery / Catering",n:"Village Diner — Route 6 classic [YP ✓]",p:"(570) 491-2819",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Waterwheel Cafe Bakery & Bar — since 1989, historic mill [own-site ✓]",p:"(570) 296-2383",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Dimmick Inn & Steakhouse — 38 yrs, historic [YP ✓]",p:"(570) 296-4021",t:"Milford",e:"events@historicdimmick.com"},
-{c:"Restaurant / Bakery / Catering",n:"Stewie’s — breakfast/lunch [YP ✓]",p:"(570) 491-2015",t:"Matamoras"},
-{c:"Restaurant / Bakery / Catering",n:"Joey’s Pizza [town dir ✓]",p:"(570) 296-2330",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Pike Pizza & Grill [town dir ✓]",p:"(570) 828-9990",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"Balch’s Fish Fry [town dir ✓]",p:"(570) 296-7911",t:"Milford",e:"anniebalch@hotmail.com"},
-{c:"Restaurant / Bakery / Catering",n:"Failte’s [town dir ✓]",p:"(570) 828-6505",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"Two River’s Grille [town dir ✓]",p:"(570) 491-2020",t:"Matamoras"},
-{c:"Restaurant / Bakery / Catering",n:"Tom Quick Inn — downtown [town dir ✓]",p:"(570) 832-8500",t:"Milford"},
-{c:"Restaurant / Bakery / Catering",n:"Bar Louis [YP ✓]",p:"(570) 409-1212",t:"Milford",e:"mmurry@milfordhospitalitygroup.com"},
-{c:"Restaurant / Bakery / Catering",n:"Side Street Bar & Grill [town dir ✓]",p:"(570) 828-4677",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"Arnold’s Country Mini-Mart deli [town dir ✓]",p:"(570) 828-2555",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"Sisters Corner Convenience [town dir ✓]",p:"(570) 828-6885",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Len & Jo’s — 36 yrs, sheet-pan pizza [YP ✓]",p:"(845) 856-8021",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Arlene & Tom’s — since 1973 [YP ✓]",p:"(845) 856-8488",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Erie Hotel & Restaurant — historic, 136 yrs [own-site ✓]",p:"(845) 858-4100",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"Village at Bruno’s Pizza — 40 yrs [YP ✓]",p:"(845) 856-4361",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"Muller’s Port Jervis Diner — Lori + Joe Muller since 2000 [own-site ✓]",p:"(845) 856-7978",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"Bagel Station Deli [YP ✓]",p:"(845) 858-8400",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"JJ International Delicatessen — since 2003 [own-site ✓]",p:"(845) 858-1142",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"Carmine’s Italian-American — 35 yrs [YP ✓]",p:"(845) 856-7740",t:"Port Jervis NY"},
-{c:"Restaurant / Bakery / Catering",n:"TG Grill and Pizza — 13 yrs [YP ✓]",p:"(845) 672-0349",t:"Port Jervis NY"},
-{c:"Funeral Home / Monuments",n:"Ferguson Funeral Home — 67 yrs, family [aggregator cite — confirm on dial]",p:"(973) 875-4941",t:"Sussex NJ"},
-{c:"Elder Law / Estate Attorney",n:"Bavoso Law — David Bavoso, estate/elder [own-site ✓]",p:"(845) 856-4444",t:"Port Jervis NY"},
-{c:"Elder Law / Estate Attorney",n:"Gregory Chelak — elder law, 106 W High St [justia — confirm on dial]",p:"(570) 296-3700",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"Vern Scott Lazaroff — 31 yrs estate planning [justia — confirm on dial]",p:"(570) 686-4753",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"Charles Lieberman — estate, 400 Broad St [justia — confirm on dial]",p:"(570) 296-8885",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"Joseph Kosierowski — estate/tax, 400 Broad St [justia — confirm on dial]",p:"(570) 296-5553",t:"Milford"},
-{c:"Insurance",n:"James Demmer — State Farm [own-site ✓]",p:"(845) 856-7512",t:"Port Jervis NY"},
-{c:"Dentist / Dentures",n:"Family Orthodontics [YP dedicated ✓]",p:"(845) 672-4400",t:"Port Jervis NY"},
-{c:"Plumbing / Sewer",n:"⭐ G M Plumbing Heating & Pump — 41 yrs, WELL PUMPS [YP dedicated ✓]",p:"(570) 296-8411",t:"Milford"},
-{c:"Plumbing / Sewer",n:"⭐ Woodlands Plumbing & Heating — 30+ yrs [YP dedicated ✓]",p:"(570) 409-4280",t:"Milford"},
-{c:"Remodeling / Bath & Accessibility",n:"Michael Parker Custom Carpentry — 20+ yrs [own-site ✓]",p:"(570) 559-7583",t:"Shohola"},
-{c:"Remodeling / Bath & Accessibility",n:"Professional Grade LLC — GC [BBB — confirm on dial]",p:"(570) 832-3041",t:"Milford"},
-{c:"Realtor / Downsizing / Senior Move",n:"⭐ Tashlik Real Estate — Stan Tashlik, 54 yrs [own-site ✓]",p:"(570) 493-1950",t:"Dingmans Ferry"},
-{c:"Restaurant / Bakery / Catering",n:"Montague Grille & Deli [own-site ✓]",p:"(973) 552-9167",t:"Montague NJ"},
-{c:"Restaurant / Bakery / Catering",n:"AG Pizza & Restaurant [own-site ✓]",p:"(973) 948-2875",t:"Branchville NJ"},
-{c:"Auto Service / Tire",n:"Jeff’s Repair (NAPA AutoCare affiliate) [NAPA dir ✓]",p:"(845) 856-7171",t:"Port Jervis NY"},
-{c:"Medical Clinic / Primary Care",n:"Dingmans Medical Center [Pike chamber ✓]",p:"(570) 828-8000",t:"Dingmans Ferry"},
-{c:"Medical Clinic / Primary Care",n:"Mountain Valley Orthopedics — Milford office [Pike chamber ✓]",p:"(570) 421-7091",t:"Milford"},
-{c:"Physical Therapy / Chiropractic",n:"A.M. Acupuncture — Anca Marinescu (caller-ID) — 322 Broad St [Pike chamber ✓]",p:"(570) 409-7990",t:"Milford"},
-{c:"Nursing / Rehab / Hospice",n:"⭐ Karen Ann Quinlan Hospice — Milford office [Pike chamber ✓]",p:"(570) 296-3591",t:"Milford"},
-{c:"Nursing / Rehab / Hospice",n:"Milford Senior Care & Rehabilitation Center [Pike chamber ✓]",p:"(570) 491-4121",t:"Milford"},
-{c:"Insurance",n:"⭐ Jack LaMarca Insurance Agency — named local [Pike chamber ✓]",p:"(570) 296-8328",t:"Milford"},
-{c:"Insurance",n:"Sheeley Insurance — John Hollister, 106 Broad St [Pike chamber ✓ — quarantine resolved]",p:"(570) 296-5588",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"Law Offices of Christopher Kimler [Pike chamber ✓ — confirm practice area]",p:"(570) 296-2363",t:"Milford"},
-{c:"Elder Law / Estate Attorney",n:"Ohliger & McIntyre — 410 Broad St [Pike chamber ✓ — confirm practice area]",p:"(570) 296-7300",t:"Milford"},
-{c:"Financial Planner / Retirement",n:"Paul Brislin E.A. — tax [Pike chamber ✓]",p:"(973) 293-3018",t:"Montague NJ"},
-{c:"Financial Planner / Retirement",n:"White Spruce Accounting [Pike chamber ✓]",p:"(570) 209-9385",t:"Shohola"},
-{c:"Financial Planner / Retirement",n:"ANB Tax Services [Pike chamber ✓]",p:"(201) 736-2514",t:"Milford"},
-{c:"🔥 CLOSE — live deals",n:"🔥 DENISE FEY — C21 Geba Associate Broker — wants 1sp, maybe 2sp (9/9 call) — denisefeyrealtor@gmail.com — licensed PA/NY/NJ",p:"(570) 296-8881",t:"Milford",e:"denisefeyrealtor@gmail.com"},
-{c:"Realtor / Downsizing / Senior Move",n:"Iron Valley Real Estate Tri-State — 311 Broad St [Pike chamber ✓]",p:"(570) 559-4766",t:"Milford",e:"admin@ivretristate.com"},
-{c:"Electrician",n:"CRL Electric [Pike chamber ✓]",p:"(570) 491-5813",t:"Matamoras"},
-{c:"Remodeling / Bath & Accessibility",n:"Ed Nikles Custom Builder — known Pike builder [Pike chamber ✓]",p:"(570) 296-9200",t:"Milford",e:"dianne@ednikles.com"},
-{c:"Heating / AC",n:"Combined Energy Services — propane/fuel/HVAC, Dingmans branch [Pike chamber ✓]",p:"(570) 828-1700",t:"Dingmans Ferry",e:"info@combinedenergyservices.com"},
-{c:"Bank / Credit Union",n:"Jeff Bank — Sullivan Cty community bank, Port Jervis branch [Pike chamber ✓]",p:"(845) 858-5333",t:"Port Jervis NY"},
-{c:"Auto Service / Tire",n:"Pocono Sports Car [Pike chamber ✓ — quarantine resolved]",p:"(570) 296-6586",t:"Shohola"},
-{c:"Auto Service / Tire",n:"Westfall Car Wash [Pike chamber ✓]",p:"(570) 491-2995",t:"Matamoras"},
-{c:"Restaurant / Bakery / Catering",n:"⭐ Rohman’s Pub — Shohola institution [Pike chamber ✓]",p:"(570) 559-7479",t:"Shohola"},
-{c:"Restaurant / Bakery / Catering",n:"Spoonful Soups & Eats [Pike chamber ✓]",p:"(570) 409-4911",t:"Milford"},
-{c:"Plumbing / Sewer",n:"⭐ Williams Well Drilling — 24 yrs [YP ✓]",p:"(570) 409-9355",t:"Shohola"},
-{c:"Plumbing / Sewer",n:"⭐ David Weber Well Drilling — 45 yrs [YP ✓]",p:"(570) 296-6600",t:"Shohola"},
-{c:"Plumbing / Sewer",n:"⭐ Kestler Peter A Well Drilling — 59 yrs [YP ✓]",p:"(570) 559-7596",t:"Shohola"},
-{c:"Plumbing / Sewer",n:"⭐ Henderson Well & Pump — 70 yrs [YP ✓]",p:"(973) 702-0792",t:"Sussex NJ"},
-{c:"Plumbing / Sewer",n:"Ace Well & Pump — 48 yrs, 24hr [YP ✓]",p:"(973) 875-6325",t:"Sussex NJ"},
-{c:"Plumbing / Sewer",n:"Aqua Find Well Drilling — 34 yrs [YP ✓]",p:"(845) 342-1006",t:"Port Jervis NY"},
-{c:"Plumbing / Sewer",n:"Modern Drilling [YP ✓]",p:"(845) 726-4200",t:"Port Jervis NY"},
-{c:"Plumbing / Sewer",n:"Battali Frederick Well Drilling [YP ✓]",p:"(973) 293-3230",t:"Montague NJ"},
-{c:"Plumbing / Sewer",n:"J Olinger Drilling — 19 yrs [YP ✓]",p:"(973) 875-9438",t:"Sussex NJ"},
-{c:"Plumbing / Sewer",n:"Rich Service Co — 39 yrs [YP ✓]",p:"(570) 296-7800",t:"Shohola"},
-{c:"Plumbing / Sewer",n:"⭐ Milford Plumbing & Heating — 49 yrs, Water St [YP ✓]",p:"(570) 296-7342",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Aquarius Plumbing & Electric — 21 yrs [YP ✓]",p:"(570) 828-6761",t:"Dingmans Ferry"},
-{c:"Plumbing / Sewer",n:"Leavitt Plumbing & Heating [YP ✓]",p:"(201) 317-6828",t:"Milford"},
-{c:"Plumbing / Sewer",n:"Vanjahnke Plumbing & Heating [YP ✓]",p:"(570) 828-8094",t:"Dingmans Ferry"},
-{c:"Plumbing / Sewer",n:"Bertino Plumbing — kitchens/baths [YP ✓]",p:"(570) 832-3412",t:"Dingmans Ferry"},
-{c:"Plumbing / Sewer",n:"The Pump Works [YP ✓]",p:"(570) 775-6530",t:"Lords Valley"},
-{c:"Plumbing / Sewer",n:"Delaware Plumbing — 22 yrs [YP ✓]",p:"(570) 872-3062",t:"Dingmans Ferry"},
-{c:"Plumbing / Sewer",n:"Pike County Plumbing HVAC — 24 yrs [YP ✓]",p:"(570) 828-7071",t:"Dingmans Ferry"},
-{c:"Remodeling / Bath & Accessibility",n:"Cresci Construction [YP ✓]",p:"(570) 828-2422",t:"Dingmans Ferry"},
-{c:"Remodeling / Bath & Accessibility",n:"Tims Home Improvements — 26 yrs [YP ✓]",p:"(570) 618-2082",t:"Dingmans Ferry"},
-{c:"Electrician",n:"Hoffman Electric — generators [YP ✓]",p:"(570) 686-9026",t:"Milford"},
-{c:"Electrician",n:"Al-Dana Mechanical — 28 yrs, electric+plumbing+HVAC [YP ✓]",p:"(570) 491-2371",t:"Matamoras"},
-{c:"Electrician",n:"Actisdano Electric [YP ✓]",p:"(570) 445-9406",t:"Milford"},
-{c:"Electrician",n:"B & G Electric [YP ✓]",p:"(570) 828-2956",t:"Dingmans Ferry"},
-{c:"Electrician",n:"AMP Electric [YP ✓ — serving-area listing]",p:"(570) 828-2822",t:"Dingmans Ferry"},
-{c:"Electrician",n:"⭐ Ferrara Electrical — 30 yrs, GENERATORS (Hemlock Farms!) [YP ✓]",p:"(570) 241-1270",t:"Hemlock Farms"},
-{c:"Electrician",n:"Pike County Generator — Generac dealer, 15 yrs [YP ✓]",p:"(570) 409-6555",t:"Shohola"}
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 CURLEY — \$1,000 (\$500×2 books) — CARD OFFERED 9/3, still unconfirmed — close this TODAY",p:"(508) 790-4508",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 KNIGHT-AUCHMOODY FH — said INTERESTED 1sp, 'call back in a week' 9/8 — THE WEEK IS UP TODAY (Michael Horkan; Milford PA book)",p:"(845) 856-3312",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 KEITH CAMIRE — State Farm Milford PA — really interested 9/11 — Sept-deadline quoted — text/form for email",p:"(570) 296-8591",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 DENISE FEY — C21 Geba — wants 1sp maybe 2sp — pricing emailed 9/9 — nudge call",p:"(570) 296-8881",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 ANCA / A.M. ACUPUNCTURE — called Abe TWICE 9/10 — phone-close her",p:"(570) 409-7990",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 PARTRIDGE PLUMBING — St. Rose NH — super interested, emailed 9/11",p:"(603) 241-5013",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"🔥 REGGIE / Pike County Ins (RH Worthington Grp) — interested, emailed 9/9 — ask about Turano+Lehman too",p:"(570) 296-7422",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"RENATA / Chant — \$750 — her book's sell week ended; final ask or park to Oct",p:"(332) 220-7410",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"KIM @ Lehman Strickler — emailed 9/9, gave her direct address",p:"(570) 296-6416",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"PRO TOUCH — \$500 yes since 8/20 — keep-or-kill call",p:"(734) 637-6736",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"ALL AMERICAN ASSISTED LIVING — wanted a 4sp in July — revival",p:"(781) 447-4100",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"MUSEUM LADY — 1sp OLV — boss-check",p:"(508) 364-5039",t:"Cresson"},
+{c:"🔥 CLOSE — live deals",n:"ST. MARY'S CLINTON MD COORDINATOR — leads list pending (her book = wk 10/5)",p:"(000) 000-0000",t:"Cresson"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
@@ -396,13 +233,10 @@ const STATUS={
 const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
-const LIST_ID="stpatrick-milfordpa-03-1332";
+const LIST_ID="stfrancisaloysius-cresson-14-1078";
 const SKEY="callstate_v2_"+LIST_ID;
 let STATE={};
 try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
-// SEED — Milford PA state through Tue 9/9 (device wins; fills missing only)
-const SEED={"2017362514":{"status":"leftmsg","ts":1789045293705,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789045293705,"st":"leftmsg"}]},"5702965138":{"status":"callback","ts":1788877272419,"notes":"","dm":"","time":"2026-09-09T12:00","email":"","hist":[{"ts":1788877262811,"st":"followup"},{"ts":1788877265775,"st":"callback"}]},"5708287494":{"status":"noanswer","ts":1788878143125,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788878143125,"st":"noanswer"}]},"9739483170":{"status":"noanswer","ts":1788878195000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788878195000,"st":"noanswer"}]},"5702965377":{"status":"notnow","ts":1788878415462,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788878415462,"st":"notnow"}]},"5702968591":{"status":"inprogress","ts":1788878591475,"notes":"","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788878583662,"st":"followup"},{"ts":1788878591475,"st":"inprogress"}]},"8458565341":{"status":"notnow","ts":1788880114167,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788880114167,"st":"notnow"}]},"5708322400":{"status":"followup","ts":1788881361424,"notes":"","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788881361424,"st":"followup"}]},"5708726479":{"status":"leftmsg","ts":1788882618902,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788882618902,"st":"leftmsg"}]},"8453130514":{"status":"leftmsg","ts":1788882994070,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788882994070,"st":"leftmsg"}]},"5704914827":{"status":"leftmsg","ts":1788883364031,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788883364031,"st":"leftmsg"}]},"5704912478":{"status":"callback","ts":1788883685492,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788883685492,"st":"callback"}]},"5702962604":{"status":"leftmsg","ts":1788883845969,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788883845969,"st":"leftmsg"}]},"5706861905":{"status":"noanswer","ts":1788883987616,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788883987616,"st":"noanswer"}]},"5706863151":{"status":"leftmsg","ts":1788884074723,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788884074723,"st":"leftmsg"}]},"5702967422":{"status":"followup","ts":1788884422838,"notes":"reggie@rhworthinggroup.com","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788884422838,"st":"followup"}]},"5702530301":{"status":"leftmsg","ts":1788884832669,"notes":"info@turanoinsurance.com","dm":"","time":"","email":"","hist":[{"ts":1788884832669,"st":"leftmsg"}]},"5702966416":{"status":"callback","ts":1788885528069,"notes":"kimw@lehmanstricklerins.com","dm":"","time":"","email":"","hist":[{"ts":1788885528069,"st":"callback"}]},"5706861102":{"status":"followup","ts":1788887493911,"notes":"jessica harris 5702536551","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788887187815,"st":"leftmsg"},{"ts":1788887493911,"st":"followup"}]},"8458561023":{"status":"noanswer","ts":1788888051670,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788888051670,"st":"noanswer"}]},"9738753272":{"status":"notnow","ts":1788888616769,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788888616769,"st":"notnow"}]},"9738753900":{"status":"leftmsg","ts":1788888834702,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788888834702,"st":"leftmsg"}]},"8458563312":{"status":"followup","ts":1788889568678,"notes":"instresteed in 1 space call back in a week ","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788889568678,"st":"followup"}]},"5702962390":{"status":"noanswer","ts":1788891157897,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788891157897,"st":"noanswer"}]},"5702962259":{"status":"followup","ts":1788891503964,"notes":"msdfrontdesk@gmail.com","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788891503964,"st":"followup"}]},"5702962569":{"status":"","ts":0,"notes":"info@poucolanorlasurgery.com","dm":"","time":"","email":""},"5704914145":{"status":"followup","ts":1788893256455,"notes":"info@poucolanorlasurgery.com","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788893256455,"st":"followup"}]},"5704099191":{"status":"callback","ts":1788894042732,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788894042732,"st":"callback"}]},"5704911002":{"status":"callback","ts":1788894067764,"notes":"","dm":"","time":"2026-09-09T12:00","email":""},"5704094888":{"status":"noanswer","ts":1788894350755,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788894350755,"st":"noanswer"}]},"5702962889":{"status":"callback","ts":1788895568819,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788895568819,"st":"callback"}]},"8458565049":{"status":"followup","ts":1788896659517,"notes":"infro@asdclean.com","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788896659517,"st":"followup"}]},"9739487272":{"status":"leftmsg","ts":1788897420796,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788897420796,"st":"leftmsg"}]},"5702969696":{"status":"followup","ts":1788897450829,"notes":"","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788897450829,"st":"followup"}]},"8455062075":{"status":"leftmsg","ts":1788897556124,"notes":"joel@Mermelstein.com","dm":"","time":"","email":"","hist":[{"ts":1788897556124,"st":"leftmsg"}]},"5702968329":{"status":"leftmsg","ts":1788897758640,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788897758640,"st":"leftmsg"}]},"5704914070":{"status":"leftmsg","ts":1788899043328,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899043328,"st":"leftmsg"}]},"5702966888":{"status":"noanswer","ts":1788899129479,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899129479,"st":"noanswer"}]},"5703506654":{"status":"leftmsg","ts":1788899212472,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899212472,"st":"leftmsg"}]},"5704912750":{"status":"noanswer","ts":1788899251448,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899251448,"st":"noanswer"}]},"5704912819":{"status":"leftmsg","ts":1788899702341,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899702341,"st":"leftmsg"}]},"5702962383":{"status":"leftmsg","ts":1788899831487,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899831487,"st":"leftmsg"}]},"5704912015":{"status":"noanswer","ts":1788899922267,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899922267,"st":"noanswer"}]},"5702962330":{"status":"noanswer","ts":1788899978935,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788899978935,"st":"noanswer"}]},"5708289990":{"status":"leftmsg","ts":1788900118888,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788900118888,"st":"leftmsg"}]},"5702967911":{"status":"followup","ts":1788900180677,"notes":"anniebalch@hotmail.com","dm":"","time":"2026-09-11T10:00","email":"","hist":[{"ts":1788900180677,"st":"followup"}]},"9738754941":{"status":"leftmsg","ts":1788961537511,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788961537511,"st":"leftmsg"}]},"5708321000":{"status":"notnow","ts":1788961672104,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788961672104,"st":"notnow"}]},"5702965156":{"status":"leftmsg","ts":1788961758082,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788961758082,"st":"leftmsg"}]},"5702963591":{"status":"leftmsg","ts":1788962036163,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788962036163,"st":"leftmsg"}]},"5704914121":{"status":"leftmsg","ts":1788962164291,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788962164291,"st":"leftmsg"}]},"5702965525":{"status":"leftmsg","ts":1788962402296,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788962402296,"st":"leftmsg"}]},"9732933018":{"status":"inprogress","ts":1788963191859,"notes":"","dm":"","time":"2026-09-09T15:30","email":"","hist":[{"ts":1788963186011,"st":"inprogress"},{"ts":1788963191859,"st":"inprogress"}]},"5708324445":{"status":"leftmsg","ts":1788966754646,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788966754646,"st":"leftmsg"}]},"5702964021":{"status":"followup","ts":1788967267113,"notes":"events@histroicdemic.com","dm":"","time":"2026-09-14T10:00","email":"","hist":[{"ts":1788967267113,"st":"followup"}]},"5708328500":{"status":"leftmsg","ts":1788967726319,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788967726319,"st":"leftmsg"}]},"5704091212":{"status":"followup","ts":1788967847241,"notes":"mmurry@milfordhopstitalygroup.com","dm":"","time":"2026-09-14T10:00","email":"","hist":[{"ts":1788967847241,"st":"followup"}]},"5708284677":{"status":"callback","ts":1788967923469,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788967923469,"st":"callback"}]},"5705597583":{"status":"noanswer","ts":1788968297597,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788968297597,"st":"noanswer"}]},"5708323041":{"status":"noanswer","ts":1788968762241,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788968762241,"st":"noanswer"}]},"5702969200":{"status":"followup","ts":1788968860525,"notes":"dianne@ednikles.com","dm":"","time":"2026-09-14T10:00","email":"","hist":[{"ts":1788968860525,"st":"followup"}]},"5702968328":{"status":"noanswer","ts":1788971455010,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788971455010,"st":"noanswer"}]},"5702968411":{"status":"notnow","ts":1788971514375,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788971514375,"st":"notnow"}]},"5704094280":{"status":"noanswer","ts":1788971588955,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788971588955,"st":"noanswer"}]},"5704915813":{"status":"noanswer","ts":1788971652728,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788971652728,"st":"noanswer"}]},"5702968881":{"status":"","ts":0,"notes":"denisefeyrealtor@gmail.com deni","dm":"","time":"","email":""},"5702965588":{"status":"noanswer","ts":1788975145174,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788975145174,"st":"noanswer"}]},"8458567512":{"status":"leftmsg","ts":1788975595521,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788975595521,"st":"leftmsg"}]},"5704094321":{"status":"noanswer","ts":1788975630358,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788975630358,"st":"noanswer"}]},"5708281700":{"status":"followup","ts":1788975726247,"notes":"info@combinedenergyservices.com ","dm":"","time":"2026-09-14T10:00","email":"","hist":[{"ts":1788975726247,"st":"followup"}]},"8458567171":{"status":"notnow","ts":1788976507123,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788976507123,"st":"notnow"}]},"5704912995":{"status":"noanswer","ts":1788976650059,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788976650059,"st":"noanswer"}]},"8458568021":{"status":"leftmsg","ts":1788978321183,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978321183,"st":"leftmsg"}]},"8458568488":{"status":"noanswer","ts":1788978355891,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978355891,"st":"noanswer"}]},"8458584100":{"status":"leftmsg","ts":1788978409776,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978409776,"st":"leftmsg"}]},"8458564361":{"status":"noanswer","ts":1788978461667,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978461667,"st":"noanswer"}]},"8458567978":{"status":"noanswer","ts":1788978483886,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978483886,"st":"noanswer"}]},"8458588400":{"status":"leftmsg","ts":1788978576691,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978576691,"st":"leftmsg"}]},"8458581142":{"status":"noanswer","ts":1788978638302,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978638302,"st":"noanswer"}]},"5704093198":{"status":"leftmsg","ts":1788978732990,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788978732990,"st":"leftmsg"}]},"5708328600":{"status":"","ts":0,"notes":"patientcare@pikeacupuncture.com","dm":"","time":"","email":""},"5702968611":{"status":"callback","ts":1789043658885,"notes":"","dm":"","time":"2026-09-14T12:00","email":""},"5709042098":{"status":"noanswer","ts":1789044115625,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789044115625,"st":"noanswer"}]},"8458564444":{"status":"leftmsg","ts":1789044250677,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789044250677,"st":"leftmsg"}]},"5702099385":{"status":"leftmsg","ts":1789045216434,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789045216434,"st":"leftmsg"}]},"5708288000":{"status":"leftmsg","ts":1789046681778,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789046681778,"st":"leftmsg"}]},"5704217091":{"status":"noanswer","ts":1789046709154,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789046709154,"st":"noanswer"}]},"5705594766":{"status":"followup","ts":1789047341895,"notes":"admin@ivretristate.com","dm":"","time":"2026-09-14T10:00","email":"","hist":[{"ts":1789047341895,"st":"followup"}]},"9732938588":{"status":"noanswer","ts":1789047473375,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1789047473375,"st":"noanswer"}]},"5702963300":{"status":"","ts":1788981000000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788981000000,"st":"called"}]},"5702524255":{"status":"","ts":1788981100000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788981100000,"st":"called"}]},"5704097990":{"status":"","ts":1788981200000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788981200000,"st":"called"}]},"5704931950":{"status":"","ts":1788981300000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788981300000,"st":"called"}]},"8458564439":{"status":"","ts":1788981400000,"notes":"","dm":"","time":"","email":"","hist":[{"ts":1788981400000,"st":"called"}]}};
-try{let sd=false;for(const k in SEED){if(!STATE[k]){STATE[k]=SEED[k];sd=true;}}if(sd)localStorage.setItem(SKEY,JSON.stringify(STATE));}catch(e){}
 // ask the browser to protect this site's storage from eviction
 try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
 function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
@@ -448,7 +282,7 @@ const FOLD={};
 function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
 let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
-function srch(name,town){return "https://www.google.com/search?q="+encodeURIComponent(name+" "+town+(/ (NY|NJ)$/.test(town)?"":" PA"));}
+function srch(name,town){return "https://www.google.com/search?q="+encodeURIComponent(name+" "+town+" PA");}
 function maps(name,town){return 'https://www.google.com/maps/search/'+encodeURIComponent(name+' '+town+' MI');}
 function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
@@ -921,17 +755,17 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
-  '<h3>⛪ WEEK 9 — CHURCH #9, FIRST PENNSYLVANIA (state #7) — 3-WEEK PA RUN BEGINS</h3><p><b>St. Patrick Church, Milford PA 18337</b> · <b>Acct 03-1332</b> · Pike County — the PA/NY/NJ tri-state corner (Port Jervis NY is 3 mi; NJ across the river; parishioners shop all three). <b>WEEKLY bulletin — parish language ON</b> (÷52 math; prepay = +4 free weeks OK). <b>THE WALL (9/8 photo + ATTRAX): Gray-Parker FH (Port Jervis) · Stroyan FH + Tri-State Memorial (SAME buyer — Christopher Brighton, one phone) · Capita Law (elder law!) · Cold Breeze HVAC (2 ads) · Dime Bank + MDMedAlert filler. ⛔ Never dial a wall name. JUST-LAPSED but STILL PRINTING: Kelli Walsh CPA (8/23) + Milford Diner (8/16) — the two hottest calls in the county.</b> Your house ad already prints here (Renata called off it 8/20) — expect inbounds. Rural-resort county: retirees + converted second homes. NO municipal water/sewer out here — every home runs a private WELL PUMP + SEPTIC: the bulletin is the fridge directory people grab in an emergency (the trades pitch).</p>'+
- '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Patrick&rsquo;s here in Milford</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
- '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, St. Patrick&rsquo;s gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
+   '<h3>⛪ WEEK 10 — CHURCH #10: TWO-CHURCH PARISH, DEEPEST-CATHOLIC RURAL PA</h3><p><b>St. Francis Xavier &amp; St. Aloysius Churches, Cresson PA 16630</b> · <b>Acct 14-1078</b> · Cambria County coal-and-rail country, Altoona-Johnstown diocese. TWO worship sites = older locals identify by THEIR church&rsquo;s name — use whichever they name. This is Gallitzin country (the Apostle of the Alleghenies) — <b>Mount Aloysius College is IN Cresson and Loretto (St. Francis University + the Basilica) is 5 mi away: the most Catholic rural pocket in Pennsylvania.</b> WEEKLY bulletin, parish language ON (÷52; prepay +4wks OK). <b>WALL UNKNOWN — bulletin photo + ATTRAX (16630;15 + 14-1078) are the PRE-DIAL GATES (the Costello law). Warm carryovers callable now.</b></p>'+
+ '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Francis Xavier &amp; St. Aloysius here in Cresson</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
+ '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, the parish gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
  '<h3>The area — say it plainly</h3><p>Old-parish Jersey: generational loyalty, family names on trucks and funeral homes. The bulletin is the one page these families read EVERY week.</p>'+
-  '<h3>🎯 Who to call first</h3><p><b>The carryover deals up top (Curley + Renata first)</b> · then when the wall + ATTRAX land: funeral homes · elder law · financial/Medicare (AEP NOW) · pharmacies · dentists/eye/hearing · home services (septic/excavating/tree count out here) · realtors (resort county = busy) · family restaurants/diners · auto. Tri-state: Port Jervis NY businesses serve this parish too.</p>'+
- '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Patrick&rsquo;s bulletin here in Milford</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
+   '<h3>🎯 Who to call first</h3><p><b>The carryover deals up top (Curley + Knight-Auchmoody week-is-up first)</b> · then when the wall + ATTRAX land: funeral homes &amp; monuments (coal-country parishes bury their own) · elder law · Medicare/insurance (AEP!) · pharmacies · hearing · HVAC/plumbing/roofing (mountain winters) · family restaurants &amp; pizza · auto · Altoona pros who serve the mountain towns. College-adjacent: Mount Aloysius + St. Francis Univ vendors = Patron class.</p>'+
+ '<h3>Voicemail (~15 sec — EVERY dial)</h3><p>“Hi, this is Abe calling about the <b>St. Francis Xavier &amp; St. Aloysius bulletin in Cresson</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a great fit for the parish families. Give me a call back at (440) 867-0599. Thanks!”</p>'+
  '<h3>Make it concrete</h3><p>“Card-size ad” · “a banner across the top.” Both design paths, always: “Send over your own ad design, or our design team builds it for you at no cost — either way, you approve the final and you&rsquo;re in the next issue.” Print includes the free digital ad on ParishesOnline.</p>'+
  '<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Already advertise.”</b> → “This supplements it — Google can&rsquo;t target the St. Anthony&rsquo;s pews.”<br><b>“Too expensive.”</b> → divide by 52, then “what&rsquo;s one new customer worth?”</p>'+
  '<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works I&rsquo;ve got other parishes nearby.” (Middlesex is THICK with LPi parishes — check SF for the cluster.)</p>'+
  '<h3 class="warn">Don&rsquo;t sell / don&rsquo;t say</h3><p class="warn">Abortion/PP · elections · psychics/tarot · alcohol needs an OK · CBD needs Mark. Never claim to be church staff. Never promise exclusivity or placement.</p>'+
- '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: ATTRAX pull (18337;15 + 03-1332 inactives) + bulletin wall photo BEFORE cold dials.</p>';
+ '<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · Closed Won AND Create Ad Order = two steps · never .MSG · Monday law: ATTRAX pull (16630;15 + 14-1078 inactives) + bulletin wall photo BEFORE cold dials.</p>';
 function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
 document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
 scrim.addEventListener('click',()=>togglePitch(false));
