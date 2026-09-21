@@ -199,7 +199,7 @@ const CATS=["🔥 CLOSE — live deals","🎯 WIN-BACK — past advertisers 💰
 const WALL_KNOWN=true; // wall = the LIVE 9/20/2026 bulletin p.6 (container.parishesonline.com/bulletins/14/1203/20260920B.pdf) — read by the seat 9/21
 const WALLN={"Funeral Home / Monuments":{n:1},"Elder Law / Estate Attorney":{n:1},"Financial Planner / Retirement":{n:1},"Auto Service / Tire":{n:1},"Restaurant / Bakery / Catering":{n:1},"Veterinarian / Pet 🐾":{n:1},"Patron / Community Sponsor 💰":{n:1}}; // WALL 9/20: Hartle-Tarbox FH (Smethport + Port Allegany) · Larsen Law (Port Allegany) · Edward Jones/Delacour · C.L. McKeirnan (parishioner) · Smethport Drive In · H.S. Pet Animal Hospital · Costa's Supermarket + Ace Hardware · Linda's Mane Attraction · Catholic Foundation filler · Abe's house ad = open inventory
 function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯"))return "";if(!WALL_KNOWN)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#8e8e93;border-radius:6px;padding:1px 7px;vertical-align:middle">wall unknown — no in-book claims</span>`;const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
-const TOWNMI={"Smethport":[0,1],"East Smethport":[1,1],"Farmers Valley":[3,1],"Hazel Hurst":[6,1],"Crosby":[7,1],"Ormsby":[8,1],"Turtlepoint":[10,2],"Cyclone":[11,2],"Mount Jewett":[12,2],"Port Allegany":[12,2],"Rew":[12,2],"Duke Center":[13,2],"Custer City":[13,2],"Lewis Run":[14,2],"Eldred":[15,2],"Foster Brook":[16,2],"Bradford":[17,2],"Roulette":[18,2],"Derrick City":[20,3],"Kane":[21,3],"Wilcox":[22,3],"Coudersport":[28,3],"Emporium":[30,3]}; // miles INFERRED (road-ish), tiers 1≤10 / 2≤20 / 3≤30
+const TOWNMI={"Smethport":[0,1],"East Smethport":[1,1],"Farmers Valley":[3,1],"Hazel Hurst":[6,1],"Crosby":[7,1],"Ormsby":[8,1],"Turtlepoint":[10,2],"Cyclone":[11,2],"Mount Jewett":[12,2],"Port Allegany":[12,2],"Rew":[12,2],"Duke Center":[13,2],"Custer City":[13,2],"Lewis Run":[14,2],"Eldred":[15,2],"Foster Brook":[16,2],"Bradford":[17,2],"Roulette":[18,2],"Derrick City":[20,3],"Kane":[21,3],"Wilcox":[22,3],"Coudersport":[28,3],"Emporium":[30,3],"Johnsonburg":[30,3]}; // miles INFERRED (road-ish), tiers 1≤10 / 2≤20 / 3≤30
 const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"🔥🔥 ANCA MARINESCU / A.M. ACUPUNCTURE — \$490 1sp ST. PATRICK MILFORD PA (03-1332) — billing name+address+MONTHLY in hand — SHE OWES A CARD CALL → enter the order + design team",p:"(570) 409-7990",t:"Smethport"},
 {c:"🔥 CLOSE — live deals",n:"🔥🔥 CURLEY — \$1,000 (\$500×2: OLV 04-0085 + Assumption Osterville) — BOTH ORDERS ENTERED 9/14, UNPAID — get the card",p:"(508) 790-4508",t:"Smethport"},
@@ -221,16 +221,21 @@ const LEADS=[
 {c:"🔥 CLOSE — live deals",n:"KIM @ LEHMAN STRICKLER — Milford PA — emailed 9/9 — callback",p:"(570) 296-6416",t:"Smethport"},
 {c:"🔥 CLOSE — live deals",n:"TURANO INSURANCE — Milford PA — emailed 9/9 — VM",p:"(570) 253-0301",t:"Smethport"},
 {c:"🔥 CLOSE — live deals",n:"PRO TOUCH — SOLD 9/14 (\$500 1sp SJXXIII 14-0127) — he OWES A CARD CALL for quarterly billing (your 9/14 email)",p:"(734) 637-6736",t:"Smethport"},
+{c:"🔥 CLOSE — live deals",n:"🔥 STEVENS MORTUARY — Altoona (Cresson 14-1078) — IN PROGRESS Fri 9/18 (Dave Mason sent you here) — 2 funeral in that book, don't name them",p:"(814) 944-9365",t:"Smethport"},
+{c:"🔥 CLOSE — live deals",n:"J.W. FLEMING — Duncansville (Cresson) — callback + email collected Wed — jackie@jwfleming.com [voice-typo fixed from 'jwfelling' — CONFIRM]",p:"(814) 696-9696",t:"Smethport"},
+{c:"🔥 CLOSE — live deals",n:"AL'S TIRE & AUTO — Ebensburg (Cresson) since 1948 — you set a callback Thu 9/17 2pm",p:"(814) 472-0829",t:"Smethport"},
+{c:"🔥 CLOSE — live deals",n:"MAINLINE PHARMACY — Steve Decriscio (Cresson) — callback you set Fri 9/18 10a — emailed 9/16",p:"(814) 886-5667",t:"Smethport",e:"steve@mainlinepharmacy.com"},
+{c:"🔥 CLOSE — live deals",n:"1ST SUMMIT BANK — Cresson branch — callback Thu 9/17 (marketing = Stacy Graham 262-4137, emailed 9/16)",p:"(814) 886-8153",t:"Smethport"},
 {c:"Funeral Home / Monuments",n:"⛔ IN THE BOOK — Hartle-Tarbox Funeral Homes (Stephen Tarbox, Robert Hartle) — Smethport 887-5565 + Port Allegany 642-2621 — NEVER DIAL (wall 9/20)",p:"(814) 887-5565",t:"Smethport"},
 {c:"Funeral Home / Monuments",n:"⭐ Mascho Funeral Home — 139 yrs, Michael Mascho, 75 Kennedy St [YP ✓ + own site]",p:"(814) 368-7149",t:"Bradford"},
 {c:"Funeral Home / Monuments",n:"⭐ Hollenbeck-Cahill Funeral Homes — 139 yrs, Michael Cahill; 2nd chapel 372 E Main 368-6337 [own-site ✓ + YP]",p:"(814) 362-6643",t:"Bradford"},
 {c:"Funeral Home / Monuments",n:"Charles M. Frame Funeral Home — Devin Frame, since 1953, 230 Main St [own-site ✓ + YP]",p:"(814) 225-4782",t:"Eldred"},
 {c:"Funeral Home / Monuments",n:"⭐ Cummings Funeral Home — since 1941, Sam Cummings Jr., 151 Greeves St [Kane chamber ✓]",p:"(814) 837-8370",t:"Kane"},
-{c:"Funeral Home / Monuments",n:"Cummings Funeral Home — Mount Jewett chapel, 10 E Main [YP ✓]",p:"(814) 778-5571",t:"Mount Jewett"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"CUMMINGS FUNERAL HOME — Mount Jewett chapel, Sam Cummings — ADVERTISED thru 3/16 [YP ✓ + ATTRAX]",p:"(814) 778-5571",t:"Mount Jewett",e:"cummingsfuneralhome@msn.com"},
 {c:"Funeral Home / Monuments",n:"Olney-Foust Funeral Homes — Switzer Chapel, Port Allegany (Olney/Foust family) [own-site ✓]",p:"(814) 642-2363",t:"Port Allegany"},
 {c:"Funeral Home / Monuments",n:"Thomas E. Fickinger Funeral Home — roots to 1876, William Brennan Jr. [own-site ✓ — 274-8888, not 8350]",p:"(814) 274-8888",t:"Coudersport"},
 {c:"Funeral Home / Monuments",n:"St. Marys Monuments — Kane showroom [Kane chamber ✓]",p:"(814) 561-1084",t:"Kane"},
-{c:"Retirement / Senior Living",n:"⭐⭐ LAKEVIEW SENIOR CARE & LIVING CENTER — 15 W Willow St, SMETHPORT, 31 yrs (old bulletins mention Mass there) [YP ✓]",p:"(814) 887-5716",t:"Smethport"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ LAKEVIEW SENIOR CARE (Lakeview Healthcare & Rehab) — 15 W Willow St SMETHPORT — ADVERTISED thru 1/23 — ask TERRY LOPUS (ATTRAX; Guardian Healthcare operator) [YP ✓ + ATTRAX]",p:"(814) 887-5716",t:"Smethport",e:"terry.lopus@guardianhc.com"},
 {c:"Retirement / Senior Living",n:"⭐ Chapel Ridge — Bradford Ecumenical Home's personal-care residence, 200 St. Francis Dr [YP ✓]",p:"(814) 368-8499",t:"Bradford"},
 {c:"Retirement / Senior Living",n:"The Lutheran Home at Kane [Kane chamber ✓]",p:"(814) 837-6706",t:"Kane"},
 {c:"Nursing / Rehab / Hospice",n:"⭐⭐ SENA-KEAN MANOR — the county nursing home, 17083 Route 6, SMETHPORT [own-site ✓ + YP]",p:"(814) 887-5601",t:"Smethport"},
@@ -259,7 +264,7 @@ const LEADS=[
 {c:"Financial Planner / Retirement",n:"K.D. Accounting & Tax [Kane chamber ✓]",p:"(814) 331-5862",t:"Kane"},
 {c:"Financial Planner / Retirement",n:"Seth A. Field Tax & Accounting [Kane chamber ✓]",p:"(814) 837-7771",t:"Kane"},
 {c:"Medical Clinic / Primary Care",n:"Dr. Dennis Harris — 80 Fraley St [Kane chamber ✓]",p:"(814) 837-6493",t:"Kane"},
-{c:"Dentist / Dentures",n:"⭐⭐ Signature Smile Designs — SMETHPORT office, Dr. John Monsman, 37 yrs [own-site ✓] · Bradford office 368-4492",p:"(814) 887-2442",t:"Smethport"},
+{c:"Dentist / Dentures",n:"⭐⭐ Signature Smile Designs — SMETHPORT office, Dr. John Monsman, 37 yrs — this line advertised as James B. Kane Jr. DMD thru 2015 (ATTRAX) [own-site ✓] · Bradford office 368-4492",p:"(814) 887-2442",t:"Smethport"},
 {c:"Dentist / Dentures",n:"⭐ Brian A. Volpe DMD — 33 yrs, 84 Boylston St [YP ✓]",p:"(814) 362-9991",t:"Bradford"},
 {c:"Dentist / Dentures",n:"Whelan Dental Associates — Peter Whelan + Alfred Campbell, 39 yrs, 9 Mechanic St [YP ✓]",p:"(814) 368-5236",t:"Bradford"},
 {c:"Dentist / Dentures",n:"Mark B. Andrew DDS — 31 Boylston St [YP ✓]",p:"(814) 362-2100",t:"Bradford"},
@@ -275,7 +280,7 @@ const LEADS=[
 {c:"Physical Therapy / Chiropractic",n:"Rehabilitation Today — Bradford [own-site ✓]",p:"(814) 368-3300",t:"Bradford"},
 {c:"Physical Therapy / Chiropractic",n:"Life in Motion Chiropractic & Wellness [Kane chamber ✓]",p:"(814) 561-1055",t:"Kane"},
 {c:"Physical Therapy / Chiropractic",n:"Allegheny Mountain Wellness — Dr. Kyle Freeman, chiro [own-site ✓]",p:"(814) 558-3601",t:"Coudersport"},
-{c:"Bank / Credit Union",n:"⭐⭐ HAMLIN BANK & TRUST — HQ SMETHPORT since 1863; 6 branches = ONE marketing buyer [own-site ✓]",p:"(814) 887-5555",t:"Smethport"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐⭐ HAMLIN BANK & TRUST — HQ SMETHPORT since 1863 — ADVERTISED thru 4/25 — ask MISCHELLE HEFFNER (marketing, ATTRAX) — 6 branches, one buyer [own-site ✓ + ATTRAX]",p:"(814) 887-5555",t:"Smethport",e:"mheffner@hamlinbank.com"},
 {c:"Bank / Credit Union",n:"⭐ P.C. Federal Credit Union — main office Port Allegany, since 1955, Jean Bonser CEO [own-site ✓] · Farmers Valley branch 887-9244",p:"(814) 642-9248",t:"Port Allegany"},
 {c:"Bank / Credit Union",n:"⭐ Bradford Area Federal Credit Union — 52 Davis St [own-site ✓]",p:"(814) 362-6779",t:"Bradford"},
 {c:"Insurance",n:"⭐⭐ Pat Hughes — State Farm, SMETHPORT [own-site ✓]",p:"(814) 887-5095",t:"Smethport"},
@@ -285,7 +290,7 @@ const LEADS=[
 {c:"Insurance",n:"Williams Agency — 509 E Main [YP ✓]",p:"(814) 368-6980",t:"Bradford"},
 {c:"Insurance",n:"⭐ Labrozzi Insurance Group — 89 yrs, 33 Main St [YP ✓]",p:"(814) 368-5312",t:"Bradford"},
 {c:"Insurance",n:"⭐ Burns & Burns Associates — 87 yrs, 57 Main [YP ✓]",p:"(814) 368-7161",t:"Bradford"},
-{c:"Insurance",n:"Marshall Insurance Services — Mick Marshall, 25 yrs, 34 Foster Brook Blvd [own-site ✓ + YP]",p:"(814) 363-7556",t:"Bradford"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"MARSHALL INSURANCE SERVICES — Mick Marshall — ADVERTISED thru 8/16 [own-site ✓ + YP + ATTRAX]",p:"(814) 363-7556",t:"Bradford"},
 {c:"Insurance",n:"Devon Kloss — State Farm, 53 Main [own-site ✓ + YP]",p:"(814) 817-2086",t:"Bradford"},
 {c:"Insurance",n:"Jennifer McMillen — State Farm, 93 Congress St [carrier ✓ + YP]",p:"(814) 362-3565",t:"Bradford"},
 {c:"Insurance",n:"Ryan Callahan — State Farm, 611 E Main [YP ✓]",p:"(814) 368-4050",t:"Bradford"},
@@ -328,7 +333,13 @@ const LEADS=[
 {c:"Landscaping / Snow / Tree",n:"Dyne Excavating — 3913 US-6 W [Kane chamber ✓]",p:"(814) 837-6990",t:"Kane"},
 {c:"Landscaping / Snow / Tree",n:"RWF Excavating [Kane chamber ✓]",p:"(814) 366-0573",t:"Kane"},
 {c:"Auto Service / Tire",n:"⛔ IN THE BOOK — C.L. McKeirnan Inc (PARISHIONER; auto + truck, 24-hr towing) 887-5811 — NEVER DIAL (wall 9/20)",p:"(814) 887-5811",t:"Smethport"},
-{c:"Auto Service / Tire",n:"Smethport Collision — lineage to Smethport Garage 1923 [YP dedicated — confirm on dial]",p:"(814) 887-5649",t:"Smethport"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"SMETHPORT COLLISION — Steve Speedy — 107 S Mechanic St — ADVERTISED thru 6/17 [ATTRAX ✓ — number matches YP]",p:"(814) 887-5649",t:"Smethport",e:"smcol@localnet.com"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ TRI-COUNTY TIRE — Brian Press — 155 East St SMETHPORT — ADVERTISED thru 7/24 [ATTRAX]",p:"(814) 887-5100",t:"Smethport",e:"saw9@verizon.net"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"⭐ ANDERSON MEMORIALS — Alan Nick — 3014 Route 155 Port Allegany — monuments, ADVERTISED thru 1/22 [ATTRAX]",p:"(814) 642-7673",t:"Port Allegany",e:"andersonmemorials.pa@gmail.com"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"AMERICAN AIRFLOW — James Cosper — HVAC, Johnsonburg — ADVERTISED thru 1/24 [ATTRAX]",p:"(814) 965-5234",t:"Johnsonburg",e:"americanairflow@aol.com"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"FOOT & ANKLE INNOVATIONS — Michael Tarbox, podiatry — Route 6 W Roulette — ADVERTISED thru 1/22 [ATTRAX]",p:"(814) 544-3182",t:"Roulette",e:"fainnov8@gmail.com"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"PINE HAVEN VETERINARY CLINIC — Cindy Cecchetti — 101 Pine Haven Dr Kane — ADVERTISED thru 10/21 [ATTRAX]",p:"(814) 837-7929",t:"Kane"},
+{c:"🎯 WIN-BACK — past advertisers 💰",n:"GRASSI BUILDERS — Greg Grassi — 806 Interstate Pkwy Bradford — ADVERTISED thru 10/19 [ATTRAX]",p:"(814) 366-1735",t:"Bradford"},
 {c:"Auto Service / Tire",n:"Goodman Services — 81 yrs [YP dedicated — confirm on dial]",p:"(814) 362-6873",t:"Bradford"},
 {c:"Auto Service / Tire",n:"Avenali's Alignment & Service Center — 48 Commons Alley [Kane chamber ✓]",p:"(814) 837-7628",t:"Kane"},
 {c:"Auto Service / Tire",n:"Cook's Garage — 364 Pennsylvania Ave [Kane chamber ✓]",p:"(814) 837-7110",t:"Kane"},
@@ -890,7 +901,7 @@ document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;rend
 const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
 const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
 sheet.innerHTML='<div class="grab"></div>'+
-   '<h3>⛪ WEEK 11 — CHURCH #11: ST. ELIZABETH OF HUNGARY, SMETHPORT — PA WEEK 3 OF 3</h3><p><b>St. Elizabeth of Hungary, 307 Franklin St, Smethport PA 16749</b> · <b>Acct 14-1203</b> · McKean County seat (pop. ~1,600), Allegheny National Forest country, Diocese of Erie. <b>Bradford (17 mi) is the only real town</b> — its funeral homes, banks, agencies, doctors and trades serve the whole county; Port Allegany, Kane, Eldred, Mount Jewett = the small-town ring. WEEKLY bulletin, parish language ON (÷52; prepay +4wks OK). <b>THE WALL (live 9/20 bulletin, p.6 — 9 paying): Hartle-Tarbox Funeral Homes (Smethport + Port Allegany) · Larsen Law Office (Port Allegany) · Edward Jones / Keith Delacour · C.L. McKeirnan (parishioner) · Smethport Drive In · H.S. Pet Animal Hospital · Costa&rsquo;s Supermarket + Ace Hardware · Linda&rsquo;s Mane Attraction + a Catholic Foundation filler. ⛔ Never dial a wall name. ATTRAX still owed = the win-back lane + the current-contract cross-check.</b> House ad prints w/ Abe&rsquo;s contact → expect inbounds.</p>'+
+   '<h3>⛪ WEEK 11 — CHURCH #11: ST. ELIZABETH OF HUNGARY, SMETHPORT — PA WEEK 3 OF 3</h3><p><b>St. Elizabeth of Hungary, 307 Franklin St, Smethport PA 16749</b> · <b>Acct 14-1203</b> · McKean County seat (pop. ~1,600), Allegheny National Forest country, Diocese of Erie. <b>Bradford (17 mi) is the only real town</b> — its funeral homes, banks, agencies, doctors and trades serve the whole county; Port Allegany, Kane, Eldred, Mount Jewett = the small-town ring. WEEKLY bulletin, parish language ON (÷52; prepay +4wks OK). <b>THE WALL (live 9/20 bulletin, p.6 — 9 paying): Hartle-Tarbox Funeral Homes (Smethport + Port Allegany) · Larsen Law Office (Port Allegany) · Edward Jones / Keith Delacour · C.L. McKeirnan (parishioner) · Smethport Drive In · H.S. Pet Animal Hospital · Costa&rsquo;s Supermarket + Ace Hardware · Linda&rsquo;s Mane Attraction + a Catholic Foundation filler. ⛔ Never dial a wall name. ATTRAX landed 9/21 (34 inactives): Hamlin Bank lapsed 4/25 (Mischelle Heffner) · Tri-County Tire 7/24 · Lakeview 1/23 · Anderson Memorials · Smethport Collision · Marshall Ins · Cummings Mt Jewett · a MOWER (Buffalo ad agency) order in 2019 = the agency breadcrumb.</b> House ad prints w/ Abe&rsquo;s contact → expect inbounds.</p>'+
  '<h3>⚡ First 10 seconds</h3><p>“Hi [name], this is Abe — I handle the weekly bulletin for <b>St. Elizabeth of Hungary here in Smethport</b>. Got 30 seconds?” Then: “it goes home with the parish families every single week, and I&rsquo;ve got space open.”</p>'+
  '<h3>⭐ THE CHURCH-GOAL ANGLE — use it EVERY call</h3><p>“Every ad counts toward the parish&rsquo;s sponsorship goal — <b>when the book fills, the parish gets its bulletin printed at no cost.</b> So your ad supports the church while promoting your business — the only ad that&rsquo;s also a good deed.” TRUE claim; never invent a specific \$-to-goal number.</p>'+
  '<h3>The area — say it plainly</h3><p>Deep-rural oil-and-timber county: one hospital (Bradford), one college (Pitt-Bradford), family names on the businesses for generations. Everybody drives to Bradford for everything — a Bradford business that wants McKean-County families reads this as “the Smethport parish.” The bulletin is the one page these families read EVERY week.</p>'+
