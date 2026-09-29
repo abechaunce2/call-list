@@ -1,0 +1,502 @@
+{
+ "list": "lebanon-seniorcenter-14-1690",
+ "exported": "2026-09-29T13:31:36.956Z",
+ "state": {
+  "6154499482": {
+   "status": "callback",
+   "ts": 1790604990027,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790604990027,
+     "st": "callback"
+    }
+   ]
+  },
+  "6154443553": {
+   "status": "callback",
+   "ts": 1790605162090,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790605162090,
+     "st": "callback"
+    }
+   ]
+  },
+  "6152351471": {
+   "status": "leftmsg",
+   "ts": 1790606473735,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606473735,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6152576630": {
+   "status": "noanswer",
+   "ts": 1790606497382,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606497382,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "6157587373": {
+   "status": "leftmsg",
+   "ts": 1790606532807,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606532807,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6157724452": {
+   "status": "leftmsg",
+   "ts": 1790606716050,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606716050,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6159437020": {
+   "status": "leftmsg",
+   "ts": 1790606819260,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606819260,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6157588560": {
+   "status": "leftmsg",
+   "ts": 1790606895105,
+   "notes": "info@smithcircptictn.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790606895105,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6153286690": {
+   "status": "leftmsg",
+   "ts": 1790607013131,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790607013131,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154430523": {
+   "status": "callback",
+   "ts": 1790607582600,
+   "notes": "advancedcyroppraticecratinghealth@outlook.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790607582600,
+     "st": "callback"
+    }
+   ]
+  },
+  "6155474854": {
+   "status": "leftmsg",
+   "ts": 1790607660163,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790607660163,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154708486": {
+   "status": "leftmsg",
+   "ts": 1790608010914,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608010914,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6155498070": {
+   "status": "notnow",
+   "ts": 1790608070196,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608067996,
+     "st": "noanswer"
+    },
+    {
+     "ts": 1790608070196,
+     "st": "notnow"
+    }
+   ]
+  },
+  "6154441408": {
+   "status": "leftmsg",
+   "ts": 1790608540722,
+   "notes": "kerryjbecht@bellsouth.net",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608540722,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154665200": {
+   "status": "leftmsg",
+   "ts": 1790608646638,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608646638,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6152000203": {
+   "status": "notnow",
+   "ts": 1790608827572,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608827572,
+     "st": "notnow"
+    }
+   ]
+  },
+  "6154449400": {
+   "status": "notnow",
+   "ts": 1790608882729,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790608882729,
+     "st": "notnow"
+    }
+   ]
+  },
+  "6157846750": {
+   "status": "callback",
+   "ts": 1790609418487,
+   "notes": "hermitage@wellhealthceneters.com jermey lebanon@wellhealthceneter.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790609418487,
+     "st": "callback"
+    }
+   ]
+  },
+  "6156969818": {
+   "status": "leftmsg",
+   "ts": 1790614458875,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790614458875,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6292401670": {
+   "status": "noanswer",
+   "ts": 1790615013232,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790615013232,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "6157587101": {
+   "status": "noanswer",
+   "ts": 1790616365305,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790616365305,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "6154448859": {
+   "status": "leftmsg",
+   "ts": 1790618635351,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790618635351,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6156564307": {
+   "status": "leftmsg",
+   "ts": 1790618883321,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790618883321,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154539702": {
+   "status": "leftmsg",
+   "ts": 1790618969520,
+   "notes": "west.dugen@fbitn.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790618969520,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6155478288": {
+   "status": "leftmsg",
+   "ts": 1790619001059,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790619001059,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154475026": {
+   "status": "leftmsg",
+   "ts": 1790619419498,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790619419498,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154434778": {
+   "status": "noanswer",
+   "ts": 1790619526240,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790619526240,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "6155474255": {
+   "status": "leftmsg",
+   "ts": 1790620807215,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790620807215,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6153793302": {
+   "status": "leftmsg",
+   "ts": 1790624109667,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790624109667,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6155476161": {
+   "status": "leftmsg",
+   "ts": 1790624116304,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790624116304,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154444423": {
+   "status": "leftmsg",
+   "ts": 1790624269089,
+   "notes": "lcooper@insureresults.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790624269089,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154779665": {
+   "status": "leftmsg",
+   "ts": 1790624970898,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790624970898,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154449043": {
+   "status": "leftmsg",
+   "ts": 1790625110490,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790625110490,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6153190810": {
+   "status": "leftmsg",
+   "ts": 1790626953279,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790626953279,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "6154669736": {
+   "status": "leftmsg",
+   "ts": 1790628529628,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1790628529628,
+     "st": "leftmsg"
+    }
+   ]
+  }
+ },
+ "pad": "",
+ "tasks": []
+}
