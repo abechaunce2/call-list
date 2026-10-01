@@ -169,7 +169,7 @@
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
   <div class="controls">
-    <input id="q" placeholder="Search name, category, town" autocomplete="off">
+    <input id="q" placeholder="Search name, number, email, town" autocomplete="off">
     <button class="btn on" id="dialgo">▶ Dial</button>
     <button class="btn" id="pitchbtn">Pitch</button>
     <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
@@ -284,7 +284,7 @@ const LEADS=[
 {c:"Retirement / Senior Living",n:"⭐ Providence Place Assisted Living of Mt. Juliet — 1020 Charlie Daniels Parkway [MJ chamber ✓]",p:"(615) 758-8400",t:"Mount Juliet"},
 {c:"Retirement / Senior Living",n:"⭐ Providence Place Senior Living [own-site ✓]",p:"(615) 758-4800",t:"Mount Juliet"},
 {c:"Retirement / Senior Living",n:"⭐ The Gardens Memory Care — 1016 Charlie Daniels Parkway [MJ chamber ✓]",p:"(615) 758-9300",t:"Mount Juliet"},
-{c:"Retirement / Senior Living",n:"⭐ The Village Forager — 2320 N Mt. Juliet Rd. [MJ chamber ✓]",p:"(615) 288-3474",t:"Mount Juliet"},
+{c:"Patron / Community Sponsor 💰",n:"The Village Forager — retail shop (NOT senior living), 2320 N Mt. Juliet Rd. [MJ chamber ✓ · Yelp ✓] · ERIN gave her email 9/30-10/1 — it is FORAGER with an A: erin@thevillageforager.com ('forger' has no mail server)",p:"(615) 288-3474",t:"Mount Juliet",e:"erin@thevillageforager.com"},
 {c:"Home Health / In-Home Care",n:"⭐ Beacon Home Health [LW chamber ✓]",p:"(615) 449-9482",t:"Lebanon"},
 {c:"Home Health / In-Home Care",n:"⭐ ElderLife Management LLC DBA Home Instead — 1633 W Main Street [MJ chamber ✓]",p:"(615) 444-3553",t:"Lebanon"},
 {c:"Home Health / In-Home Care",n:"⭐ Hallmark Homecare [LW chamber ✓]",p:"(615) 235-1471",t:"Lebanon"},
@@ -570,6 +570,9 @@ const LEADS=[
 {c:"Veterinarian / Pet 🐾",n:"Crystal Farms — 199 Knee Road [LW chamber ✓]",p:"(615) 260-5029",t:"Watertown"},
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+function hayOf(l){const r=(typeof STATE!=='undefined'&&STATE[l.dig])||{};return (l.n+' '+l.c+' '+l.t+' '+l.p+' '+l.dig+' '+(l.e||'')+' '+(r.notes||'')+' '+(r.email||'')+' '+(r.dm||'')).toLowerCase();}
+function termHit(l,term){if(hayOf(l).indexOf(term)>=0)return true;const d=term.replace(/\D/g,'');return d.length>=3&&l.dig.indexOf(d)>=0;}
+function strongTerm(term){return !!term&&(term.indexOf('@')>=0||term.replace(/\D/g,'').length>=7);}
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
 
 // ================= STATUSES =================
@@ -902,7 +905,7 @@ function build(){
     return;
   }
   const due=dueBanner();if(due)app.appendChild(due);
-  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const match=l=>{const r=STATE[l.dig];if(strongTerm(term))return termHit(l,term);if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
   if(sortMode==='dist'){
     const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
     if(!rows.length){app.appendChild(noMatch());return;}
@@ -1062,7 +1065,7 @@ function dialQueue(){
     return [].concat(g.g1,g.g2,g.g3,g.g4).filter(l=>!SKIPPED.has(l.dig));
   }
   const term=q.value.trim().toLowerCase();
-  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
   const rows=[];CATS.forEach(cat=>{LEADS.filter(l=>l.c===cat).filter(m).slice().sort((a,b)=>a.mi-b.mi).forEach(l=>rows.push(l));});
   return rows;
 }

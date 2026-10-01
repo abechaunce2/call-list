@@ -170,7 +170,7 @@
   <div class="progress"><i id="bar"></i></div>
   <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
   <div class="controls">
-    <input id="q" placeholder="Search name, category, town" autocomplete="off">
+    <input id="q" placeholder="Search name, number, email, town" autocomplete="off">
     <button class="btn on" id="dialgo">▶ Dial</button>
     <button class="btn" id="pitchbtn">Pitch</button>
     <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
@@ -362,6 +362,9 @@ const LEADS=[
 {c:"Restaurant / Bakery / Catering",n:"Chatter Box — 16 yrs [YP ✓] · Bonnie Fox (caller-ID)",p:"(814) 736-3888",t:"Portage"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+function hayOf(l){const r=(typeof STATE!=='undefined'&&STATE[l.dig])||{};return (l.n+' '+l.c+' '+l.t+' '+l.p+' '+l.dig+' '+(l.e||'')+' '+(r.notes||'')+' '+(r.email||'')+' '+(r.dm||'')).toLowerCase();}
+function termHit(l,term){if(hayOf(l).indexOf(term)>=0)return true;const d=term.replace(/\D/g,'');return d.length>=3&&l.dig.indexOf(d)>=0;}
+function strongTerm(term){return !!term&&(term.indexOf('@')>=0||term.replace(/\D/g,'').length>=7);}
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
 
 // ================= STATUSES =================
@@ -694,7 +697,7 @@ function build(){
     return;
   }
   const due=dueBanner();if(due)app.appendChild(due);
-  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const match=l=>{const r=STATE[l.dig];if(strongTerm(term))return termHit(l,term);if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
   if(sortMode==='dist'){
     const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
     if(!rows.length){app.appendChild(noMatch());return;}
@@ -854,7 +857,7 @@ function dialQueue(){
     return [].concat(g.g1,g.g2,g.g3,g.g4).filter(l=>!SKIPPED.has(l.dig));
   }
   const term=q.value.trim().toLowerCase();
-  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
   const rows=[];CATS.forEach(cat=>{LEADS.filter(l=>l.c===cat).filter(m).slice().sort((a,b)=>a.mi-b.mi).forEach(l=>rows.push(l));});
   return rows;
 }

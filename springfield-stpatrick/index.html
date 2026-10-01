@@ -362,6 +362,9 @@ const LEADS=[
 {c:"Restaurant/Banquet Facility",n:"Amedeo's",p:"(413) 536-4056",t:"Holyoke"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+function hayOf(l){const r=(typeof STATE!=='undefined'&&STATE[l.dig])||{};return (l.n+' '+l.c+' '+l.t+' '+l.p+' '+l.dig+' '+(l.e||'')+' '+(r.notes||'')+' '+(r.email||'')+' '+(r.dm||'')).toLowerCase();}
+function termHit(l,term){if(hayOf(l).indexOf(term)>=0)return true;const d=term.replace(/\D/g,'');return d.length>=3&&l.dig.indexOf(d)>=0;}
+function strongTerm(term){return !!term&&(term.indexOf('@')>=0||term.replace(/\D/g,'').length>=7);}
 (function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
 
 // ---- status defs ----
@@ -558,7 +561,7 @@ function build(){
     return;
   }
   const due=dueBanner();if(due)app.appendChild(due);
-  const match=l=>{const r=STATE[l.dig];if(hideDone&&r&&r.status)return false;if(nearOnly&&l.tier!==1)return false;if(!term)return true;return (l.n+' '+l.c+' '+l.t).toLowerCase().includes(term);};
+  const match=l=>{const r=STATE[l.dig];if(strongTerm(term))return termHit(l,term);if(hideDone&&r&&r.status)return false;if(nearOnly&&l.tier!==1)return false;if(!term)return true;return termHit(l,term);};
   if(sortMode==='dist'){
     const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
     if(!rows.length){app.appendChild(noMatch());return;}
