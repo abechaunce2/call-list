@@ -1,0 +1,1304 @@
+{
+ "list": "stmarys-clinton-03-0597",
+ "exported": "2026-10-08T15:06:33.209Z",
+ "state": {
+  "2024382127": {
+   "status": "noanswer",
+   "ts": 1791314200302,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791314200302,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2024392950": {
+   "status": "leftmsg",
+   "ts": 1791396411317,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791396411317,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2028136828": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "2028500550": {
+   "status": "leftmsg",
+   "ts": 1791384061163,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791384061163,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2272204015": {
+   "status": "leftmsg",
+   "ts": 1791311601493,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311601493,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2277221958": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "2403395377": {
+   "status": "noanswer",
+   "ts": 1791312952032,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791312952032,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2403462586": {
+   "status": "noanswer",
+   "ts": 1791299775686,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791299775686,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2403484540": {
+   "status": "callback",
+   "ts": 1791392881736,
+   "notes": "julian@julianismyagent.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791392879095,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1791392881736,
+     "st": "callback"
+    }
+   ]
+  },
+  "2403487157": {
+   "status": "noanswer",
+   "ts": 1791400443998,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400443998,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2403976694": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "2404483301": {
+   "status": "notnow",
+   "ts": 1791400693329,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400693329,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2404939116": {
+   "status": "noanswer",
+   "ts": 1791469830572,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791469830572,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2405188928": {
+   "status": "leftmsg",
+   "ts": 1791400302810,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400302810,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2405335340": {
+   "status": "leftmsg",
+   "ts": 1791318822038,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791318822038,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2405355757": {
+   "status": "leftmsg",
+   "ts": 1791299865253,
+   "notes": "oursinrefesuactd@cldcleaningol.copm",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791299865253,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2405619120": {
+   "status": "notnow",
+   "ts": 1791313720762,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791313720762,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2407662761": {
+   "status": "leftmsg",
+   "ts": 1791393231756,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791393231756,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2407664552": {
+   "status": "leftmsg",
+   "ts": 1791313151498,
+   "notes": "kwanza@merdianamedicalassistes.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791313151498,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2408372604": {
+   "status": "notnow",
+   "ts": 1791298827039,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791298827039,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3012476320": {
+   "status": "leftmsg",
+   "ts": 1791387781351,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791387781351,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3012484505": {
+   "status": "leftmsg",
+   "ts": 1791393139362,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791393139362,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3012490300": {
+   "status": "leftmsg",
+   "ts": 1791395227728,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791395227728,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3012499554": {
+   "status": "leftmsg",
+   "ts": 1791318887298,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791318887298,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3012924333": {
+   "status": "leftmsg",
+   "ts": 1791393188011,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791393188011,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3013360065": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "3013494040": {
+   "status": "leftmsg",
+   "ts": 1791394951804,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791394951804,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3013500015": {
+   "status": "leftmsg",
+   "ts": 1791301242319,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791301242319,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3013583981": {
+   "status": "followup",
+   "ts": 1791306105542,
+   "notes": "karsl.chen@thebizlawer.com",
+   "dm": "",
+   "time": "2026-10-09T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791306105542,
+     "st": "followup"
+    }
+   ]
+  },
+  "3013586155": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "3013926066": {
+   "status": "notnow",
+   "ts": 1791313806562,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791313806562,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3013969277": {
+   "status": "leftmsg",
+   "ts": 1791400572494,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400572494,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3014234950": {
+   "status": "leftmsg",
+   "ts": 1791303375877,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791303375877,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3014300337": {
+   "status": "noanswer",
+   "ts": 1791311148793,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311148793,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3014302506": {
+   "status": "leftmsg",
+   "ts": 1791310839506,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791310839506,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3014470111": {
+   "status": "leftmsg",
+   "ts": 1791397706633,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791397706633,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3014490400": {
+   "status": "notnow",
+   "ts": 1791384116829,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791384116829,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3014634331": {
+   "status": "leftmsg",
+   "ts": 1791299356212,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791299356212,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3014859533": {
+   "status": "notnow",
+   "ts": 1791400203635,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400160340,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1791400203635,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3015009875": {
+   "status": "leftmsg",
+   "ts": 1791385745419,
+   "notes": "kdmarshellfh@gmail.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791385745419,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3015352633": {
+   "status": "leftmsg",
+   "ts": 1791308670030,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791308670030,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3015679424": {
+   "status": "leftmsg",
+   "ts": 1791386268402,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791386268402,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3015749798": {
+   "status": "notnow",
+   "ts": 1791314308637,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791314308637,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3016180067": {
+   "status": "noanswer",
+   "ts": 1791399995491,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791399995491,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3016384867": {
+   "status": "leftmsg",
+   "ts": 1791311474897,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311474897,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3016385006": {
+   "status": "leftmsg",
+   "ts": 1791396511505,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791396511505,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3016451344": {
+   "status": "leftmsg",
+   "ts": 1791311547274,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311547274,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3016452221": {
+   "status": "leftmsg",
+   "ts": 1791393018915,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791393018915,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3016453601": {
+   "status": "callback",
+   "ts": 1791400121495,
+   "notes": "",
+   "dm": "",
+   "time": "2026-10-08T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400117859,
+     "st": "callback"
+    }
+   ]
+  },
+  "3016455601": {
+   "status": "leftmsg",
+   "ts": 1791308722792,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791308722792,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3017025443": {
+   "status": "noanswer",
+   "ts": 1791310772885,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791310772885,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3017057366": {
+   "status": "leftmsg",
+   "ts": 1791395118792,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791395118792,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3017100439": {
+   "status": "leftmsg",
+   "ts": 1791400056934,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400056934,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3017353006": {
+   "status": "leftmsg",
+   "ts": 1791312912383,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791312912383,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3017829184": {
+   "status": "leftmsg",
+   "ts": 1791392766503,
+   "notes": "roxanne@myagentroazanne.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791392766503,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3017984838": {
+   "status": "leftmsg",
+   "ts": 1791311015018,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311015018,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018055544": {
+   "status": "leftmsg",
+   "ts": 1791384010881,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791384010881,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018188800": {
+   "status": "noanswer",
+   "ts": 1791395292880,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791395292880,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018398400": {
+   "status": "noanswer",
+   "ts": 1791307887418,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791307887418,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018431018": {
+   "status": "leftmsg",
+   "ts": 1791397620305,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791397620305,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018560080": {
+   "status": "followup",
+   "ts": 1791385860610,
+   "notes": "mhedg@version.net",
+   "dm": "",
+   "time": "2026-10-12T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791385860610,
+     "st": "followup"
+    }
+   ]
+  },
+  "3018561122": {
+   "status": "noanswer",
+   "ts": 1791400370551,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400370551,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018561660": {
+   "status": "leftmsg",
+   "ts": 1791387683615,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791387683615,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018563337": {
+   "status": "leftmsg",
+   "ts": 1791392258073,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791392258073,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018565663": {
+   "status": "noanswer",
+   "ts": 1791400500815,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400500815,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018684094": {
+   "status": "noanswer",
+   "ts": 1791400473715,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400473715,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018705574": {
+   "status": "leftmsg",
+   "ts": 1791298706963,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791298706963,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018705841": {
+   "status": "noanswer",
+   "ts": 1791395032608,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791395032608,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018771300": {
+   "status": "noanswer",
+   "ts": 1791392504682,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791392504682,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3018778008": {
+   "status": "leftmsg",
+   "ts": 1791396938601,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791396938601,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018850430": {
+   "status": "leftmsg",
+   "ts": 1791400646359,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791400646359,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3018892005": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "3018991455": {
+   "status": "callback",
+   "ts": 1791311209732,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311209732,
+     "st": "callback"
+    }
+   ]
+  },
+  "3019214400": {
+   "status": "noanswer",
+   "ts": 1791307757955,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791307757955,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3019322155": {
+   "status": "callback",
+   "ts": 1791305718429,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305718429,
+     "st": "callback"
+    }
+   ]
+  },
+  "3019325050": {
+   "status": "leftmsg",
+   "ts": 1791392484190,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791392484190,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019341922": {
+   "status": "leftmsg",
+   "ts": 1791305527148,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305527148,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019342444": {
+   "status": "notnow",
+   "ts": 1791305769679,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305769679,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3019342920": {
+   "status": "callback",
+   "ts": 1791384199060,
+   "notes": "bussiness.office@raymondfuneral.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791384199060,
+     "st": "callback"
+    }
+   ]
+  },
+  "3019345780": {
+   "status": "leftmsg",
+   "ts": 1791314182159,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791314182159,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019348342": {
+   "status": "leftmsg",
+   "ts": 1791386138322,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791386138322,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019349541": {
+   "status": "notnow",
+   "ts": 1791305634761,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305634761,
+     "st": "notnow"
+    }
+   ]
+  },
+  "3019384392": {
+   "status": "leftmsg",
+   "ts": 1791298644847,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791298644847,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019550478": {
+   "status": "noanswer",
+   "ts": 1791314254735,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791314254735,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "3019608100": {
+   "status": "leftmsg",
+   "ts": 1791300321049,
+   "notes": "info@833bugmike.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791300321049,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3019658500": {
+   "status": "leftmsg",
+   "ts": 1791303584579,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791303584579,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "3602073463": {
+   "status": "noanswer",
+   "ts": 1791314059649,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791314059649,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "4105351780": {
+   "status": "followup",
+   "ts": 1791305859701,
+   "notes": "Mdavis@davispulombo.com",
+   "dm": "",
+   "time": "2026-10-09T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305859701,
+     "st": "followup"
+    }
+   ]
+  },
+  "4109803145": {
+   "status": "",
+   "ts": 1791294565958,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791294565958,
+     "st": "called"
+    }
+   ]
+  },
+  "7036384707": {
+   "status": "leftmsg",
+   "ts": 1791305952998,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791305952998,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "7037721310": {
+   "status": "noanswer",
+   "ts": 1791311058323,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791311058323,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "4438999525": {
+   "status": "noanswer",
+   "ts": 1791313666694,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1791313666694,
+     "st": "noanswer"
+    }
+   ]
+  }
+ },
+ "pad": "",
+ "tasks": []
+}
