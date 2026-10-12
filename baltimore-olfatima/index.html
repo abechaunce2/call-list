@@ -320,7 +320,23 @@ const LEADS=[
 {c:"Patron / Community Sponsor 💰",n:"⭐ Lakein's Jewelers of Hamilton — 113 yrs, 4 generations [Chesapeake Gateway chamber ✓] · Marcia Lakein · 7698 Belair Rd Ste 104, Nottingham 21236",p:"(410) 426-6600",t:"Nottingham",e:"lakeinsjewelers@gmail.com"},
 {c:"Restaurant / Bakery / Catering",n:"Conrad's Ruth Villa — Middle River [Chesapeake Gateway chamber ✓] · David Conrad · 3301 Edwards Ln, Middle River 21220 · conradsvilla.com",p:"(410) 335-4468",t:"Middle River",e:"david@conradsvilla.com"},
 {c:"Restaurant / Bakery / Catering",n:"Alice's — A Family Restaurant, Eastern Blvd Middle River [Chesapeake Gateway chamber ✓] · Darlene Goding · 2909 Eastern Blvd, Middle River 21220",p:"(410) 687-2222",t:"Middle River",e:"darlenecg28@gmail.com"},
-{c:"Restaurant / Bakery / Catering",n:"Two Guys Grill & Pub — Essex [Chesapeake Gateway chamber ✓] · Billy Shea · 1220 E Homberg Ave, Essex 21221 · twoguysgrillandpub.com",p:"(443) 231-5375",t:"Essex",e:"twoguysgrill1@gmail.com"}
+{c:"Restaurant / Bakery / Catering",n:"Two Guys Grill & Pub — Essex [Chesapeake Gateway chamber ✓] · Billy Shea · 1220 E Homberg Ave, Essex 21221 · twoguysgrillandpub.com",p:"(443) 231-5375",t:"Essex",e:"twoguysgrill1@gmail.com"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Charles S. Zeiler & Son — 6224 Eastern Ave, two blocks from the church [YP ✓]",p:"(410) 633-8390",t:"Highlandtown"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Lilly & Zeiler — 700 S Conkling St, family-owned since 1908 [YP ✓]",p:"(410) 342-1222",t:"Highlandtown"},
+{c:"Funeral Home / Monuments",n:"⭐ Lilly & Zeiler — 1901 Eastern Ave (Fells Point location), 118 yrs [YP ✓]",p:"(410) 327-1442",t:"Fells Point"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Zannino Funeral Home — Joseph N. Zannino Jr., 263 S Conkling St, 68 yrs [YP ✓]",p:"(410) 327-4220",t:"Highlandtown"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Dabrowski-Chojnacki Funeral Home — 1005 Dundalk Ave 21224, 33 yrs [YP ✓]",p:"(410) 633-6630",t:"Bayview"},
+{c:"Funeral Home / Monuments",n:"⭐ Thomas J. Skarda Funeral Home — 2829 Hudson St, Canton, 54 yrs [YP ✓]",p:"(410) 342-7733",t:"Canton"},
+{c:"Funeral Home / Monuments",n:"⭐ Compassion Funeral Service — 3000 E Baltimore St [YP ✓]",p:"(410) 675-5200",t:"Patterson Park"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Kaczorowski Funeral Home — 1201 Dundalk Ave, Dundalk, 74 yrs [YP ✓]",p:"(410) 633-0000",t:"Dundalk"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Connelly Funeral Home of Dundalk — 7110 Sollers Point Rd, 52 yrs [YP ✓]",p:"(410) 285-2900",t:"Dundalk"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Bradley Ashton Kehl Funeral Home — 2134 Willow Spring Rd, Dundalk, 136 yrs [YP ✓]",p:"(410) 284-2600",t:"Dundalk"},
+{c:"Funeral Home / Monuments",n:"⭐⭐ Rosedale Funeral Home of Philip E. Cvach — 1211 Chesaco Ave, Rosedale, 147 yrs [YP ✓]",p:"(410) 682-2467",t:"Rosedale"},
+{c:"Funeral Home / Monuments",n:"⭐ Howell Funeral Home — 3331 Brehms Ln (East Baltimore 21213), 89 yrs [YP ✓]",p:"(410) 485-3500",t:"Baltimore"},
+{c:"Funeral Home / Monuments",n:"Chatman Harris Funeral Home — 4210 Belair Rd 21206, 44 yrs [YP ✓]",p:"(410) 488-5947",t:"Baltimore"},
+{c:"Funeral Home / Monuments",n:"Miller's Metropolitan Chapel — 3107 Erdman Ave 21213 [YP ✓]",p:"(410) 327-2777",t:"Baltimore"},
+{c:"Funeral Home / Monuments",n:"James E. Lincoln Funeral Home — 2431 E Oliver St 21213, 16 yrs [YP ✓]",p:"(443) 388-9104",t:"Baltimore"},
+{c:"Funeral Home / Monuments",n:"Bayview Crematory — 5500 O'Donnell St 21224, 28 yrs [YP ✓]",p:"(410) 633-3083",t:"Bayview"}
 ];
 LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
 function hayOf(l){const r=(typeof STATE!=='undefined'&&STATE[l.dig])||{};return (l.n+' '+l.c+' '+l.t+' '+l.p+' '+l.dig+' '+(l.e||'')+' '+(r.notes||'')+' '+(r.email||'')+' '+(r.dm||'')).toLowerCase();}
