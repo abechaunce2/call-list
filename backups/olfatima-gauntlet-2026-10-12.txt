@@ -1,0 +1,109 @@
+checked 108 | OK 28 | not 80
+-- G Funeral Home   | Kaczorowski Funeral Home                 | 410-633-0089   | Dundalk      | 200  | number not on page
+-- G Funeral Home   | Bradley-Ashton-Kehl Funeral Home         | 410-633-8550   | Dundalk      | 200  | number not on page
+-- G Funeral Home   | Connelly Funeral Home of Dundalk         | 410-285-2900   | Dundalk      |      | already on sheet
+-- G Funeral Home   | Duda-Ruck Funeral Home of Dundalk        | 410-285-0012   | Dundalk      |      | no own-site url (verify by hand)
+-- G Funeral Home   | Bruzdzinski Funeral Home                 | 410-686-4888   | Essex        | 200  | number not on page
+-- G Funeral Home   | Cvach/Rosedale Funeral Home              | 410-866-5600   | Rosedale     | 200  | number not on page
+-- G Funeral Home   | Schimunek Funeral Home                   | 410-284-1200   | Dundalk      | 403  | http 403
+-- G Funeral Home   | Charles L. Stevens Funeral Home          | 410-547-1040   | Locust Point | 000  | http 000
+-- G Funeral Home   | Lassahn Funeral Home                     | 410-665-2000   | Overlea      |      | no own-site url (verify by hand)
+OK G Funeral Home   | Evans Life Celebration Home              | 410-665-9444   | Parkville    | 200  | 
+-- G Funeral Home   | Johnson-Fosbrink Funeral Home            | 410-668-2300   | Towson       | 000  | http 000
+-- G Bakery         | Hoehn's Bakery                           | 410-675-2884   | Highlandtown | 200  | number not on page
+OK G Bakery         | Woodlea Bakery                           | 410-488-7717   | Belair-Ediso | 200  | 
+-- G Bakery         | Fenwick Bakery                           | 410-426-7123   | Hamilton     | 000  | http 000
+-- G Restaurant     | G&A Restaurant                           | 410-276-9422   | Highlandtown | 000  | http 000
+-- G Restaurant     | Ikaros Restaurant                        | 410-633-3750   | Greektown    | 200  | number not on page
+OK G Restaurant     | Samos Restaurant                         | 410-675-5292   | Greektown    | 200  | 
+OK G Restaurant     | Matthew's Pizza                          | 410-276-8755   | Highlandtown | 200  | 
+OK G Restaurant     | Jimmy's Famous Seafood                   | 410-633-4040   | Dundalk      | 200  | 
+OK G Restaurant     | Costas Inn                               | 410-477-1975   | Dundalk      | 200  | 
+OK G Restaurant     | Squire's Restaurant                      | 410-288-0081   | Dundalk      | 200  | 
+-- G Restaurant     | Pappas Restaurant                        | 410-661-4357   | Parkville    | 200  | number not on page
+OK G Deli           | DiPasquale's Italian Marketplace         | 410-276-6787   | Canton       | 200  | 
+-- G Deli           | Mastellone Deli & Wine Shop              | 410-661-5005   | Overlea      | 000  | http 000
+-- G Plumbing       | Saffer Plumbing & Heating                | 410-276-5300   | Canton       | 200  | number not on page
+-- G Plumbing       | W.H. Winebrenner & Sons                  | 410-256-5501   | Perry Hall   | 000  | http 000
+-- G Plumbing       | Hub Plumbing & Heating                   | 410-732-4212   | Highlandtown | 403  | http 403
+OK G Plumbing       | Warrior Plumbing and Heating             | 443-967-3736   | Baltimore    | 200  | 
+OK G Plumbing       | Pohlman Plumbing                         | 410-764-5626   | Linthicum    | 200  | 
+OK G Heating & AC   | Reliability Home Services                | 443-399-8663   | Dundalk      | 200  | 
+-- G Heating & AC   | B&B Air Conditioning & Heating           | 410-686-2223   | Middle River | 000  | http 000
+-- G Heating & AC   | Advanced Heating & Cooling               | 410-833-9445   | Baltimore    | 200  | number not on page
+-- G Roofing        | Four Twelve Roofing                      | 410-985-6733   | Baltimore    | 200  | number not on page
+-- G Roofing        | Fick Bros. Roofing & Exterior            | 410-235-9500   | Baltimore    | 200  | number not on page
+OK G Roofing        | Phil DiBello Family Roofing              | 410-752-7663   | Baltimore    | 200  | 
+OK G Electrician    | Milton Electric                          | 410-276-3420   | Baltimore    | 200  | 
+-- G Real Estate    | Berkshire Hathaway HomeServices PenFed R | 410-563-0004   | Canton       | 403  | http 403
+-- G Real Estate    | ExecuHome Realty                         | 443-632-3500   | Parkville    | 403  | http 403
+-- G Insurance      | State Farm - Craig Waskow                | 410-288-5100   | Dundalk      | 000  | http 000
+-- G Insurance      | State Farm - Phil Andrews                | 410-675-4300   | Canton       | 000  | http 000
+-- G Insurance      | State Farm - Elena Russo                 | 410-477-9400   | Edgemere     | 200  | number not on page
+-- G Insurance      | State Farm - Tony Tamberino              | 410-668-3000   | Parkville    | 000  | http 000
+-- G Insurance      | State Farm - John Lytle                  | 410-282-3700   | Dundalk      | 200  | number not on page
+-- G Insurance      | State Farm - Manny Diaz                  | 410-342-6300   | Highlandtown | 000  | http 000
+-- G Law Firm       | D'Alesandro & D'Alesandro                | 410-332-0052   | Baltimore    | 200  | number not on page
+-- G Law Firm       | Law Office of Nicholas T. Exarhakis      | 410-263-8884   | Baltimore    | 000  | http 000
+-- G Law Firm       | Miranda & Miranda                        | 410-477-8777   | Dundalk      | 000  | http 000
+-- G Law Firm       | Sanzone & Baker                          | 410-685-6490   | Baltimore    | 000  | http 000
+-- G Dental         | Canton Crossing Dental                   | 410-276-3500   | Canton       | 200  | number not on page
+-- G Dental         | Highlandtown Dental Group                | 410-327-5488   | Highlandtown | 000  | http 000
+-- G Dental         | Dundalk Pediatric Dentistry              | 410-282-2700   | Dundalk      | 000  | http 000
+-- G Dental         | Fells Point Dental                       | 410-276-8800   | Fells Point  | 200  | number not on page
+-- G Dental         | Rosedale Dental Care                     | 410-866-5050   | Rosedale     | 200  | number not on page
+-- G Eye            | Canton Vision Center                     | 410-276-2020   | Canton       | 200  | number not on page
+-- G Eye            | Dundalk Eye                              | 410-282-3400   | Dundalk      | 000  | http 000
+-- G Podiatry       | Charm City Podiatry                      | 410-732-2300   | Baltimore    | 000  | http 000
+-- G Chiropractor   | Canton Chiropractic Center               | 410-327-0400   | Canton       | 200  | number not on page
+-- G Chiropractor   | Dundalk Chiropractic Center              | 410-285-2600   | Dundalk      | 200  | number not on page
+-- G Chiropractor   | East Baltimore Chiropractic              | 410-276-4300   | Highlandtown | 000  | http 000
+-- G Pharmacy       | Highlandtown Pharmacy                    | 410-276-4700   | Highlandtown | 000  | http 000
+-- G Pharmacy       | Fells Point Pharmacy                     | 410-522-4200   | Fells Point  | 000  | http 000
+-- G Pharmacy       | Rosedale Pharmacy                        | 410-866-5544   | Rosedale     | 200  | number not on page
+OK G Pharmacy       | Northern Pharmacy & Medical Equipment    | 410-254-2055   | Baltimore    | 200  | 
+OK G Pharmacy       | Parkville Pharmacy                       | 443-290-4867   | Parkville    | 200  | 
+-- G Auto Repair    | Gerry's Tire                             | 410-276-0610   | Highlandtown | 200  | number not on page
+-- G Auto Repair    | Framer Auto Service                      | 410-276-2622   | Canton       | 000  | http 000
+-- G Auto Repair    | Canton Auto Repair                       | 410-522-6800   | Canton       | 200  | number not on page
+-- G Auto Repair    | Dundalk Auto Service                     | 410-282-8400   | Dundalk      | 000  | http 000
+-- G Auto Repair    | Essex Auto Repair                        | 410-686-2244   | Essex        | 200  | number not on page
+-- G Tree Service   | A-1 Tree Service                         | 410-668-3600   | Parkville    | 200  | number not on page
+-- G Landscaping    | L&G Lawn Care                            | 410-686-3000   | Essex        | 200  | number not on page
+OK G Landscaping    | Lehnhoff's Landscaping                   | 443-921-5789   | White Marsh  | 200  | 
+-- G Home Care      | Visiting Angels                          | 410-285-8002   | Dundalk      | 200  | number not on page
+OK G School         | Our Lady of Hope/St. Luke School         | 410-288-2793   | Dundalk      | 200  | 
+-- G School         | Sacred Heart of Jesus School             | 410-276-0566   | Highlandtown | 000  | http 000
+OK G School         | Archbishop Curley High School            | 410-485-5000   | Baltimore    | 200  | 
+-- G School         | Catholic High School of Baltimore        | 410-732-6200   | Baltimore    | 000  | http 000
+-- G Bank           | Rosedale Federal Savings & Loan          | 410-882-9090   | Overlea      | 200  | number not on page
+-- G Retail         | Geresbeck's Bi-Rite                      | 410-285-8200   | Middle River | 200  | number not on page
+-- G Retail         | The Markets at Highlandtown              | 410-327-0200   | Highlandtown | 000  | http 000
+-- G Fencing        | Fence Masters                            | 410-288-5111   | Dundalk      | 200  | number not on page
+-- G Remodeling     | Reliable Home Remodeling                 | 410-686-2182   | Essex        | 200  | number not on page
+-- G Hardware       | Canton Ace Hardware                      | 410-327-0404   | Canton       | 000  | http 000
+-- G Hardware       | Highlandtown Ace Hardware                | 410-342-4210   | Highlandtown | 000  | http 000
+OK G Moving         | Von Paris Moving & Storage               | 410-826-4824   | Baltimore    | 200  | 
+OK K Real Estate    | Bay View Realty                          | 410-812-7282   | Bayview      | 200  | 
+-- K Real Estate    | Homesale Realty Canton Office            | 410-814-2400   | Canton       | 403  | http 403
+-- K Insurance      | Carlos Sanchez Allstate                  | 410-777-8170   | Fells Point  | 403  | http 403
+OK K Insurance      | John Bugg III State Farm                 | 410-661-4949   | Rosedale     | 200  | 
+OK K Insurance      | Ricardo Garcia State Farm                | 410-248-3276   | Perry Hall   | 200  | 
+OK K Insurance      | Rodgers Insurance Agency                 | 410-282-1379   | Dundalk      | 200  | 
+-- K Insurance      | Jamie Hylton Allstate                    | 410-423-3005   | Baltimore    | 403  | http 403
+-- K Insurance      | Marc Habib Allstate                      | 410-256-8058   | Baltimore    | 403  | http 403
+OK K Plumbing       | Prime Plumbing                           | 443-741-1129   | Highlandtown | 200  | 
+OK K Plumbing       | Reliability Home Services                | 443-399-8663   | Highlandtown | 200  | 
+OK K Dental         | Highlandtown Dental Group                | 410-327-5488   | Highlandtown | 200  | 
+-- K Dental         | Canton Crossing Dental                   | 443-973-5407   | Canton       | 200  | number not on page
+-- K Funeral        | Kaczorowski Funeral Home                 | 410-633-0000   | Dundalk      |      | already on sheet
+-- K Funeral        | Connelly Funeral Home of Dundalk         | 410-285-2900   | Dundalk      |      | already on sheet
+OK K Home Care      | All's Well Home Care                     | 443-503-6801   | Dundalk      | 200  | 
+-- K Landscaping    | G & D Tree Lawn Service                  | 443-414-2247   | Dundalk      | 000  | http 000
+-- K Plumbing       | Marino Plumbing & Heating                | 410-747-5615   | Middle River |      | no own-site url (verify by hand)
+OK K Accounting     | Thomas J. Palm PA                        | 443-927-7180   | Baltimore    | 200  | 
+-- K Plumbing       | Warrior Plumbing                         | 443-967-3736   | Baltimore    |      | no own-site url (verify by hand)
+-- K Accounting     | MOSAIC CPA                               |                | Baltimore    |      | no phone
+-- K Electrician    | Pajardo Electrical                       | 410-485-9122   | Baltimore    |      | no own-site url (verify by hand)
+-- K Electrician    | Shrader Electric                         | 410-235-5255   | Baltimore    |      | no own-site url (verify by hand)
+-- K Electrician    | Elder Electric                           | 410-952-9852   | Highlandtown |      | no own-site url (verify by hand)

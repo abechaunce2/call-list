@@ -1,0 +1,85 @@
+G|Funeral Home|Kaczorowski Funeral Home|410-633-0089|Dundalk|kfhpa.com|Kaczorowski Family|1952
+G|Funeral Home|Bradley-Ashton-Kehl Funeral Home|410-633-8550|Dundalk|bradleyashton.com||
+G|Funeral Home|Connelly Funeral Home of Dundalk|410-285-2900|Dundalk|connellyfuneralhomeofdundalk.com||
+G|Funeral Home|Duda-Ruck Funeral Home of Dundalk|410-285-0012|Dundalk|ruckfuneralhomes.com|Ruck Family|
+G|Funeral Home|Bruzdzinski Funeral Home|410-686-4888|Essex|bruzdzinski.com|Bruzdzinski Family|1954
+G|Funeral Home|Cvach/Rosedale Funeral Home|410-866-5600|Rosedale|cvachrosedalefuneralhome.com|Cvach Family|
+G|Funeral Home|Schimunek Funeral Home|410-284-1200|Dundalk|dignitymemorial.com||1937
+G|Funeral Home|Charles L. Stevens Funeral Home|410-547-1040|Locust Point|charlessstevensfuneralhome.com|Stevens Family|
+G|Funeral Home|Lassahn Funeral Home|410-665-2000|Overlea|lassahnfuneralhomes.com|Lassahn Family|1864
+G|Funeral Home|Evans Life Celebration Home|410-665-9444|Parkville|evansfuneralchapel.com|Evans Family|1865
+G|Funeral Home|Johnson-Fosbrink Funeral Home|410-668-2300|Towson|johnsonsfosbrinkbfh.com||
+G|Bakery|Hoehn's Bakery|410-675-2884|Highlandtown|hoehnsbakery.com|Hoehn Family|1927
+G|Bakery|Woodlea Bakery|410-488-7717|Belair-Edison|woodleabakery.com|Concannon Family|1943
+G|Bakery|Fenwick Bakery|410-426-7123|Hamilton|fenwickbakery.com|Uebersax Family|1913
+G|Restaurant|G&A Restaurant|410-276-9422|Highlandtown|garestaurant.com||1927
+G|Restaurant|Ikaros Restaurant|410-633-3750|Greektown|ikarosrestaurant.com||1969
+G|Restaurant|Samos Restaurant|410-675-5292|Greektown|samosrestaurant.com||1977
+G|Restaurant|Matthew's Pizza|410-276-8755|Highlandtown|matthewspizza.com||1943
+G|Restaurant|Jimmy's Famous Seafood|410-633-4040|Dundalk|jimmysfamousseafood.com|Minadakis Family|1974
+G|Restaurant|Costas Inn|410-477-1975|Dundalk|costasinn.com||1971
+G|Restaurant|Squire's Restaurant|410-288-0081|Dundalk|squirescafe.com|Squire Family|1952
+G|Restaurant|Pappas Restaurant|410-661-4357|Parkville|pappascrabcakes.com|Pappas Family|1972
+G|Deli|DiPasquale's Italian Marketplace|410-276-6787|Canton|dipasquales.com|DiPasquale Family|1914
+G|Deli|Mastellone Deli & Wine Shop|410-661-5005|Overlea|mastellonedeli.com|Mastellone Family|1955
+G|Plumbing|Saffer Plumbing & Heating|410-276-5300|Canton|safferplumbing.com||1923
+G|Plumbing|W.H. Winebrenner & Sons|410-256-5501|Perry Hall|winebrennerplumbing.com|Winebrenner Family|1930
+G|Plumbing|Hub Plumbing & Heating|410-732-4212|Highlandtown|hubplumbing.com||1913
+G|Plumbing|Warrior Plumbing and Heating|443-967-3736|Baltimore|warriorplumbing.com||
+G|Plumbing|Pohlman Plumbing|410-764-5626|Linthicum|pohlmanplumbing.com|Pohlman Family|2008
+G|Heating & AC|Reliability Home Services|443-399-8663|Dundalk|reliabilityhome.com||2000
+G|Heating & AC|B&B Air Conditioning & Heating|410-686-2223|Middle River|bandbair.com||1993
+G|Heating & AC|Advanced Heating & Cooling|410-833-9445|Baltimore|advancedheatingandcooling.com||1996
+G|Roofing|Four Twelve Roofing|410-985-6733|Baltimore|fourtwelveroofing.com|Sam Frank|2013
+G|Roofing|Fick Bros. Roofing & Exterior|410-235-9500|Baltimore|fickbros.com|Fick Family|1915
+G|Roofing|Phil DiBello Family Roofing|410-752-7663|Baltimore|phildibelloroofing.com|DiBello Family|1979
+G|Electrician|Milton Electric|410-276-3420|Baltimore|miltonelectric.com||1950
+G|Real Estate|Berkshire Hathaway HomeServices PenFed Realty|410-563-0004|Canton|penfedrealty.com||
+G|Real Estate|ExecuHome Realty|443-632-3500|Parkville|execuhome.com||
+G|Insurance|State Farm - Craig Waskow|410-288-5100|Dundalk|craigwaskow.com|Craig Waskow|
+G|Insurance|State Farm - Phil Andrews|410-675-4300|Canton|philandrews.net|Phil Andrews|
+G|Insurance|State Farm - Elena Russo|410-477-9400|Edgemere|elenarusso.com|Elena Russo|
+G|Insurance|State Farm - Tony Tamberino|410-668-3000|Parkville|tonytamberino.com|Tony Tamberino|
+G|Insurance|State Farm - John Lytle|410-282-3700|Dundalk|johnlytle.com|John Lytle|
+G|Insurance|State Farm - Manny Diaz|410-342-6300|Highlandtown|mannydiazinsurance.com|Manny Diaz|Spanish
+G|Law Firm|D'Alesandro & D'Alesandro|410-332-0052|Baltimore|dalesandrolaw.com|D'Alesandro Family|
+G|Law Firm|Law Office of Nicholas T. Exarhakis|410-263-8884|Baltimore|nexarhakis.com|Nicholas Exarhakis|1985
+G|Law Firm|Miranda & Miranda|410-477-8777|Dundalk|mirandalaw.com|Miranda Family|
+G|Law Firm|Sanzone & Baker|410-685-6490|Baltimore|sanzoneandbaker.com||
+G|Dental|Canton Crossing Dental|410-276-3500|Canton|cantoncrossingdental.com||
+G|Dental|Highlandtown Dental Group|410-327-5488|Highlandtown|highlandtowndental.com||Spanish
+G|Dental|Dundalk Pediatric Dentistry|410-282-2700|Dundalk|dundalkpediatricdentistry.com||
+G|Dental|Fells Point Dental|410-276-8800|Fells Point|fellspointdental.com||
+G|Dental|Rosedale Dental Care|410-866-5050|Rosedale|rosedaledental.com||
+G|Eye|Canton Vision Center|410-276-2020|Canton|cantonvision.com||
+G|Eye|Dundalk Eye|410-282-3400|Dundalk|dundalkeye.com||
+G|Podiatry|Charm City Podiatry|410-732-2300|Baltimore|charmcitypodiatry.com||
+G|Chiropractor|Canton Chiropractic Center|410-327-0400|Canton|cantonchiropractic.com||
+G|Chiropractor|Dundalk Chiropractic Center|410-285-2600|Dundalk|dundalkchiropractic.com||
+G|Chiropractor|East Baltimore Chiropractic|410-276-4300|Highlandtown|eastbaltimorechiro.com||
+G|Pharmacy|Highlandtown Pharmacy|410-276-4700|Highlandtown|highlandtownpharmacy.com||Spanish
+G|Pharmacy|Fells Point Pharmacy|410-522-4200|Fells Point|fellspointpharmacy.com||
+G|Pharmacy|Rosedale Pharmacy|410-866-5544|Rosedale|rosedalepharmacy.com||
+G|Pharmacy|Northern Pharmacy & Medical Equipment|410-254-2055|Baltimore|northernpharmacy.com||1935
+G|Pharmacy|Parkville Pharmacy|443-290-4867|Parkville|parkvillepharmacy.com||
+G|Auto Repair|Gerry's Tire|410-276-0610|Highlandtown|gerrystire.com||
+G|Auto Repair|Framer Auto Service|410-276-2622|Canton|framerauto.com||
+G|Auto Repair|Canton Auto Repair|410-522-6800|Canton|cantonautorepair.com||
+G|Auto Repair|Dundalk Auto Service|410-282-8400|Dundalk|dundalkauto.com||
+G|Auto Repair|Essex Auto Repair|410-686-2244|Essex|essexautorepair.com||
+G|Tree Service|A-1 Tree Service|410-668-3600|Parkville|a1treeservice.com||
+G|Landscaping|L&G Lawn Care|410-686-3000|Essex|lglawncare.com||
+G|Landscaping|Lehnhoff's Landscaping|443-921-5789|White Marsh|lehnhoffslandscaping.com|Rob Lehnhoff|2007
+G|Home Care|Visiting Angels|410-285-8002|Dundalk|visitingangels.com||
+G|School|Our Lady of Hope/St. Luke School|410-288-2793|Dundalk|olhsl.com||
+G|School|Sacred Heart of Jesus School|410-276-0566|Highlandtown|shjsbmore.org||Spanish
+G|School|Archbishop Curley High School|410-485-5000|Baltimore|archbishopcurley.org||1961
+G|School|Catholic High School of Baltimore|410-732-6200|Baltimore|thecatholichighschool.org||1939
+G|Bank|Rosedale Federal Savings & Loan|410-882-9090|Overlea|rosedalefederal.com||1908
+G|Retail|Geresbeck's Bi-Rite|410-285-8200|Middle River|geresbecks.com|Geresbeck Family|
+G|Retail|The Markets at Highlandtown|410-327-0200|Highlandtown|marketshighlandtown.com||
+G|Fencing|Fence Masters|410-288-5111|Dundalk|fencemasters.com||
+G|Remodeling|Reliable Home Remodeling|410-686-2182|Essex|reliablehomeremodeling.com||
+G|Hardware|Canton Ace Hardware|410-327-0404|Canton|cantonace.com||
+G|Hardware|Highlandtown Ace Hardware|410-342-4210|Highlandtown|highlandtownace.com||
+G|Moving|Von Paris Moving & Storage|410-826-4824|Baltimore|vonparis.com|Von Paris Family|1892
