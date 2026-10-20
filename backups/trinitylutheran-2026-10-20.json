@@ -1,0 +1,636 @@
+{
+ "list": "trinitylutheran-stjoseph-15-0549",
+ "exported": "2026-10-20T13:28:00.198Z",
+ "state": {
+  "2692027144": {
+   "status": "noanswer",
+   "ts": 1792438697212,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438697212,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2692474565": {
+   "status": "inprogress",
+   "ts": 1792428437926,
+   "notes": "namicarelli@conerstonecaregiving.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792428437926,
+     "st": "inprogress"
+    }
+   ]
+  },
+  "2693137718": {
+   "status": "leftmsg",
+   "ts": 1792430367660,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430367660,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2693267048": {
+   "status": "leftmsg",
+   "ts": 1792438334916,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438334916,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2693385273": {
+   "status": "leftmsg",
+   "ts": 1792438669827,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438669827,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2693511710": {
+   "status": "leftmsg",
+   "ts": 1792422641041,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792422641041,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2693634058": {
+   "status": "leftmsg",
+   "ts": 1792430391986,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430391986,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2693634153": {
+   "status": "leftmsg",
+   "ts": 1792430338804,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430338804,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2694080494": {
+   "status": "noanswer",
+   "ts": 1792427574131,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792427574131,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694088015": {
+   "status": "leftmsg",
+   "ts": 1792432406730,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792432406730,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2694088321": {
+   "status": "noanswer",
+   "ts": 1792430172067,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430172067,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694088345": {
+   "status": "noanswer",
+   "ts": 1792433126767,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792433126767,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694280004": {
+   "status": "notnow",
+   "ts": 1792438143131,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438143131,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2694280069": {
+   "status": "noanswer",
+   "ts": 1792438241859,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438241859,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694282665": {
+   "status": "noanswer",
+   "ts": 1792438521352,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438521352,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694282711": {
+   "status": "noanswer",
+   "ts": 1792438205651,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438205651,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694288039": {
+   "status": "noanswer",
+   "ts": 1792438552736,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438552736,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2694289100": {
+   "status": "leftmsg",
+   "ts": 1792423363994,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792423363994,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2694295500": {
+   "status": "notnow",
+   "ts": 1792432847264,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792432847264,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2694653264": {
+   "status": "notnow",
+   "ts": 1792438087914,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438087914,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2694660123": {
+   "status": "inprogress",
+   "ts": 1792437579389,
+   "notes": "office@mchgheesheating.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792437579389,
+     "st": "inprogress"
+    }
+   ]
+  },
+  "2695569910": {
+   "status": "noanswer",
+   "ts": 1792422719871,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792422719871,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2695884727": {
+   "status": "leftmsg",
+   "ts": 1792438440235,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438440235,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2697593048": {
+   "status": "leftmsg",
+   "ts": 1792430100568,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430100568,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2698499252": {
+   "status": "leftmsg",
+   "ts": 1792423318585,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792423318585,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2698762493": {
+   "status": "leftmsg",
+   "ts": 1792438625656,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438625656,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2698766607": {
+   "status": "noanswer",
+   "ts": 1792438760571,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438760571,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2699036965": {
+   "status": "leftmsg",
+   "ts": 1792430460802,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430460802,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699250611": {
+   "status": "notnow",
+   "ts": 1792437233060,
+   "notes": "(269) 983-1644 this number and (269) 925-0611 this number is the same person wtf ",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792437233060,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2699251311": {
+   "status": "leftmsg",
+   "ts": 1792438061224,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438061224,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699253300": {
+   "status": "notnow",
+   "ts": 1792430247258,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430245245,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1792430247258,
+     "st": "notnow"
+    }
+   ]
+  },
+  "2699254461": {
+   "status": "noanswer",
+   "ts": 1792436737554,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792436737554,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2699272561": {
+   "status": "leftmsg",
+   "ts": 1792438976974,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438976974,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699324722": {
+   "status": "inprogress",
+   "ts": 1792432990987,
+   "notes": "jaden@jadeninsuance.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792432987554,
+     "st": "leftmsg"
+    },
+    {
+     "ts": 1792432990987,
+     "st": "inprogress"
+    }
+   ]
+  },
+  "2699327100": {
+   "status": "leftmsg",
+   "ts": 1792432491343,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792432491343,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699830179": {
+   "status": "inprogress",
+   "ts": 1792432602522,
+   "notes": "smorri1@fbinsmi.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792432602522,
+     "st": "inprogress"
+    }
+   ]
+  },
+  "2699830300": {
+   "status": "inprogress",
+   "ts": 1792422907900,
+   "notes": "avidstjoseph@avidhealthhome.com",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792422907900,
+     "st": "inprogress"
+    }
+   ]
+  },
+  "2699831644": {
+   "status": "leftmsg",
+   "ts": 1792437090049,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792437090049,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699834800": {
+   "status": "leftmsg",
+   "ts": 1792423662244,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792423662244,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699835440": {
+   "status": "noanswer",
+   "ts": 1792438461184,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792438461184,
+     "st": "noanswer"
+    }
+   ]
+  },
+  "2699837101": {
+   "status": "followup",
+   "ts": 1792436899258,
+   "notes": "tbumstead@imsinsuranceagency.com",
+   "dm": "",
+   "time": "2026-10-22T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792436899258,
+     "st": "followup"
+    }
+   ]
+  },
+  "2699837161": {
+   "status": "leftmsg",
+   "ts": 1792430894424,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792430891640,
+     "st": "notnow"
+    },
+    {
+     "ts": 1792430894424,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699837171": {
+   "status": "leftmsg",
+   "ts": 1792433084650,
+   "notes": "",
+   "dm": "",
+   "time": "",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792433084650,
+     "st": "leftmsg"
+    }
+   ]
+  },
+  "2699838926": {
+   "status": "followup",
+   "ts": 1792427498559,
+   "notes": "",
+   "dm": "",
+   "time": "2026-10-22T10:00",
+   "email": "",
+   "hist": [
+    {
+     "ts": 1792427498559,
+     "st": "followup"
+    }
+   ]
+  }
+ },
+ "pad": "",
+ "tasks": []
+}
