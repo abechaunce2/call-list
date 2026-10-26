@@ -1,0 +1,1408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Burton Senior Center Call List — Burton MI</title>
+<style>
+  :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--sep:rgba(0,0,0,.10);--blue:#007aff;--green:#34c759;--orange:#ff9500;--teal:#30b0c7;--purple:#af52de;--red:#ff3b30;--fill:#ececf0;--hover:#f4f4f6;--shadow:0 1px 3px rgba(0,0,0,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f5f5f7;--muted:#9b9ba1;--sep:rgba(255,255,255,.12);--fill:#2c2c2e;--hover:#2c2c2e;--shadow:none}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px;margin:0 auto}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);padding:10px 18px 0;border-bottom:.5px solid var(--sep)}
+  .back{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:inline-block;margin-bottom:2px}
+  h1{margin:0;font-size:25px;font-weight:800;letter-spacing:-.03em}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:3px;line-height:1.45}
+  .score{display:flex;gap:8px;margin-top:11px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .score::-webkit-scrollbar{display:none}
+  .pip{flex:0 0 auto;background:var(--fill);border-radius:12px;padding:7px 13px;min-width:74px}
+  .pip b{font-size:17px;font-weight:800;letter-spacing:-.01em;display:block;line-height:1.2}
+  .pip .lbl{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600;white-space:nowrap}
+  .pip.tap{cursor:pointer}
+  .pip.tap:active{transform:scale(.96)}
+  .pip.goal{background:color-mix(in srgb,var(--blue) 12%,var(--fill))}
+  .pip.goal.hit{background:color-mix(in srgb,var(--green) 18%,var(--fill))}
+  .pip.goal.hit b{color:var(--green)}
+  .progress{height:6px;background:var(--fill);border-radius:99px;overflow:hidden;margin:10px 0 0}
+  .progress > i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .3s}
+  .progress > i.hit{background:var(--green)}
+  .ptxt{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:600;margin:4px 0 0}
+  .controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:9px}
+  #q{flex:1;min-width:140px;background:var(--fill);border:none;color:var(--text);padding:9px 12px;border-radius:11px;font-size:16px;outline:none}
+  select,.btn{background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:11px;font-size:13px;cursor:pointer;font-weight:600}
+  .btn.on{background:var(--blue);color:#fff}
+  .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:9px -18px 0;padding:0 18px 11px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;background:var(--fill);border:none;color:var(--text);padding:7px 13px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+  .chip small{color:var(--muted);font-weight:700;margin-left:4px}
+  .chip.on{background:var(--text);color:var(--bg)}
+  .chip.on small{color:var(--bg);opacity:.65}
+  main{padding:6px 14px 110px}
+  .sec{margin:18px 0 0}
+  .lab{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:0 6px 8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+  .lab .arr{font-size:11px;margin-right:6px}
+  .lab .n{font-weight:700}
+  .card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:.5px solid var(--sep)}
+  .row{display:flex;align-items:center;gap:12px;padding:12px 15px;cursor:pointer;position:relative;min-height:52px}
+  .row::after{content:"";position:absolute;left:52px;right:0;bottom:0;height:.5px;background:var(--sep)}
+  .row:last-of-type::after{display:none}
+  .row:hover{background:var(--hover)}
+  .row.done{opacity:.5}
+  .row.done .nm{text-decoration:line-through}
+  .cb{flex:0 0 auto;width:27px;height:27px;border-radius:9px;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;background:transparent;cursor:pointer}
+  .cb b{opacity:0;font-style:normal}
+  .cb.has{background:var(--green);border-color:var(--green)}
+  .cb.has b{opacity:1}
+  .cb:active{transform:scale(.9)}
+  .mid{flex:1 1 auto;min-width:0}
+  .nm{font-size:15.5px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta{font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:1.5px 8px;border-radius:99px;margin-left:6px;color:#fff;vertical-align:middle}
+  .tier{display:inline-block;font-size:11px;font-weight:600;padding:0 7px;border-radius:99px;margin-left:6px;background:var(--fill);color:var(--muted)}
+  .notepv{font-size:12.5px;color:var(--text);opacity:.7;margin-top:3px;line-height:1.35;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cp{flex:0 0 auto;background:var(--blue);color:#fff;border:none;padding:8px 14px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer}
+.nx{flex:0 0 auto;background:transparent;color:var(--red);border:2px solid var(--red);padding:5px 11px;border-radius:99px;font-size:13px;font-weight:800;cursor:pointer}
+.row.done .nx{opacity:.45}
+  .cp.ok{background:var(--green)}
+  .chev{flex:0 0 auto;color:var(--muted);font-size:14px;width:12px;text-align:center;transition:transform .15s}
+  .row.open .chev{transform:rotate(90deg)}
+  .detail{display:none;padding:4px 15px 16px 52px;background:var(--card);border-top:.5px solid var(--sep)}
+  .row.open + .detail{display:block}
+  .stat{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px}
+  .sbtn{border:none;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:650;cursor:pointer;background:var(--fill);color:var(--text);flex:1 0 auto;min-width:88px;text-align:center}
+  .sbtn.sel{color:#fff}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .dgrid .full{grid-column:1/-1}
+  .fld label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;display:block;margin:0 0 3px 2px}
+  .fld input,.fld textarea{width:100%;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:15px;outline:none;font-family:inherit}
+  .fld textarea{resize:vertical;min-height:46px}
+  .cbk{border:1px solid var(--orange);border-radius:12px;padding:9px 11px;margin-top:10px;background:color-mix(in srgb,var(--orange) 9%,transparent)}
+  .cbk .hd{font-size:11px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+  .links{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+  .links a{font-size:13px;font-weight:650;color:var(--blue);text-decoration:none;background:var(--fill);padding:8px 13px;border-radius:10px}
+  .lastc{font-size:11.5px;color:var(--muted);margin-top:9px}
+  .due{margin:14px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--orange);background:color-mix(in srgb,var(--orange) 8%,transparent)}
+  .due .dh{font-size:12.5px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.04em;padding:11px 15px 6px}
+  .due .drow{display:flex;align-items:center;gap:10px;padding:10px 15px;border-top:.5px solid var(--sep);font-size:14px;cursor:pointer}
+  .due .drow .when{margin-left:auto;font-size:12px;font-weight:800;white-space:nowrap}
+  .due .drow .when.now{color:var(--red)}
+  .help{color:var(--muted);font-size:12.5px;line-height:1.65;margin:30px 6px 0;padding-top:14px;border-top:.5px solid var(--sep)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);background:rgba(30,30,32,.95);color:#fff;font-weight:650;font-size:14px;padding:12px 18px;border-radius:13px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+  .saved{position:fixed;right:16px;bottom:26px;background:var(--green);color:#fff;font-weight:750;font-size:12.5px;padding:8px 13px;border-radius:99px;opacity:0;transition:.18s;pointer-events:none;z-index:50}
+  .saved.show{opacity:1}
+  .saved.err{background:var(--red)}
+  /* note quick-chips */
+  .nchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .nchip{background:var(--fill);border:none;color:var(--muted);padding:6px 11px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer}
+  .nchip:active{background:var(--sep)}
+  .nchip.on{background:var(--text);color:var(--bg)}
+  .nchip.off{opacity:.32;cursor:default}
+  .tpick .nchips{margin-top:6px}
+  .tpick .nchip.tch{background:var(--card);border:.5px solid var(--sep);color:var(--text);font-weight:650;min-width:46px}
+  .dial .tpick .nchip.tch{background:var(--fill);border:none}
+  .dcb .nchips{justify-content:center}
+  /* dial mode */
+  .dial{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;overflow:auto;padding:14px 16px calc(24px + env(safe-area-inset-bottom))}
+  .dial.show{display:block}
+  .dtop{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);font-weight:600;max-width:560px;margin:0 auto;flex-wrap:wrap}
+  .dleft{white-space:nowrap}
+  .dx,.dskip{background:var(--fill);border:none;color:var(--text);padding:9px 13px;border-radius:11px;font-size:13px;font-weight:650;cursor:pointer}
+  .dcard{max-width:560px;margin:7vh auto 0;text-align:center}
+  .dcat{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .dnm{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1.15}
+  .dmeta{color:var(--muted);font-size:14px;margin-top:4px}
+  .dnum{display:block;margin:22px auto 0;background:var(--blue);color:#fff;border:none;font-size:24px;font-weight:800;padding:16px 26px;border-radius:18px;cursor:pointer;font-variant-numeric:tabular-nums}
+  .dnum:active{transform:scale(.97)}
+  .dhint{font-size:11.5px;color:var(--muted);margin-top:7px}
+  .dstat{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:20px}
+  .dchips{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .dnotes{width:100%;max-width:560px;margin:14px auto 0;background:var(--fill);border:none;color:var(--text);padding:11px 12px;border-radius:12px;font-size:15px;min-height:56px;font-family:inherit;outline:none;display:block}
+  .dempty{margin-top:28vh;text-align:center;color:var(--muted);font-size:16px;line-height:1.6}
+  /* pitch sheet */
+  .scrim{position:fixed;inset:0;z-index:74;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:75;background:var(--card);border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.25);max-height:82vh;overflow:auto;padding:8px 20px calc(26px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .28s cubic-bezier(.32,.72,0,1)}
+  .sheet.show{transform:none}
+  .grab{width:36px;height:5px;border-radius:99px;background:var(--sep);margin:6px auto 12px}
+  .sheet h3{margin:15px 0 5px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .sheet p{margin:0;font-size:14.5px;line-height:1.55}
+  .sheet .warn{color:var(--red);font-weight:600}
+  /* scratch pad */
+  .pad{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);z-index:65;background:var(--card);border-left:.5px solid var(--sep);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);transition:transform .25s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+  .pad.show{transform:none}
+  .padhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+  .padhd b{font-size:16px;font-weight:750}
+  .pad .sub2{color:var(--muted);font-size:12px;margin:2px 0 10px}
+  .ptabs{display:flex;gap:6px;margin:8px 0 10px}
+  .ptab{flex:1;background:var(--fill);border:none;color:var(--muted);padding:8px 10px;border-radius:10px;font-size:13px;font-weight:650;cursor:pointer}
+  .ptab.on{background:var(--text);color:var(--bg)}
+  .pbody{flex:1;overflow:auto;display:flex;flex-direction:column;gap:9px;padding-bottom:6px}
+  .pbody textarea.paper{flex:1;min-height:300px;background:var(--fill);border:none;border-radius:12px;padding:13px;font-family:inherit;font-size:15px;line-height:1.6;color:var(--text);outline:none;resize:none}
+  .pcard{background:var(--fill);border-radius:12px;padding:11px 12px;flex:0 0 auto}
+  .pcard.over{border:1px solid var(--red);background:color-mix(in srgb,var(--red) 7%,var(--fill))}
+  .pchd .pcnm{font-size:14.5px;font-weight:700}
+  .pchd .pcmeta{font-size:12px;color:var(--muted);margin-top:2px}
+  .pcdm{font-size:12.5px;margin-top:5px;font-weight:600}
+  .pctime{font-size:12.5px;color:var(--orange);font-weight:700;margin-top:5px}
+  .pctime.over{color:var(--red)}
+  .pcprev{font-size:12.5px;color:var(--muted);margin-top:5px;white-space:pre-wrap}
+  .pcnote{width:100%;margin-top:8px;background:var(--card);border:.5px solid var(--sep);border-radius:9px;padding:8px 10px;font-family:inherit;font-size:14px;color:var(--text);outline:none;min-height:44px;resize:vertical}
+  .pcact{display:flex;gap:7px;margin-top:9px}
+  .taskform{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
+  .taskform input[type=text]{flex:1;min-width:120px;background:var(--fill);border:none;color:var(--text);padding:9px 11px;border-radius:10px;font-size:14px;outline:none}
+  #padbadge{display:none;background:var(--red);color:#fff;font-size:11px;font-weight:800;min-width:17px;height:17px;border-radius:99px;align-items:center;justify-content:center;padding:0 4px;margin-left:5px;vertical-align:middle}
+  /* confetti */
+  .cfx{position:fixed;top:18%;width:9px;height:14px;z-index:80;border-radius:2px;pointer-events:none;animation:cfall 1.4s ease-in forwards}
+  @keyframes cfall{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),70vh) rotate(540deg)}}
+  @media print{header{position:static;background:#fff;backdrop-filter:none}.controls,.chips,.progress,.ptxt,.cp,.toast,.saved,.chev,.links,.back,.help,.dial,.sheet,.scrim{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}.row{break-inside:avoid}.meta{color:#444}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="back" href="../">‹ All churches</a>
+  <h1>Burton Senior Center — Burton MI</h1>
+  <div class="sub"><span id="hdrcount"></span> verified leads · ~15 mi ring around 3410 S Grand Traverse, Burton MI 48529 (Flint, Grand Blanc, Davison, Swartz Creek, Flushing, Fenton, Clio next door) · MONTHLY newsletter &ldquo;Burton Senior Light&rdquo;, 16 pages · acct 15-0682 · SENIOR WORDS: center / newsletter / members / seniors, never parish / Mass / bulletin · ÷12 · 35-day rule: order by Tue 10/27 = the Dec 1 issue, after that Jan 1</div>
+  <div class="score" id="score"></div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="ptxt"><span id="goaltxt"></span><span id="donetxt"></span></div>
+  <div class="controls">
+    <input id="q" placeholder="Search name, number, email, town" autocomplete="off">
+    <button class="btn on" id="dialgo">▶ Dial</button>
+    <button class="btn" id="pitchbtn">Pitch</button>
+    <button class="btn" id="padbtn">📝 Notes<b id="padbadge"></b></button>
+    <select id="sort"><option value="cat">By category</option><option value="dist">Closest first</option></select>
+    <button class="btn" id="planview">🎯 Call Plan</button>     <button class="btn" id="cbview">↩ Callbacks</button>
+    <button class="btn" id="ipview">⏳ In Progress</button>
+    <button class="btn" id="dayview">📊 Today</button>
+    <button class="btn" id="emview">✉ Emailed</button>
+    <button class="btn" id="near">Closest</button>
+    <button class="btn" id="hide">Hide done</button>
+    <button class="btn" id="exp">Export</button>     <button class="btn" id="expc">📋 Copy</button>
+    <button class="btn" id="imp">Import</button>
+    <input type="file" id="impf" accept="application/json" style="display:none">
+    <button class="btn" id="print">Print</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main id="app"></main>
+</div>
+<div class="toast" id="toast">Copied</div>
+<div class="saved" id="savedflag">Saved ✓</div>
+<script>
+// ================= DATA =================
+const CATS=["🔥 CLOSE — live deals", "📧 TALKED / EMAILED — follow up", "🎯 WIN-BACK — past advertisers 💰", "⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark", "Big Budget / Premium 🐋", "Funeral Home / Monuments", "Retirement / Senior Living", "Home Health / In-Home Care", "Nursing / Rehab / Hospice", "Hearing / Audiology", "Medicare / Senior Insurance", "Elder Law / Estate Attorney", "Financial Planner / Retirement", "Medical Clinic / Primary Care", "Dentist / Dentures", "Eye / Optometry", "Podiatry / Mobility / Medical Supply", "Pharmacy", "Physical Therapy / Chiropractic", "Bank / Credit Union", "Insurance", "Realtor / Downsizing / Senior Move", "Heating / AC", "Plumbing / Sewer", "Electrician", "Roofing / Siding / Gutters", "Remodeling / Bath & Accessibility", "Landscaping / Snow / Tree", "Cleaning / Restoration", "Auto Service / Tire", "Restaurant / Bakery / Catering", "Veterinarian / Pet 🐾", "School / Education / Daycare 🎓", "Business Services / Printing / Signs", "Chiropractic / PT / Wellness", "Hardware / Lumber / Home Improvement", "Thrivent / Financial Planner", "Florist 💐", "Travel / Tours / Recreation", "Patron / Community Sponsor 💰", "🏆 SOLD / MONEY OWED"];
+// town -> [~miles from 3410 S Grand Traverse, Burton MI 48529 (INFERRED), tier 1=closest 2=middle 3=edge]
+// in-the-book counts per category — fill from the wall photo + ATTRAX each new week
+const WALL_KNOWN=true; // wall = the November 2026 issue read off MyCommunityOnline (pp. 5 + 8): Sharp FH · Lockwood Senior Living (Burton + Genesee) · Davison Landings · Rose Haven Apts · Charger Properties · Big Brothers Pharmacy · A Better Roof For Less · Randy Wise Chevrolet · GHP Medicare hotline · GOYETTE MECHANICAL (Key account, never dial, not a row) · Abe's own house ad on p8; ATTRAX actives to confirm
+const WALLN={"Funeral Home / Monuments": {"n": 1}, "Retirement / Senior Living": {"n": 3}, "Realtor / Downsizing / Senior Move": {"n": 1}, "Pharmacy": {"n": 1}, "Roofing / Siding / Gutters": {"n": 1}, "Medicare / Senior Insurance": {"n": 1}, "Heating / AC": {"n": 1}, "Plumbing / Sewer": {"n": 1}, "Electrician": {"n": 1}, "Auto Service / Tire": {"n": 1}}; // 10 paying ads in the Nov issue incl. Goyette (plumbing/heating/electrical, Key account); everything else OPEN
+function wallTag(cat){if(cat.startsWith("🔥")||cat.startsWith("🎯")||cat.startsWith("📧")||cat.startsWith("🏆"))return "";if(!WALL_KNOWN)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#8e8e93;border-radius:6px;padding:1px 7px;vertical-align:middle">wall unknown — no in-book claims</span>`;const w=WALLN[cat];if(w)return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#ff3b30;border-radius:6px;padding:1px 7px;vertical-align:middle">⛔ ${w.n} in the book</span>`;return ` <span style="font-size:11px;font-weight:800;color:#fff;background:#34c759;border-radius:6px;padding:1px 7px;vertical-align:middle">NONE in the book — open</span>`}
+const TOWNMI={"Burton": [0, 1], "Flint": [4, 1], "Grand Blanc": [5, 1], "Grand Blanc Township": [5, 1], "Flint Township": [6, 1], "Genesee Township": [6, 1], "Genesee": [7, 1], "Mundy Township": [7, 1], "Davison": [7, 1], "Atlas": [8, 1], "Mt. Morris": [9, 1], "Mount Morris": [9, 1], "Goodrich": [9, 1], "Swartz Creek": [10, 2], "Flushing": [12, 2], "Clio": [12, 2], "Otisville": [12, 2], "Clayton Township": [13, 2], "Gaines": [13, 2], "Hadley": [14, 2], "Fenton": [14, 2], "Columbiaville": [15, 2], "Linden": [15, 2], "Holly": [16, 2], "Lapeer": [16, 2], "Lennon": [16, 2], "Montrose": [17, 3], "Ortonville": [17, 3], "Metamora": [18, 3], "Byron": [19, 3], "Durand": [20, 3], "New Lothrop": [20, 3], "Elsewhere": [40, 3]};
+const LEADS=[
+{c:"🔥 CLOSE — live deals",n:"🔥🔥🔥 BILL CHAPMAN / Chapman Funerals & Cremations — ST. PIUS X SOUTH YARMOUTH MA 03-0280 (NEW ORDER) — his 10/15 reply to Ad Changes = a 10-SPACE ad for the South Yarmouth chapel (58 Long Pond Dr, 508-398-2121), logo top, his quote under, bottom line Owned and operated by the Chapman family of Cape Cod — NOT a change to his Corpus Christi 4-space (03-0377-0545, running as is) — called 10/15 ×2 + 10/20: he is out until Wed/Thu → CALL WED 10/21 or THU 10/22 · then pull the St. Pius X rate card for the 10-space, open the opp on 03-0280, tell Amanda (Ad Design x2240) which ad changes stand · called 10/22, no answer · 10/26: no answer 10/22, the fifth try",p:"(508) 428-5704",t:"Elsewhere",e:"bill@chapmanfuneral.com",q:"Chapman Funerals Cremations South Yarmouth MA",mq:"58 Long Pond Dr South Yarmouth MA",loc:"ST. PIUS X 03-0280 · South Yarmouth MA (Cape Cod)"},
+{c:"🔥 CLOSE — live deals",n:"⭐ VICKY BECKER — ST. JOSEPH-LINCOLN SENIOR CENTER (3271 Lincoln Ave, St. Joseph; a different book, SF lookup by name) — called YOU 8/27 about the senior center newsletter: quoted 1sp $500 / 2sp $750, husband-check pending, never called back — SHE IS IN THIS TOWN: revive her, and pitch Trinity too",p:"(269) 470-4818",t:"St. Joseph",q:"Vicky Becker St. Joseph MI",loc:"ST. JOSEPH-LINCOLN SENIOR CENTER · St. Joseph MI (this town)"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 INBOUND 10/7 — YISEL ROSARIO, licensed life & health / Medicare agent, Elizabeth NJ — ST. GENEVIEVE ELIZABETH NJ 04-1051 (the 11/30 book) — asked 20 questions off your house ad; full-answer reply relayed 10/8 — CALL HER, then the email · IG @yiselrosarioinsuranceagent · VM 10/14",p:"(862) 239-0098",t:"Elsewhere",e:"laciela05@hotmail.com",q:"Yisel Rosario insurance agent Elizabeth NJ",loc:"ST. GENEVIEVE 04-1051 · Elizabeth NJ"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥🔥 EMMA ZINCHINI / BRIGHTWAY (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — LEGACY 6-space $1,900 — SPOKE 10/20: she had said no, won back with 2 FREE MONTHS (Dec 2026 thru Jan 2028, 14 issues) if the order is in by FRI 10/23 for the Dec 1 issue — the written offer + the 3 billing asks relayed 10/20 1:28p → waiting on her reply = the order · OPP OPEN · earlier: emailed 9/30 + 10/7, called 10/14 · 10/26: the Dec 1 line is TODAY, after that the January 1 issue",p:"(615) 206-3034",t:"Elsewhere",e:"emma.zinchini@brightway.com",q:"Brightway Insurance Zinchini Mt. Juliet TN",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 JENNIFER McGLOTHLIN / ELITE AUDIOLOGY (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — SAID YES to the Premium 2-space 10/1 — next-steps 10/1 + check-in 10/7, called + VM 10/14 — waiting on billing name / address / how to pay — OPP OPEN · 10/20: gatekeeper, VM left · Dec 1 issue needs her order by FRI 10/23 · called 10/22, no answer · 10/26: the Dec 1 line is TODAY, after that the January 1 issue",p:"(615) 758-7118",t:"Elsewhere",e:"eliteaudiology@gmail.com",q:"Elite Audiology Hearing Care Mt. Juliet TN",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 THE GARDENS MEMORY CARE (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — IN PROGRESS 10/1 — your alt number (615) 758-4800 — get the email — open the opp · 1016 Charlie Daniels Pkwy, Mt. Juliet 37122 · providenceplaceseniorliving.com · VM 10/14 · CALLBACK 10/22 · 10/26: the Dec 1 line is TODAY, after that the January 1 issue",p:"(615) 758-9300",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🔥 CLOSE — live deals",n:"⭐ CORNERSTONE PLACE / Heather Abbott (Lebanon TN, independent living) — LEBANON SENIOR CENTER 14-1690 — callback 10/1 — email to send · OPP OPEN 10/5 · ✉ SENT 10/5 · 1405 Cornerstone Place 37087 · cornerstonepl.com · 10/15: Heather answered, checking the email, will call back · 10/16: talked, she will talk to her team and get back · call THU 10/22, Dec 1 issue needs the order by FRI 10/23 · 10/26: the Dec 1 line is TODAY, after that the January 1 issue",p:"(615) 574-8906",t:"Elsewhere",e:"heather.abbott@cornerstonepl.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🔥 CLOSE — live deals",n:"FARM BUREAU / Wes Dugan (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — emailed 9/30 · WES DUGAN · 214 N Castle Heights Ave Ste A 37087 · wesduganinsurance.com · VM 10/15 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained) · 10/26: the Dec 1 line is TODAY, after that the January 1 issue",p:"(615) 453-9702",t:"Elsewhere",e:"wes.dugan@fbitn.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥🔥 JULIE QUARDOKUS / Cressy & Everett Real Estate (agent) — TRINITY LUTHERAN 15-0549 — SAID YES Fri 10/23 by email: '2 space for 850, let me know what you need next' — next steps (Anca skeleton: prepay +1 month, MyCommunityOnline, design off her agent page) + lead pack relayed 10/23 2:31p — ORDER IN MON 10/26 (contract 00010094, 2-space $850, Dec 1 off the picker) = SALE #14 · office 3687 S Lakeshore Dr, St. Joseph 49085",p:"(269) 369-4794",t:"Elsewhere",e:"juliequardokus@cressyeverett.com",q:"Julie Quardokus Cressy Everett St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 SARAH IWANIUK / THRIVENT, North Pier Financial Consultants, St. Joseph — TRINITY LUTHERAN 15-0549 — replied 10/22 → the Thrivent top went 10/22 (Thrivent reps ran in this newsletter 2008 to 2016, none since) · which size, order today for Dec 1, after that January 1 · sarah.iwaniuk@thrivent.com",p:"(269) 983-0217",t:"Elsewhere",e:"sarah.iwaniuk@thrivent.com",q:"Thrivent North Pier Financial Consultants St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 MIKE WYBLE / BAIRD PRIVATE WEALTH MANAGEMENT, St. Joseph (Associate Branch Manager) — TRINITY LUTHERAN 15-0549 — replied INTERESTED 10/22 → the church top went 10/22 · which size, order today for the Dec 1 Christmas issue, after that January 1 · mwyble@rwbaird.com",p:"(269) 983-7500",t:"Elsewhere",e:"mwyble@rwbaird.com",q:"Baird Private Wealth Management St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — 🔥 SPRINGVALE — AT STORYPOINT MARKETING since last wk! 2nd contact: Natalie Ovadek, Community Advisor (810) 588-2147, asked WHEN-NEEDED-BY 8/14 = buying signal; deadline reply out; Stephanie (810) 230-6644 orig · REVIVE on the Burton book: same county, new newsletter, Dec 1 if the order is in by Tue 10/27",p:"(810) 374-0282",t:"Swartz Creek",e:"stephanie.surinck@springvaleassistedliving.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Swartz Creek MI (same county)"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — 🔥 JEFFREY AUSTIN LAW — CALLED BACK 8/10, quoted 2sp/4sp ($850/$1,250), pricing emailed; his reply → 3 billing questions. SF opp on 15-0694 · Aug (Swartz Creek book): left msg 8/10 · REVIVE on the Burton book: same county, new newsletter, Dec 1 if the order is in by Tue 10/27",p:"(810) 223-6510",t:"Swartz Creek",e:"jeffrey@jeffreyaustinlawfirm.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Swartz Creek MI (same county)"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — 🔥 BARNETT FINANCIAL — Karen gave it to the CEO, ⭐ CEO CALLING BACK TODAY 4PM 8/14 — be by the phone · Aug (Swartz Creek book): followup 8/11 set for 08-14 · note: karen@bftwealth.com · REVIVE on the Burton book: same county, new newsletter, Dec 1 if the order is in by Tue 10/27",p:"(810) 695-7510",t:"Grand Blanc",e:"karen@bftwealth.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"🔥 CLOSE — live deals",n:"🔥 SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — 🔥 DESTINATION HEALTH & HEALING — JESSICA CALLED BACK 8/14, details emailed; her reply → 3 billing questions · Aug (Swartz Creek book): no answer 8/12 · REVIVE on the Burton book: same county, new newsletter, Dec 1 if the order is in by Tue 10/27",p:"(810) 288-4743",t:"Grand Blanc",e:"destination.health.healing@gmail.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"🔥 CLOSE — live deals",n:"🔥🔥 KISSA HARDEN / RAYMOND JAMES & ASSOCIATES, Grand Blanc — SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — VERY INTERESTED 8/12, details sent 8/12, followup was 8/14 · REVIVE on the Burton book: Dec 1 issue if the order is in by Tue 10/27, after that January 1 · kissa.harden@raymondjames.com",p:"(810) 695-3589",t:"Grand Blanc",e:"kissa.harden@raymondjames.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⛔ IN THE BOOK — LOBLEIN MEMORIALS — 7205 Eastern Ave, monuments/bronze markers (Div. of Tegeler Monument Co.) — the ONLY paying ad, contract thru 10/03/27 [ATTRAX current + the ad page] — upsell/multiples lane only · Dave Brundick",p:"(410) 284-7404",t:"Elsewhere",e:"dave@monumentsmd.com",loc:"(book unknown — check the row text)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — RC Duct Cleaning — 9913 Quiet Brook Lane [PG chamber ✓] — email came in garbled, re-ask (domain is rcductcleaning.com) — email came in garbled, re-ask",p:"(240) 535-5757",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — Sterling Optical — The Shops At Iverson [PG chamber ✓] · CALLBACK — callback",p:"(301) 899-1455",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — Meridian Medical Associates — 5620 Saint Barnabas Rd Ste 360 [PG chamber ✓] — email collected · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(240) 766-4552",t:"Elsewhere",e:"kwanza@meridianmedicalassociates.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — Clincare Nursing Services LLC — 3400 INVERWOOD LN [PG chamber ✓] · Dian Budram, RN (caller-ID) · CALLED BACK 10/7 — she called you back 10/7 (Dian Budram RN)",p:"(301) 247-6320",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — CHEN Law, LLC — Karl Chen (founder) — 9701 Apollo Dr Ste 381 [PG chamber ✓; mailbox spelling: confirm] — followup was Fri 10/9 (Karl Chen) · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 358-3981",t:"Elsewhere",e:"karl.chen@thebizlawyer.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — Mike's Pest, Termite and Wildlife — 10400 Theodore Green Blvd. [Charles Co. chamber ✓] — email collected · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 960-8100",t:"Elsewhere",e:"info@833bugmike.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐ Davis & Palumbo LLC — Mark Davis — 9405 Chesapeake St #A [Charles Co. chamber ✓; email domain off their own site] — followup was Fri 10/9 (Mark Davis) · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 535-1780",t:"Elsewhere",e:"mdavis@davispalumbo.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — Law Office of Rudy A. Carrico, Jr. — 100 Washington Ave [Charles Co. chamber ✓] · CALLBACK — callback",p:"(301) 932-2155",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐⭐ Hedgman Funeral Service [own site ✓] · Mary Hedgman (caller-ID) · ✉ collected 10/7, published on their own site · FOLLOWUP Mon 10/12 10a — FOLLOWUP Mon 10/12 10a (Mary Hedgman) · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 856-0080",t:"Elsewhere",e:"mhedg@verizon.net",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐⭐ K D Marshall Funeral Home [own site ✓] · ✉ collected 10/7, spelling fixed to kdmarshallfh (published on their contact page) — left msg, email collected · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 500-9875",t:"Elsewhere",e:"kdmarshallfh@gmail.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐ Dental Care of Waldorf [own site ✓] · CALLBACK 10/8 10a — callback was 10/8 10a",p:"(301) 645-3601",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐ Roxanne Jones, State Farm — Roxanne Jones [agent page ✓] · Roxanne Jones · ✉ collected 10/7 (your note said roazanne; her site is myagentroxanne.com) — left msg, email collected · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 782-9184",t:"Elsewhere",e:"roxanne@myagentroxanne.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐ Julian Coates, State Farm — Julian Coates [agent page ✓] · Julian Coates · ✉ collected 10/7 (his own agency domain, MX ✓) · CALLBACK — callback, gave his email · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(240) 348-4540",t:"Elsewhere",e:"julian@julianismyagent.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐ Jamila A. Coleman, State Farm — Jamila A. Coleman [agent page ✓] · CALLED BACK 10/7 — called you back 10/7",p:"(240) 766-2761",t:"Elsewhere",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ST. MARY'S CLINTON 03-0597 — ⭐⭐ Raymond Funeral Service, La Plata [own site ✓] · Mrs. Raymond (caller-ID) / Bart Yates mgr · ✉ collected 10/7, published on their site (business, one s) · CALLBACK — callback, Mrs. Raymond gave the email · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(301) 934-2920",t:"Elsewhere",e:"business.office@raymondfuneral.com",loc:"ST. MARY'S CLINTON 03-0597 · Clinton MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SELLARS FUNERAL HOME (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — OPP OPEN — your followup is TODAY Mon 10/5 10a · JUDD SELLARS · 313 W Baddour Pkwy 37087",p:"(615) 444-9393",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ STATE FARM, CORKY CROSS (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — your followup is TODAY Mon 10/5 10a",p:"(615) 758-8420",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ ALLSTATE, TERRY BURNS AGENCY / Rod Lovelace (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/29 — email to send (confirm spelling) · OPP OPEN 10/5 · ✉ SENT 10/5 · agency owner TERRY BURNS · 1275 N Mt Juliet Rd 37122 · 10/15: gatekeeper, Rod out, send him another email + told her you called",p:"(615) 758-5228",t:"Elsewhere",e:"rodlovelace@allstate.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ BUCKEYE DRUGS / Cory (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 10/1 — email to send · ✉ SENT 10/5 · CORY McDONALD · 315 N Cumberland St 37087 · buckeyedrugs.com",p:"(615) 444-2999",t:"Elsewhere",e:"cory.buckeyedrugs@gmail.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ AGEE & JOHNSON REALTY / Jay White (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 10/2 — email to send · ✉ SENT 10/5 · JAY WHITE · 728 W Main St 37087 · ageeandjohnson.com",p:"(615) 444-0909",t:"Elsewhere",e:"jaywhite@ageeandjohnson.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ RACKLEY ROOFING (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 10/1 — email to send (confirm spelling) · OPP OPEN 10/5 · ✉ SENT 10/5 · chamber contact MEGAN MALONE (megan.malone@rackleyroofing.com) · 1673 W Main St 37087 · rackleyroofing.com",p:"(615) 492-8489",t:"Elsewhere",e:"eventsandmarketing@rackleyroofing.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ THE VILLAGE FORAGER / Erin (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — callback 10/1 — you emailed her Thu 10/1 · 2320 N Mt Juliet Rd 37122 · thevillageforager.com",p:"(615) 288-3474",t:"Elsewhere",e:"erin@thevillageforager.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ WELL HEALTH CHIROPRACTIC / Jeremy (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/28 — emailed 9/30 · OPP OPEN 10/5 · 443 Hwy 109 N Ste 102 37090 · wellhealthcenters.com · 10/15: left msg (Jeremy)",p:"(615) 784-6750",t:"Elsewhere",e:"lebanon@wellhealthcenters.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"FIRST FREEDOM BANK / S. Poss (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — gave email — email to send · ✉ SENT 10/5 · 12888 Lebanon Rd, Mt. Juliet 37122 · firstfreedombank.com",p:"(615) 754-1280",t:"Elsewhere",e:"sposs@firstfreedombank.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BENTLEY'S AIR CONDITIONING / Jesse (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — gave email 10/1 — email to send · OPP OPEN 10/5 · ✉ SENT 10/5 · owner BRUCE BENTLEY (bruce@bentleysair.com) · 1417 W Main St 37087 · bentleysac.com",p:"(615) 444-1452",t:"Elsewhere",e:"jesse@bentleysac.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BUSY BEE PLUMBING HEATING & AIR / attention Brooke (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — gave email 10/1 — email to send · ✉ SENT 10/5 · 137 Southside Park Dr 37090 · busybeehvac.com",p:"(615) 775-7833",t:"Elsewhere",e:"callcenter@busybeehvac.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"PREMO AIR (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — gave email 10/1 — email to send · ✉ SENT 10/5 · 1140 Northern Rd, Mt. Juliet 37122 · premoairinc.com",p:"(615) 708-2711",t:"Elsewhere",e:"premoairinc@gmail.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"AFFORDABLE HEATING AND COOLING (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — gave email 10/1 — email to send · ✉ SENT 10/5 · 5510 E Division St Ste 134, Mt. Juliet 37122 · affordableheatingandcoolingtn.com · no answer 10/15",p:"(615) 547-4209",t:"Elsewhere",e:"affordablehandchvac@gmail.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BLUEBIRD ROOFING / Melissa (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — gave email 10/1 — email to send · ✉ SENT 10/5 · 615 Rutland Dr, Mt. Juliet 37122 · bluebirdroofing.com · VM 10/15",p:"(615) 758-9101",t:"Elsewhere",e:"melissa@bluebirdroofing.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"AUSTERMILLER ROOFING (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — email to send (office@ is the address on their site) · ✉ SENT 10/5 · 9485 Lebanon Rd, Mt. Juliet 37122 · austermillerroofing.com · Kevin Moseley (caller-ID 10/15) · no answer 10/15",p:"(615) 553-2041",t:"Elsewhere",e:"office@austermillerroofing.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"ROYCE A. BELCHER CPA / Renee (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — gave email 9/29 — email to send · ✉ SENT 10/5 · owner ROYCE A. BELCHER · 420 W Main St 37087 · rabcpa.com",p:"(615) 444-1149",t:"Elsewhere",e:"renee@rabcpa.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"SMITH CHIROPRACTIC (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — emailed 9/30 · 730 N Mt Juliet Rd 37122 · smithchiropractictn.com · VM 10/15",p:"(615) 758-8560",t:"Elsewhere",e:"info@smithchiropractictn.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"KERRY BECHT PT (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — emailed 9/30 · KERRY BECHT · 1303 Baddour Pkwy 37087 · kerrybechtphysicaltherapy.com · VM 10/15",p:"(615) 444-1408",t:"Elsewhere",e:"kerryjbecht@bellsouth.net",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"INSURANCE SOLUTIONS / L. Cooper (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — emailed 9/30 · chamber contact KRISTINA HIBDON · 113 S Cumberland St 37087 · insureresults.com · VM 10/15",p:"(615) 444-4423",t:"Elsewhere",e:"lcooper@insureresults.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BEACON HOME HEALTH (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/28 · chamber email rodney.carroll@beaconhhh.com · 115 Winwood Dr Ste 210 37087 · beaconhhh.com · VM 10/15",p:"(615) 449-9482",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"HOME INSTEAD (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/28 · no answer 10/15",p:"(615) 444-3553",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"ADVANCED CHIROPRACTIC (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/28 — re-ask the email, it came in garbled · DR. NORMA FISHER · 1606 W Main St 37087 · VM 10/15",p:"(615) 443-0523",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"STATE FARM, ROB GWYNNE (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/29 · ROB GWYNNE III · rob@robgwynne.com · 1333 W Main St Ste B 37087 · robgwynne.com · no answer 10/15",p:"(615) 449-7333",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"HAGAR & PHILLIPS attorneys (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/30 · CAITLIN AVERY · cavery@hplawtn.com · 207 University Ave 37087 · hplawtn.com",p:"(615) 784-4588",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"JIMMY LEA attorney (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/30 · ⚠ his listed email is the District Attorneys' conference (tndagc.org) = a prosecutor's office, not a buyer",p:"(615) 444-7146",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"LANNOM & WILLIAMS attorneys (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/30 · KEITH WILLIAMS · info@lannomwilliams.com · 137 Public Square 37087",p:"(615) 444-2900",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"LEE & LEE attorneys (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/30",p:"(615) 444-3900",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"ROCHELLE McCULLOCH & AULDS (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — callback 9/30, 2 calls · DAVID FOUTCH · dfoutch@rma-law.com · 109 N Castle Heights Ave 37087 · rma-law.com",p:"(615) 444-1433",t:"Elsewhere",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"JILL PULLEY (Lebanon TN) — LEBANON SENIOR CENTER 14-1690 — her town's book, $550 — email to send in her July thread · ✉ SENT 10/5",p:"(615) 917-9566",t:"Elsewhere",e:"jillmpulley@icloud.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"📧 TALKED / EMAILED — follow up",n:"DENISE FEY / C21 GEBA — ST. PATRICK MILFORD PA 03-1332 — OPP OPEN — 1sp maybe 2, pricing emailed 9/9",p:"(570) 296-8881",t:"Elsewhere",e:"denisefeyrealtor@gmail.com",loc:"ST. PATRICK 03-1332 · Milford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"SERENKO-CLAAR FH / Terry Claar — CRESSON PA 14-1078 — OPP OPEN — talked 9/16",p:"(814) 736-4441",t:"Elsewhere",loc:"ST. FRANCIS XAVIER 14-1078 · Cresson PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BARTON'S PLUMBING & HEATING — CRESSON PA 14-1078 — OPP OPEN since 9/17",p:"(814) 201-5694",t:"Elsewhere",loc:"ST. FRANCIS XAVIER 14-1078 · Cresson PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"LABROZZI INSURANCE / Debbie — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — callback owed since 9/24",p:"(814) 368-5312",t:"Elsewhere",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"CW HARDWARE / George Nelson — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — email to send · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(814) 837-8130",t:"Elsewhere",e:"cwhardware@verizon.net",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"KESSEL CONSTRUCTION — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — VM once",p:"(814) 362-4696",t:"Elsewhere",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BRADFORD ECUMENICAL HOME — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — VM 9/22",p:"(814) 368-5648",t:"Elsewhere",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"PINE HAVEN VET / Cindy Cecchetti — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — past advertiser",p:"(814) 837-7929",t:"Elsewhere",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"ZOOK MOTORS — ST. ELIZABETH SMETHPORT PA 14-1203 — OPP OPEN — sheet said not-now after 2 calls",p:"(814) 837-7225",t:"Elsewhere",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"BUILDING PROFESSIONALS — ST. ROSE LITTLETON NH 04-0478 — OPP OPEN — already in the book, upgrade — email to send · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(603) 869-0100",t:"Elsewhere",e:"info@buildingprofessionalsinc.com",loc:"ST. ROSE OF LIMA 04-0478 · Littleton NH"},
+{c:"📧 TALKED / EMAILED — follow up",n:"NORTH COUNTRY FORD — ST. ROSE LITTLETON NH 04-0478 — OPP OPEN — emailed 8/28",p:"(603) 788-2311",t:"Elsewhere",loc:"ST. ROSE OF LIMA 04-0478 · Littleton NH"},
+{c:"📧 TALKED / EMAILED — follow up",n:"CARLISLE PLACE PT — ST. ROSE LITTLETON NH 04-0478 — OPP OPEN — talked 8/26",p:"(603) 586-4100",t:"Elsewhere",loc:"ST. ROSE OF LIMA 04-0478 · Littleton NH"},
+{c:"📧 TALKED / EMAILED — follow up",n:"CHUBENKO FH — ST. ANTHONY PORT READING NJ 04-1083 — OPP OPEN — on the parish's street · VM 10/15",p:"(732) 634-6009",t:"Elsewhere",loc:"ST. ANTHONY 04-1083 · Port Reading NJ"},
+{c:"📧 TALKED / EMAILED — follow up",n:"DOOLEY FH — ST. ANTHONY PORT READING NJ 04-1083 — OPP OPEN — VM 8/31",p:"(908) 276-0255",t:"Elsewhere",loc:"ST. ANTHONY 04-1083 · Port Reading NJ"},
+{c:"📧 TALKED / EMAILED — follow up",n:"HERITAGE AT CLARA BARTON — ST. ANTHONY PORT READING NJ 04-1083 — OPP OPEN — talked 9/1",p:"(732) 225-5990",t:"Elsewhere",loc:"ST. ANTHONY 04-1083 · Port Reading NJ"},
+{c:"📧 TALKED / EMAILED — follow up",n:"SENA-KEAN MANOR — ST. ELIZABETH SMETHPORT PA 14-1203 — in progress 9/22, no opp — email to send · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(814) 887-5601",t:"Elsewhere",e:"abaumgardner@senakeanhc.com",loc:"ST. ELIZABETH 14-1203 · Smethport / Bradford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"KNIGHT-AUCHMOODY FH / Michael Horkan — ST. PATRICK MILFORD PA 03-1332 — said yes to a 1-space 9/8, no opp",p:"(845) 856-3312",t:"Elsewhere",loc:"ST. PATRICK 03-1332 · Milford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"KEITH CAMIRE / State Farm — ST. PATRICK MILFORD PA 03-1332 — really interested 9/11, no opp",p:"(570) 296-8591",t:"Elsewhere",loc:"ST. PATRICK 03-1332 · Milford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"GIBBONS FH — CRESSON PA 14-1078 — in progress 9/15, no opp",p:"(814) 886-8174",t:"Elsewhere",loc:"ST. FRANCIS XAVIER 14-1078 · Cresson PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"STEVENS MORTUARY — CRESSON PA 14-1078 — in progress 9/18, no opp",p:"(814) 944-9365",t:"Elsewhere",loc:"ST. FRANCIS XAVIER 14-1078 · Cresson PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"MILFORD DINER / Nick Vacari — ST. PATRICK MILFORD PA 03-1332 — lapsed 8/16, ad still printing — email to send · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(570) 296-8611",t:"Elsewhere",e:"milforddinerpa@gmail.com",loc:"ST. PATRICK 03-1332 · Milford PA"},
+{c:"📧 TALKED / EMAILED — follow up",n:"PARTRIDGE PLUMBING — ST. ROSE LITTLETON NH 04-0478 — super interested, emailed 9/11",p:"(603) 241-5013",t:"Elsewhere",loc:"ST. ROSE OF LIMA 04-0478 · Littleton NH"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐⭐ Lilly & Zeiler — 700 S Conkling St, family-owned since 1908 [YP ✓] · ✉ collected 10/12 as heard (under6ft@aol.com) · FOLLOWUP Thu 10/15 10a · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 342-1222",t:"Elsewhere",e:"under6ft@aol.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐⭐ Connelly Funeral Home of Dundalk — 7110 Sollers Point Rd, 52 yrs [YP ✓] · ✉ collected 10/12 (note said connly; domain = connellydundalk.com, MX ✓; owner Anthony Connelly) · CALLBACK · CALLBACK 10/12 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 285-2900",t:"Elsewhere",e:"contact@connellydundalk.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ American Insurance & Financial Services (Erie agency) — 2501 Boston St [YP ✓] · IN PROGRESS 10/12 · IN PROGRESS 10/12",p:"(410) 601-0001",t:"Elsewhere",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ State Farm — George Kennedy, 2312 Boston St [YP ✓] · IN PROGRESS 10/12 · IN PROGRESS 10/12",p:"(410) 525-5855",t:"Elsewhere",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐⭐ Home Helpers Home Care of NE Baltimore — 101 N Haven St Ste 301, Highlandtown [YP ✓] · Director HEATHER MALDONADO (their site) · ✉ collected 10/12 came in garbled → hmaldonado@ on their real domain, CONFIRM on the callback · VM 10/12 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 709-2288",t:"Elsewhere",e:"hmaldonado@homehelpershomecare.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐⭐ Highlandtown Dental Group — Dr. Salar Barekatain, Spanish spoken [own site ✓] · IN PROGRESS 10/14 · ✉ collected 10/14: office@highlandtowndentalgroup.com (their domain, MX ✓; mailbox as heard) · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 327-5488",t:"Elsewhere",e:"office@highlandtowndentalgroup.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ Prime Plumbing — Highlandtown/Canton, since 2012 [own site ✓] · IN PROGRESS 10/14 · ✉ collected 10/14 as heard: service@PrimePlumbing.com ⚠ their site is primeplumbingmd.com, CONFIRM the domain before sending · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(443) 741-1129",t:"Elsewhere",e:"service@primeplumbing.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — Warrior Plumbing and Heating — Baltimore [own site ✓] · IN PROGRESS 10/14 · COLLIN · ✉ collected 10/14: collin@warriorplumbing.com (their domain, MX ✓) · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(443) 967-3736",t:"Elsewhere",e:"collin@warriorplumbing.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — Von Paris Moving & Storage — since 1892, family (senior moves) [own site ✓] · left msg 10/14 · ✉ collected 10/14: marketing@vonparis.com (their domain, MX ✓; the site lists information@vonparis.com) · VM 10/14 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 826-4824",t:"Elsewhere",e:"marketing@vonparis.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐⭐ D.W. Bahr Plumbing & Heating — 8230 Pulaski Hwy, Rosedale, 78 yrs [YP ✓] · CALLBACK 10/14 · CALLBACK 10/13",p:"(410) 686-6648",t:"Elsewhere",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ Hour Dental — 1103 N Point Blvd Ste 403 (Eastpoint), 55 yrs [YP ✓] · IN PROGRESS 10/14 · ✉ collected 10/14: info@hourdental.com (on their own site, MX ✓) · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 285-6180",t:"Elsewhere",e:"info@hourdental.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ Boston Street Dentistry — Dr. Eugene McCollum, 1501 S Clinton St Ste 3, 27 yrs [YP ✓] · IN PROGRESS 10/14 · ✉ collected 10/14: hello@bemoredental.com (on their own site bemoredental.com, MX ✓) · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 276-4455",t:"Elsewhere",e:"hello@bemoredental.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — ⭐ Canton Dental Associates — 2700 Lighthouse Pt E Ste 210, 36 yrs [YP ✓] · IN PROGRESS 10/14 · ✉ collected 10/14: cantondentalofficemanager@gmail.com (as heard, gmail) · IN PROGRESS 10/13 · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(410) 675-3300",t:"Elsewhere",e:"cantondentalofficemanager@gmail.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ OUR LADY OF FATIMA 03-1396 — Dr. Heywan Gessesse / Canton Smile Studio — 5525 Eastern Ave [YP ✓] · ✉ collected 10/15: info@cantonsmilestudio.com (domain MX ✓, as heard) · ✉ SENT (Abe 10/20: every older-book email went out, only the five Trinity remained)",p:"(443) 703-3600",t:"Elsewhere",e:"info@cantonsmilestudio.com",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Farm Bureau Insurance — 2396 S Cleveland Ave, St. Joseph — Casey Resseguie · Christopher Blaszczyk Jr. [michfb.com agent pages ✓] · IN PROGRESS 10/19 · ✉ collected: smorri1@fbinsmi.com (Farm Bureau MI domain, MX ✓; ask the first name) · in progress 10/19 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-0179",t:"Elsewhere",e:"smorri1@fbinsmi.com",q:"Farm Bureau Insurance St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — State Farm — Jaden Gebbink, St. Joseph [agent page ✓] · IN PROGRESS 10/19 · ✉ collected: jaden@jadeninsurance.com (note said jadeninsuance; domain MX ✓) · in progress 10/19 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 932-4722",t:"Elsewhere",e:"jaden@jadeninsurance.com",q:"State Farm St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Insurance Management Service, Inc. / Bell-Molhoek — Tereck Halsey, 501 Main St, St. Joseph [own site ✓ + YP] (not the Tennessee IMS) · FOLLOWUP Thu 10/22 10a · RICH BRANDT (caller-ID) · ✉ collected: tbumstead@imsinsuranceagency.com (domain MX ✓) · followup 10/19 10-22 10:00 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-7101",t:"Elsewhere",e:"tbumstead@imsinsuranceagency.com",q:"Insurance Management Service, Inc. / Bell-Molhoek St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — State Farm — Chris Osborn, Berrien Springs [agent site ✓] · IN PROGRESS 10/20 · ✉ collected: lurie.daniel.j2cl@statefarm.com (a State Farm agent address for DANIEL LURIE, not Chris Osborn; ask who the agent is now) · the church email + block · in progress 10/20 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 473-4511",t:"Elsewhere",e:"lurie.daniel.j2cl@statefarm.com",q:"State Farm Berrien Springs MI",loc:"TRINITY LUTHERAN 15-0549 · Berrien Springs MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Cressy & Everett Real Estate — St. Joseph office, 3687 S Lakeshore Dr — Mike Barber, managing broker, 80 yrs [own site ✓] · left msg 10/20 · LORI BENNETT (caller-ID) · ✉ collected: tracimurray@cressyeverett.com (as heard; no Traci on the agent page, likely the office staff; domain MX ✓) · the church email + block · left msg 10/20 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 429-6666",t:"Elsewhere",e:"tracimurray@cressyeverett.com",q:"Cressy & Everett Real Estate St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Miles Ashley — Cressy & Everett [office page ✓] · left msg 10/20 · ✉ collected: milesashley@cressyeverett.com (office pattern, domain MX ✓) · the church email + block · left msg 10/20 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 277-2754",t:"Elsewhere",e:"milesashley@cressyeverett.com",q:"Miles Ashley St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Linear Electric, Inc. — St. Joseph, 22 yrs [own site ✓] · FOLLOWUP Mon 10/26 10a · KEVIN STEWART (caller-ID; president) · ✉ collected: kelsey@linearelectricinc.net (note said linerelectircinc; linearelectricinc.net has mail; MX ✓) · the church email + block · followup 10/21 10-26 10:00 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 927-6160",t:"Elsewhere",e:"kelsey@linearelectricinc.net",q:"Linear Electric, Inc. St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Creative Landscaping and Design — tree services, St. Joseph [own site ✓] · left msg 10/21 · RYAN HOWARD (caller-ID) · ✉ collected: info@creativelandscapinginc.com (their domain, MX ✓) · the church email + block · left msg 10/21 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 473-1356",t:"Elsewhere",e:"info@creativelandscapinginc.com",q:"Creative Landscaping and Design St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Soos Insurance Agency / DeVries John Agency — 728 Pleasant St, 62 yrs (same office line) [YP ✓] · dialed 10/20, no mark · IN PROGRESS 10/21 · JERED · ✉ collected: jered@devriesinsurance.com (DeVries Insurance domain, MX ✓) · the church email + block · in progress 10/21 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-0581",t:"Elsewhere",e:"jered@devriesinsurance.com",q:"Soos Insurance Agency / DeVries John Agency St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Donnellan-Partrick Insurance — 800 Ship St / 2845 Niles Ave [YP ✓] · left msg 10/22 · ✉ collected as marcus.gleaton@mimic.com (odd domain for an insurance agency; confirm before sending) · left msg 10/22 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-3900",t:"Elsewhere",e:"marcus.gleaton@mimic.com",q:"Donnellan-Partrick Insurance St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Town & Country Plumbing Services — Benton Harbor, 44 yrs [YP ✓] · IN PROGRESS 10/21 · TIM · ✉ collected: tim@plumbingelectricwater.com (note said electeric; their site is plumbingelectricwater.com, Town & Country Plumbing & Electric Services, since 1981; MX ✓) · the church email + block · in progress 10/21 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 332-0591",t:"Elsewhere",e:"tim@plumbingelectricwater.com",q:"Town & Country Plumbing Services Benton Harbor MI",loc:"TRINITY LUTHERAN 15-0549 · Benton Harbor MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐⭐ Westside Auto Group, St. Joseph (formerly Matt's Auto Care, bought 2026) — 2101 Niles Rd [own site ✓] · IN PROGRESS 10/21: gave the email, he forwards to the group (7 shops: Holland ×2 · Zeeland · Allegan · Grand Rapids · Ludington · St. Joseph; owner Terry Boetsma, Holland, since 1976) · ✉ collected: stjoseph@westsideautogroup.net (mail domain MX ✓; site = westsideautogroup.com) · the church top + block relayed 10/21 · a MULTIPLES deal, loop Mark past the key line · left msg 10/21 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-0007",t:"Elsewhere",e:"stjoseph@westsideautogroup.net",u:"https://westsideautogroup.com/westside-auto-st-joseph/",q:"Westside Auto Group, St. Joseph (formerly Matt's Auto Care, bought 2026) St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Great Lakes Eye Care — 2848 Niles Rd, 39 yrs (Tolsma · Van Elk · Lindberg · Keinath · Stoddard · Marohn) [YP ✓] · CALLBACK 10/22 · ✉ collected: marketing@greateyecare.com (as heard; confirm the domain against their site) · the top + block · callback 10/22 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 428-3300",t:"Elsewhere",e:"marketing@greateyecare.com",q:"Great Lakes Eye Care St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Family Vision Associates — 2904 Division St, 45 yrs [YP ✓] · IN PROGRESS 10/22 · ✉ collected: frontdesk@familyvisionassociates.com · the top + block · in progress 10/22 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-2020",t:"Elsewhere",e:"frontdesk@familyvisionassociates.com",q:"Family Vision Associates St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Fortenbacher · Schlager · Bultsma ODs (vision therapy) — 2908 Division St [YP ✓] · left msg 10/22 · ✉ collected: fortenbacher@wowvision.net · the top + block · left msg 10/22 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-3309",t:"Elsewhere",e:"fortenbacher@wowvision.net",q:"Fortenbacher St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — ⭐ Private Duty Home Healthcare / Avid Health at Home — 2626 Niles Ave, 17 yrs [YP ✓] · IN PROGRESS 10/19 · LORI COSTANZA (caller-ID) · ✉ collected as avidstjoseph@avidhealthhome.com — that domain has no mail; the company is avidhealthathome.com (site: info@avidhealthathome.com) → use avidstjoseph@avidhealthathome.com, confirm · in progress 10/19 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-0300",t:"Elsewhere",e:"avidstjoseph@avidhealthathome.com",q:"Private Duty Home Healthcare / Avid Health at Home St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Advantage Private Nursing Services — 1820 Hilltop Rd [YP ✓] · FOLLOWUP Thu 10/22 10a · followup 10/19 10-22 10:00 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 983-8926",t:"Elsewhere",q:"Advantage Private Nursing Services St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ TRINITY LUTHERAN 15-0549 — Cornerstone Caregiving — 2900 S State St Ste 4E [YP ✓] · IN PROGRESS 10/19 · NATALIE AMICARELLI · ✉ collected: namicarelli@cornerstonecaregiving.com (note said conerstone; domain MX ✓) · the church email + block · in progress 10/19 · the line: order today = the Dec 1 Christmas issue, after that January 1",p:"(269) 247-4565",t:"Elsewhere",e:"namicarelli@cornerstonecaregiving.com",q:"Cornerstone Caregiving St. Joseph MI",loc:"TRINITY LUTHERAN 15-0549 · St. Joseph MI"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Rossell Funeral Home (Caterer family) · ✉ details sent 8/12 [Flushing chamber] · Aug (Swartz Creek book): followup 8/10 set for 08-13 · note: funerals@catererfamily.com · pitch the Burton book now",p:"(810) 659-6342",t:"Flushing",e:"funerals@catererfamily.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flushing MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Alternative Elderly Care (senior home care) [SC chamber] — ask: Bonnie Kelley · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 691-9749",t:"Davison",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Davison MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Michigan Accident Care Coordinators [SC chamber] — ask: Tracy Congdon · Aug (Swartz Creek book): callback 8/11 · pitch the Burton book now",p:"(810) 331-3001",t:"Flint Township",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint Township MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Worthwhile Wellness PLLC (Miller Rd) [SC chamber] — ask: Brittany Gustafson · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 350-8872",t:"Swartz Creek",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Swartz Creek MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Genesee Health Plan (local health plan HQ) [SC chamber] — ask: Shannon Ciszek · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 232-7740",t:"Flint Township",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint Township MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Rumsey Insurance Agency (member since 2010) [Flushing chamber] — ask: MIKE Rumsey · ✉ sent 8/20 · Aug (Swartz Creek book): callback 8/10 · pitch the Burton book now",p:"(810) 659-8361",t:"Flushing",e:"mike@rumseyinsurance.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flushing MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Wagner Insurance [GB chamber] — ask: Mark Wagner · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 694-6776",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Alliance Financial Group — ask: Kris · ✉ details sent 8/12 [GB chamber] · Aug (Swartz Creek book): followup 8/10 set for 08-13 · note: kris@afgconsultants.com · Send info · pitch the Burton book now",p:"(810) 232-2300",t:"Flint",e:"kris@afgconsultants.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Yeo & Yeo CPAs & Advisors [SC chamber] — ask: Rebecca Millsap · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 732-3000",t:"Flint",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Cox Electric Heating & Cooling (since 1993, generators) [GB chamber] — ask: John Sheick · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 569-5144",t:"Goodrich",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Goodrich MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Blessing Plumbing & Heating (family since 1946 — 80 YEARS) [GB chamber] — ask: Lou Blessing · Aug (Swartz Creek book): followup 8/10 set for 08-13 · pitch the Burton book now",p:"(810) 694-4861",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Staley's Plumbing and Heating [SC chamber] · Aug (Swartz Creek book): followup 8/10 set for 08-13 · note: sales@Staley's Plumbing and Heating · pitch the Burton book now",p:"(810) 659-5572",t:"Flushing",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flushing MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Cardinal Roofing [SC chamber + own site ✓] — ask: Daniel Pierce · Aug (Swartz Creek book): callback 8/10 · pitch the Burton book now",p:"(810) 397-9393",t:"Flushing",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flushing MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — J.W. Morgan Construction — Jeremy says CALL TUESDAY 8/18 · ✉ sent 8/12 · Aug (Swartz Creek book): followup 8/10 set for 08-13 · note: jeremy@jwmorganconstruction.com need to find · pitch the Burton book now",p:"(810) 691-6281",t:"Swartz Creek",e:"jeremy@jwmorganconstruction.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Swartz Creek MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Kearsley Auto Repair (38 years) [YP dedicated] · Aug (Swartz Creek book): callback 8/10 · pitch the Burton book now",p:"(810) 736-4441",t:"Flint",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ David Long — Farm Bureau Ins (8056 MILLER RD — practically next door; captive-carrier flag) [own-site ✓] · Aug (Swartz Creek book): callback 8/12 · pitch the Burton book now",p:"(810) 635-8472",t:"Swartz Creek",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Swartz Creek MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Professional Insurance Services — ask: Tyler (or Bob Reynolds) · ✉ details sent 8/12 [own-site ✓] · Aug (Swartz Creek book): followup 8/10 set for 08-13 · note: tyler@ProfessionalInsurancemi.com · pitch the Burton book now",p:"(810) 629-0551",t:"Fenton",e:"tyler@professionalinsurancemi.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Fenton MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ENT & Plastic Surgery Associates (AudioNova pays already — category proof) [own-site ✓] · Aug (Swartz Creek book): callback 8/11 · pitch the Burton book now",p:"(810) 694-0600",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Mannor Law Group (elder law + VA; center hosts estate clinics = his crowd) [own-site ✓] — ask: Savannah Meksto (marketing) · ✉ sent 8/20 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: INFO@MANNORLAW.com · pitch the Burton book now",p:"(810) 694-9000",t:"Grand Blanc",e:"savannah@mannorlaw.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Absolute Home Health and Hospice [GB chamber] · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 694-1042",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Advanced Physical Therapy Center, Now Part of the Phoenix Family [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: aweder@phx-pt.com · pitch the Burton book now",p:"(810) 695-8700",t:"Grand Blanc",e:"aweder@phx-pt.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Asperger Agency [GB chamber] · Aug (Swartz Creek book): followup 8/12 set for 08-17 · pitch the Burton book now",p:"(810) 424-9655",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Blue Line Detailing [GB chamber] · Aug (Swartz Creek book): in progress 8/11 · note: gave her all of my info very interested · pitch the Burton book now",p:"(810) 874-7091",t:"Holly",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Holly MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Brown Funeral Home [GB chamber] · Aug (Swartz Creek book): followup 8/12 set for 08-17 · pitch the Burton book now",p:"(810) 606-1300",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Cislo Title [GB chamber] · Aug (Swartz Creek book): callback 8/12 · pitch the Burton book now",p:"(810) 553-6141",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Detroit Cremation Society [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: mail@DetroitCremationSociety.com · pitch the Burton book now",p:"(810) 603-7249",t:"Grand Blanc",e:"mail@detroitcremationsociety.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Exclusive House of Real Estate [GB chamber] · Aug (Swartz Creek book): followup 8/12 set for 08-17 · pitch the Burton book now",p:"(810) 498-4016",t:"Burton",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Burton MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Family Care Chiropractic [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: gbfamilycare@gmail.com · pitch the Burton book now",p:"(810) 603-1497",t:"Grand Blanc",e:"gbfamilycare@gmail.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Helping Hand Nursing Service Home Health Care, LLC [GB chamber] · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 606-8400",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ IvyRehab Physical Therapy [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: kwood@ivyRehab.com · pitch the Burton book now",p:"(810) 242-6588",t:"Grand Blanc",e:"kwood@ivyrehab.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Liberty Title [GB chamber] · Aug (Swartz Creek book): followup 8/12 set for 08-17 · pitch the Burton book now",p:"(810) 357-0759",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Muffler Man [GB chamber] · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 695-0390",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ RLM Financial Services [GB chamber] · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 694-1120",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Ryan Lukovich State Farm — ⚠ email domain he gave is DEAD, re-grab address on nudge call [GB chamber] · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: tyler@Insurancegradblanc.com · pitch the Burton book now",p:"(810) 694-5091",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Serra Benefits Group, Inc [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: ben@serrabenfiitisgroup.com · pitch the Burton book now",p:"(810) 584-7458",t:"Grand Blanc",e:"ben@serrabenefitsgroup.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — Sweet T's Venture LLC [GB chamber] · ✉ details sent 8/14 · Aug (Swartz Creek book): followup 8/12 set for 08-17 · note: bfishe05@gamil.com · pitch the Burton book now",p:"(810) 955-0800",t:"Flint",e:"bfishe05@gmail.com",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Flint MI (same county)"},
+{c:"📧 TALKED / EMAILED — follow up",n:"⭐ SWARTZ CREEK SENIOR CENTER 15-0694 (Aug) — ⭐ Tranquility Estates [GB chamber] · Aug (Swartz Creek book): followup 8/11 set for 08-14 · pitch the Burton book now",p:"(810) 771-7754",t:"Grand Blanc",loc:"SWARTZ CREEK SENIOR CENTER 15-0694 · Grand Blanc MI (same county)"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — SWARTZ FUNERAL HOME & CREMATION (Rick R. Lamb & Family), Flint — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 235-2345",t:"Flint"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — MARSH MONUMENT COMPANY, Durand — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(989) 288-5336",t:"Durand"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — AUDIONOVA hearing, Swartz Creek — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 620-0990",t:"Swartz Creek"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — SWANK HOME ASSISTED LIVING, Swartz Creek — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 635-3183",t:"Swartz Creek"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — WOODHAVEN SENIOR COMMUNITY, Flint — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 230-9488",t:"Flint"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — GENESEE GARDENS / Flint Twp Senior Living — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 720-4159",t:"Flint Township"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — DURAND SENIOR CARE & REHAB — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(989) 288-3166",t:"Durand"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — HEART TO HEART HOSPICE, Swartz Creek — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 422-9453",t:"Swartz Creek"},
+{c:"⛔ RENEWAL TEAM'S — in the Swartz Creek book, ask Mark",n:"⛔ RENEWAL TEAM'S — H&M LANDSCAPING (Brian Huyck, est. 1985), Swartz Creek — a paying advertiser in the SWARTZ CREEK book 15-0694 (Sept 2026 issue) — ask Mark before any call; the only pitch = the same ad in the Burton book",p:"(810) 238-2111",t:"Swartz Creek"},
+{c:"Big Budget / Premium 🐋",n:"Al Serra Auto Plaza [GB chamber]",p:"(810) 694-5600",t:"Grand Blanc"},
+{c:"Big Budget / Premium 🐋",n:"Grand Blanc Mitsubishi [GB chamber]",p:"(810) 579-2030",t:"Grand Blanc"},
+{c:"Big Budget / Premium 🐋",n:"Grand Blanc Nissan [GB chamber]",p:"(810) 893-6510",t:"Grand Blanc"},
+{c:"Big Budget / Premium 🐋",n:"LaFontaine Automotive Group [GB chamber]",p:"(810) 503-4321",t:"Flushing"},
+{c:"Funeral Home / Monuments",n:"Martin Funeral Home (Sharp+Swartz pay already) [own-site ✓] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 686-2210",t:"Mt. Morris"},
+{c:"Funeral Home / Monuments",n:"⭐ Hill Funeral Home [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 694-4141",t:"Grand Blanc"},
+{c:"Funeral Home / Monuments",n:"⛔ IN THE BOOK — SHARP FUNERAL HOMES, Grand Blanc chapel (also Swartz Creek, Linden, Fenton) — Sharp family, Jennifer Sharp Scully mgr — in the Burton AND the Swartz Creek books [Nov 2026 issue p8] — upsell/multiples lane only",p:"(810) 694-4900",t:"Grand Blanc"},
+{c:"Retirement / Senior Living",n:"Hyde Park Assisted Living [SC chamber] — ask: Stacy Bohn · Aug (Swartz Creek book): no answer 8/10",p:"(810) 659-3787",t:"Flushing"},
+{c:"Retirement / Senior Living",n:"The Oaks at Woodfield (est. 1997; Trilogy corporate flag) [own-site ✓] — ask: Kelly Glynn · Aug (Swartz Creek book): left msg 8/11",p:"(810) 606-9950",t:"Grand Blanc"},
+{c:"Retirement / Senior Living",n:"⭐ Abbey Park Retirement Community [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 606-1110",t:"Grand Blanc"},
+{c:"Retirement / Senior Living",n:"⭐ American House Grand Blanc [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 694-7300",t:"Grand Blanc"},
+{c:"Retirement / Senior Living",n:"⭐ Assisted Living Locators - NW Oakland [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 643-1182",t:"Fenton"},
+{c:"Retirement / Senior Living",n:"⭐ Brookdale of Grand Blanc-Assisted Living [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 953-7111",t:"Holly"},
+{c:"Retirement / Senior Living",n:"⭐ Serene Gardens of Grand Blanc [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 406-9016",t:"Grand Blanc"},
+{c:"Retirement / Senior Living",n:"⛔ IN THE BOOK — LOCKWOOD SENIOR LIVING — Lockwood of Burton, 2173 S Center Rd (independent living) + Lockwood of Genesee (810) 733-8900 [Nov 2026 issue p5]",p:"(810) 744-9400",t:"Burton"},
+{c:"Retirement / Senior Living",n:"⛔ IN THE BOOK — DAVISON LANDINGS, 55+ active adult community, Davison [Nov 2026 issue p8]",p:"(810) 785-4011",t:"Davison"},
+{c:"Retirement / Senior Living",n:"⛔ IN THE BOOK — ROSE HAVEN senior apartments (62+), 5100 Clio Rd, Flint — Tarantino Properties, leasing.rosehaven@tarantino.com [Nov 2026 issue p8]",p:"(810) 653-0810",t:"Flint"},
+{c:"Home Health / In-Home Care",n:"⭐ Ideal Home Health & Hospice Services [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 449-0916",t:"Grand Blanc"},
+{c:"Hearing / Audiology",n:"Comprehensive Hearing Center [own-site ✓] — ask: Julie Davis · Aug (Swartz Creek book): not now 8/11",p:"(810) 695-3766",t:"Grand Blanc"},
+{c:"Medicare / Senior Insurance",n:"DM Barnhart-Levijoki Insurance [own-site ✓] — ask: Dena Barnhart · Aug (Swartz Creek book): no answer 8/10",p:"(810) 655-3818",t:"Swartz Creek"},
+{c:"Medicare / Senior Insurance",n:"JPO Agency (est. 2015, face-to-face-vs-call-center pitch fits us) [own-site ✓] — ask: Catherine Levijoki · Aug (Swartz Creek book): left msg 8/12",p:"(810) 347-7385",t:"Swartz Creek"},
+{c:"Medicare / Senior Insurance",n:"Security First Benefits (est. 1990) [own-site ✓] — ask: Micah Widder · Aug (Swartz Creek book): not now 8/10",p:"(810) 230-1266",t:"Flint"},
+{c:"Medicare / Senior Insurance",n:"Blackmore Rowe Insurance (est. 1915!) [own-site + SC chamber ✓] — ask: Jamie Youngston · Aug (Swartz Creek book): left msg 8/10",p:"(810) 720-8244",t:"Flint"},
+{c:"Medicare / Senior Insurance",n:"BGM Insurance Agency (est. 1987) [own-site ✓] · Aug (Swartz Creek book): not now 8/10",p:"(810) 244-9200",t:"Flint"},
+{c:"Medicare / Senior Insurance",n:"Hallmark Agency [own-site ✓] · Aug (Swartz Creek book): not now 8/10",p:"(810) 695-0600",t:"Grand Blanc"},
+{c:"Medicare / Senior Insurance",n:"Eaton Insurance Services (est. 1970) [own-site ✓]",p:"(810) 686-1470",t:"Clio"},
+{c:"Medicare / Senior Insurance",n:"Mid Michigan Health Insurance Advisors [verified]  · Aug (Swartz Creek book): left msg 8/10",p:"(810) 471-4796",t:"Flint"},
+{c:"Medicare / Senior Insurance",n:"⛔ IN THE BOOK — GENESEE HEALTH PLAN Medicare hotline (the county health plan's enrollment-counseling ad, not an agent) [Nov 2026 issue p8]",p:"(810) 339-6363",t:"Flint"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Brooke Tucker - Candidate for 67-4 District Court Judge [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 252-6619",t:"Fenton"},
+{c:"Elder Law / Estate Attorney",n:"⭐ CF Legal, PC [GB chamber]",p:"(810) 232-1112",t:"Flint"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Gault Davison P.C. [GB chamber]",p:"(810) 234-3633",t:"Grand Blanc"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Paul Scott & Associates, PLLC [GB chamber]",p:"(810) 265-7161",t:"Grand Blanc"},
+{c:"Elder Law / Estate Attorney",n:"⭐ Winegarden, Haley, Lindholm, Tucker, and Himelhoch, PLC [GB chamber]",p:"(810) 767-3600",t:"Grand Blanc"},
+{c:"Financial Planner / Retirement",n:"MMB Advisors (retirement planning) [GB chamber] — ask: Gerald Morse · Aug (Swartz Creek book): left msg 8/10",p:"(810) 350-9054",t:"Grand Blanc"},
+{c:"Financial Planner / Retirement",n:"Lewis & Knopf CPAs [SC chamber] — ask: Jeff Sabolish x2253 · Aug (Swartz Creek book): not now 8/10 · note: gonna be inttesetd ion future not right now save for later",p:"(810) 238-4617",t:"Flint"},
+{c:"Financial Planner / Retirement",n:"⭐ Ameriprise Financial Services, Inc-James Lang [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 695-3960",t:"Grand Blanc"},
+{c:"Financial Planner / Retirement",n:"⭐ Exclusive Home Loans [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 252-2558",t:"Burton"},
+{c:"Financial Planner / Retirement",n:"⭐ Fidelity Investments [GB chamber] · Aug (Swartz Creek book): no answer 8/11",p:"(810) 732-4925",t:"Grand Blanc"},
+{c:"Financial Planner / Retirement",n:"⭐ Merrill Lynch [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 603-8162",t:"Grand Blanc"},
+{c:"Financial Planner / Retirement",n:"⭐ RWS Financial Group [GB chamber]",p:"(810) 239-8825",t:"Flint"},
+{c:"Medical Clinic / Primary Care",n:"AMD Urgent Care SC (Miller Rd) [SC chamber] — ask: Crystol Massamino · Aug (Swartz Creek book): left msg 8/10",p:"(810) 564-7995",t:"Swartz Creek"},
+{c:"Medical Clinic / Primary Care",n:"Nature's Path Medical Center (Miller Rd) [SC chamber] — ask: Dr. Annalisa Behling · Aug (Swartz Creek book): no answer 8/11",p:"(810) 233-5300",t:"Swartz Creek"},
+{c:"Medical Clinic / Primary Care",n:"A Healthier You Counseling Center, PLLC [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 207-5384",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Beauti Pharm Med Spa [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 771-8777",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Cedar & Sage Therapy [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 286-3959",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Club Pilates [GB chamber] · Aug (Swartz Creek book): no answer 8/12",p:"(810) 201-6444",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"F.A.C.E.S., Inc [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 513-0040",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Grand Blanc Obstetrics & Gynecology, PC [GB chamber]",p:"(810) 694-7095",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Health Alliance Plan (HAP) [GB chamber]",p:"(810) 230-2006",t:"Flint"},
+{c:"Medical Clinic / Primary Care",n:"Henry Ford Health - Genesys Health Club [GB chamber]",p:"(810) 606-7300",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Hometown Family Medicine and Urgent Care [GB chamber]",p:"(810) 584-7957",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Hurley Neurological Center [GB chamber]",p:"(810) 262-7030",t:"Fenton"},
+{c:"Medical Clinic / Primary Care",n:"Journey through the Seasons Mental Wellness Services [GB chamber]",p:"(810) 230-4224",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"McLaren Community Medical Center [GB chamber]",p:"(810) 953-6400",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"McLaren Health Care Corporation [GB chamber]",p:"(810) 342-1100",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Medi-Weightloss [GB chamber]",p:"(810) 445-5500",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Patriot Ambulance Service [GB chamber]",p:"(810) 742-5391",t:"Flint"},
+{c:"Medical Clinic / Primary Care",n:"Planet Fitness [GB chamber]",p:"(810) 866-4911",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Rebekahs Health and Nutrition Source [GB chamber]",p:"(810) 866-4642",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Reclaiming Futures Counseling LLC [GB chamber]",p:"(810) 777-2000",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Regional Medical Imaging [GB chamber]",p:"(810) 732-1919",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Smoothie King [GB chamber]",p:"(810) 498-3040",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Snap Fitness [GB chamber]",p:"(810) 694-4000",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Surgery Center At Health Park [GB chamber]",p:"(810) 603-8200",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Weigh To Be [GB chamber]",p:"(810) 866-4567",t:"Grand Blanc"},
+{c:"Medical Clinic / Primary Care",n:"Xceptional Heroes [GB chamber]",p:"(810) 730-6136",t:"Flint"},
+{c:"Medical Clinic / Primary Care",n:"YWCA of Greater Flint [GB chamber]",p:"(810) 238-7626",t:"Flint"},
+{c:"Dentist / Dentures",n:"⭐ Action Traffic Maintenance, Inc [GB chamber]",p:"(810) 695-7516",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ CCN Fence [GB chamber]",p:"(810) 553-9232",t:"Flint"},
+{c:"Dentist / Dentures",n:"⭐ Debra A Chinonis, DDS, PC [GB chamber]",p:"(810) 695-5226",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ ;Dental Care Team, PC [GB chamber]",p:"(810) 695-1151",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ Diamond Precast LLC [GB chamber]",p:"(810) 422-9146",t:"Burton"},
+{c:"Dentist / Dentures",n:"⭐ Fessler & Bowman, Inc. [GB chamber]",p:"(810) 733-1313",t:"Holly"},
+{c:"Dentist / Dentures",n:"⭐ Grand Blanc Pediatric Dentistry [GB chamber]",p:"(810) 694-2770",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ LWD, Inc. [GB chamber]",p:"(810) 686-3980",t:"Burton"},
+{c:"Dentist / Dentures",n:"⭐ Mortimer Family Dentistry [GB chamber]",p:"(810) 743-5131",t:"Burton"},
+{c:"Dentist / Dentures",n:"⭐ Periodontal Specialists of Grand Blanc, Flint, & Clarkston [GB chamber]",p:"(810) 695-6444",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ Prestige Properties of Grand Blanc LLC [GB chamber]",p:"(810) 695-9901",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ Signet Residential, Inc. [GB chamber]",p:"(810) 695-5660",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ Vinyl Sash of Michigan [GB chamber]",p:"(810) 234-4831",t:"Grand Blanc"},
+{c:"Dentist / Dentures",n:"⭐ Werschky, Lewis and Slatton Family Dentistry [GB chamber]",p:"(810) 695-7120",t:"Grand Blanc"},
+{c:"Eye / Optometry",n:"Grand Blanc Eyes [GB chamber]",p:"(810) 694-3937",t:"Grand Blanc"},
+{c:"Eye / Optometry",n:"Vision Printing [GB chamber]",p:"(810) 516-9099",t:"Grand Blanc"},
+{c:"Pharmacy",n:"Swartz Creek Family Pharmacy (independent, Miller Rd) [SC chamber + own site ✓] — ask: John Gross",p:"(810) 635-3355",t:"Swartz Creek"},
+{c:"Pharmacy",n:"⭐ Grand Blanc Pharmacy [GB chamber]",p:"(810) 498-4334",t:"Grand Blanc"},
+{c:"Pharmacy",n:"⭐ Rexall Pharmacy [GB chamber]",p:"(810) 344-6422",t:"Grand Blanc"},
+{c:"Pharmacy",n:"⛔ IN THE BOOK — BIG BROTHERS PHARMACY (Brothers 2), 4801 Fenton Rd at Hemphill, Flint — free delivery, walk-in immunizations [Nov 2026 issue p5]",p:"(810) 820-8685",t:"Flint"},
+{c:"Physical Therapy / Chiropractic",n:"⭐ HealthQuest Chiropractic [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 771-7624",t:"Grand Blanc"},
+{c:"Physical Therapy / Chiropractic",n:"⭐ Renaissance Chiropractic Center, PC [GB chamber]",p:"(810) 715-7746",t:"Burton"},
+{c:"Bank / Credit Union",n:"Dort Financial Credit Union [SC chamber] · Aug (Swartz Creek book): left msg 8/10",p:"(810) 744-0580",t:"Flint"},
+{c:"Bank / Credit Union",n:"ELGA Credit Union [SC chamber] — ask: Cheryl Sclater · Aug (Swartz Creek book): left msg 8/10",p:"(810) 600-2529",t:"Grand Blanc"},
+{c:"Bank / Credit Union",n:"Financial Plus Credit Union [SC chamber] — ask: Jennette VanDusen · Aug (Swartz Creek book): left msg 8/10",p:"(810) 444-8499",t:"Flint"},
+{c:"Bank / Credit Union",n:"Dort Financial Credit Union [GB chamber]",p:"(810) 767-8390",t:"Grand Blanc"},
+{c:"Bank / Credit Union",n:"Financial Plus Credit Union [GB chamber]",p:"(810) 244-7018",t:"Grand Blanc"},
+{c:"Bank / Credit Union",n:"Genisys Credit Union [GB chamber]",p:"(810) 694-1301",t:"Grand Blanc"},
+{c:"Bank / Credit Union",n:"Security Credit Union [GB chamber]",p:"(810) 235-2322",t:"Grand Blanc"},
+{c:"Insurance",n:"Flushing Insurance Weddel Agency [SC+Flushing chambers] — ask: LeeAlan Weddel · Aug (Swartz Creek book): left msg 8/10",p:"(810) 867-4714",t:"Flushing"},
+{c:"Insurance",n:"Bois Insurance Agency [Flushing chamber] — ask: Robert Bois · Aug (Swartz Creek book): left msg 8/10",p:"(810) 659-7330",t:"Flushing"},
+{c:"Insurance",n:"Bradley Family Agency (new 2026 — hungry) [Flushing chamber] — ask: Michael Bradley · Aug (Swartz Creek book): left msg 8/10",p:"(810) 240-9941",t:"Flushing"},
+{c:"Insurance",n:"AAA Insurance Chinonis Agency [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 694-6900",t:"Grand Blanc"},
+{c:"Insurance",n:"Cislo Title & Insurance [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 771-5325",t:"Grand Blanc"},
+{c:"Insurance",n:"Francis Family Insurance Agency, Inc. [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 584-7148",t:"Grand Blanc"},
+{c:"Insurance",n:"Hamby Insurance Agency [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 285-9500",t:"Flushing"},
+{c:"Insurance",n:"Micah Widder Group PLLC [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 600-1335",t:"Flint"},
+{c:"Insurance",n:"Stamm Burge Agency [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 498-3430",t:"Grand Blanc"},
+{c:"Insurance",n:"Total Benefit Systems, Inc [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 239-0200",t:"Flint"},
+{c:"Insurance",n:"Trucordia [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 600-3123",t:"Flint"},
+{c:"Realtor / Downsizing / Senior Move",n:"Berkshire Hathaway — Carolyn McQuigg [SC chamber] · Aug (Swartz Creek book): left msg 8/10",p:"(810) 691-7344",t:"Flushing"},
+{c:"Realtor / Downsizing / Senior Move",n:"Red Fox Realty (Miller Rd) [SC chamber] — ask: Natalie Fox · Aug (Swartz Creek book): left msg 8/10",p:"(810) 813-3835",t:"Swartz Creek"},
+{c:"Realtor / Downsizing / Senior Move",n:"RE/MAX Select — Andrea Fick [SC chamber] · Aug (Swartz Creek book): left msg 8/10",p:"(810) 397-4501",t:"Flint"},
+{c:"Realtor / Downsizing / Senior Move",n:"Sedlarik Group Realty (Linden Rd) [SC chamber] · Aug (Swartz Creek book): left msg 8/10",p:"(810) 252-6749",t:"Swartz Creek"},
+{c:"Realtor / Downsizing / Senior Move",n:"American Associates, REALTORS [GB chamber] · Aug (Swartz Creek book): no answer 8/12",p:"(810) 694-3333",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Berkshire Hathaway HomeServices Michigan Real Estate [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 695-1990",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"CENTURY 21 Signature Realty [GB chamber] · Aug (Swartz Creek book): left msg 8/12 · note: 19899217000 need to call coprate",p:"(810) 695-3200",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Coldwell Banker Kuehnle & Associates- Kathy Quayle [GB chamber] · Aug (Swartz Creek book): not now 8/12 · note: in future",p:"(810) 695-1220",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Cooper Commercial Group, LTD [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 732-6000",t:"Flint"},
+{c:"Realtor / Downsizing / Senior Move",n:"GKM Services, Inc [GB chamber]",p:"(810) 603-2264",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Glover Agency [GB chamber]",p:"(810) 836-6508",t:"Davison"},
+{c:"Realtor / Downsizing / Senior Move",n:"Hamady Robinson, REALTORS® [GB chamber]",p:"(810) 744-4333",t:"Burton"},
+{c:"Realtor / Downsizing / Senior Move",n:"HM Homes 4 U [GB chamber]",p:"(810) 223-2340",t:"Gaines"},
+{c:"Realtor / Downsizing / Senior Move",n:"Jackie Stratton Realtor- Keller Williams First [GB chamber]",p:"(810) 397-2603",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Jane Murphy-Berkshire Hathaway HomeServices Michigan Real Estate- [GB chamber]",p:"(810) 348-4459",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Kathi Haddix-Athearn Realty, LLC [GB chamber]",p:"(810) 730-2672",t:"Fenton"},
+{c:"Realtor / Downsizing / Senior Move",n:"Keller Williams First [GB chamber]",p:"(810) 515-1503",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"Max Broock Realtors [GB chamber]",p:"(810) 300-7850",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"NextHome Inspire [GB chamber]",p:"(810) 955-3711",t:"Flint"},
+{c:"Realtor / Downsizing / Senior Move",n:"RE/MAX Edge [GB chamber]",p:"(810) 252-5888",t:"Goodrich"},
+{c:"Realtor / Downsizing / Senior Move",n:"RE/MAX Platinum [GB chamber]",p:"(810) 695-4111",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"S7 Holdings, LLC [GB chamber]",p:"(810) 701-0055",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"The Brokerage Real Estate Enthusiasts [GB chamber]",p:"(810) 498-4453",t:"Grand Blanc"},
+{c:"Realtor / Downsizing / Senior Move",n:"⛔ IN THE BOOK — CHARGER PROPERTIES, 3900 Hammerberg Rd, Flint (apartment communities, ChargerPropertiesMI.com) [Nov 2026 issue p8]",p:"(810) 676-8982",t:"Flint"},
+{c:"Heating / AC",n:"Macklin Heating & Cooling [SC chamber + Mackheat.com] — ask: Wayne Macklin · Aug (Swartz Creek book): no answer 8/10",p:"(810) 714-9500",t:"Swartz Creek"},
+{c:"Heating / AC",n:"Lucky Ducts Heating and Cooling [SC chamber] — ask: Stephen Groesser · Aug (Swartz Creek book): left msg 8/10",p:"(810) 394-1354",t:"Swartz Creek"},
+{c:"Heating / AC",n:"First Choice Heating & Cooling [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 750-8100",t:"Fenton"},
+{c:"Heating / AC",n:"G&G Climate Solutions [GB chamber]",p:"(810) 908-9989",t:"Gaines"},
+{c:"Electrician",n:"LJ Electric (Miller Rd) [SC chamber] — ask: Laura Sleiff · Aug (Swartz Creek book): left msg 8/11",p:"(810) 644-7769",t:"Swartz Creek"},
+{c:"Electrician",n:"Byers Electric Service Team [GB chamber]",p:"(810) 852-2378",t:"Swartz Creek"},
+{c:"Roofing / Siding / Gutters",n:"⛔ IN THE BOOK — A BETTER ROOF FOR LESS — serving Genesee County 24 years, abetterroofforless.com [Nov 2026 issue p5]",p:"(810) 687-3599",t:"Flint"},
+{c:"Remodeling / Bath & Accessibility",n:"TruEco Construction (Miller Rd) [SC chamber] — ask: Lauren Thornton · Aug (Swartz Creek book): no answer 8/11",p:"(810) 880-7663",t:"Swartz Creek"},
+{c:"Remodeling / Bath & Accessibility",n:"Tri City Construction [SC chamber] — ask: Nathan Shue · Aug (Swartz Creek book): left msg 8/11",p:"(810) 691-5383",t:"Flint"},
+{c:"Remodeling / Bath & Accessibility",n:"Copper House [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 662-4983",t:"Flint"},
+{c:"Remodeling / Bath & Accessibility",n:"Great Lakes 1-800 Painting LLC [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 820-4774",t:"Flint"},
+{c:"Remodeling / Bath & Accessibility",n:"Tru Blue of Grand Blanc [GB chamber] · Aug (Swartz Creek book): no answer 8/12",p:"(810) 243-1050",t:"Grand Blanc"},
+{c:"Landscaping / Snow / Tree",n:"Lake Pro Inc (lake/property services) [SC chamber] — ask: Paul Dominick · Aug (Swartz Creek book): no answer 8/10",p:"(810) 635-4400",t:"Swartz Creek"},
+{c:"Landscaping / Snow / Tree",n:"Backyard Oasis [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 736-9198",t:"Flint"},
+{c:"Landscaping / Snow / Tree",n:"Envious Landscape [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 208-7822",t:"Fenton"},
+{c:"Landscaping / Snow / Tree",n:"MB&C Outdoor Solutions, LLC [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 394-3924",t:"Davison"},
+{c:"Landscaping / Snow / Tree",n:"Timothy's Tractors [GB chamber] · Aug (Swartz Creek book): no answer 8/11",p:"(810) 422-9206",t:"Burton"},
+{c:"Cleaning / Restoration",n:"SERVPRO NW Genesee/Fenton (franchise flag, local owner) [SC chamber] — ask: Lauren Goslee · Aug (Swartz Creek book): left msg 8/10",p:"(810) 732-3298",t:"Flint"},
+{c:"Cleaning / Restoration",n:"1-800 WATER DAMAGE of Mid-Michigan [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 610-0375",t:"Swartz Creek"},
+{c:"Cleaning / Restoration",n:"Apex Restoration & Mitigation inc. [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 272-8820",t:"Grand Blanc"},
+{c:"Cleaning / Restoration",n:"Clearly Amazing [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 428-5866",t:"Grand Blanc"},
+{c:"Cleaning / Restoration",n:"ClearView Building Maintenance, Inc. [GB chamber] · Aug (Swartz Creek book): no answer 8/11",p:"(810) 736-8040",t:"Burton"},
+{c:"Cleaning / Restoration",n:"SERVPRO of Grand Blanc [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 694-6505",t:"Flint"},
+{c:"Cleaning / Restoration",n:"The Cleaning Collective, LLC [GB chamber]",p:"(810) 242-9097",t:"Grand Blanc"},
+{c:"Auto Service / Tire",n:"Chet's Auto Repair (110 YEARS) [YP dedicated] · Aug (Swartz Creek book): no answer 8/10",p:"(810) 767-0323",t:"Flint"},
+{c:"Auto Service / Tire",n:"Flint Ignition Service (95 years) [YP dedicated] · Aug (Swartz Creek book): no answer 8/10",p:"(810) 233-4272",t:"Flint"},
+{c:"Auto Service / Tire",n:"York Automotive [YP dedicated] · Aug (Swartz Creek book): no answer 8/10",p:"(810) 234-9675",t:"Flint"},
+{c:"Auto Service / Tire",n:"Car Clinic [YP dedicated] · Aug (Swartz Creek book): left msg 8/10",p:"(810) 780-4647",t:"Flint"},
+{c:"Auto Service / Tire",n:"Graff Chevrolet Durand (hometown dealer) [SC chamber] — ask: Chip Watt · Aug (Swartz Creek book): left msg 8/10",p:"(989) 288-2657",t:"Durand"},
+{c:"Auto Service / Tire",n:"Randy Wise Auto Mall [SC chamber] — ask: Glen Bridarolli · Aug (Swartz Creek book): left msg 8/10",p:"(810) 230-2500",t:"Flint"},
+{c:"Auto Service / Tire",n:"Allied Recoveries, Inc. [GB chamber]",p:"(810) 853-8534",t:"Davison"},
+{c:"Auto Service / Tire",n:"America's Most Wanted 4x4 [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 406-7445",t:"Burton"},
+{c:"Auto Service / Tire",n:"D&L Auto Detailing and Ceramic Pro Tri-County Auto Spa [GB chamber] · Aug (Swartz Creek book): not now 8/11",p:"(810) 793-1247",t:"Otisville"},
+{c:"Auto Service / Tire",n:"DB’s autoglass [GB chamber]",p:"(810) 391-9082",t:"Grand Blanc"},
+{c:"Auto Service / Tire",n:"Diamond Jim's Tire & Auto Service [GB chamber] · Aug (Swartz Creek book): no answer 8/11",p:"(810) 743-4210",t:"Burton"},
+{c:"Auto Service / Tire",n:"Grand Pointe Automotive, LLC [GB chamber] · Aug (Swartz Creek book): left msg 8/11",p:"(810) 603-1900",t:"Grand Blanc"},
+{c:"Auto Service / Tire",n:"O'Reilly Auto Parts [GB chamber] · Aug (Swartz Creek book): left msg 8/12",p:"(810) 579-0128",t:"Grand Blanc"},
+{c:"Auto Service / Tire",n:"Tommy's Express Car Wash - Grand Blanc [GB chamber]",p:"(810) 202-2385",t:"Grand Blanc"},
+{c:"Auto Service / Tire",n:"⛔ IN THE BOOK — RANDY WISE CHEVROLET, 300 S Main St, Davison, randywisechevy.com [Nov 2026 issue p8]",p:"(810) 496-0094",t:"Davison"},
+{c:"Restaurant / Bakery / Catering",n:"Fireside Coffee (Elms Rd) [SC chamber] — ask: Angie Root",p:"(810) 635-9196",t:"Swartz Creek"},
+{c:"Restaurant / Bakery / Catering",n:"The Pig and The Hen [SC chamber] — ask: Ryan Matthews",p:"(810) 733-8553",t:"Flint"},
+{c:"Restaurant / Bakery / Catering",n:"Homeboy Barbeque (Beecher Rd) [SC chamber]",p:"(810) 210-5678",t:"Flushing"},
+{c:"Restaurant / Bakery / Catering",n:"Bueche's Food World (independent grocery, Flushing institution) [Flushing chamber] — ask: Jennifer Wilkins",p:"(810) 659-6162",t:"Flushing"},
+{c:"Restaurant / Bakery / Catering",n:"Montrose Orchards (orchard/bakery/cider — trip-partner class) [Flushing chamber] — ask: Dan Hill",p:"(810) 639-6971",t:"Montrose"},
+{c:"Restaurant / Bakery / Catering",n:"Bangkok Peppers [GB chamber]",p:"(810) 695-2669",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Big Apple Bagels [GB chamber]",p:"(810) 695-6063",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Big John Steak & Onion [GB chamber]",p:"(810) 695-3323",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Brick Street of Grand Blanc [GB chamber]",p:"(810) 603-2114",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Bubble Bee Tea, LLC [GB chamber]",p:"(810) 428-9900",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Colony's Quality Meats [GB chamber]",p:"(810) 694-8421",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Cottage Inn Pizza [GB chamber]",p:"(810) 695-6650",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Freakin' Unbelievable Burgers [GB chamber]",p:"(810) 771-4206",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Grand Blanc Chicken Shack [GB chamber]",p:"(810) 603-7527",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Great Harvest Bread Co [GB chamber]",p:"(810) 953-1197",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Great Lakes Eatz & Treatz [GB chamber]",p:"(810) 522-8938",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Irene's Craft Kitchen and Biergarten [GB chamber]",p:"(810) 344-4003",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Leos Coney Island [GB chamber]",p:"(810) 606-0500",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Little Joe's [GB chamber]",p:"(810) 694-8391",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"McAlister's Deli [GB chamber]",p:"(810) 344-4219",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Melli Cafe [GB chamber]",p:"(810) 210-1740",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"MI Poke Grand Blanc [GB chamber]",p:"(810) 866-4772",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Parlor Doughnuts [GB chamber]",p:"(810) 584-7050",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Qamaria Yemeni Coffee LLC [GB chamber]",p:"(810) 336-1881",t:"Grand Blanc"},
+{c:"Restaurant / Bakery / Catering",n:"Texas Roadhouse Fenton [GB chamber]",p:"(810) 390-5381",t:"Fenton"},
+{c:"Restaurant / Bakery / Catering",n:"Zatar & Olive Mediterranean Cuisine [GB chamber]",p:"(810) 653-9355",t:"Davison"},
+{c:"Florist 💐",n:"Pink Lady's Slipper Florist (Miller Rd) [SC chamber] — ask: Lori Bausack",p:"(810) 635-8164",t:"Swartz Creek"},
+{c:"Florist 💐",n:"Flushing Florist [Flushing chamber] — ask: Kreg Krueger",p:"(810) 659-5741",t:"Flushing"},
+{c:"Florist 💐",n:"Fenner's Floral [GB chamber]",p:"(810) 820-2312",t:"Burton"},
+{c:"Travel / Tours / Recreation",n:"Sullivan's Irish Alley & TRAVEL (senior-trip fit) [Flushing chamber] — ask: Caron/Edward Sullivan",p:"(810) 487-2473",t:"Flushing"},
+{c:"Travel / Tours / Recreation",n:"B's Bowling (senior leagues) [SC chamber] — ask: Frank Pepp",p:"(810) 736-4880",t:"Flint"},
+{c:"Travel / Tours / Recreation",n:"American Youth Soccer Organization (AYSO), Region 169 [GB chamber]",p:"(810) 694-5425",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Atlas Valley Country Club [GB chamber]",p:"(810) 636-9501",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Back to the Bricks [GB chamber]",p:"(810) 877-8383",t:"Flint"},
+{c:"Travel / Tours / Recreation",n:"Flint City Bucks [GB chamber]",p:"(810) 666-2515",t:"Flint"},
+{c:"Travel / Tours / Recreation",n:"Flint Elks 222 [GB chamber]",p:"(810) 743-9440",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Genesee County Parks [GB chamber]",p:"(810) 736-7100",t:"Flint"},
+{c:"Travel / Tours / Recreation",n:"Grand Blanc Gymnastics Co [GB chamber]",p:"(810) 694-3222",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Kids Castle [GB chamber]",p:"(810) 498-4818",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Seifert Golf Center, LLC [GB chamber]",p:"(810) 655-8070",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"The Back Nine - Grand Blanc [GB chamber]",p:"(810) 471-4653",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"The Captain's Club Golf & Event Center [GB chamber]",p:"(810) 695-5555",t:"Grand Blanc"},
+{c:"Travel / Tours / Recreation",n:"Warwick Hills Golf & Country Club [GB chamber]",p:"(810) 694-4103",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Gill-Roy's Hardware (locally owned) [Flushing chamber] — ask: Meagan Epperson · Aug (Swartz Creek book): not now 8/11",p:"(810) 659-2275",t:"Flushing"},
+{c:"Patron / Community Sponsor 💰",n:"Bella's Book Nook & Cafe (Miller Rd) [SC chamber]",p:"(810) 955-2335",t:"Swartz Creek"},
+{c:"Patron / Community Sponsor 💰",n:"Sisters Vin-tiques (thrift/antiques, Miller Rd) [SC chamber] — ask: Laura Dickerson",p:"(989) 345-5045",t:"Swartz Creek"},
+{c:"Patron / Community Sponsor 💰",n:"Swartz Creek Mini Storage (Morrish Rd) [SC chamber] — ask: Karl Opperthauser",p:"(810) 635-4455",t:"Swartz Creek"},
+{c:"Patron / Community Sponsor 💰",n:"Palace Jewelers [YP dedicated]",p:"(810) 750-0260",t:"Fenton"},
+{c:"Patron / Community Sponsor 💰",n:"Mary Spooner, Stylist (River Edge, senior perms) [SC chamber]",p:"(810) 735-7600",t:"Linden"},
+{c:"Patron / Community Sponsor 💰",n:"A-Frame Awards, Inc. [GB chamber]",p:"(810) 767-8881",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Ace Hardware [GB chamber]",p:"(810) 694-5710",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Anavista Photography [GB chamber]",p:"(810) 429-5341",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Andrews Hooper Pavlik PLC [GB chamber]",p:"(810) 733-3450",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Austin Michael Institute of Cosmetology [GB chamber]",p:"(810) 255-8181",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Batteries Plus Bulbs of Burton [GB chamber]",p:"(810) 744-4140",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Beauchamp Water Treatment Solutions [GB chamber]",p:"(810) 772-1687",t:"Fenton"},
+{c:"Patron / Community Sponsor 💰",n:"Benjamin Moore-The Paint Centers [GB chamber]",p:"(810) 771-4399",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Bishop International Airport Authority [GB chamber]",p:"(810) 235-6560",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"BJ's Garage Doors Inc. [GB chamber]",p:"(810) 442-7243",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Blue Line Services [GB chamber]",p:"(810) 771-5766",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Borton's Doggy Play and Stay, LLC [GB chamber]",p:"(810) 877-6035",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Carl's Appliance [GB chamber]",p:"(810) 694-3031",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Cathy Lane - Road Commission Board [GB chamber]",p:"(810) 694-0524",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Cheryl Lopez-Candidate for 67th Court Judge [GB chamber]",p:"(810) 360-9489",t:"Fenton"},
+{c:"Patron / Community Sponsor 💰",n:"Choice One Bank - Grand Blanc [GB chamber]",p:"(810) 695-9601",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Cimple Home Construction LLC [GB chamber]",p:"(810) 386-3532",t:"Clio"},
+{c:"Patron / Community Sponsor 💰",n:"Clothed Boutique [GB chamber]",p:"(810) 964-4427",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Comfort Guard Windows and Doors [GB chamber]",p:"(810) 742-5065",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Complete Runner [GB chamber]",p:"(810) 603-7092",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Costco Wholesale [GB chamber]",p:"(810) 496-6837",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Cumulus Media [GB chamber]",p:"(810) 238-7300",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Cyberlink Computing, LLC [GB chamber]",p:"(810) 250-7553",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Darby Tax Service [GB chamber]",p:"(810) 694-9301",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Deer Park Vintage Co. [GB chamber]",p:"(810) 498-4825",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Dr. Wax Orthodontics [GB chamber]",p:"(810) 458-6188",t:"Linden"},
+{c:"Patron / Community Sponsor 💰",n:"Dunk Tank Company [GB chamber]",p:"(810) 221-1580",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Exhale Salon [GB chamber]",p:"(810) 424-1209",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Fairfield Inn & Suites by Marriott-Grand Blanc [GB chamber]",p:"(810) 901-0000",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Fairways at Woodfield Apartments [GB chamber]",p:"(810) 695-4433",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Fenton Winery & Brewery [GB chamber]",p:"(810) 373-4194",t:"Fenton"},
+{c:"Patron / Community Sponsor 💰",n:"Flint & Genesee Group - Chamber [GB chamber]",p:"(810) 600-1404",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Flint Genesee Job Corps Center [GB chamber]",p:"(810) 553-4300",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"FlintPrints [GB chamber]",p:"(810) 740-7400",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Ford's Party Rental [GB chamber]",p:"(810) 732-5130",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"FOX 103.9 WRSR Krol Communications, Inc [GB chamber]",p:"(810) 720-9510",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Frozen In Time Treasures [GB chamber]",p:"(810) 965-8727",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Gabriana Jewelers [GB chamber]",p:"(810) 603-0055",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Galaxy Lanes [GB chamber]",p:"(810) 695-2700",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Genesee County Commissioner - James Avery [GB chamber]",p:"(810) 429-6670",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Glo Beauty Studio [GB chamber]",p:"(810) 963-3508",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Golden Lair Games [GB chamber]",p:"(810) 344-9375",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Academy [GB chamber]",p:"(810) 953-3140",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Community Schools [GB chamber]",p:"(810) 591-6000",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc High School [GB chamber]",p:"(810) 241-4921",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Music [GB chamber]",p:"(810) 498-4968",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Printing Inc. [GB chamber]",p:"(810) 694-1155",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Processing [GB chamber]",p:"(810) 694-6000",t:"Holly"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Blanc Youth Football, Inc [GB chamber]",p:"(810) 836-4304",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Grand Oak Mortgage Co [GB chamber]",p:"(810) 695-5400",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Hampton Inn & Suites [GB chamber]",p:"(810) 234-8400",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Henry Ford Health Genesys Hospital (formerly Ascension Genesys) [GB chamber]",p:"(810) 606-5000",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Hoerner & Geer CPA's [GB chamber]",p:"(989) 845-3232",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Home 2 Suites by Hilton - Grand Blanc/Flint [GB chamber]",p:"(810) 498-0000",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Homezone Windows [GB chamber]",p:"(810) 344-9500",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Huntington [GB chamber]",p:"(810) 238-3731",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Hurley Medical Center [GB chamber]",p:"(810) 262-9000",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Hyatt Place [GB chamber]",p:"(810) 424-9000",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"I.N.C. Systems [GB chamber]",p:"(810) 213-2100",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Kais-AIR [GB chamber]",p:"(810) 694-5763",t:"Holly"},
+{c:"Patron / Community Sponsor 💰",n:"Karl Haiser, CPA, PC [GB chamber]",p:"(810) 695-0131",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Kerlyn Serenity Studio [GB chamber]",p:"(810) 373-9758",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Kincaid’s Septic and Portables [GB chamber]",p:"(810) 655-6835",t:"Swartz Creek"},
+{c:"Patron / Community Sponsor 💰",n:"Lake Michigan Credit Union (LMCU) [GB chamber]",p:"(810) 241-9456",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Las Vegas Knights LLC [GB chamber]",p:"(810) 919-0961",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Laugh & Learn Therapy [GB chamber]",p:"(810) 545-7230",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Love My Design [GB chamber]",p:"(810) 853-9154",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Main Manufacturing Products, Inc [GB chamber]",p:"(810) 953-1380",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Mainstream Boutique Grand Blanc [GB chamber]",p:"(810) 603-7819",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Mara Technologies USA [GB chamber]",p:"(810) 498-3105",t:"Holly"},
+{c:"Patron / Community Sponsor 💰",n:"Mass Transportation Authority (MTA) [GB chamber]",p:"(810) 767-0100",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"McLaren Flint [GB chamber]",p:"(810) 342-2000",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"MD Mortgage [GB chamber]",p:"(810) 691-4757",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Medawar Jewelers [GB chamber]",p:"(810) 733-7778",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"MediaSkapes [GB chamber]",p:"(810) 410-4737",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Medilodge of Grand Blanc [GB chamber]",p:"(810) 694-1970",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Merchants Beer, Wine & Spirits [GB chamber]",p:"(810) 498-4758",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Minuteman Press [GB chamber]",p:"(810) 345-7111",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Networking Now Fenton [GB chamber]",p:"(810) 730-2964",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Outfront Media [GB chamber]",p:"(810) 232-8400",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Paris The Jeweler-Formerly Diamond In The Rough Jewelers [GB chamber]",p:"(810) 953-3760",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Plante & Moran, PLLC [GB chamber]",p:"(810) 767-5350",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"POS of Michigan [GB chamber]",p:"(810) 422-5598",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Posh Designs & Decor [GB chamber]",p:"(810) 344-4498",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Premier Security Solutions Company, Inc [GB chamber]",p:"(810) 429-7588",t:"Burton"},
+{c:"Patron / Community Sponsor 💰",n:"Prime Outdoor Solutions [GB chamber]",p:"(810) 444-4989",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Redwood Grand Blanc [GB chamber]",p:"(810) 515-0469",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Refinery Head Spa [GB chamber]",p:"(810) 218-3881",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Regency at Grand Blanc [GB chamber]",p:"(810) 695-8920",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Reid's Barber Shop [GB chamber]",p:"(810) 694-3221",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Residences of Grand Blanc Apartments - MAPLEBROOK [GB chamber]",p:"(810) 256-0580",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"ROWE Professional Services Co [GB chamber] · Aug (Swartz Creek book): not now 8/12",p:"(810) 341-7500",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Scott Hampton Tattoos [GB chamber]",p:"(810) 241-4455",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Sedgewick + Ferweda Architects [GB chamber]",p:"(810) 238-9647",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Sherwin-Williams [GB chamber]",p:"(810) 695-9583",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Signs by Crannie [GB chamber]",p:"(810) 487-0000",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Smart Storage [GB chamber]",p:"(810) 261-6033",t:"Swartz Creek"},
+{c:"Patron / Community Sponsor 💰",n:"TD&A!  Tomlinson Design & Advertising [GB chamber]",p:"(810) 742-0932",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"The Four Paws Hotel and Day Resort, LLC [GB chamber]",p:"(810) 771-7266",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"The Golden Child Learning Center [GB chamber]",p:"(810) 836-8267",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"The Grand Mall & Office Center [GB chamber]",p:"(810) 694-1670",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"The Great Put On, Inc [GB chamber]",p:"(810) 771-4174",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"The Junkluggers of Greater Mid-Michigan [GB chamber]",p:"(989) 395-4086",t:"Holly"},
+{c:"Patron / Community Sponsor 💰",n:"Theresa Cooney [GB chamber]",p:"(810) 853-0097",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Trapper Richard C Smith [GB chamber]",p:"(810) 694-7555",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Two Men and a Truck [GB chamber]",p:"(810) 212-2201",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"UM-Flint Office of Economic Development [GB chamber]",p:"(810) 424-5486",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Valley Tent Rental [GB chamber]",p:"(810) 459-7368",t:"Goodrich"},
+{c:"Patron / Community Sponsor 💰",n:"Visual Edge IT [GB chamber]",p:"(810) 606-0080",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Wellbridge of Grand Blanc [GB chamber]",p:"(810) 445-5300",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Wendling Orthodontics [GB chamber]",p:"(810) 214-3711",t:"Grand Blanc"},
+{c:"Patron / Community Sponsor 💰",n:"Whaley Children's Center [GB chamber]",p:"(810) 234-3603",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"WJRT ABC 12 [GB chamber]",p:"(810) 233-3130",t:"Flint"},
+{c:"Patron / Community Sponsor 💰",n:"Youthfulyou Retreat OLC [GB chamber]",p:"(810) 241-3966",t:"Grand Blanc"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #13 — McGHEE'S HEATING & AIR CONDITIONING / Scott McGhee, owner (Cheryl Zelmer sent the ad) — TRINITY LUTHERAN 15-0549 — 4-SPACE $1,400/yr PREPAID = 13 issues (monthly newsletter, Connected) — ORDER GOING IN 10/22 ~4p (billing under Scott, the business address 7301 Red Arrow Hwy, Stevensville 49127; first issue off the picker, should be DEC 1) · czelmer@mcgheesheating.com · the order pack relayed 10/22 4:01p",p:"(269) 466-0123",t:"Stevensville",e:"czelmer@mcgheesheating.com",loc:"TRINITY LUTHERAN 15-0549 · Stevensville MI"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #12 — SHAWN BRITTINGHAM / MILLENNIUM PLUMBING & HEATING, LLC (1219 N Calvert St, Baltimore 21202; since 2007, MD plumbing lic. 23700) — OUR LADY OF FATIMA 03-1396 — 1-SPACE $500/yr, MONTHLY, card given on the 10/20 call → order going in 10/20; the design team pulls the logo off millennium-plumbing.com (his word) · owner per BBB: Shawn R. Brittingham (+ Steve Brittingham) · millenniumplumbing@yahoo.com · lead + order pack relayed 10/20 4:17p",p:"(410) 265-8833",t:"Elsewhere",e:"millenniumplumbing@yahoo.com",u:"https://millennium-plumbing.com/",q:"Millennium Plumbing & Heating Baltimore MD",mq:"1219 N Calvert St Baltimore MD 21202",loc:"OUR LADY OF FATIMA 03-1396 · Baltimore MD"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #11 — PAULINE O'KEEFE / LE MAHJONGG SALON (Centerville MA; American Mah Jongg lessons, parties, corporate) — OUR LADY OF VICTORY CENTERVILLE MA 04-0085 (your first book) — INBOUND 10/20 off the house ad → said yes to a 1-SPACE $500/yr (G5 card $670) → her reply 10/20: both sides of her business card + her address + PREPAY = 56 issues → ORDER ENTERED 10/20, first issue NOV 15 2026, last Dec 5 2027 · design team builds from the card + her site, proof + pay link to both · lemahjonggsalon@gmail.com · (508) 364-3240 · lemahjonggsalon.com",p:"(508) 364-3240",t:"Elsewhere",e:"lemahjonggsalon@gmail.com",u:"https://lemahjonggsalon.com/",q:"Le Mahjongg Salon Pauline O'Keefe Centerville MA",mq:"57 Gleneagle Dr Centerville MA",loc:"OUR LADY OF VICTORY 04-0085 · Centerville MA (Cape Cod)"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #9 — KELLY THOMAS (Office Manager) / INSURANCE MANAGEMENT SERVICES (Mt. Juliet TN) — LEBANON SENIOR CENTER 14-1690 — PREMIUM 2-space, $850 PREPAID (+1 month), billing under Kelly at 258 W Division St Ste 100, Mt. Juliet 37122 — order entered 10/15, her ad in hand, proof + pay link come from the design team · her direct (615) 755-6924 · OPP OPEN since 10/5 · 258 W Division St Ste 100, Mt. Juliet 37122 · imsbenefits.com · Katrina Carlson is also insurance in the Dec 1 issue, never name one to the other · WON 10/15",p:"(615) 831-3800",t:"Elsewhere",e:"kthomas@imsbenefits.com",q:"Insurance Management Services Mt. Juliet TN",mq:"258 W Division St Mt. Juliet TN 37122",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #10 — GAIL MINOR-BABIN / Healing Harmonies (Littleton NH) — ST. ROSE OF LIMA 04-0478 — 2-space $700/yr, order entered 10/15, billing 503 Brickyard Rd Littleton 03561, her card + harp photo went to the design team, proof + pay link coming; her real email is in her 10/16 text (the card and the directory were both wrong) · (603) 991-8342",p:"(603) 575-5716",t:"Elsewhere",u:"https://www.facebook.com/gail.minorbabin.9/",q:"Gail Minor-Babin Littleton NH",mq:"503 Brickyard Rd Littleton NH 03561",loc:"ST. ROSE OF LIMA 04-0478 · Littleton NH"},
+{c:"🏆 SOLD / MONEY OWED",n:"✅ SOLD #8 — KATRINA CARLSON / CARLSON INSURANCE GROUP — LEBANON SENIOR CENTER 14-1690 — Basic, pays in full — thank-you reply owed (proof + pay link come by email)",p:"(615) 200-7464",t:"Elsewhere",e:"katrina@carlsoninsgrp.com",loc:"LEBANON SENIOR CENTER 14-1690 · Lebanon / Mt. Juliet TN"},
+{c:"🏆 SOLD / MONEY OWED",n:"🔥 CURLEY — $1,000 ($500×2: OLV 04-0085 + ASSUMPTION OSTERVILLE 04-0891) — both orders entered 9/14, UNPAID — get the card",p:"(508) 790-4508",t:"Elsewhere",loc:"OUR LADY OF VICTORY 04-0085 + ASSUMPTION 04-0891 · Centerville / Osterville MA"},
+{c:"🏆 SOLD / MONEY OWED",n:"PRO TOUCH — SOLD 9/14 ($500 ST. JOHN XXIII 14-0127) — he owes a card call for quarterly billing",p:"(734) 637-6736",t:"Elsewhere",loc:"ST. JOHN XXIII 14-0127 · Redford MI"},
+];
+LEADS.forEach(l=>{const m=TOWNMI[l.t]||[12,2];l.mi=m[0];l.tier=m[1];l.dig=l.p.replace(/\D/g,'');});
+function hayOf(l){const r=(typeof STATE!=='undefined'&&STATE[l.dig])||{};return (l.n+' '+l.c+' '+l.t+' '+l.p+' '+l.dig+' '+(l.e||'')+' '+(r.notes||'')+' '+(r.email||'')+' '+(r.dm||'')).toLowerCase();}
+function termHit(l,term){if(hayOf(l).indexOf(term)>=0)return true;const d=term.replace(/\D/g,'');return d.length>=3&&l.dig.indexOf(d)>=0;}
+function strongTerm(term){return !!term&&(term.indexOf('@')>=0||term.replace(/\D/g,'').length>=7);}
+(function(){const hc=document.getElementById('hdrcount');if(hc)hc.textContent=LEADS.length;})();
+
+// ================= STATUSES =================
+const STATUS={
+  noanswer:{lbl:"No answer",c:"var(--muted)",g:"○"},
+  leftmsg:{lbl:"Left msg",c:"var(--blue)",g:"✉"},
+  answered:{lbl:"Answered",c:"var(--purple)",g:"☎"},
+  callback:{lbl:"Callback",c:"var(--orange)",g:"↩"},
+  followup:{lbl:"Follow-Up",c:"var(--purple)",g:"📧"},
+  inprogress:{lbl:"In Progress",c:"var(--teal)",g:"⏳"},
+  notnow:{lbl:"Not interested",c:"var(--red)",g:"✕"},
+  won:{lbl:"WON",c:"var(--green)",g:"★"},
+  called:{lbl:"Called",c:"var(--muted)",g:"✓"}
+};
+const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
+
+// ================= STORAGE (per-church key — never collides with other weeks) =================
+const LIST_ID="burton-seniorcenter-15-0682";
+const SKEY="callstate_v2_"+LIST_ID;
+let STATE={};
+try{STATE=JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){STATE={};}
+// SEED — none yet (new book 10/26); device state is the truth
+const SEED={};
+try{let sd=false;for(const k in SEED){if(!STATE[k]){STATE[k]=SEED[k];sd=true;}}if(sd)localStorage.setItem(SKEY,JSON.stringify(STATE));}catch(e){}
+// ask the browser to protect this site's storage from eviction
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+function rec(dig){return STATE[dig]||(STATE[dig]={status:'',ts:0,notes:'',dm:'',time:'',email:''});}
+function callCount(r){if(!r)return 0;return (r.hist&&r.hist.length)||(r.ts?1:0);} // every history entry = one call; legacy ts counts as 1
+function logCall(l){const r=rec(l.dig);r.ts=Date.now();(r.hist=r.hist||[]).push({ts:r.ts,st:'called'});if(r.hist.length>50)r.hist=r.hist.slice(-50);save();}
+function undoCall(l){const r=rec(l.dig);if(r.hist&&r.hist.length){r.hist.pop();r.ts=r.hist.length?r.hist[r.hist.length-1].ts:0;save();}}
+function todayCalls(){let n=0;LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.hist)r.hist.forEach(h=>{if(isToday(h.ts))n++;});else if(isToday(r.ts))n++;});return n;}
+const EMPTY={status:'',ts:0,notes:'',dm:'',time:'',email:''};
+function get(dig){return STATE[dig]||EMPTY;}
+let saveT;
+function save(){
+  try{localStorage.setItem(SKEY,JSON.stringify(STATE));flagSaved(false);}
+  catch(e){flagSaved(true);}
+}
+function flagSaved(err){const f=document.getElementById('savedflag');f.textContent=err?'⚠ NOT saved — Export now':'Saved ✓';f.classList.toggle('err',err);f.classList.add('show');clearTimeout(saveT);saveT=setTimeout(()=>f.classList.remove('show'),err?4000:850);}
+
+// ================= HELPERS =================
+function isToday(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
+function setStatus(l,st){
+  const r=rec(l.dig);r.status=(r.status===st)?'':st;
+  if(r.status){
+    r.ts=Date.now();
+    (r.hist=r.hist||[]).push({ts:r.ts,st:r.status});
+    if(r.hist.length>50)r.hist=r.hist.slice(-50);
+    // Follow-Up = sent info / somewhat interested -> auto-schedule the call-back 3 days out, 10am, skipping weekends
+    if(st==='followup'&&!r.time){
+      const d=new Date();d.setDate(d.getDate()+3);
+      while(d.getDay()===0||d.getDay()===6)d.setDate(d.getDate()+1);
+      d.setHours(10,0,0,0);
+      const p=n=>(n<10?'0':'')+n;
+      r.time=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());
+      showToast('📧 Follow-up call set — '+shortWhen(r.time));
+    }
+  }
+  save();if(r.status==='won')confetti();
+}
+const GOAL=50; // Abe 9/21: minimum 50 dials/day on this book, more if the leads allow — always leave a VM
+
+const app=document.getElementById('app'),q=document.getElementById('q'),bar=document.getElementById('bar'),toast=document.getElementById('toast'),scoreEl=document.getElementById('score'),chipsEl=document.getElementById('chips');
+let hideDone=false,nearOnly=false,emOnly=false,sortMode='cat',statusView='',chipCat='';
+const FOLD={};
+
+function copyNum(p,btn){const ok=()=>{btn.textContent='Copied';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('ok');},900);showToast('Copied  '+p);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).then(ok,()=>fb(p,ok));}else fb(p,ok);}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
+let tt;function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1100);}
+function srch(name,town,l){return "https://www.google.com/search?q="+encodeURIComponent((l&&l.q)?l.q:(name+" "+town+" MI"));}
+function maps(name,town,l){return 'https://www.google.com/maps/search/'+encodeURIComponent((l&&(l.mq||l.q))?(l.mq||l.q):(name+' '+town+' MI'));}
+function esc(s){return (s+'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+// ================= CATEGORY CHIPS =================
+function buildChips(){
+  chipsEl.innerHTML='';
+  const mk=(label,val,n)=>{
+    const b=document.createElement('button');b.className='chip'+(chipCat===val?' on':'');
+    b.innerHTML=esc(label)+(n!=null?'<small>'+n+'</small>':'');
+    b.addEventListener('click',()=>{chipCat=(chipCat===val)?'':val;buildChips();build();});
+    chipsEl.appendChild(b);
+  };
+  mk('All','',LEADS.length);
+  CATS.forEach(c=>{const n=LEADS.filter(l=>l.c===c).length;if(n)mk(c.replace(/ \/ /g,'/'),c,n);});
+}
+
+// ================= DETAIL =================
+function detailEl(l){
+  const r=get(l.dig);
+  const d=document.createElement('div');d.className='detail';
+  const stat=document.createElement('div');stat.className='stat';
+  ORDER.forEach(st=>{
+    const b=document.createElement('button');b.className='sbtn'+(r.status===st?' sel':'');b.textContent=STATUS[st].g+' '+STATUS[st].lbl;
+    if(r.status===st)b.style.background=STATUS[st].c;
+    b.addEventListener('click',e=>{e.stopPropagation();setStatus(l,st);build();});
+    stat.appendChild(b);
+  });
+  d.appendChild(stat);
+  const cbBox=document.createElement('div');cbBox.className='cbk';
+  cbBox.innerHTML='<div class="hd">↩ “Call me back at…” — one tap sets the callback + reminder</div>';
+  if(r.time){
+    const cur=document.createElement('div');cur.className='pctime'+(new Date(r.time)<=new Date()?' over':'');
+    cur.textContent='Set: call back '+shortWhen(r.time);
+    cbBox.appendChild(cur);
+  }
+  cbBox.appendChild(chipTimePicker({
+    onSet:(s,lab)=>{const rr=rec(l.dig);rr.time=s;rr.status='callback';rr.ts=Date.now();save();showToast('↩ Callback '+lab+' — it’s in your Tasks');build();},
+    onClear:r.time?()=>{rec(l.dig).time='';save();showToast('Callback cleared');build();}:null
+  }));
+  d.appendChild(cbBox);
+  const fn=document.createElement('div');fn.className='fld';fn.innerHTML='<label>Notes</label>';
+  const ta=document.createElement('textarea');ta.value=r.notes||'';ta.placeholder='What happened on the call…';
+  ta.addEventListener('click',e=>e.stopPropagation());
+  ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+  ta.addEventListener('blur',save);
+  fn.appendChild(ta);d.appendChild(fn);
+  d.appendChild(chipRow(l,ta));
+  const cbk=document.createElement('div');cbk.className='cbk';
+  cbk.innerHTML='<div class="hd">Right person / contact</div>';
+  const g=document.createElement('div');g.className='dgrid';
+  function field(lbl,val,key,type,full){
+    const w=document.createElement('div');w.className='fld'+(full?' full':'');w.innerHTML='<label>'+lbl+'</label>';
+    const i=document.createElement('input');i.type=type||'text';i.value=val||'';
+    i.addEventListener('click',e=>e.stopPropagation());
+    i.addEventListener('input',()=>{rec(l.dig)[key]=i.value;clearTimeout(i._t);i._t=setTimeout(save,300);});
+    i.addEventListener('change',save);i.addEventListener('blur',save);
+    w.appendChild(i);return w;
+  }
+  g.appendChild(field('Ask for (name / title)',r.dm,'dm','text',true));
+  g.appendChild(field('Email',r.email,'email','text',true));
+  cbk.appendChild(g);
+  d.appendChild(cbk);
+  if(r.hist&&r.hist.length){
+    const hb=document.createElement('div');hb.className='lastc';
+    hb.textContent='History ('+r.hist.length+' calls): '+r.hist.slice(-6).reverse().map(h=>new Date(h.ts).toLocaleDateString([],{month:'numeric',day:'numeric'})+' '+(STATUS[h.st]?STATUS[h.st].g+' '+STATUS[h.st].lbl:h.st)).join('  ·  ');
+    const un=document.createElement('a');un.textContent='  − undo last call';un.style.cssText='color:var(--red);font-weight:650;cursor:pointer;margin-left:8px';
+    un.addEventListener('click',e=>{e.stopPropagation();undoCall(l);showToast('Last call removed');build();});
+    hb.appendChild(un);
+    d.appendChild(hb);
+  }
+  const lk=document.createElement('div');lk.className='links';
+  lk.innerHTML=(l.e?'<a href="mailto:'+l.e+'">✉ '+esc(l.e)+'</a>':'')+'<a target="_blank" rel="noopener" href="'+(l.u||srch(l.n,l.t,l))+'">🔎 Web</a><a target="_blank" rel="noopener" href="'+maps(l.n,l.t,l)+'">📍 Maps</a><a href="tel:1'+l.dig+'">📞 Dial</a>';
+  lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+  d.appendChild(lk);
+  if(r.ts){const lc=document.createElement('div');lc.className='lastc';lc.textContent='Last marked: '+new Date(r.ts).toLocaleString();d.appendChild(lc);}
+  return d;
+}
+
+// ================= ROW =================
+function rowEl(l,withCat){
+  const r=get(l.dig),done=!!r.status;
+  const row=document.createElement('div');row.className='row'+(done?' done':'');
+  row.innerHTML='<span class="cb"><b>✓</b></span><div class="mid"><div class="nm"></div><div class="meta"></div></div><button class="cp">Copy</button><button class="nx" title="Not interested — one tap">✕</button><span class="chev">›</span>';
+  row.querySelector('.nm').textContent=l.n+(withCat?'  ·  '+l.c:'');
+  const meta=row.querySelector('.meta');
+  if(l.loc){meta.textContent=l.loc;}else{meta.textContent=l.t+' · ~'+l.mi+' mi';const tier=document.createElement('span');tier.className='tier';tier.textContent=l.tier===1?'closest':'edge';meta.appendChild(tier);}
+  const hn=callCount(r);
+  if(hn){const tp=document.createElement('span');tp.className='tier';tp.textContent='📞 '+hn+' · last '+new Date(r.ts).toLocaleDateString([],{month:'numeric',day:'numeric'});meta.appendChild(tp);}
+  if(r.notes){const np=document.createElement('div');np.className='notepv';np.textContent=r.notes;row.querySelector('.mid').appendChild(np);}
+  if(done){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;meta.appendChild(pl);}
+  if(r.time){const pl=document.createElement('span');pl.className='pill';pl.textContent='↩ '+shortWhen(r.time);pl.style.background='var(--orange)';meta.appendChild(pl);}
+  if(r.ts&&isToday(r.ts)){const pl=document.createElement('span');pl.className='pill';pl.textContent='✓ today';pl.style.background='var(--green)';meta.appendChild(pl);}
+  if(l.e){const pl=document.createElement('span');pl.className='pill';pl.textContent='✉ emailed';pl.style.background='var(--purple)';meta.appendChild(pl);}
+  const cb=row.querySelector('.cb');const cn=callCount(r);
+  if(cn){cb.classList.add('has');cb.querySelector('b').textContent=cn>99?'99':cn;}
+  cb.addEventListener('click',e=>{e.stopPropagation();logCall(l);showToast('📞 Call #'+callCount(get(l.dig))+' logged — '+l.n);build();});
+  const nx=row.querySelector('.nx');nx.addEventListener('click',e=>{e.stopPropagation();setStatus(l,'notnow');showToast('✕ '+l.n+(get(l.dig).status==='notnow'?' — marked not interested':' — un-marked'));build();});
+  const cp=row.querySelector('.cp');cp.addEventListener('click',e=>{e.stopPropagation();copyNum(l.p,cp);});
+  row.addEventListener('click',()=>{row.classList.toggle('open');});
+  return row;
+}
+
+function shortWhen(t){if(!t)return'';const d=new Date(t);if(isNaN(d))return t;return d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});}
+
+// ================= CALLBACKS DUE =================
+function dueBanner(){
+  const items=LEADS.filter(l=>get(l.dig).time).map(l=>({l,t:new Date(get(l.dig).time)})).filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t);
+  if(!items.length)return null;
+  const now=Date.now();
+  const wrap=document.createElement('div');wrap.className='due';
+  wrap.innerHTML='<div class="dh">↩ Callbacks ('+items.length+')</div>';
+  items.forEach(({l,t})=>{
+    const r=get(l.dig);const over=t.getTime()<=now;
+    const dr=document.createElement('div');dr.className='drow';
+    dr.innerHTML='<b>'+esc(l.n)+'</b>'+(r.dm?' <span style="color:var(--muted);font-weight:500">— '+esc(r.dm)+'</span>':'')+(isToday(r.ts)?' <span style="color:var(--green);font-weight:800;font-size:12px">✓ called today</span>':'')+'<span class="when'+(over?' now':'')+'">'+(over?'DUE · ':'')+shortWhen(r.time)+'</span>';
+    dr.addEventListener('click',()=>{copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});showToast('Copied  '+l.p);});
+    wrap.appendChild(dr);
+  });
+  return wrap;
+}
+
+// ================= SCOREBOARD =================
+function updateScore(){
+  let done=0,inprog=0,won=0,cbs=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;if(r.status)done++;if(r.status==='inprogress')inprog++;if(r.status==='won')won++;if(r.status==='callback'||r.status==='followup'||r.time)cbs++;});
+  const today=todayCalls();
+  const hit=today>=GOAL;
+  scoreEl.innerHTML=
+    '<div class="pip goal tap'+(hit?' hit':'')+'" data-v="today"><b>'+today+' / '+GOAL+'</b><span class="lbl">calls today</span></div>'+
+    '<div class="pip tap" data-v="inprogress"><b style="color:var(--teal)">'+inprog+'</b><span class="lbl">in progress</span></div>'+
+    '<div class="pip tap" data-v="callback"><b style="color:var(--orange)">'+cbs+'</b><span class="lbl">callbacks</span></div>'+
+    '<div class="pip"><b style="color:var(--green)">'+won+'</b><span class="lbl">won</span></div>'+
+    '<div class="pip"><b>'+done+'</b><span class="lbl">crossed off</span></div>';
+  const pct=Math.min(100,Math.round(today/GOAL*100));
+  bar.style.width=pct+'%';bar.classList.toggle('hit',hit);
+  document.getElementById('goaltxt').textContent=hit?'🎯 Daily goal hit — keep rolling':'Today’s dial goal: '+today+' of '+GOAL;
+  document.getElementById('donetxt').textContent=done+' / '+LEADS.length+' crossed off';
+  updatePadBadge();
+}
+
+// ================= PLAN VIEW (🎯 who to call NOW: skips anyone touched yesterday/today) =================
+function planSet(){
+  const d=new Date();const p2=n=>String(n).padStart(2,'0');
+  const tYMD=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+  const td=d.toDateString(), yd=new Date(Date.now()-864e5).toDateString();
+  const touchedOn=(r,ds)=>{const a=(r.hist||[]).map(h=>new Date(h.ts).toDateString());if(r.ts)a.push(new Date(r.ts).toDateString());return a.some(x=>ds.indexOf(x)>=0);};
+  const g1=[],g2=[],g3=[],g4=[];
+  LEADS.forEach(l=>{
+    const r=STATE[l.dig];
+    if(!r||(!r.status&&!(r.hist||[]).length)){g4.push(l);return;}
+    if(r.status!=='callback'&&r.status!=='followup')return;
+    const booked=(r.time||'').slice(0,10)===tYMD;
+    if(booked){if(!touchedOn(r,[td]))g1.push(l);return;}
+    if(touchedOn(r,[td,yd]))return;
+    if(r.status==='callback'){g2.push(l);return;}
+    const due=(r.time||'').slice(0,10);
+    if(!due||due<tYMD)g3.push(l);
+  });
+  g1.sort((a,b)=>((STATE[a.dig].time||'')<(STATE[b.dig].time||'')?-1:1));
+  const ord={};CATS.forEach((c,i)=>ord[c]=i);
+  g4.sort((a,b)=>((ord[a.c]||0)-(ord[b.c]||0))||(a.mi-b.mi));
+  return {g1:g1,g2:g2,g3:g3,g4:g4};
+}
+// ================= RENDER =================
+function build(){
+  app.innerHTML='';const term=q.value.trim().toLowerCase();
+  updateScore();
+  if(statusView==='plan'){
+    const g=planSet();
+    const mk=(title,arr)=>{
+      if(!arr.length)return;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+title+'</span><span class="n">'+arr.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      arr.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    };
+    mk('⏰ BOOKED FOR TODAY — they asked for this call',g.g1);
+    mk('↩ CALLBACKS — clean (no call yesterday or today)',g.g2);
+    mk('📧 FOLLOW-UPS OVERDUE — a week+ since contact',g.g3);
+    mk('❄️ NEVER CALLED — fresh leads',g.g4);
+    if(!g.g1.length&&!g.g2.length&&!g.g3.length&&!g.g4.length)
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'🎉 Plan clear — every callable lead is handled.'}));
+    return;
+  }
+  if(statusView==='today'){
+    const touched=LEADS.filter(l=>{const r=STATE[l.dig];return r&&isToday(r.ts);});
+    if(!touched.length){
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'No calls logged today yet. Everyone you touch today collects here, grouped by result — your end-of-day review.'}));
+      return;
+    }
+    const buckets=['won','inprogress','followup','callback','leftmsg','answered','noanswer','notnow','called'];
+    buckets.forEach(b=>{
+      const rows=touched.filter(l=>get(l.dig).status===b);
+      if(!rows.length)return;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+STATUS[b].g+' '+STATUS[b].lbl+'</span><span class="n">'+rows.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    });
+    return;
+  }
+  if(statusView==='callback'){
+    // grouped by day, sorted by time — mornings first within each day
+    const withT=[],noT=[];
+    LEADS.forEach(l=>{const r=STATE[l.dig];if(!r)return;
+      if(r.time){const d=new Date(r.time);if(!isNaN(d))withT.push({l,d});else noT.push(l);}
+      else if(r.status==='callback'||r.status==='followup')noT.push(l);});
+    withT.sort((a,b)=>a.d-b.d);
+    const now=new Date();const t0=new Date();t0.setHours(0,0,0,0);
+    const tom=new Date(t0);tom.setDate(t0.getDate()+1);
+    const aft=new Date(t0);aft.setDate(t0.getDate()+2);
+    const groups=[
+      ['🔴 OVERDUE — call these first',x=>x.d<=now],
+      ['🌅 TODAY — morning first',x=>x.d>now&&x.d<tom],
+      ['📅 TOMORROW',x=>x.d>=tom&&x.d<aft],
+      ['🗓 LATER THIS WEEK',x=>x.d>=aft]
+    ];
+    const used=new Set();let any=false;
+    groups.forEach(g=>{
+      const rows=withT.filter(x=>!used.has(x.l.dig)&&g[1](x));
+      rows.forEach(x=>used.add(x.l.dig));
+      if(!rows.length)return;any=true;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>'+g[0]+'</span><span class="n">'+rows.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      rows.forEach(x=>{card.appendChild(rowEl(x.l,true));card.appendChild(detailEl(x.l));});
+      sec.appendChild(card);app.appendChild(sec);
+    });
+    if(noT.length){
+      any=true;
+      const sec=document.createElement('div');sec.className='sec';
+      sec.innerHTML='<div class="lab"><span>⏱ NO TIME SET — tap a chip to schedule</span><span class="n">'+noT.length+'</span></div>';
+      const card=document.createElement('div');card.className='card';
+      noT.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+      sec.appendChild(card);app.appendChild(sec);
+    }
+    if(!any)app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'No callbacks yet. Tap ↩ Callback or 📧 Follow-Up on any lead and it collects here, grouped by day.'}));
+    return;
+  }
+  if(statusView){
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];if(!r)return false;return r.status===statusView;})
+      .slice().sort((a,b)=>{
+        const ta=isToday(get(a.dig).ts)?1:0,tb=isToday(get(b.dig).ts)?1:0;
+        if(ta!==tb)return ta-tb;
+        return (get(b.dig).ts||0)-(get(a.dig).ts||0);
+      });
+    if(!rows.length){
+      app.appendChild(Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px;line-height:1.6',textContent:'Nothing marked In Progress yet. Tap ⏳ In Progress on a lead and your working pipeline shows here.'}));
+      return;
+    }
+    const todo=rows.filter(l=>!isToday(get(l.dig).ts)).length;
+    const sec=document.createElement('div');sec.className='sec';
+    sec.innerHTML='<div class="lab"><span>⏳ In progress — still-to-call on top</span><span class="n">'+todo+' to call · '+(rows.length-todo)+' ✓ done today</span></div>';
+    const card=document.createElement('div');card.className='card';
+    rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+    sec.appendChild(card);app.appendChild(sec);
+    return;
+  }
+  const due=dueBanner();if(due)app.appendChild(due);
+  const match=l=>{const r=STATE[l.dig];if(strongTerm(term))return termHit(l,term);if(hideDone&&r&&r.status)return false;if(emOnly&&!l.e)return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
+  if(sortMode==='dist'){
+    const rows=LEADS.filter(match).slice().sort((a,b)=>a.mi-b.mi);
+    if(!rows.length){app.appendChild(noMatch());return;}
+    const card=document.createElement('div');card.className='card';
+    rows.forEach(l=>{card.appendChild(rowEl(l,true));card.appendChild(detailEl(l));});
+    const sec=document.createElement('div');sec.className='sec';sec.appendChild(card);app.appendChild(sec);
+  } else {
+    let any=false;
+    CATS.forEach(cat=>{
+      const rows=LEADS.filter(l=>l.c===cat).filter(match);
+      if(!rows.length)return;any=true;
+      const folded=!!FOLD[cat];
+      const sec=document.createElement('div');sec.className='sec';
+      const lab=document.createElement('div');lab.className='lab';
+      lab.innerHTML='<span><span class="arr">'+(folded?'▸':'▾')+'</span>'+esc(cat)+wallTag(cat)+'</span><span class="n">'+rows.length+'</span>';
+      lab.addEventListener('click',()=>{FOLD[cat]=!FOLD[cat];build();});
+      sec.appendChild(lab);
+      if(!folded){
+        const card=document.createElement('div');card.className='card';
+        rows.forEach(l=>{card.appendChild(rowEl(l,false));card.appendChild(detailEl(l));});
+        sec.appendChild(card);
+      }
+      app.appendChild(sec);
+    });
+    if(!any)app.appendChild(noMatch());
+  }
+  const help=document.createElement('div');help.className='help';
+  help.innerHTML='<b>How this sheet works:</b> <b>The circle = your call counter.</b> Tap it each time you call someone — 1, 2, 3… so callbacks and follow-ups always show how many tries and when the last one was. Setting a status ALSO counts as a call (one tap per call total — circle when nothing changed, status when something did). <b>Copy</b> just copies the number — it does not count anything. Everything saves automatically in this browser, only for this church. Category pills up top filter the list; tap a section title to fold it. <b>📧 Follow-Up</b> = sent info / somewhat interested — it auto-books your call-back 3 days out (10a, skips weekends) and tracks it. Every status tap logs to the lead’s history — the “3× · last 7/15” tag shows calls made + last contact. <b>📊 Today</b> = everyone you called today grouped by result, your end-of-day review.';
+  const recCount=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.status||r.notes||r.time||r.dm||r.email||r.ts);}).length;
+  let lastex='never';try{const v=localStorage.getItem('lastexport_'+LIST_ID);if(v)lastex=new Date(parseInt(v,10)).toLocaleString();}catch(e){}
+  const dhh=document.createElement('div');dhh.style.marginTop='8px';
+  dhh.innerHTML='💾 <b>'+recCount+' leads with saved data on this computer</b> · last backup: <b>'+esc(lastex)+'</b>. Saves are instant, but hit <b>Export</b> at day’s end — a browser wipe can’t touch a downloaded backup.';
+  if(lastex==='never'&&recCount>10){dhh.style.color='var(--red)';dhh.style.fontWeight='600';}
+  help.appendChild(dhh);
+  app.appendChild(help);
+}
+function noMatch(){return Object.assign(document.createElement('div'),{style:'color:var(--muted);text-align:center;padding:40px',textContent:'No matches'});}
+
+// ================= EXPORT / IMPORT =================
+function exportData(){
+  let padTxt='';try{padTxt=localStorage.getItem('pad_v1_'+LIST_ID)||'';}catch(e){}
+  let tasksArr=[];try{tasksArr=JSON.parse(localStorage.getItem('tasks_v1_'+LIST_ID))||[];}catch(e){}
+  const blob=new Blob([JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='callstate-burton-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  try{localStorage.setItem('lastexport_'+LIST_ID,String(Date.now()));}catch(e){}
+  build();showToast('Backup downloaded');
+}
+function importData(file){
+  const fr=new FileReader();fr.onload=()=>{try{const o=JSON.parse(fr.result);const st=o.state||o;if(typeof st!=='object')throw 0;
+    let n=0;Object.keys(st).forEach(k=>{STATE[k]=Object.assign(rec(k),st[k]);n++;});
+    if(typeof o.pad==='string'){try{localStorage.setItem('pad_v1_'+LIST_ID,o.pad);}catch(e){}}
+    if(Array.isArray(o.tasks)){try{localStorage.setItem('tasks_v1_'+LIST_ID,JSON.stringify(o.tasks));TASKS=o.tasks;}catch(e){}}
+    save();build();if(pad.classList.contains('show'))renderPad();showToast('Restored '+n+' leads');}catch(e){showToast('Bad backup file');}};
+  fr.readAsText(file);
+}
+
+// ================= WIRE =================
+q.addEventListener('input',build);
+document.getElementById('sort').addEventListener('change',function(){sortMode=this.value;build();});
+document.getElementById('near').addEventListener('click',function(){nearOnly=!nearOnly;this.classList.toggle('on',nearOnly);build();});
+document.getElementById('emview').addEventListener('click',function(){emOnly=!emOnly;this.classList.toggle('on',emOnly);build();});
+document.getElementById('hide').addEventListener('click',function(){hideDone=!hideDone;this.classList.toggle('on',hideDone);this.textContent=hideDone?'Show all':'Hide done';build();});
+function syncViewBtns(){
+  document.getElementById('planview').classList.toggle('on',statusView==='plan');
+  document.getElementById('cbview').classList.toggle('on',statusView==='callback');
+  document.getElementById('ipview').classList.toggle('on',statusView==='inprogress');
+  document.getElementById('dayview').classList.toggle('on',statusView==='today');
+}
+document.getElementById('planview').addEventListener('click',function(){statusView=(statusView==='plan')?'':'plan';syncViewBtns();build();});
+document.getElementById('cbview').addEventListener('click',function(){statusView=(statusView==='callback')?'':'callback';syncViewBtns();build();});
+document.getElementById('ipview').addEventListener('click',function(){statusView=(statusView==='inprogress')?'':'inprogress';syncViewBtns();build();});
+document.getElementById('dayview').addEventListener('click',function(){statusView=(statusView==='today')?'':'today';syncViewBtns();build();});
+scoreEl.addEventListener('click',e=>{const p=e.target.closest('.pip[data-v]');if(!p)return;const v=p.dataset.v;statusView=(statusView===v)?'':v;syncViewBtns();build();});
+document.getElementById('exp').addEventListener('click',exportData);
+document.getElementById('expc').addEventListener('click',function(){
+  let padTxt='';try{padTxt=localStorage.getItem('pad_v1_'+LIST_ID)||'';}catch(e){}
+  let tasksArr=[];try{tasksArr=JSON.parse(localStorage.getItem('tasks_v1_'+LIST_ID))||[];}catch(e){}
+  const txt=JSON.stringify({list:LIST_ID,exported:new Date().toISOString(),state:STATE,pad:padTxt,tasks:tasksArr});
+  function done(){try{localStorage.setItem('lastexport_'+LIST_ID,String(Date.now()));}catch(e){}build();showToast('Copied — paste into an email to yourself');}
+  function fallback(){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);if(ok)done();else showToast('Copy blocked — use Export instead');}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback);}else{fallback();}
+});
+document.getElementById('imp').addEventListener('click',()=>document.getElementById('impf').click());
+document.getElementById('impf').addEventListener('change',function(){if(this.files[0])importData(this.files[0]);this.value='';});
+document.getElementById('print').addEventListener('click',()=>window.print());
+
+// ---- one-tap note chips ----
+const CHIPS=['Gatekeeper','Owner out','Send info','Call back AM','Wants pricing','Not the buyer'];
+function chipRow(l,ta){
+  const w=document.createElement('div');w.className='nchips';
+  CHIPS.forEach(c=>{
+    const b=document.createElement('button');b.className='nchip';b.textContent='+ '+c;
+    b.addEventListener('click',e=>{e.stopPropagation();const r=rec(l.dig);r.notes=(r.notes?r.notes+' · ':'')+c;if(ta)ta.value=r.notes;save();});
+    w.appendChild(b);
+  });
+  return w;
+}
+
+// ---- 30-min tap chips: [Today|Tomorrow|day] then [9a … 5:30p] — two taps, no pickers ----
+function stampFor(baseDate,h,m){const d=new Date(baseDate);d.setHours(h,m,0,0);const p=n=>(n<10?'0':'')+n;return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes());}
+function tlabel(h,m){const ap=h<12?'a':'p';let hh=h%12;if(hh===0)hh=12;return hh+(m?':30':'')+ap;}
+function dayChoices(){
+  const out=[];const now=new Date();const names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  for(let i=0;i<6;i++){const d=new Date(now);d.setDate(now.getDate()+i);out.push({lbl:i===0?'Today':(i===1?'Tomorrow':names[d.getDay()]),date:d,idx:i});}
+  return out;
+}
+function chipTimePicker(opts){ // {onSet(stamp,label), onClear?, noTimeLbl?}
+  const wrap=document.createElement('div');wrap.className='tpick';
+  let dayIdx=0;const days=dayChoices();
+  const dayRow=document.createElement('div');dayRow.className='nchips';
+  const timeRow=document.createElement('div');timeRow.className='nchips';
+  function renderDays(){
+    dayRow.innerHTML='';
+    days.forEach((d,i)=>{const b=document.createElement('button');b.className='nchip'+(i===dayIdx?' on':'');b.textContent=d.lbl;
+      b.addEventListener('click',e=>{e.stopPropagation();dayIdx=i;renderDays();renderTimes();});dayRow.appendChild(b);});
+    if(opts.noTimeLbl){const b=document.createElement('button');b.className='nchip';b.textContent=opts.noTimeLbl;
+      b.addEventListener('click',e=>{e.stopPropagation();opts.onSet('','');});dayRow.appendChild(b);}
+    if(opts.onClear){const b=document.createElement('button');b.className='nchip';b.textContent='✕ clear';
+      b.addEventListener('click',e=>{e.stopPropagation();opts.onClear();});dayRow.appendChild(b);}
+  }
+  function renderTimes(){
+    timeRow.innerHTML='';
+    const now=new Date();let live=0;
+    for(let h=8;h<=16;h++)for(const m of [0,30]){
+      let past=false;
+      if(dayIdx===0){const t=new Date();t.setHours(h,m,0,0);past=t<=now;}
+      const b=document.createElement('button');b.className='nchip tch'+(past?' off':'');b.textContent=tlabel(h,m);
+      if(!past){live++;b.addEventListener('click',e=>{e.stopPropagation();opts.onSet(stampFor(days[dayIdx].date,h,m),days[dayIdx].lbl+' '+tlabel(h,m));});}
+      timeRow.appendChild(b);
+    }
+    if(!live){const s=document.createElement('span');s.className='sub2';s.textContent='Today’s calling hours are done — tap Tomorrow.';timeRow.appendChild(s);}
+  }
+  renderDays();renderTimes();
+  wrap.appendChild(dayRow);wrap.appendChild(timeRow);
+  return wrap;
+}
+
+// ---- WON confetti ----
+function confetti(){
+  const cols=['#34c759','#007aff','#ff9500','#af52de','#ff3b30','#30b0c7'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('i');s.className='cfx';
+    s.style.left=(20+Math.random()*60)+'%';s.style.background=cols[i%cols.length];
+    s.style.animationDelay=(Math.random()*.25)+'s';s.style.setProperty('--dx',((Math.random()*2-1)*160)+'px');
+    document.body.appendChild(s);setTimeout(()=>s.remove(),1800);
+  }
+}
+
+// ---- Dial Mode: one un-called lead at a time; status tap auto-advances ----
+let dialOn=false;const SKIPPED=new Set();
+const dialEl=document.createElement('div');dialEl.className='dial';document.body.appendChild(dialEl);
+function dialQueue(){
+  if(statusView==='plan'){
+    const g=planSet();
+    return [].concat(g.g1,g.g2,g.g3,g.g4).filter(l=>!SKIPPED.has(l.dig));
+  }
+  const term=q.value.trim().toLowerCase();
+  const m=l=>{const r=STATE[l.dig];if(r&&r.status)return false;if(SKIPPED.has(l.dig))return false;if(nearOnly&&l.tier!==1)return false;if(chipCat&&l.c!==chipCat)return false;if(!term)return true;return termHit(l,term);};
+  const rows=[];CATS.forEach(cat=>{LEADS.filter(l=>l.c===cat).filter(m).slice().sort((a,b)=>a.mi-b.mi).forEach(l=>rows.push(l));});
+  return rows;
+}
+function renderDial(){
+  if(!dialOn){dialEl.classList.remove('show');return;}
+  dialEl.classList.add('show');
+  const today=todayCalls();
+  const qu=dialQueue();
+  if(!qu.length){
+    dialEl.innerHTML='<div class="dtop"><button class="dx">✕ Close</button><span>'+today+' / '+GOAL+' today</span><span></span></div><div class="dempty">🎉 Every lead in this view is handled.<br>Close, then clear a filter or pick another category.</div>';
+    dialEl.querySelector('.dx').addEventListener('click',()=>{dialOn=false;renderDial();build();});
+    return;
+  }
+  const l=qu[0],r=get(l.dig);
+  dialEl.innerHTML='<div class="dtop"><button class="dx">✕ Close</button><span class="dleft"></span><button class="dskip">Skip ›</button></div>'+
+    '<div class="dcard"><div class="dcat"></div><div class="dnm"></div><div class="dmeta"></div>'+
+    '<button class="dnum"></button><div class="dhint">tap the number to copy → paste into the Salesforce dialer · always leave a VM</div>'+
+    '<div class="dstat"></div><div class="dcb"></div><div class="dchips"></div><textarea class="dnotes" placeholder="What happened…"></textarea></div>';
+  dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+today+' / '+GOAL+' today';
+  dialEl.querySelector('.dcat').textContent=l.c;
+  dialEl.querySelector('.dnm').textContent=l.n;
+  dialEl.querySelector('.dmeta').textContent=l.t+' · ~'+l.mi+' mi';
+  const nb=dialEl.querySelector('.dnum');nb.textContent=l.p;
+  nb.addEventListener('click',()=>{
+    copyNum(l.p,{textContent:'',classList:{add(){},remove(){}}});
+    dialEl.querySelector('.dleft').textContent=qu.length+' to go · '+todayCalls()+' / '+GOAL+' today';
+  });
+  const stat=dialEl.querySelector('.dstat');
+  ORDER.forEach(st=>{
+    const b=document.createElement('button');b.className='sbtn';b.textContent=STATUS[st].g+' '+STATUS[st].lbl;
+    b.addEventListener('click',()=>{setStatus(l,st);renderDial();});
+    stat.appendChild(b);
+  });
+  const dcb=dialEl.querySelector('.dcb');
+  const dl=document.createElement('div');dl.className='sub2';dl.style.margin='14px 0 0';dl.textContent='↩ “Call me back at…” — one tap logs the callback + reminder and moves on:';
+  dcb.appendChild(dl);
+  dcb.appendChild(chipTimePicker({onSet:(s,lab)=>{const rr=rec(l.dig);rr.time=s;rr.status='callback';rr.ts=Date.now();save();showToast('↩ '+lab+' — saved to Tasks');updatePadBadge();renderDial();}}));
+  const ta=dialEl.querySelector('.dnotes');ta.value=r.notes||'';
+  ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+  dialEl.querySelector('.dchips').appendChild(chipRow(l,ta));
+  dialEl.querySelector('.dskip').addEventListener('click',()=>{SKIPPED.add(l.dig);renderDial();});
+  dialEl.querySelector('.dx').addEventListener('click',()=>{dialOn=false;renderDial();build();});
+}
+document.getElementById('dialgo').addEventListener('click',()=>{dialOn=true;renderDial();});
+
+// ---- Pitch sheet ----
+const scrim=document.createElement('div');scrim.className='scrim';document.body.appendChild(scrim);
+const sheet=document.createElement('div');sheet.className='sheet';document.body.appendChild(sheet);
+sheet.innerHTML='<div class="grab"></div>'+
+ '<h3>🏛 THIS WEEK — BURTON SENIOR CENTER, BURTON MI (Genesee County)</h3><p><b>3410 S Grand Traverse, Burton MI 48529</b> · (810) 744-0960 · burtonmi.gov · director <b>Jennifer Ackley</b>, program coordinator Kim Kirts · the newsletter = <b>&ldquo;Burton Senior Light&rdquo;</b>, MONTHLY, 16 pages, one issue on the 1st, hosted on MyCommunityOnline · hot lunch M&ndash;F, shuttle rides, veterans services, Secretary of State mobile office, food pantry = the seniors live here · acct <b>15-0682</b> · contract 00017880 · <b>your house ad prints on page 8</b> (call-ins come to you).</p>'
++'<h3>⚡ First 10 seconds</h3><p>&ldquo;Hi [name], this is Abe — I handle the monthly newsletter for the <b>Burton Senior Center</b>, right here by Flint. Got 30 seconds?&rdquo; Then: &ldquo;it goes out to the seniors across Genesee County every month, copies sit around the center all month, and right now there&rsquo;s no [home care agency / hearing aid office / Medicare agent / elder law attorney / dentist] in it.&rdquo; SENIOR WORDS ONLY: center, newsletter, members, seniors. Never parish, Mass, bulletin, parishioners. Price it by the month (÷12): &ldquo;about $42 a month.&rdquo; No goal line on a senior center (rule 12).</p>'
++'<h3>⏰ The dates — say them</h3><p><b>35-day rule:</b> an order in by <b>Tuesday 10/27</b> makes the <b>December 1 issue</b> (the Christmas issue); after that the next one is <b>January 1</b>. <b>Medicare enrollment runs through Dec 7</b> = every Medicare and senior-insurance agent&rsquo;s reason to buy today. Prepay = one extra month. Never give a first-issue date you did not read off the Salesforce picker that day.</p>'
++'<h3>The area — say it plainly</h3><p>Burton is Flint&rsquo;s southeast suburb; Grand Blanc, Davison, Swartz Creek, Flushing, Fenton, Linden, Clio, Mt. Morris all inside 15 miles (area code 810). Readers = seniors 60+ who use the center and the adult children deciding on their care. <b>The Swartz Creek book (15-0694, same county) proved the categories pay:</b> four senior-living communities, two funeral homes, a monument company, hospice and hearing all bought that one.</p>'
++'<h3>Voicemail (~15 sec — EVERY dial)</h3><p>&ldquo;Hi, this is Abe calling about the <b>Burton Senior Center&rsquo;s monthly newsletter</b> — I&rsquo;ve got advertising space open and I think you&rsquo;d be a good fit. Call me at 440-867-0599, that&rsquo;s 440-867-0599. Thanks.&rdquo;</p>'
++'<h3>🥊 Objections</h3><p><b>“Send me an email.”</b> → “Happy to — best address? And so I don&rsquo;t pester you: maybe, or no?”<br><b>“Already advertise.”</b> → “This supplements it — Google can&rsquo;t put you on the table at the senior center.”<br><b>“Too expensive.”</b> → the 1-space is about $42 a month for the whole year, design free, four changes a year, the digital listing on MyCommunityOnline included.<br><b>“Who reads it?”</b> → the seniors who come to the center every day for lunch and classes, and their families online.</p>'
++'<h3>At the close — multiples</h3><p>“Do it for the year, I&rsquo;ll check back in a few months — and if this works, the Swartz Creek senior center&rsquo;s newsletter is right next door.” (Same county, same families; loop Mark past the key line.)</p>'
++'<h3 class="warn">Don&rsquo;t sell / don&rsquo;t say</h3><p class="warn">Abortion/PP · elections · psychics/tarot · alcohol needs an OK · CBD = ask Mark (senior centers often yes). Never claim to be center staff. Never promise exclusivity or placement. <b>THE WALL (Nov 2026 issue):</b> Sharp Funeral Homes · Lockwood Senior Living (Burton + Genesee) · Davison Landings · Rose Haven Apts · Charger Properties · Big Brothers Pharmacy · A Better Roof For Less · Randy Wise Chevrolet · the GHP Medicare hotline · <b>GOYETTE MECHANICAL = KEY ACCOUNT, never dial</b> (so “no plumber / heating company in it” is FALSE — Goyette is in). The Swartz Creek book&rsquo;s advertisers (⛔ RENEWAL TEAM&rsquo;S rows) = ask Mark first.</p>'
++'<h3>Discipline</h3><p>Document EVERY call in SF · convert at any interest · a lead needs company · first+last · email · phone · website · address · Closed Won AND Create Ad Order = two steps (senior book: the order date + 35 days = the first issue) · never .MSG · Monday law: ATTRAX pull (15-0682 actives + inactives, Church view 48529;15) + the wall BEFORE cold dials.</p>';
+function togglePitch(on){sheet.classList.toggle('show',on);scrim.classList.toggle('show',on);}
+document.getElementById('pitchbtn').addEventListener('click',()=>togglePitch(true));
+scrim.addEventListener('click',()=>togglePitch(false));
+
+// ---- Notes hub: Tasks / Call notes / Paper (all saved per church) ----
+const PADKEY='pad_v1_'+LIST_ID;
+const TKEY='tasks_v1_'+LIST_ID;
+let TASKS=[];try{TASKS=JSON.parse(localStorage.getItem(TKEY))||[];}catch(e){TASKS=[];}
+function saveTasks(){try{localStorage.setItem(TKEY,JSON.stringify(TASKS));flagSaved(false);}catch(e){flagSaved(true);}}
+const pad=document.createElement('div');pad.className='pad';
+pad.innerHTML='<div class="padhd"><b>📝 Notes & Tasks</b><button class="btn" id="padx">✕ Close</button></div>'+
+ '<div class="ptabs"><button class="ptab on" data-t="tasks">📋 Tasks</button><button class="ptab" data-t="notes">🗒 Call notes</button><button class="ptab" data-t="paper">✏️ Paper</button></div>'+
+ '<div class="pbody" id="pbody"></div>';
+document.body.appendChild(pad);
+let padTab='tasks';
+pad.querySelectorAll('.ptab').forEach(b=>b.addEventListener('click',()=>{padTab=b.dataset.t;pad.querySelectorAll('.ptab').forEach(x=>x.classList.toggle('on',x===b));renderPad();}));
+pad.querySelector('#padx').addEventListener('click',()=>pad.classList.remove('show'));
+document.getElementById('padbtn').addEventListener('click',()=>{pad.classList.toggle('show');if(pad.classList.contains('show'))renderPad();});
+
+function fmtDue(t){const d=new Date(t);if(isNaN(d))return t;return d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});}
+function copyBtnEl(p){const b=document.createElement('button');b.className='cp';b.textContent='Copy';b.addEventListener('click',e=>{e.stopPropagation();copyNum(p,b);});return b;}
+function emptyMsg(m){const d=document.createElement('div');d.className='sub2';d.style.padding='20px 4px';d.textContent=m;return d;}
+
+function renderPad(){
+  const body=pad.querySelector('#pbody');body.innerHTML='';
+  if(padTab==='paper'){
+    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Freeform — your big piece of paper. Saves automatically as you type.';
+    const ta=document.createElement('textarea');ta.className='paper';
+    try{ta.value=localStorage.getItem(PADKEY)||'';}catch(e){}
+    ta.placeholder='Write anything…';
+    ta.addEventListener('input',()=>{clearTimeout(ta._t);ta._t=setTimeout(()=>{try{localStorage.setItem(PADKEY,ta.value);flagSaved(false);}catch(e){flagSaved(true);}},400);});
+    body.appendChild(sub);body.appendChild(ta);
+    return;
+  }
+  if(padTab==='notes'){
+    const sub=document.createElement('div');sub.className='sub2';sub.textContent='Everyone you’ve touched — status, notes, callbacks — newest first, business + number above each note. Edit a note here and it saves straight to that lead.';
+    body.appendChild(sub);
+    const rows=LEADS.filter(l=>{const r=STATE[l.dig];return r&&(r.notes||r.dm||r.email||r.status||r.time||r.ts);}).sort((a,b)=>(get(b.dig).ts||0)-(get(a.dig).ts||0));
+    if(!rows.length){body.appendChild(emptyMsg('No calls logged yet. Every lead you mark or write a note on collects here.'));return;}
+    rows.forEach(l=>{
+      const r=get(l.dig);
+      const c=document.createElement('div');c.className='pcard';
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent=l.n;
+      hd.querySelector('.pcmeta').textContent=l.t+' · '+l.p;
+      if(r.status){const pl=document.createElement('span');pl.className='pill';pl.textContent=STATUS[r.status].lbl;pl.style.background=STATUS[r.status].c;hd.querySelector('.pcnm').appendChild(pl);}
+      c.appendChild(hd);
+      if(r.dm){const dm=document.createElement('div');dm.className='pcdm';dm.textContent='Ask for: '+r.dm;c.appendChild(dm);}
+      if(r.time){const tm=document.createElement('div');tm.className='pctime'+(new Date(r.time)<=new Date()?' over':'');tm.textContent='↩ Call back '+fmtDue(r.time);c.appendChild(tm);}
+      const ta=document.createElement('textarea');ta.className='pcnote';ta.value=r.notes||'';ta.placeholder='Note…';
+      ta.addEventListener('input',()=>{rec(l.dig).notes=ta.value;clearTimeout(ta._t);ta._t=setTimeout(save,400);});
+      c.appendChild(ta);
+      const act=document.createElement('div');act.className='pcact';act.appendChild(copyBtnEl(l.p));c.appendChild(act);
+      body.appendChild(c);
+    });
+    return;
+  }
+  // Tasks tab
+  const sub=document.createElement('div');sub.className='sub2';sub.textContent='Callbacks pull in automatically from your leads. Add your own to-dos below. Red = overdue.';
+  body.appendChild(sub);
+  const form=document.createElement('div');form.className='taskform';
+  form.innerHTML='<input type="text" id="ntxt" placeholder="New task… e.g. drop off rate card"><button class="btn on" id="nadd">Add</button>';
+  body.appendChild(form);
+  let ndue='';
+  const tlbl=document.createElement('div');tlbl.className='sub2';tlbl.style.margin='2px 2px 0';tlbl.textContent='No reminder time — or tap one:';
+  body.appendChild(tlbl);
+  body.appendChild(chipTimePicker({noTimeLbl:'No time',onSet:(s,lab)=>{ndue=s;tlbl.textContent=s?('⏰ Reminder: '+lab):'No reminder time — or tap one:';}}));
+  form.querySelector('#nadd').addEventListener('click',()=>{
+    const t=form.querySelector('#ntxt').value.trim();if(!t)return;
+    TASKS.push({id:Date.now()+''+Math.floor(Math.random()*1e4),txt:t,due:ndue||'',done:false,ts:Date.now()});
+    saveTasks();renderPad();updatePadBadge();
+  });
+  const now=Date.now();
+  const items=[];
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.time){const d=new Date(r.time);items.push({kind:'cb',l,r,due:r.time,over:!isNaN(d)&&d.getTime()<=now,dt:isNaN(d)?Infinity:d.getTime()});}});
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.status==='callback'&&!r.time){items.push({kind:'cbnt',l,r,due:'',over:false,dt:Infinity});}});
+  TASKS.filter(t=>!t.done).forEach(t=>{const d=t.due?new Date(t.due):null;items.push({kind:'task',t,due:t.due,over:!!(d&&!isNaN(d)&&d.getTime()<=now),dt:(d&&!isNaN(d))?d.getTime():Infinity});});
+  items.sort((a,b)=>(b.over-a.over)||(a.dt-b.dt));
+  if(!items.length)body.appendChild(emptyMsg('Nothing pending. Set a "Call back at" time on a lead, or add a task above.'));
+  items.forEach(it=>{
+    const c=document.createElement('div');c.className='pcard task'+(it.over?' over':'');
+    if(it.kind==='cb'){
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent='📞 '+it.l.n;
+      hd.querySelector('.pcmeta').textContent=it.l.t+' · '+it.l.p+(it.r.dm?' · ask for '+it.r.dm:'');
+      c.appendChild(hd);
+      const tm=document.createElement('div');tm.className='pctime'+(it.over?' over':'');tm.textContent=(it.over?'⚠ DUE — ':'')+'call back '+fmtDue(it.due);c.appendChild(tm);
+      if(it.r.notes){const n=document.createElement('div');n.className='pcprev';n.textContent=it.r.notes;c.appendChild(n);}
+      const act=document.createElement('div');act.className='pcact';
+      act.appendChild(copyBtnEl(it.l.p));
+      const dn=document.createElement('button');dn.className='btn';dn.textContent='✓ Done';
+      dn.addEventListener('click',()=>{rec(it.l.dig).time='';save();build();renderPad();updatePadBadge();});
+      act.appendChild(dn);c.appendChild(act);
+    } else if(it.kind==='cbnt'){
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div><div class="pcmeta"></div>';
+      hd.querySelector('.pcnm').textContent='📞 '+it.l.n;
+      hd.querySelector('.pcmeta').textContent=it.l.t+' · '+it.l.p+(it.r.dm?' · ask for '+it.r.dm:'');
+      c.appendChild(hd);
+      const tm=document.createElement('div');tm.className='pctime';tm.textContent='↩ Callback — no time set. Tap when:';c.appendChild(tm);
+      if(it.r.notes){const n=document.createElement('div');n.className='pcprev';n.textContent=it.r.notes;c.appendChild(n);}
+      c.appendChild(chipTimePicker({onSet:(s,lab)=>{rec(it.l.dig).time=s;save();showToast('↩ '+lab);renderPad();updatePadBadge();}}));
+      const act=document.createElement('div');act.className='pcact';
+      act.appendChild(copyBtnEl(it.l.p));c.appendChild(act);
+    } else {
+      const hd=document.createElement('div');hd.className='pchd';
+      hd.innerHTML='<div class="pcnm"></div>';hd.querySelector('.pcnm').textContent='☐ '+it.t.txt;c.appendChild(hd);
+      if(it.due){const tm=document.createElement('div');tm.className='pctime'+(it.over?' over':'');tm.textContent=(it.over?'⚠ DUE — ':'')+fmtDue(it.due);c.appendChild(tm);}
+      const act=document.createElement('div');act.className='pcact';
+      const dn=document.createElement('button');dn.className='btn';dn.textContent='✓ Done';
+      dn.addEventListener('click',()=>{it.t.done=true;saveTasks();renderPad();updatePadBadge();});
+      const del=document.createElement('button');del.className='btn';del.textContent='✕';
+      del.addEventListener('click',()=>{TASKS=TASKS.filter(x=>x.id!==it.t.id);saveTasks();renderPad();updatePadBadge();});
+      act.appendChild(dn);act.appendChild(del);c.appendChild(act);
+    }
+    body.appendChild(c);
+  });
+  const doneT=TASKS.filter(t=>t.done);
+  if(doneT.length){
+    const dh=document.createElement('div');dh.className='sub2';dh.style.marginTop='14px';dh.textContent='Done';body.appendChild(dh);
+    doneT.slice(-8).reverse().forEach(t=>{
+      const c=document.createElement('div');c.className='pcard';
+      c.innerHTML='<div class="pchd"><div class="pcnm" style="text-decoration:line-through;opacity:.55"></div></div>';
+      c.querySelector('.pcnm').textContent='✓ '+t.txt;
+      const del=document.createElement('button');del.className='btn';del.textContent='✕';del.style.marginTop='6px';
+      del.addEventListener('click',()=>{TASKS=TASKS.filter(x=>x.id!==t.id);saveTasks();renderPad();});
+      c.appendChild(del);
+      body.appendChild(c);
+    });
+  }
+}
+function updatePadBadge(){
+  const now=Date.now();let n=0;
+  LEADS.forEach(l=>{const r=STATE[l.dig];if(r&&r.time){const d=new Date(r.time);if(!isNaN(d)&&d.getTime()<=now)n++;}});
+  TASKS.forEach(t=>{if(!t.done&&t.due){const d=new Date(t.due);if(!isNaN(d)&&d.getTime()<=now)n++;}});
+  const b=document.getElementById('padbadge');
+  if(b){b.textContent=n;b.style.display=n?'inline-flex':'none';}
+}
+setInterval(()=>{updatePadBadge();if(pad.classList.contains('show')&&padTab==='tasks'&&!(document.activeElement&&pad.contains(document.activeElement)))renderPad();},60000);
+updatePadBadge();
+
+buildChips();
+build();
+</script>
+</body>
+</html>
