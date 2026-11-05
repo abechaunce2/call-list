@@ -1,0 +1,160 @@
+{
+"165": {
+"npi": "1790744779",
+"name": "John Culler",
+"tax": "Dentist",
+"tok": "Culler",
+"upd": "2012-04-05",
+"enum": "2006-03-20"
+},
+"166": {
+"npi": "1124042866",
+"name": "Jeffrey King",
+"tax": "Dentist, General Practice",
+"tok": "King",
+"upd": "2007-07-08",
+"enum": "2006-07-26"
+},
+"167": {
+"npi": "1992822647",
+"name": "Catherine Fowler",
+"tax": "Dentist, General Practice",
+"tok": "Fowler",
+"upd": "2007-07-08",
+"enum": "2007-03-26"
+},
+"168": null,
+"169": null,
+"172": null,
+"182": {
+"npi": "1710062104",
+"name": "William Galbreath",
+"tax": "Dentist, General Practice",
+"tok": "Galbreath",
+"upd": "2007-07-08",
+"enum": "2006-10-26"
+},
+"184": {
+"npi": "1366733644",
+"name": "Broadway Family And Cosmetic Dentistry Psc",
+"tax": "Dentist, General Practice",
+"tok": "Broadway",
+"upd": "2011-04-21",
+"enum": "2011-04-21"
+},
+"197": {
+"npi": "1871616334",
+"name": "Martha Rice",
+"tax": "Dentist, General Practice",
+"tok": "Rice",
+"upd": "2015-02-02",
+"enum": "2007-04-09"
+},
+"198": null,
+"200": null,
+"201": null,
+"204": null,
+"206": null,
+"211": {
+"npi": "1992719264",
+"name": "Rex Mccrary",
+"tax": "Dentist, General Practice",
+"tok": "McCrary",
+"upd": "2007-07-09",
+"enum": "2006-07-29"
+},
+"212": null,
+"215": {
+"npi": "1366473621",
+"name": "Wildcat Pharmacist Group Llc",
+"tax": "Pharmacy, Community/Retail Pharmacy",
+"tok": "Hubbard",
+"upd": "2025-05-19",
+"enum": "2006-07-05"
+},
+"243": null,
+"253": null,
+"255": null,
+"265": null,
+"267": null,
+"121": null,
+"124": null,
+"128": null,
+"275": {
+"npi": "1861508202",
+"name": "Bluegrass Oxygen Inc",
+"tax": "Durable Medical Equipment & Medical Supplies",
+"tok": "Bluegrass",
+"upd": "2022-07-21",
+"enum": "2006-08-21"
+},
+"281": {
+"npi": "1942298633",
+"name": "Home Medical Equipment, Llc",
+"tax": "Durable Medical Equipment & Medical Supplies, Oxygen Equipment & Supplies",
+"tok": "Homecare",
+"upd": "2022-07-21",
+"enum": "2005-10-07"
+},
+"343": null,
+"344": null,
+"345": {
+"npi": "1821133141",
+"name": "Commonwealth Family Physicians Psc",
+"tax": "Family Medicine",
+"tok": "Commonwealth",
+"upd": "2013-10-02",
+"enum": "2007-02-21"
+},
+"347": null,
+"44": null,
+"61": {
+"npi": "1922001148",
+"name": "Dover Manor, Inc.",
+"tax": "Skilled Nursing Facility",
+"tok": "Dover",
+"upd": "2008-08-18",
+"enum": "2005-05-23"
+},
+"70": {
+"npi": "1740351733",
+"name": "Rose Manor Hcf Limited",
+"tax": "Skilled Nursing Facility",
+"tok": "Rose",
+"upd": "2013-05-15",
+"enum": "2006-11-13"
+},
+"25": null,
+"49": null,
+"56": null,
+"47": null,
+"66": null,
+"174": {
+"npi": "1003949967",
+"name": "Kimberly Wilkins",
+"tax": "Dentist, General Practice",
+"tok": "Wilkins",
+"upd": "2007-07-08",
+"enum": "2007-03-13"
+},
+"196": {
+"npi": "1669510566",
+"name": "Elvidge & Lasheen, Dmd,Psc",
+"tax": "Dentist",
+"tok": "Elvidge",
+"upd": "2020-08-22",
+"enum": "2007-02-02"
+},
+"213": null,
+"80": null,
+"115": {
+"npi": "1821408394",
+"name": "Diversicare Of Nicholasville, Llc",
+"tax": "Skilled Nursing Facility",
+"tok": "Diversicare",
+"upd": "2015-06-01",
+"enum": "2014-05-05"
+},
+"33": null,
+"34": null
+}
