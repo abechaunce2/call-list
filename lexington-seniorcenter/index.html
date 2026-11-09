@@ -770,7 +770,7 @@ function strongTerm(term){return !!term&&(term.indexOf('@')>=0||term.replace(/\D
 const STATUS={
   noanswer:{lbl:"No answer",c:"var(--muted)",g:"○"},
   leftmsg:{lbl:"Left msg",c:"var(--blue)",g:"✉"},
-  answered:{lbl:"Answered",c:"var(--purple)",g:"☎"},
+  answered:{lbl:"Talked to",c:"var(--purple)",g:"☎"},
   callback:{lbl:"Callback",c:"var(--orange)",g:"↩"},
   followup:{lbl:"Follow-Up",c:"var(--purple)",g:"📧"},
   inprogress:{lbl:"In Progress",c:"var(--teal)",g:"⏳"},
@@ -778,7 +778,7 @@ const STATUS={
   won:{lbl:"WON",c:"var(--green)",g:"★"},
   called:{lbl:"Called",c:"var(--muted)",g:"✓"}
 };
-const ORDER=["noanswer","leftmsg","callback","followup","inprogress","notnow","won"];
+const ORDER=["noanswer","leftmsg","answered","callback","followup","inprogress","notnow","won"];
 
 // ================= STORAGE (per-church key — never collides with other weeks) =================
 const LIST_ID="lexington-seniorcenter-14-1670";
